@@ -1,3 +1,6 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
 import shl from "/src/assets/home/shield.png";
 import hear from "/src/assets/home/heart.png";
 import aro from "/src/assets/home/arroe.png";
@@ -5,6 +8,8 @@ import thun from "/src/assets/home/thunder.png";
 import peo from "/src/assets/home/peo.png";
 
 function Core() {
+  const cardsRef = useRef([]);
+
   const values = [
     {
       img: shl,
@@ -33,10 +38,33 @@ function Core() {
     },
   ];
 
+  useEffect(() => {
+    // Animate heading
+    gsap.fromTo(
+      ".core-heading",
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+    );
+
+    // Animate cards one by one
+    gsap.fromTo(
+      cardsRef.current,
+      { y: 80, opacity: 0, scale: 0.9 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.2,
+      }
+    );
+  }, []);
+
   return (
     <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center px-6 py-16">
       {/* Heading */}
-      <h2 className="text-white text-6xl font-medium font-['Nunito'] uppercase mb-16">
+      <h2 className="core-heading text-white text-6xl font-medium font-['Nunito'] uppercase mb-16 opacity-0">
         Core Values
       </h2>
 
@@ -45,9 +73,11 @@ function Core() {
         {values.map((val, idx) => (
           <div
             key={idx}
+            ref={(el) => (cardsRef.current[idx] = el)}
             className="group w-60 h-[460px] bg-white/10 rounded-xl outline outline-white/20 
-                       backdrop-blur-sm flex flex-col items-center overflow-hidden 
-                       transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                       backdrop-blur-sm flex flex-col items-center overflow-hidden opacity-0 
+                       transform transition-all duration-500 hover:scale-105 
+                       hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
           >
             {/* Icon */}
             <div
