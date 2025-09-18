@@ -7,24 +7,25 @@ import Hero from "../component/home/Hero";
 import Hero2 from "../component/home/Hero2";
 import Second from "../component/home/second";
 import Serve from "../component/home/Serve";
+import Team from "../component/home/Team";
 
 import Whyethitics from "../component/home/whyethitics";
 
 function Home() {
-    return(
-<>
-<Hero2/>
+  return (
+    <>
+      <Hero2 />
 
+      <Serve />
+      <Team />
+      <Second />
 
-<Serve/>
-<Second/>
-
-<Get/>
-<Faq/>
-<Whyethitics/>
-<Brand/>
-<Core/>
-</>
-   );
+      <Get />
+      <Faq />
+      <Whyethitics />
+      <Brand />
+      <Core />
+    </>
+  );
 }
 export default Home;
