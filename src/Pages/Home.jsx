@@ -3,12 +3,16 @@ import Core from "../component/home/core";
 
 import Faq from "../component/home/faq";
 import Get from "../component/home/get";
+import Hero from "../component/home/Hero";
 import Second from "../component/home/second";
+import Serve from "../component/home/Serve";
 import Whyethitics from "../component/home/whyethitics";
 
 function Home() {
     return(
 <>
+<Hero/>
+<Serve/>
 <Second/>
 
 <Get/>
