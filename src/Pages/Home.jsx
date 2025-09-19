@@ -15,13 +15,12 @@ import Whyethitics from "../component/home/whyethitics";
 function Home() {
   return (
     <>
+     
       <Hero2 />
-
       <Serve />
       <Mission />
       <Team />
       <Second />
-
       <Get />
       <Faq />
       <Whyethitics />

@@ -5,6 +5,7 @@ import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
 import moon from "/src/assets/home/moon.png";
 
+
 function Serve() {
   const items = [
     "Grow with etthicks",
@@ -14,6 +15,7 @@ function Serve() {
     "Grow with etthicks",
     "Grow with etthicks",
   ];
+ 
   return (
     <div>
       <div className=" h-[750px] relative bg-black overflow-hidden">
