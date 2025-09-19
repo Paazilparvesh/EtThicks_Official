@@ -1,62 +1,77 @@
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import iem from "/src/assets/home/IM.png";
 
-function Second() {
-  return (
-    <div className="self-stretch h-[800px] relative bg-black overflow-hidden">
-      {/* Heading */}
-      <div className="w-[742px] left-[349px] top-[130px] absolute text-center justify-start">
-        <span className="text-white text-4xl font-normal font-['Nunito'] uppercase leading-[60px]">
-          Your Brand Has a{" "}
-        </span>
-        <span className="text-orange-400 text-4xl font-normal font-['Nunito'] uppercase leading-[60px]">
-          Story
-        </span>
-        <span className="text-white text-4xl font-normal font-['Nunito'] uppercase leading-[60px]">
-          . We’ll Take It{" "}
-        </span>
-        <span className="text-orange-400 text-4xl font-normal font-['Nunito'] uppercase leading-[60px]">
-          Everywhere
-        </span>
-      </div>
+// Register the GSAP ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
-      {/* About Text */}
-      <div className="w-[1251px] h-32 left-[109px] top-[285px] absolute overflow-hidden">
-        <div className="w-[1192px] left-[15px] top-[17px] absolute text-center justify-start text-white text-2xl font-normal font-['Nunito'] leading-9">
+function Second() {
+  // Create refs for the elements we want to animate or use as triggers
+  const sectionRef = useRef(null);
+  const imageContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Set up the GSAP animation inside the useEffect hook
+    const animation = gsap.to(imageContainerRef.current, {
+      // Final state of the animation
+      width: "100%",
+      borderRadius: "0px",
+      ease: "none",
+      // Configure the scroll trigger
+      scrollTrigger: {
+        trigger: sectionRef.current, // The element that triggers the animation
+        start: "top top",            // Start the animation when the top of the trigger hits the top of the viewport
+        end: "bottom bottom",      // End the animation when the bottom of the trigger hits the bottom of the viewport
+        scrub: 1,                    // Smoothly link the animation progress to the scrollbar
+      },
+    });
+
+    // Cleanup function to kill the animation when the component unmounts
+    return () => {
+      animation.kill();
+    };
+  }, []);
+
+  return (
+    // The main container that will act as the scroll trigger
+    // Increased min-height to provide enough scrolling distance for the animation
+    <div ref={sectionRef} className="w-full min-h-[150vh] bg-black flex flex-col items-center pt-24 px-6">
+      
+      {/* Container for all the text, which remains static */}
+      <div className="text-center mb-16">
+        <div className="mb-4">
+          <h4 className="text-amber-500 text-lg font-bold uppercase tracking-wide">
+            About Us
+          </h4>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-normal font-['Nunito'] text-white uppercase leading-snug max-w-4xl">
+          Your Brand Has a <span className="text-orange-400">Story</span>. We’ll
+          Take It <span className="text-orange-400">Everywhere</span>
+        </h2>
+        <p className="text-white text-xl md:text-2xl font-normal font-['Nunito'] leading-9 max-w-5xl mt-8">
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word “Ettuthikkum”, meaning to reach in all eight directions, we
           specialize in content that carries your brand farther — emotionally,
           culturally, and commercially.
-        </div>
+        </p>
       </div>
 
-      {/* Paragraph Box */}
-      <div
-        data-property-1="Variant2"
-        className="w-[520px] h-96 left-[460px] top-[462px] absolute rounded-3xl overflow-hidden"
-      >
-        <div className="w-[1248px] h-[640px] left-[-364px] top-[-117px] absolute bg-black/30" />
-        <div className="w-[828px] h-32 left-[-154px] top-[388px] absolute overflow-hidden">
-          <div className="w-[764px] left-[32px] top-[150px] absolute text-center justify-start text-white text-3xl font-normal font-['Nunito'] leading-10">
-            We combine emotion-first narratives with strategy, helping brands
-            break clutter, spark connection, and drive measurable growth.
-          </div>
+      {/* The image container that will be animated */}
+      <div className="w-full flex-grow flex justify-center items-center">
+        <div
+          ref={imageContainerRef}
+          // Initial state of the container: smaller width and rounded corners
+          className="w-[85vw] md:w-[70vw] h-[75vh] rounded-3xl overflow-hidden"
+        >
+          <img
+            src={iem}
+            alt="EtThicks"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
-
-      {/* Small Heading */}
-      <div className="w-24 h-9 left-[663px] top-[91px] absolute overflow-hidden">
-        <div className="left-[10px] top-[8px] absolute text-center justify-start text-amber-500 text-lg font-bold font-['Nunito'] uppercase leading-relaxed">
-          About Us
-        </div>
-      </div>
-
-      {/* Image */}
-      <img
-        src={iem}
-        alt="EtThicks"
-        className="w-[400px] h-auto left-[520px] top-[620px] absolute rounded-xl shadow-lg"
-      />
     </div>
   );
 }

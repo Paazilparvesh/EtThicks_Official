@@ -11,6 +11,7 @@ import Team from "/src/component/home/Team.jsx"
 import Mission from "/src/component/home/Mission.jsx"  
 import Second from "../component/home/second";
 
+
 function Home() {
   return (
     <>
@@ -22,6 +23,7 @@ function Home() {
           <Person />
       <Whyethitics />
         <Blog />
+        
       <Faq />
       
       {/* <Brand />

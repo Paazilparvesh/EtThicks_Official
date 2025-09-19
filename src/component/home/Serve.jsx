@@ -1,98 +1,168 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "@studio-freight/lenis";
 
 import img1 from "/src/assets/home/Ser1.png";
 import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
 import moon from "/src/assets/home/moon.png";
 
+gsap.registerPlugin(ScrollTrigger);
+
 function Serve() {
+  const sectionRef = useRef(null);
+  const panelsContainerRef = useRef(null); 
+  const contentWrapperRef = useRef(null);
+
   const items = [
     "Grow with etthicks",
     "Grow with etthicks",
     "Grow with etthicks",
     "Grow with etthicks",
-    "Grow with etthicks",
-    "Grow with etthicks",
   ];
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    const panels = gsap.utils.toArray(".panel");
+    const amountToScroll = contentWrapperRef.current.scrollWidth - window.innerWidth;
+
+    // ✅ 1. THE MAIN ANIMATION: Moves the entire wrapper (title + panels) horizontally.
+    const mainScrollTween = gsap.to(contentWrapperRef.current, {
+      x: -amountToScroll,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        pin: true,
+        scrub: 1,
+        end: () => `+=${amountToScroll}`,
+        snap: {
+          snapTo: 1 / (panels.length - 1),
+          duration: { min: 0.2, max: 0.3 },
+        },
+      },
+    });
+
+    // ✅ 2. THE FOCUS EFFECT: Adds the strong zoom/fade to each panel, linked to the main scroll.
+    panels.forEach((panel) => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: mainScrollTween,
+          start: "left right",
+          end: "right left",
+          scrub: true,
+        },
+      });
+
+      tl.fromTo(
+        panel,
+        { scale: 0.7, opacity: 0.5 },
+        { scale: 1, opacity: 1, ease: "power2.in" }
+      ).to(panel, { scale: 0.7, opacity: 0.5, ease: "power2.out" });
+    });
+
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <div>
-      <div className=" h-[750px] relative bg-black overflow-hidden">
-        <div className="left-[80px] top-[411px] absolute justify-start text-[#e59300] text-[80px] font-bold font-['Nunito'] uppercase leading-[88px]">
-          Services
-        </div>
-        <div className="left-[80px] top-[301px] absolute justify-start text-[#e59300] text-[100px] font-medium font-['Nunito'] uppercase leading-[110px]">
-          OUR
-        </div>
-        <div className="w-[527px] h-64 left-[457px] top-[273px] absolute opacity-50 bg-[#009BB5] rounded-full blur-[200px]" />
-        <div className="w-[640px] h-96 left-[704px] top-[184px] absolute opacity-90 bg-white rounded-3xl overflow-hidden">
-          <div className="left-[24px] top-[24px] absolute justify-start text-orange-400 text-3xl font-semibold font-['Plus_Jakarta_Sans'] leading-10">
-            Content Creation
-          </div>
-          <div className="w-[557px] left-[24px] top-[78px] absolute justify-start text-black text-2xl font-normal font-['Work_Sans'] leading-9">
-            Reels, ad films, corporate AVs, long-form YouTube — stories that
-            captivate and convert.
-          </div>
-          <img
-            className="w-80 h-60 left-[162px] top-[189px] absolute"
-            src={img1}
-          />
-        </div>
-        <div className="w-[640px] h-96 left-[1376px] top-[184px] absolute opacity-90 bg-white rounded-3xl overflow-hidden">
-          <div className="left-[24px] top-[24px] absolute justify-start text-orange-400 text-2xl font-semibold font-['Plus_Jakarta_Sans'] leading-9">
-            Digital Marketing
-          </div>
-          <div className="w-[545px] left-[24px] top-[76px] absolute justify-start text-black text-2xl font-normal font-['Work_Sans'] leading-9">
-            Social strategy, performance campaigns, platform-specific content
-            that meets people where they are.
-          </div>
-          <img
-            className="w-80 h-60 left-[162px] top-[189px] absolute"
-            src={img2}
-          />
-        </div>
-        <div className="w-[640px] h-96 left-[2048px] top-[184px] absolute opacity-90 bg-white rounded-3xl overflow-hidden">
-          <div className="left-[24px] top-[24px] absolute justify-start text-orange-400 text-2xl font-semibold font-['Plus_Jakarta_Sans'] leading-9">
-            Brand Storytelling
-          </div>
-          <div className="w-[524px] left-[24px] top-[76px] absolute justify-start text-black text-2xl font-normal font-['Work_Sans'] leading-9">
-            From positioning and emotional narrative to campaign ideation — we
-            give your brand a powerful voice.
-          </div>
-          <img
-            className="w-80 h-60 left-[162px] top-[189px] absolute"
-            src={img3}
-          />
+    <section ref={sectionRef} className="w-full h-screen bg-black overflow-hidden">
+      {/* The single wrapper div that gets animated horizontally */}
+      <div ref={contentWrapperRef} className="flex h-full items-center">
+        
+        {/* Left Title - Now inside the wrapper, so it moves too */}
+        <div className="flex-shrink-0 px-20 text-[#e59300] uppercase font-bold z-10">
+          <h2 className="text-[100px] leading-[110px]">OUR</h2>
+          <h2 className="text-[80px] leading-[88px]">Services</h2>
         </div>
 
-        <div className="w-full h-[56px]  top-[695px] absolute bg-cyan-700 overflow-hidden">
-          {/* Inner scrolling container */}
-          <div className="flex w-full h-[56px] animate-marquee whitespace-nowrap">
-            {items.map((text, i) => (
-              <div key={i} className="flex items-center gap-4 p-2 shrink-0">
-                {/* replace with your orange shape */}
-                <img src={moon} alt="" className="w-7 h-8" />
-                <span className="text-white text-[30px] font-medium font-['Work_Sans']">
-                  {text}
-                </span>
-              </div>
-            ))}
+        {/* The panels are now in a flex container with a gap */}
+        <div ref={panelsContainerRef} className="flex h-full items-center gap-16 pr-20">
+          {/* Panel 1 */}
+          <div className="panel w-[640px] h-96 bg-white rounded-3xl relative p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl font-semibold mb-4">
+              Content Creation
+            </h3>
+            <p className="text-black text-2xl leading-9">
+              Reels, ad films, corporate AVs, long-form YouTube — stories that
+              captivate and convert.
+            </p>
+            <img
+              src={img1}
+              alt="Content"
+              className="w-80 h-60 absolute bottom-6 right-6"
+            />
+          </div>
 
-            {/* duplicate for seamless looping */}
-            {items.map((text, i) => (
-              <div
-                key={`dup-${i}`}
-                className="flex items-center gap-4 mx-8 shrink-0"
-              >
-                <img src="" alt="" className="w-7 h-8" />
-                <span className="text-white text-3xl font-medium font-['Work_Sans']">
-                  {text}
-                </span>
-              </div>
-            ))}
+          {/* Panel 2 */}
+          <div className="panel w-[640px] h-96 bg-white rounded-3xl relative p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl font-semibold mb-4">
+              Digital Marketing
+            </h3>
+            <p className="text-black text-2xl leading-9">
+              Social strategy, performance campaigns, platform-specific content
+              that meets people where they are.
+            </p>
+            <img
+              src={img2}
+              alt="Marketing"
+              className="w-80 h-60 absolute bottom-6 right-6"
+            />
+          </div>
+
+          {/* Panel 3 */}
+          <div className="panel w-[640px] h-96 bg-white rounded-3xl relative p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl font-semibold mb-4">
+              Brand Storytelling
+            </h3>
+            <p className="text-black text-2xl leading-9">
+              From positioning and emotional narrative to campaign ideation — we
+              give your brand a powerful voice.
+            </p>
+            <img
+              src={img3}
+              alt="Storytelling"
+              className="w-80 h-60 absolute bottom-6 right-6"
+            />
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Bottom Marquee */}
+      <div className="absolute bottom-0 w-full h-[56px] bg-cyan-700 overflow-hidden z-20">
+        <div className="flex w-full h-[56px] animate-marquee whitespace-nowrap">
+          {items.map((text, i) => (
+            <div key={i} className="flex items-center gap-4 p-2 shrink-0">
+              <img src={moon} alt="" className="w-7 h-8" />
+              <span className="text-white text-[30px] font-medium">{text}</span>
+            </div>
+          ))}
+          {items.map((text, i) => (
+            <div
+              key={`dup-${i}`}
+              className="flex items-center gap-4 p-2 shrink-0"
+            >
+              <img src={moon} alt="" className="w-7 h-8" />
+              <span className="text-white text-[30px] font-medium">{text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

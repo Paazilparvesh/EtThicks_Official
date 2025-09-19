@@ -11,7 +11,7 @@ import img9 from "/src/assets/home/pep.png";
 
 function Person() {
   return (
-    <div className="w-[1440px] h-[800px] relative bg-black overflow-hidden">
+    <div className="w-full h-[800px] relative bg-black overflow-hidden">
       {/* Glowing Background */}
       <div className="w-[747px] h-[747px] left-[346px] top-[27px] absolute opacity-60 bg-cyan-500 rounded-full blur-[600px]" />
 

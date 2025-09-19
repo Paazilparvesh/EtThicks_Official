@@ -75,8 +75,8 @@ function Faq() {
 
         {/* Right Small Text */}
         <div className="w-[529px] left-[831px] top-[61px] absolute justify-start text-white text-2xl font-light font-['Work_Sans']">
-          We blend creativity with performance to help brands grow, convert, and
-          dominate their category.
+          We blend creativity with performance to help<br></br> brands grow, convert, and
+          dominate their<br></br> category.
         </div>
       </div>
     </>
