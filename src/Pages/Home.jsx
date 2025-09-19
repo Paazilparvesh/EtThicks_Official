@@ -12,14 +12,13 @@ import Team from "../component/home/Team";
 
 import Whyethitics from "../component/home/whyethitics";
 
-
 function Home() {
   return (
     <>
-      <Mission/>  
-      {/* <Hero2 />
+      <Hero2 />
 
       <Serve />
+      <Mission />
       <Team />
       <Second />
 
@@ -27,7 +26,7 @@ function Home() {
       <Faq />
       <Whyethitics />
       <Brand />
-      <Core /> */}
+      <Core />
     </>
   );
 }
