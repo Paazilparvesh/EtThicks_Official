@@ -15,6 +15,7 @@ import Second from "../component/home/second";
 function Home() {
   return (
     <>
+     
       <Hero2 />
       <Second/>
        <Serve /> 

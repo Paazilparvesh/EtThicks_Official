@@ -8,7 +8,10 @@ import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
 import moon from "/src/assets/home/moon.png";
 
+<<<<<<< HEAD
 gsap.registerPlugin(ScrollTrigger);
+=======
+>>>>>>> 0c7731de8b2355d34987bdb0e6d3e5f034b7fb91
 
 function Serve() {
   const sectionRef = useRef(null);
@@ -21,6 +24,7 @@ function Serve() {
     "Grow with etthicks",
     "Grow with etthicks",
   ];
+<<<<<<< HEAD
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -79,6 +83,9 @@ function Serve() {
     };
   }, []);
 
+=======
+ 
+>>>>>>> 0c7731de8b2355d34987bdb0e6d3e5f034b7fb91
   return (
     <section ref={sectionRef} className="w-full h-screen bg-black overflow-hidden">
       {/* The single wrapper div that gets animated horizontally */}
