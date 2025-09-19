@@ -1,9 +1,11 @@
+import Blog from "../component/home/blog";
 import Brand from "../component/home/brand";
 import Core from "../component/home/core";
 
 import Faq from "../component/home/faq";
 import Get from "../component/home/get";
 import Hero from "../component/home/Hero";
+import Person from "../component/home/person";
 import Second from "../component/home/second";
 import Serve from "../component/home/Serve";
 import Whyethitics from "../component/home/whyethitics";
@@ -20,6 +22,8 @@ function Home() {
 <Whyethitics/>
 <Brand/>
 <Core/>
+<Blog/>
+<Person/>
 </>
    );
 }
