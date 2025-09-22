@@ -8,14 +8,11 @@ import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
 import moon from "/src/assets/home/moon.png";
 
-<<<<<<< HEAD
 gsap.registerPlugin(ScrollTrigger);
-=======
->>>>>>> 0c7731de8b2355d34987bdb0e6d3e5f034b7fb91
 
 function Serve() {
   const sectionRef = useRef(null);
-  const panelsContainerRef = useRef(null); 
+  const panelsContainerRef = useRef(null);
   const contentWrapperRef = useRef(null);
 
   const items = [
@@ -24,7 +21,6 @@ function Serve() {
     "Grow with etthicks",
     "Grow with etthicks",
   ];
-<<<<<<< HEAD
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -39,9 +35,10 @@ function Serve() {
     requestAnimationFrame(raf);
 
     const panels = gsap.utils.toArray(".panel");
-    const amountToScroll = contentWrapperRef.current.scrollWidth - window.innerWidth;
+    const amountToScroll =
+      contentWrapperRef.current.scrollWidth - window.innerWidth;
 
-    // ✅ 1. THE MAIN ANIMATION: Moves the entire wrapper (title + panels) horizontally.
+    // ✅ Main horizontal scroll
     const mainScrollTween = gsap.to(contentWrapperRef.current, {
       x: -amountToScroll,
       ease: "none",
@@ -57,7 +54,7 @@ function Serve() {
       },
     });
 
-    // ✅ 2. THE FOCUS EFFECT: Adds the strong zoom/fade to each panel, linked to the main scroll.
+    // ✅ Focus zoom effect
     panels.forEach((panel) => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -76,29 +73,37 @@ function Serve() {
       ).to(panel, { scale: 0.7, opacity: 0.5, ease: "power2.out" });
     });
 
-
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
       lenis.destroy();
     };
   }, []);
 
-=======
- 
->>>>>>> 0c7731de8b2355d34987bdb0e6d3e5f034b7fb91
   return (
-    <section ref={sectionRef} className="w-full h-screen bg-black overflow-hidden">
-      {/* The single wrapper div that gets animated horizontally */}
-      <div ref={contentWrapperRef} className="flex h-full items-center">
-        
-        {/* Left Title - Now inside the wrapper, so it moves too */}
+    <section
+      ref={sectionRef}
+      className="w-full h-screen relative overflow-hidden 
+                 bg-gradient-to-r from-[#0a0f0f] via-[#0a1c1c] to-[#000000]"
+    >
+      {/* Glow effect */}
+      <div className="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_center,rgba(0,255,200,0.15)_0%,transparent_70%)] before:blur-3xl before:opacity-60"></div>
+
+      {/* Content Wrapper */}
+      <div
+        ref={contentWrapperRef}
+        className="flex h-full items-center relative z-10"
+      >
+        {/* Left Title */}
         <div className="flex-shrink-0 px-20 text-[#e59300] uppercase font-bold z-10">
           <h2 className="text-[100px] leading-[110px]">OUR</h2>
           <h2 className="text-[80px] leading-[88px]">Services</h2>
         </div>
 
-        {/* The panels are now in a flex container with a gap */}
-        <div ref={panelsContainerRef} className="flex h-full items-center gap-16 pr-20">
+        {/* Panels */}
+        <div
+          ref={panelsContainerRef}
+          className="flex h-full items-center gap-16 pr-20"
+        >
           {/* Panel 1 */}
           <div className="panel w-[640px] h-96 bg-white rounded-3xl relative p-6 shadow-lg flex-shrink-0">
             <h3 className="text-orange-400 text-3xl font-semibold mb-4">
