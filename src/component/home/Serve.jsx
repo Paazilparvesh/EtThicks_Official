@@ -8,7 +8,7 @@ import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
 import moon from "/src/assets/home/moon.png";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); // ✅ Keep this
 
 function Serve() {
   const sectionRef = useRef(null);
@@ -38,7 +38,7 @@ function Serve() {
     const amountToScroll =
       contentWrapperRef.current.scrollWidth - window.innerWidth;
 
-    // ✅ Main horizontal scroll
+    // ✅ Main animation: horizontal scroll effect
     const mainScrollTween = gsap.to(contentWrapperRef.current, {
       x: -amountToScroll,
       ease: "none",
@@ -54,7 +54,7 @@ function Serve() {
       },
     });
 
-    // ✅ Focus zoom effect
+    // ✅ Zoom/fade focus effect for each panel
     panels.forEach((panel) => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -82,17 +82,10 @@ function Serve() {
   return (
     <section
       ref={sectionRef}
-      className="w-full h-screen relative overflow-hidden 
-                 bg-gradient-to-r from-[#0a0f0f] via-[#0a1c1c] to-[#000000]"
+      className="w-full h-screen bg-black overflow-hidden"
     >
-      {/* Glow effect */}
-      <div className="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_center,rgba(0,255,200,0.15)_0%,transparent_70%)] before:blur-3xl before:opacity-60"></div>
-
-      {/* Content Wrapper */}
-      <div
-        ref={contentWrapperRef}
-        className="flex h-full items-center relative z-10"
-      >
+      {/* Horizontal wrapper */}
+      <div ref={contentWrapperRef} className="flex h-full items-center">
         {/* Left Title */}
         <div className="flex-shrink-0 px-20 text-[#e59300] uppercase font-bold z-10">
           <h2 className="text-[100px] leading-[110px]">OUR</h2>
@@ -163,11 +156,9 @@ function Serve() {
               <span className="text-white text-[30px] font-medium">{text}</span>
             </div>
           ))}
+          {/* Duplicate for seamless loop */}
           {items.map((text, i) => (
-            <div
-              key={`dup-${i}`}
-              className="flex items-center gap-4 p-2 shrink-0"
-            >
+            <div key={`dup-${i}`} className="flex items-center gap-4 p-2 shrink-0">
               <img src={moon} alt="" className="w-7 h-8" />
               <span className="text-white text-[30px] font-medium">{text}</span>
             </div>
