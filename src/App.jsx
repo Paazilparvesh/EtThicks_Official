@@ -26,7 +26,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-      {/* <div className="text-red-600">hi</div> */}
+   
     </>
   );
 }

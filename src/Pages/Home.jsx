@@ -1,4 +1,4 @@
-import Blog from "../component/home/";
+import Blog from "/src/component/home/Blog.jsx";
 // import Brand from "../component/home/brand";
 // import Core from "../component/home/core";
 import Faq from "../component/home/Faq";
