@@ -1,4 +1,4 @@
-import Blog from "/src/component/home/Blog.jsx";
+// import Blog from "/src/component/home/Blog.jsx";
 // import Brand from "../component/home/brand";
 // import Core from "../component/home/core";
 import Faq from "../component/home/Faq";
@@ -23,7 +23,7 @@ function Home() {
       <Team />
       <Person />
       <Whyethitics />
-      <Blog />
+      {/* <Blog /> */}
       <Faq />
       {/* <Brand />
       <Core /> */}
