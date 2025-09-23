@@ -6,6 +6,7 @@ import sat from "/src/assets/home/star.png";
 import cur from "/src/assets/home/circ.png";
 import luf from "/src/assets/home/left.png";
 import gow from "/src/assets/home/Grou.png";
+import Bauhaus from "/src/assets/home/Bauhaus.png";
 
 // Register the GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -73,6 +74,11 @@ function Whyethitics() {
           />
           <img
             src={gow}
+            alt="Background group"
+            className="background-shape w-40 h-40 opacity-10 object-contain"
+          />
+          <img
+            src={Bauhaus}
             alt="Background group"
             className="background-shape w-40 h-40 opacity-10 object-contain"
           />
