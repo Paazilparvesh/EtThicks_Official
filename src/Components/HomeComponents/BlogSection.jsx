@@ -4,7 +4,7 @@ import imy from "/src/assets/home/grape.png";
 import imr from "/src/assets/home/pad.png";
 import ino from "/src/assets/home/note.png";
 
-function Blog() {
+function BlogSection() {
   return (
     <div className="w-full min-h-screen bg-black relative overflow-hidden px-6 md:px-12 py-16">
       {/* Glowing background circle (furthest back) */}
@@ -77,4 +77,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default BlogSection;

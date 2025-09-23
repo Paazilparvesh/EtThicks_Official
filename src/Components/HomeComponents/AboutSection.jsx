@@ -5,7 +5,7 @@ import iem from "/src/assets/home/IM.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Second() {
+function AboutSection() {
   const sectionRef = useRef(null);
   const imageContainerRef = useRef(null);
 
@@ -71,4 +71,4 @@ function Second() {
   );
 }
 
-export default Second;
+export default AboutSection;

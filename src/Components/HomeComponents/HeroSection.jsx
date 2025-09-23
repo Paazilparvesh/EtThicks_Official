@@ -6,7 +6,7 @@ import face1 from "/src/assets/home/face1.png";
 import face2 from "/src/assets/home/face2.png";
 import face3 from "/src/assets/home/face3.png";
 
-function Hero2() {
+function HeroSection() {
   const circleRef = useRef(null); // circle + arrow
   const flyTextRef = useRef(null); // marquee text
 
@@ -21,7 +21,7 @@ function Hero2() {
     });
 
     // Get circle position
-    const rect = circleRef.current.getBoundingClientRect();
+    // const rect = circleRef.current.getBoundingClientRect();
 
     // Animate text continuously like a marquee
     gsap.to(flyTextRef.current, {
@@ -86,15 +86,15 @@ function Hero2() {
           {/* Marquee flying text */}
           <div
             ref={flyTextRef}
-            className="text-white font-bold text-xl absolute transform transform translate-y-150 transform transform translate-x-40"
+            className="text-white font-bold text-xl absolute transform translate-y-150 translate-x-40"
             style={{
               left: circleRef.current
                 ? circleRef.current.getBoundingClientRect().right + 10
                 : 0,
               top: circleRef.current
                 ? circleRef.current.getBoundingClientRect().top +
-                  circleRef.current.getBoundingClientRect().height / 2 -
-                  12
+                circleRef.current.getBoundingClientRect().height / 2 -
+                12
                 : 0,
             }}
           >
@@ -106,11 +106,11 @@ function Hero2() {
             <div className="w-32 h-12 left-0 flex">
               <img className="w-12 h-12 rounded-full" src={face1} />
               <img
-                className="w-12 h-12 rounded-full outline outline-[1.69px] outline-offset-[-0.84px] outline-neutral-900 -ml-2"
+                className="w-12 h-12 rounded-full outline-[1.69px] outline-offset-[-0.84px] outline-neutral-900 -ml-2"
                 src={face2}
               />
               <img
-                className="w-12 h-12 rounded-full outline outline-[1.69px] outline-offset-[-0.84px] outline-neutral-900 -ml-2"
+                className="w-12 h-12 rounded-full outline-[1.69px] outline-offset-[-0.84px] outline-neutral-900 -ml-2"
                 src={face3}
               />
             </div>
@@ -179,4 +179,4 @@ function Hero2() {
   );
 }
 
-export default Hero2;
+export default HeroSection;

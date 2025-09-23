@@ -9,7 +9,7 @@ import m6 from "/src/assets/home/mission/m6.png";
 import m7 from "/src/assets/home/mission/m7.png";
 import m8 from "/src/assets/home/mission/m8.png";
 
-function Mission() {
+function ConnectSection() {
   const circleRef = useRef(null);
   const headingRef = useRef(null);
   const paraRef = useRef(null);
@@ -151,4 +151,4 @@ function Mission() {
   );
 }
 
-export default Mission;
+export default ConnectSection;

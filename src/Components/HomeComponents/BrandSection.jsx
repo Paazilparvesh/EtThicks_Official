@@ -9,7 +9,7 @@ import img7 from "/src/assets/home/coke.png";
 import img8 from "/src/assets/home/meta.png";
 import img9 from "/src/assets/home/pep.png";
 
-function Person() {
+function BrandSection() {
   return (
     <div className="w-full h-[800px] relative bg-black overflow-hidden">
       {/* Glowing Background */}
@@ -44,4 +44,4 @@ function Person() {
   );
 }
 
-export default Person;
+export default BrandSection;

@@ -1,6 +1,6 @@
 import nam from "/src/assets/home/man.png";
 
-function Faq() {
+function FaqSection() {
   return (
     <>
       <div className="self-stretch h-[780px] relative bg-black overflow-hidden">
@@ -83,4 +83,4 @@ function Faq() {
   );
 }
 
-export default Faq;
+export default FaqSection;

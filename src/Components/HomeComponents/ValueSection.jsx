@@ -7,7 +7,7 @@ import aro from "/src/assets/home/arroe.png";
 import thun from "/src/assets/home/thunder.png";
 import peo from "/src/assets/home/peo.png";
 
-function Core() {
+function ValueSection() {
   const cardsRef = useRef([]);
 
   const values = [
@@ -108,4 +108,4 @@ function Core() {
   );
 }
 
-export default Core;
+export default ValueSection;

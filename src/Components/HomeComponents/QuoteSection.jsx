@@ -11,7 +11,7 @@ import Bauhaus from "/src/assets/home/Bauhaus.png";
 // Register the GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-function Whyethitics() {
+function QuoteSection() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -110,4 +110,4 @@ function Whyethitics() {
   );
 }
 
-export default Whyethitics;
+export default QuoteSection;
