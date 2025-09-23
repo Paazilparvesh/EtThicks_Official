@@ -10,7 +10,7 @@ import gow from "/src/assets/home/Grou.png";
 // Register the GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-function Whyethitics() {
+function QuoteSection() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -104,4 +104,4 @@ function Whyethitics() {
   );
 }
 
-export default Whyethitics;
+export default QuoteSection;

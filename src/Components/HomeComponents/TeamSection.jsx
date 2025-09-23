@@ -6,7 +6,7 @@ import member4 from "/src/assets/home/team/member4.png"
 import member5 from "/src/assets/home/team/member5.png"
 
 
-function Team() {
+function TeamSection() {
   return (
     <>
       <div className="w-full h-[800px] relative bg-black overflow-hidden">
@@ -84,4 +84,4 @@ function Team() {
   );
 }
 
-export default Team;
+export default TeamSection;

@@ -1,6 +1,6 @@
 import teg from "/src/assets/home/icon2.png";
 
-function Get() {
+function CTASection() {
   return (
     <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center px-4">
       {/* Icon box */}
@@ -20,7 +20,7 @@ function Get() {
 
       {/* Input + Button */}
       <div className="flex flex-col sm:flex-row gap-4 items-center">
-        <div className="w-80 sm:w-96 h-14 rounded-2xl outline outline-1 outline-amber-500 px-5 flex items-center">
+        <div className="w-80 sm:w-96 h-14 rounded-2xl outline-1 outline-amber-500 px-5 flex items-center">
           <span className="text-neutral-500 text-lg sm:text-2xl font-medium font-['Nunito']">
             Enter Your E-mail
           </span>
@@ -33,4 +33,4 @@ function Get() {
   );
 }
 
-export default Get;
+export default CTASection;

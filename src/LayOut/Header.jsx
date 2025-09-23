@@ -1,13 +1,4 @@
-// import React from 'react'
 
-// const Header = () => {
-//   return (
-//     <div>Header</div>
-//   )
-// }
-
-// export default Header
-// /src/LayOut/Header.jsx
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -28,7 +19,7 @@ function Header() {
             <Link to="/" className="text-gray-700 hover:text-blue-600">
               Home
             </Link>
-            <Link to="/aboutus" className="text-gray-700 hover:text-blue-600">
+            <Link to="/about" className="text-gray-700 hover:text-blue-600">
               About Us
             </Link>
             <Link to="/blog" className="text-gray-700 hover:text-blue-600">
@@ -38,7 +29,13 @@ function Header() {
               Contact
             </Link>
             <Link to="/service1" className="text-gray-700 hover:text-blue-600">
-              Services
+              Service 1
+            </Link>
+            <Link to="/service2" className="text-gray-700 hover:text-blue-600">
+              Service 2
+            </Link>
+            <Link to="/service3" className="text-gray-700 hover:text-blue-600">
+              Service 3
             </Link>
           </nav>
 

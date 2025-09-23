@@ -10,7 +10,7 @@ import moon from "/src/assets/home/moon.png";
 
 gsap.registerPlugin(ScrollTrigger); // ✅ Keep this
 
-function Serve() {
+function ServiceSection() {
   const sectionRef = useRef(null);
   const panelsContainerRef = useRef(null);
   const contentWrapperRef = useRef(null);
@@ -169,4 +169,4 @@ function Serve() {
   );
 }
 
-export default Serve;
+export default ServiceSection;
