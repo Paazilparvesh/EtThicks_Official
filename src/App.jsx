@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Header from "/src/Layout/Header.jsx";
-import Footer from "/src/Layout/Footer.jsx";
+import Header from "./Layout/Header.jsx";
+import Footer from "./Layout/Footer.jsx";
 
 import HomePage from "/src/Pages/HomePage.jsx";
 import AboutPage from "/src/Pages/AboutPage.jsx";
@@ -27,8 +27,9 @@ function App() {
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
 
-          <Route path="/blog" element={<BlogPage />}></Route>
+         <Route path="/blog" element={<BlogPage />}></Route>
           <Route path="/blog/:id" element={<InnerBlog />}></Route>
+
 
           <Route path="/service1" element={<Service1 />}></Route>
           <Route path="/service2" element={<Service2 />}></Route>
