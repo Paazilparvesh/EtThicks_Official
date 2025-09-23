@@ -15,12 +15,7 @@ function BlogSection() {
         {/* Left Content */}
         <div className="flex-1 relative">
           {/* Subheading Number (behind the heading but above the glowing background) */}
-          <span
-            className="absolute top-0 left-0 text-white/10 text-[200px] md:text-[220px] font-bold font-['Work_Sans'] uppercase z-0 pointer-events-none"
-            aria-hidden="true"
-          >
-            01
-          </span>
+        
 
           {/* Blog Heading (above the big number) */}
           <h1 className="text-white text-[160px] md:text-[160px] font-medium font-['Work_Sans'] uppercase leading-none relative z-10">
@@ -39,6 +34,14 @@ function BlogSection() {
             into Google’s evolving algorithm{" "}
             <span className="text-amber-500 underline">More</span>
           </p>
+            <span
+            className="absolute top-0 left-0 text-white/10 text-[100px] md:text-[120px] font-bold font-['Work_Sans'] uppercase z-0 pointer-events-none"
+            aria-hidden="true"
+          >
+            01
+          </span>
+       
+
         </div>
 
         {/* Right Image */}

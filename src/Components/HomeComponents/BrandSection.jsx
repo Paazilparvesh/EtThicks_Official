@@ -16,12 +16,12 @@ function BrandSection() {
       <div className="w-[747px] h-[747px] left-[346px] top-[27px] absolute opacity-60 bg-cyan-500 rounded-full blur-[600px]" />
 
       {/* Image slots (from Figma placeholder positions) */}
-      <img src={img5} alt="Brand 5" className="w-36 h-36 left-[204px] top-[275px] absolute rounded-[32px] object-cover" />
-      <img src={img6} alt="Brand 6" className="w-36 h-64 left-[204px] top-[451px] absolute rounded-[32px] object-cover" />
+      <img src={img5} alt="Brand 5" className="w-30 h-36 left-[204px] top-[275px] absolute rounded-[32px] object-cover" />
+      <img src={img6} alt="Brand 6" className="w-36 h-60 left-[204px] top-[451px] absolute rounded-[32px] object-cover" />
       <img src={img4} alt="Brand 4" className="w-36 h-64 left-[1076px] top-[275px] absolute rounded-[32px] object-cover" />
       <img src={img9} alt="Brand 9" className="w-36 h-36 left-[1084px] top-[549px] absolute rounded-[32px] object-cover" />
 
-      <img src={img1} alt="Brand 1" className="w-80 h-36 left-[204px] top-[91px] absolute rounded-[32px] object-cover" />
+      <img src={img1} alt="Brand 1" className="w-80 h-36 left-[210px] top-[91px] absolute rounded-[32px] object-cover" />
       <img src={img2} alt="Brand 2" className="w-56 h-36 left-[562px] top-[91px] absolute rounded-[32px] object-cover" />
       <img src={img7} alt="Brand 7" className="w-52 h-36 left-[388px] top-[549px] absolute rounded-[32px] object-cover" />
       <img src={img8} alt="Brand 8" className="w-96 h-36 left-[630px] top-[549px] absolute rounded-[32px] object-cover" />

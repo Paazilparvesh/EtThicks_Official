@@ -30,8 +30,10 @@ function HeroSection() {
       duration: 3,
       ease: "linear",
       yoyo: false,
+      
     });
   }, []);
+  
 
   return (
     <div>
