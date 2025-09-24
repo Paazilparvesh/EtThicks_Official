@@ -7,8 +7,8 @@ import BrandSection from "/src/Components/HomeComponents/BrandSection.jsx";
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import BlogSection from "/src/Components/HomeComponents/BlogSection.jsx";
 import FaqSection from "/src/Components/HomeComponents/FaqSection.jsx";
-import BrandSection2 from "/src/Components/HomeComponents/BrandSection2.jsx";
-import ValueSection from "/src/Components/HomeComponents/ValueSection.jsx";
+// import BrandSection2 from "/src/Components/HomeComponents/BrandSection2.jsx";
+// import ValueSection from "/src/Components/HomeComponents/ValueSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 
 
@@ -24,8 +24,8 @@ function HomePage() {
       <QuoteSection />
       <BlogSection />
       <FaqSection />
-      <BrandSection2 />
-      <ValueSection />
+      {/* <BrandSection2 />
+      <ValueSection /> */}
       <CTASection />
     </>
   );
