@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 import img1 from "/src/assets/home/Ser1.png";
 import img2 from "/src/assets/home/Ser2.png";
