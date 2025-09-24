@@ -1,9 +1,12 @@
-import React from 'react'
+import ContactSection from "/src/Components/ContactComponents/ContactSection.jsx"
 
 const ContactPage = () => {
   return (
-    <div>Contactus</div>
-  )
-}
+<>
+<ContactSection />
+</>
+    
+  );
+};
 
 export default ContactPage

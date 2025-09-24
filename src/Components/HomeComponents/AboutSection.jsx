@@ -11,9 +11,9 @@ function AboutSection() {
 
   useEffect(() => {
     const animation = gsap.to(imageContainerRef.current, {
-      width: "100%",        // expand to full width
-      height: "75vh",       // expand height
-      borderRadius: "0px",  // remove corners
+      width: "100%", // expand to full width
+      height: "70vh", // expand height
+      borderRadius: "0px", // remove corners
       ease: "none",
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -31,20 +31,20 @@ function AboutSection() {
   return (
     <div
       ref={sectionRef}
-      className="w-full min-h-[150vh] bg-black flex flex-col items-center pt-24 px-6"
+      className="w-full min-h-[150vh] bg-black flex flex-col items-center pt-16 sm:pt-20 md:pt-24 px-4 sm:px-6 md:px-10"
     >
       {/* Text Section */}
-      <div className="text-center ">
-        <div className="mb-4">
-          <h4 className="text-amber-500 text-lg font-bold uppercase tracking-wide">
+      <div className="text-center max-w-[95%] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl">
+        <div className="mb-3 sm:mb-4">
+          <h4 className="text-amber-500 text-sm sm:text-base md:text-lg font-bold uppercase tracking-wide">
             About Us
           </h4>
         </div>
-        <h2 className="text-4xl md:text-5xl font-normal font-['Nunito'] text-white uppercase leading-snug max-w-4xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-['Nunito'] text-white uppercase leading-snug sm:leading-tight md:leading-snug">
           Your Brand Has a <span className="text-orange-400">Story</span>. We’ll
           Take It <span className="text-orange-400">Everywhere</span>
         </h2>
-        <p className="text-white text-xl md:text-2xl font-normal font-['Nunito'] leading-9 max-w-5xl mt-">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white font-normal font-['Nunito'] leading-relaxed sm:leading-7 md:leading-8 lg:leading-9 mt-4 sm:mt-6 md:mt-8">
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word “Ettuthikkum”, meaning to reach in all eight directions, we
@@ -54,11 +54,14 @@ function AboutSection() {
       </div>
 
       {/* Image Section */}
-      <div className="w-full flex-grow flex justify-center items-start">
+      <div className="w-full flex-grow flex justify-center items-start mt-6 sm:mt-10 md:mt-12">
         <div
           ref={imageContainerRef}
-          // Initial state: small (520x405) and centered
-          className="w-[520px] h-[405px] rounded-3xl overflow-hidden transform -translate-y-[] "
+          // Initial state: responsive size with rounded corners
+          className="w-[90%] sm:w-[420px] md:w-[520px] 
+                     h-[240px] sm:h-[320px] md:h-[405px] 
+                     rounded-2xl sm:rounded-3xl 
+                     overflow-hidden"
         >
           <img
             src={iem}
