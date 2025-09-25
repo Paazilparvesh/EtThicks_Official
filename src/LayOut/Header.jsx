@@ -1,10 +1,24 @@
 import ethi from "/src/assets/headerasset/EtThicks1.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 300); // delay 300ms before closing
+  };
 
   return (
     <header className="bg-black text-white shadow-md sticky top-0 z-50 font-inter">
@@ -13,43 +27,42 @@ function Header() {
           {/* Logo / Brand */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img src={ethi} alt="Logo" className=" w-auto object-cover" />
+              <img src={ethi} alt="Logo" className="w-auto object-cover" />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 text-[20px]">
-            <Link to="/" className="hover:text-blue-500">
-              Home
-            </Link>
+            <Link to="/">Home</Link>
 
             {/* Services Dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <button className="hover:text-blue-500 focus:outline-none">
-                Services
-              </button>
+              <button className="focus:outline-none">Services</button>
 
               {isServicesOpen && (
-                <div className="absolute left-0 mt-2 w-44 bg-gray-900 shadow-lg rounded-lg py-2">
+                <div className="absolute left-0 mt-2 w-44 bg-gray-900 shadow-lg rounded-lg py-2 transition-all duration-500 ease-out z-50">
                   <Link
                     to="/service1"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                    className="block px-6 py-3"
+                    onClick={() => setIsServicesOpen(false)}
                   >
                     Service 1
                   </Link>
                   <Link
                     to="/service2"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                    className="block px-6 py-3"
+                    onClick={() => setIsServicesOpen(false)}
                   >
                     Service 2
                   </Link>
                   <Link
                     to="/service3"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                    className="block px-6 py-3"
+                    onClick={() => setIsServicesOpen(false)}
                   >
                     Service 3
                   </Link>
@@ -57,15 +70,9 @@ function Header() {
               )}
             </div>
 
-            <Link to="/about" className="hover:text-blue-500">
-              About Us
-            </Link>
-            <Link to="/contact" className="hover:text-blue-500">
-              Contact
-            </Link>
-            <Link to="/blog" className="hover:text-blue-500">
-              Blogs
-            </Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/blog">Blogs</Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -107,7 +114,8 @@ function Header() {
         <div className="md:hidden bg-black text-[20px]">
           <Link
             to="/"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
+            className="block px-4 py-3"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             Home
           </Link>
@@ -115,27 +123,39 @@ function Header() {
           <div className="relative">
             <button
               onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-blue-500 focus:outline-none"
+              className="w-full text-left px-4 py-3 focus:outline-none"
             >
               Services
             </button>
             {isServicesOpen && (
-              <div className="pl-4 bg-gray-900">
+              <div className="pl-4 bg-gray-900 transition-all duration-500 ease-out">
                 <Link
                   to="/service1"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                  className="block px-6 py-3"
+                  onClick={() => {
+                    setIsServicesOpen(false);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   Service 1
                 </Link>
                 <Link
                   to="/service2"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                  className="block px-6 py-3"
+                  onClick={() => {
+                    setIsServicesOpen(false);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   Service 2
                 </Link>
                 <Link
                   to="/service3"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+                  className="block px-6 py-3"
+                  onClick={() => {
+                    setIsServicesOpen(false);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   Service 3
                 </Link>
@@ -145,19 +165,22 @@ function Header() {
 
           <Link
             to="/about"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
+            className="block px-4 py-3"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             About Us
           </Link>
           <Link
             to="/contact"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
+            className="block px-4 py-3"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             Contact
           </Link>
           <Link
             to="/blog"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
+            className="block px-4 py-3"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             Blogs
           </Link>

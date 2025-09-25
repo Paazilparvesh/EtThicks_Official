@@ -24,20 +24,20 @@ export default function Ourservice() {
       const image = el.querySelector(".service-image img");
       const content = el.querySelector(".service-text");
 
-      // 1️⃣ Hide content initially
-      gsap.set(content, { autoAlpha: 0, y: -30 });
+      // Hide content initially
+      gsap.set(content, { autoAlpha: 0, y: -50 });
 
-      // 2️⃣ Create per-section timeline
+      // Timeline for image + content
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: "top center",
-          end: "bottom center",
+          start: "top 80%",
+          end: "center center",
           scrub: true,
         },
       });
 
-      // 3️⃣ Image animation center → corner
+      // Image animation
       tl.fromTo(
         image,
         {
@@ -62,7 +62,7 @@ export default function Ourservice() {
         }
       );
 
-      // 4️⃣ Content fade **after image is placed**
+      // Content animation: fade in from top
       tl.to(
         content,
         {
@@ -74,14 +74,26 @@ export default function Ourservice() {
         ">0.7"
       );
 
-      // 5️⃣ Hide content on scroll back
+      // Reset content & image when scrolling back
       ScrollTrigger.create({
         trigger: el,
-        start: "top center",
-        end: "bottom center",
-        onLeaveBack: () => gsap.set(content, { autoAlpha: 0, y: -30 }),
+        start: "top bottom",
+        end: "bottom top",
+        onLeaveBack: () => {
+          gsap.set(image, {
+            width: 1259,
+            height: 608,
+            top: "50%",
+            left: "50%",
+            xPercent: -50,
+            yPercent: -50,
+          });
+          gsap.set(content, { autoAlpha: 0, y: -50 });
+        },
       });
     });
+
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
   return (
@@ -90,7 +102,7 @@ export default function Ourservice() {
       <div className="text-center max-w-2xl mx-auto mb-12">
         <h2 className="text-3xl font-bold">Our Services</h2>
         <p
-          className="text-gray-300 mt-2"
+          className="text-gray-300 mt-2 leading-relaxed"
           style={{
             fontFamily: "'Work Sans', sans-serif",
             fontWeight: 400,
@@ -117,22 +129,28 @@ export default function Ourservice() {
             />
           </div>
 
-          {/* Content: fixed z-index to always be visible */}
+          {/* Content (slightly lower than center) */}
           <div
-            className={`service-text absolute top-4 left-1/2 transform -translate-x-1/2 max-w-3xl px-4 text-center md:text-left z-20 opacity-0
-              ${i % 2 === 0 ? "md:left-0 md:ml-4 md:text-left" : "md:right-0 md:mr-4 md:text-right"}`}
+            className={`service-text absolute top-[75%] transform -translate-y-1/2 max-w-3xl px-6 py-9 z-20 opacity-0 leading-relaxed
+              ${i % 2 === 0 ? "right-0 md:right-8 text-right" : "left-0 md:left-8 text-left"}`}
           >
             <h3
-              className="text-yellow-400 text-3xl md:text-4xl"
+              className="text-yellow-400 text-3xl md:text-4xl mb-2"
               style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 400 }}
             >
               {service.title}
             </h3>
             <p
-              className="text-gray-300 mt-2 text-lg md:text-xl"
+              className="text-gray-300 text-lg md:text-xl"
               style={{ fontFamily: "'Work Sans', sans-serif", fontWeight: 400 }}
             >
-              {service.text}
+              {service.text.split(". ").map((line, idx) => (
+                <span key={idx}>
+                  {line}.
+                  <br />
+                  <br />
+                </span>
+              ))}
             </p>
           </div>
         </div>
