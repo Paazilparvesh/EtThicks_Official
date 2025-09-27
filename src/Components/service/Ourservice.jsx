@@ -131,7 +131,7 @@ export default function Ourservice() {
 
           {/* Content (slightly lower than center) */}
           <div
-            className={`service-text absolute top-[75%] transform -translate-y-1/2 max-w-3xl px-6 py-9 z-20 opacity-0 leading-relaxed
+            className={`service-text absolute top-[80%] transform -translate-y-1/2 max-w-3xl px-6 py-9 z-20 opacity-0 leading-relaxed
               ${i % 2 === 0 ? "right-0 md:right-8 text-right" : "left-0 md:left-8 text-left"}`}
           >
             <h3

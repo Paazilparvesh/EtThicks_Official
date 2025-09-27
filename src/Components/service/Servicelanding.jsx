@@ -10,14 +10,14 @@ const SectionLanding = () => {
         initial={{ opacity: 0, scaleY: 0 }}
         animate={{ opacity: 1, scaleY: 1 }}
         transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-        className="absolute top-1/2 left-0 w-full h-[16rem] -translate-y-1/2
+        className="absolute top-1/2 left-0 w-full h-[190px] -translate-y-1/2
         bg-[#009BB5]/40 backdrop-blur-md border border-white/20 shadow-lg z-0 origin-center flex items-center justify-center"
       >
         <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-          className="text-white text-7xl lg:text-7xl md:text-5xl sm:text-3xl font-normal font-['Brittany_Signature'] italic whitespace-nowrap opacity-80 mb-[24px]"
+          className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal font-['Brittany_Signature'] italic whitespace-nowrap opacity-80 mb-[24px] text-center px-4 sm:px-0 break-words"
         >
           Brand Storytelling
         </motion.span>
@@ -38,14 +38,13 @@ const SectionLanding = () => {
             </linearGradient>
           </defs>
 
-          {/* White during animation */}
           <motion.text
             x="50%"
             y="55%"
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize="180"
-            className="lg:text-[180px] md:text-[140px] sm:text-[100px]"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
             fontWeight="bold"
             fill="white"
             initial={{ opacity: 1 }}
@@ -55,14 +54,13 @@ const SectionLanding = () => {
             POWERFUL
           </motion.text>
 
-          {/* Gradient after it settles */}
           <motion.text
             x="50%"
             y="55%"
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize="180"
-            className="lg:text-[180px] md:text-[140px] sm:text-[100px]"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
             fontWeight="bold"
             fill="url(#halfLetterGradient)"
             initial={{ opacity: 0 }}
@@ -89,14 +87,13 @@ const SectionLanding = () => {
             </linearGradient>
           </defs>
 
-          {/* White during animation */}
           <motion.text
             x="50%"
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize="180"
-            className="lg:text-[180px] md:text-[140px] sm:text-[100px]"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
             fontWeight="bold"
             fill="white"
             initial={{ opacity: 1 }}
@@ -106,14 +103,13 @@ const SectionLanding = () => {
             CONTENT
           </motion.text>
 
-          {/* Gradient after it settles */}
           <motion.text
             x="50%"
             y="50%"
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize="180"
-            className="lg:text-[180px] md:text-[140px] sm:text-[100px]"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
             fontWeight="bold"
             fill="url(#letterHalfGradient)"
             initial={{ opacity: 0 }}
