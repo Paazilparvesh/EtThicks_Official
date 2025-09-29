@@ -35,6 +35,7 @@ function App() {
           <Route path="/service1" element={<Service1 />}></Route>
           <Route path="/service2" element={<Service2 />}></Route>
           <Route path="/service3" element={<Service3 />}></Route>
+          {/* <Route path="/servicelanding" element={<ServiceLanding />}></Route> */}
 
         </Routes>
         <Footer />

@@ -3,12 +3,26 @@ import Service1 from "/src/assets/home/Ser1.png"
 import Service2 from "/src/assets/home/Ser2.png"
 import Service3 from "/src/assets/home/Ser3.png"
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 300); // delay 300ms before closing
+  };
 
   return (
     <header className="absolute top-0 left-0 w-full z-50 font-inter text-white">
@@ -34,8 +48,8 @@ function Header() {
             {/* Services Dropdown for Desktop */}
             <div
               className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button className="hover:text-orange-300 focus:outline-none">
                 Services

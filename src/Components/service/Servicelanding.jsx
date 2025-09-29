@@ -1,82 +1,127 @@
-// src/Components/ServiceLanding.jsx
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
+import { motion } from "framer-motion";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function ServiceLanding() {
-  const containerRef = useRef(null);
-  const textRef = useRef(null);
-  const overlayRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate text fade + slide up
-      gsap.from(textRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Vertical wipe overlay (yellow reveal)
-      gsap.fromTo(
-        overlayRef.current,
-        { height: "0%" },
-        {
-          height: "100%",
-          duration: 1.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
+const SectionLanding = () => {
   return (
-    <section
-      ref={containerRef}
-      className="relative flex items-center justify-center h-[190px] bg-[#009BB5] overflow-hidden"
-    >
-      {/* Text container */}
-      <h1
-        ref={textRef}
-        className="relative text-5xl md:text-7xl font-extrabold text-white leading-tight text-center"
-        style={{ fontFamily: "'Work Sans', sans-serif" }}
-      >
-        {/* Script word */}
-        <span
-          className="block text-6xl md:text-8xl mb-2"
-          style={{ fontFamily: "'Brittany Signature', cursive" }}
-        >
-          Powerful
-        </span>
+    <div className="relative w-full h-screen overflow-hidden bg-black flex flex-col justify-center items-center">
 
-        {/* Main word with yellow vertical overlay */}
-        <span className="relative inline-block">
-          Content
-          {/* Yellow overlay covers top half of the text, grows vertically */}
-          <span
-            ref={overlayRef}
-            className="absolute left-0 top-0 w-full h-0 overflow-hidden text-yellow-400"
-            style={{ fontFamily: "'Work Sans', sans-serif" }}
+      {/* Glassmorphic Background Bar */}
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0 }}
+        animate={{ opacity: 1, scaleY: 1 }}
+        transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+        className="absolute top-1/2 left-0 w-full h-[190px] -translate-y-1/2
+        bg-[#009BB5]/40 backdrop-blur-md border border-white/20 shadow-lg z-0 origin-center flex items-center justify-center"
+      >
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+          className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal font-['Brittany_Signature'] italic whitespace-nowrap opacity-80 mb-[24px] text-center px-4 sm:px-0 break-words"
+        >
+          Brand Storytelling
+        </motion.span>
+      </motion.div>
+
+      {/* POWERFUL */}
+      <motion.div
+        initial={{ y: "-100%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="w-full flex justify-center"
+      >
+        <svg width="100%" height="220" viewBox="0 0 1200 220" className="max-w-[95%] z-10">
+          <defs>
+            <linearGradient id="halfLetterGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="50%" stopColor="white" />
+              <stop offset="50%" stopColor="orange" />
+            </linearGradient>
+          </defs>
+
+          <motion.text
+            x="50%"
+            y="55%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="180"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
+            fontWeight="bold"
+            fill="white"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
           >
-            Content
-          </span>
-        </span>
-      </h1>
-    </section>
+            POWERFUL
+          </motion.text>
+
+          <motion.text
+            x="50%"
+            y="55%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="180"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
+            fontWeight="bold"
+            fill="url(#halfLetterGradient)"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
+          >
+            POWERFUL
+          </motion.text>
+        </svg>
+      </motion.div>
+
+      {/* CONTENT */}
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+        className="w-full flex justify-center -mt-8"
+      >
+        <svg width="100%" height="220" viewBox="0 0 1200 220" className="max-w-[95%] z-10">
+          <defs>
+            <linearGradient id="letterHalfGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="50%" stopColor="orange" />
+              <stop offset="50%" stopColor="white" />
+            </linearGradient>
+          </defs>
+
+          <motion.text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="180"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
+            fontWeight="bold"
+            fill="white"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1.5 }}
+          >
+            CONTENT
+          </motion.text>
+
+          <motion.text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize="180"
+            className="lg:text-[180px] md:text-[140px] sm:text-[100px] xs:text-[60px]"
+            fontWeight="bold"
+            fill="url(#letterHalfGradient)"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 1.5 }}
+          >
+            CONTENT
+          </motion.text>
+        </svg>
+      </motion.div>
+    </div>
   );
-}
+};
+
+export default SectionLanding;
