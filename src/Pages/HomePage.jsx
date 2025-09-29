@@ -15,6 +15,7 @@ import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 function HomePage() {
   return (
     <>
+    <div className="bg-black">
       <HeroSection />
       <AboutSection />
       <ServiceSection />
@@ -27,6 +28,7 @@ function HomePage() {
       {/* <BrandSection2 />
       <ValueSection /> */}
       <CTASection />
+      </div>
     </>
   );
 }

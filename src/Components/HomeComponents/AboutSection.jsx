@@ -36,15 +36,15 @@ function AboutSection() {
       {/* Text Section */}
       <div className="text-center max-w-[95%] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl">
         <div className="mb-3 sm:mb-4">
-          <h4 className="text-amber-500 text-sm sm:text-base md:text-lg font-bold uppercase tracking-wide">
+          <h4 className="text-amber-500 text-xs md:text-md lg:text-lg xl:text-xl font-bold uppercase tracking-wide">
             About Us
           </h4>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal font-['Nunito'] text-white uppercase leading-snug sm:leading-tight md:leading-snug">
+        <h2 className="text-lg md:text-3xl lg:text-4xl xl:text-6xl font-normal font-['Nunito'] text-white uppercase leading-snug sm:leading-tight md:leading-snug">
           Your Brand Has a <span className="text-orange-400">Story</span>. We’ll
           Take It <span className="text-orange-400">Everywhere</span>
         </h2>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white font-normal font-['Nunito'] leading-relaxed sm:leading-7 md:leading-8 lg:leading-9 mt-4 sm:mt-6 md:mt-8">
+        <p className="text-sm md:text-md lg:text-lg xl:text-xl text-white font-normal font-['Nunito'] leading-relaxed lg:leading-9 mt-4 sm:mt-6 md:mt-8">
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word “Ettuthikkum”, meaning to reach in all eight directions, we

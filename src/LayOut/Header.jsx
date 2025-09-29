@@ -1,69 +1,103 @@
-import ethi from "/src/assets/headerasset/EtThicks1.png";
+import Logo from "/src/assets/headerasset/EtThicks1.png";
+import Service1 from "/src/assets/home/Ser1.png"
+import Service2 from "/src/assets/home/Ser2.png"
+import Service3 from "/src/assets/home/Ser3.png"
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-black text-white shadow-md sticky top-0 z-50 font-inter">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="absolute top-0 left-0 w-full z-50 font-inter text-white">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img src={ethi} alt="Logo" className=" w-auto object-cover" />
+              <img src={Logo} alt="Logo" className="w-auto object-cover" />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6 text-[20px]">
-            <Link to="/" className="hover:text-blue-500">
+          <nav className="hidden md:flex space-x-10 text-md lg:text-lg 2xl:text-xl mr-8">
+            <Link to="/" className="hover:text-orange-300 transition-colors">
               Home
             </Link>
 
-            {/* Services Dropdown */}
+            <Link to="/about" className="hover:text-orange-300 transition-colors">
+              About
+            </Link>
+
+            {/* Services Dropdown for Desktop */}
             <div
               className="relative"
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <button className="hover:text-blue-500 focus:outline-none">
+              <button className="hover:text-orange-300 focus:outline-none">
                 Services
               </button>
 
-              {isServicesOpen && (
-                <div className="absolute left-0 mt-2 w-44 bg-gray-900 shadow-lg rounded-lg py-2">
-                  <Link
-                    to="/service1"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute -right-60 top-8 mt-4 bg-gray-900 shadow-lg rounded-xl p-4 w-[100vw] max-w-5xl"
                   >
-                    Service 1
-                  </Link>
-                  <Link
-                    to="/service2"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
-                  >
-                    Service 2
-                  </Link>
-                  <Link
-                    to="/service3"
-                    className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
-                  >
-                    Service 3
-                  </Link>
-                </div>
-              )}
+                    {/* Responsive Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <Link
+                        to="/service1"
+                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
+                      >
+                        <img
+                          src={Service1}
+                          alt="Service 1"
+                          className="h-16 w-16 object-contain mb-2"
+                        />
+                        <p className="text-orange-300 text-lg font-medium">Content Creation</p>
+                      </Link>
+
+                      <Link
+                        to="/service2"
+                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
+                      >
+                        <img
+                          src={Service2}
+                          alt="Service 2"
+                          className="h-16 w-16 object-contain mb-2"
+                        />
+                        <p className="text-orange-300 text-lg font-medium">Digital Marketing</p>
+                      </Link>
+
+                      <Link
+                        to="/service3"
+                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
+                      >
+                        <img
+                          src={Service3}
+                          alt="Service 3"
+                          className="h-16 w-16 object-contain mb-2"
+                        />
+                        <p className="text-orange-300 text-lg font-medium">Brand Storytelling</p>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            <Link to="/about" className="hover:text-blue-500">
-              About Us
-            </Link>
-            <Link to="/contact" className="hover:text-blue-500">
+
+            <Link to="/contact" className="hover:text-orange-300 transition-colors">
               Contact
             </Link>
-            <Link to="/blog" className="hover:text-blue-500">
+            <Link to="/blog" className="hover:text-orange-300 transition-colors">
               Blogs
             </Link>
           </nav>
@@ -102,67 +136,96 @@ function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-black text-[20px]">
-          <Link
-            to="/"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
+      {/* Mobile Menu with animation */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-black text-md shadow-lg"
           >
-            Home
-          </Link>
-
-          <div className="relative">
-            <button
-              onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-blue-500 focus:outline-none"
+            <Link
+              to="/"
+              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
-              Services
-            </button>
-            {isServicesOpen && (
-              <div className="pl-4 bg-gray-900">
-                <Link
-                  to="/service1"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
-                >
-                  Service 1
-                </Link>
-                <Link
-                  to="/service2"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
-                >
-                  Service 2
-                </Link>
-                <Link
-                  to="/service3"
-                  className="block px-4 py-2 hover:bg-gray-800 hover:text-blue-500"
-                >
-                  Service 3
-                </Link>
-              </div>
-            )}
-          </div>
+              Home
+            </Link>
 
-          <Link
-            to="/about"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
-          >
-            About Us
-          </Link>
-          <Link
-            to="/contact"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
-          >
-            Contact
-          </Link>
-          <Link
-            to="/blog"
-            className="block px-4 py-3 hover:bg-gray-800 hover:text-blue-500"
-          >
-            Blogs
-          </Link>
-        </div>
-      )}
+            {/* Services in Mobile */}
+            <div className="relative">
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300 focus:outline-none flex justify-between items-center"
+              >
+                Services
+                <motion.svg
+                  animate={{ rotate: isServicesOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 ml-2 text-orange-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </motion.svg>
+              </button>
+              <AnimatePresence>
+                {isServicesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="pl-4 bg-orange-300 text-black overflow-hidden"
+                  >
+                    <Link
+                      to="/service1"
+                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                    >
+                      Service 1
+                    </Link>
+                    <Link
+                      to="/service2"
+                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                    >
+                      Service 2
+                    </Link>
+                    <Link
+                      to="/service3"
+                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                    >
+                      Service 3
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+
+            <Link
+              to="/about"
+              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            >
+              Contact
+            </Link>
+            <Link
+              to="/blog"
+              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            >
+              Blogs
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
