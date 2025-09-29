@@ -14,6 +14,7 @@ import Service1 from "./Pages/ServicePages/Service1";
 import Service2 from "./Pages/ServicePages/Service2";
 import Service3 from "./Pages/ServicePages/Service3";
 import Serviceone from "./Pages/ServicePages/Service1";
+import ServiceLanding from "/src/Components/service/SectionLanding.jsx"
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/service1" element={<Serviceone/>}></Route>
           <Route path="/service2" element={<Service2 />}></Route>
           <Route path="/service3" element={<Service3 />}></Route>
+          <Route path="/servicelanding" element={<ServiceLanding />}></Route>
 
         </Routes>
         <Footer />
