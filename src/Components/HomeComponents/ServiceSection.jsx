@@ -19,6 +19,9 @@ function ServiceSection() {
   const items = ["Grow with EtThicks", "Grow with EtThicks", "Grow with EtThicks", "Grow with EtThicks"];
 
   useEffect(() => {
+
+    // ❌ Skip animation for mobile
+    if (window.innerWidth < 768) return;
     // Lenis smooth scroll
     const lenis = new Lenis({ duration: 1.2, smooth: true });
     function raf(time) {
@@ -29,21 +32,36 @@ function ServiceSection() {
 
     const ctx = gsap.context(() => {
       const panels = gsap.utils.toArray(".panel");
-      const amountToScroll = contentWrapperRef.current.scrollWidth - window.innerWidth;
+      let multiplier = 1;
+
+      if (window.innerWidth >= 1440) {
+        // xl
+        multiplier = 1.3;
+      } else if (window.innerWidth >= 1024) {
+        // lg
+        multiplier = 1.08;
+      } else if (window.innerWidth >= 768) {
+        // md
+        multiplier = 1;
+      } else {
+        // sm
+        multiplier = 1;
+      }
+
+      const scrollX =
+        (contentWrapperRef.current.scrollWidth - window.innerWidth) * multiplier;
+
 
       // Main horizontal scroll
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
-        x: -amountToScroll,
+        x: -scrollX,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
           scrub: 1,
-          end: () => `+=${amountToScroll}`,
-          snap: {
-            snapTo: 1 / (panels.length - 1),
-            duration: { min: 0.2, max: 0.3 },
-          },
+          end: () => `+=${scrollX}`,
+          snap: { snapTo: 1 / (panels.length - 1), duration: { min: 0.2, max: 0.3 } },
         },
       });
 
@@ -77,7 +95,7 @@ function ServiceSection() {
             trigger: sectionRef.current,
             scrub: 1,
             start: "top top",
-            end: () => `+=${amountToScroll}`, // link to main scroll distance
+            end: () => `+=${scrollX}`, // link to main scroll distance
           },
         });
       }
@@ -93,51 +111,51 @@ function ServiceSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full h-screen overflow-hidden"
+      className="w-full min-h-screen overflow-x-hidden md:overflow-auto"
       style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
     >
       {/* Horizontal wrapper */}
       <div ref={contentWrapperRef} className="flex flex-col md:flex-row h-full items-center">
         {/* Left Title */}
         <div className="flex-shrink-0 px-6 sm:px-12 md:px-20 text-[#e59300] uppercase font-medium z-10">
-          <h2 className="text-4xl sm:text-6xl md:text-[100px] leading-tight md:leading-[110px]">
-            OUR Services
-            </h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl leading-tight">
+            OUR <br className="hidden md:flex" /> Services
+          </h2>
         </div>
 
         {/* Panels */}
-        <div className="flex h-full items-center gap-6 sm:gap-10 md:gap-16 pr-6 sm:pr-10 md:pr-20">
+        <div className="flex flex-col md:flex-row min-h-screen md:h-full items-center gap-6 sm:gap-10 md:gap-16 p-6 md:pr-20">
           {/* Panel 1 */}
-          <div className="panel w-[280px] sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
               Content Creation
             </h3>
-            <p className="text-black text-sm sm:text-lg md:text-2xl leading-relaxed">
+            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
               Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
             </p>
-            <img src={img1} alt="Content" className="w-28 h-20 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img src={img1} alt="Content" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
           </div>
 
           {/* Panel 2 */}
-          <div className="panel w-[280px] sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
               Digital Marketing
             </h3>
-            <p className="text-black text-sm sm:text-lg md:text-2xl leading-relaxed">
+            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
               Social strategy, performance campaigns, platform-specific content that meets people where they are.
             </p>
-            <img src={img2} alt="Marketing" className="w-28 h-20 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img src={img2} alt="Marketing" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
           </div>
 
           {/* Panel 3 */}
-          <div className="panel w-[280px] sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
               Brand Storytelling
             </h3>
-            <p className="text-black text-sm sm:text-lg md:text-2xl leading-relaxed">
+            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
               From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
             </p>
-            <img src={img3} alt="Storytelling" className="w-28 h-20 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img src={img3} alt="Storytelling" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
           </div>
         </div>
       </div>
@@ -158,4 +176,6 @@ function ServiceSection() {
 }
 
 export default ServiceSection;
+
+
 

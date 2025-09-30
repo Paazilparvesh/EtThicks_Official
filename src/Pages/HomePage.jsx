@@ -19,10 +19,13 @@ function HomePage() {
       <HeroSection />
       <AboutSection />
       <ServiceSection />
+      
       <ConnectSection />
+
       <TeamSection />
       <BrandSection />
       <QuoteSection />
+      
       <BlogSection />
       <FaqSection />
       {/* <BrandSection2 />

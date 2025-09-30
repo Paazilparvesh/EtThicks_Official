@@ -10,7 +10,47 @@ function HeroSection() {
   const flyTextRef = useRef(null); // marquee text
   const pacmanRef = useRef(null); // gif pacman
 
+  // useEffect(() => {
+  // // Rotate the circle + arrow continuously
+  // gsap.to(circleRef.current, {
+  //   rotation: 360,
+  //   duration: 6,
+  //   repeat: -1,
+  //   ease: "linear",
+  //   transformOrigin: "50% 50%",
+  // });
+
+  //   // Animate "Grow with EtThicks"
+  //   const text = flyTextRef.current;
+  //   const pacman = pacmanRef.current;
+
+  //   if (text && pacman) {
+  //     const endX = pacman.offsetLeft + 40;
+  //     const startX = 120;
+
+  //     gsap.fromTo(
+  //       text,
+  //       { x: startX, opacity: 1 },
+  //       {
+  //         x: endX,
+  //         duration: 5,
+  //         ease: "linear",
+  //         repeat: -1,
+  //         onRepeat: () => gsap.set(text, { opacity: 1 }),
+  //         onUpdate: function () {
+  //           const textX = gsap.getProperty(text, "x");
+  //           if (textX >= endX - 10) {
+  //             gsap.to(text, { opacity: 0, duration: 0.3 });
+  //           }
+  //         },
+  //       }
+  //     );
+  //   }
+  // }, []);
+
+
   useEffect(() => {
+
     // Rotate the circle + arrow continuously
     gsap.to(circleRef.current, {
       rotation: 360,
@@ -20,33 +60,32 @@ function HeroSection() {
       transformOrigin: "50% 50%",
     });
 
-    // Animate "Grow with EtThicks"
+
     const text = flyTextRef.current;
-    const pacman = pacmanRef.current;
+    const container = text.parentElement; // relative div
 
-    if (text && pacman) {
-      const endX = pacman.offsetLeft + 40;
-      const startX = 120;
+    if (text && container) {
+      const containerWidth = container.offsetWidth;
+      const textWidth = text.offsetWidth;
 
-      gsap.fromTo(
-        text,
-        { x: startX, opacity: 1 },
-        {
-          x: endX,
-          duration: 5,
-          ease: "linear",
-          repeat: -1,
-          onRepeat: () => gsap.set(text, { opacity: 1 }),
-          onUpdate: function () {
-            const textX = gsap.getProperty(text, "x");
-            if (textX >= endX - 10) {
-              gsap.to(text, { opacity: 0, duration: 0.3 });
-            }
-          },
-        }
-      );
+      const animateMarquee = () => {
+        gsap.fromTo(
+          text,
+          { x: -textWidth }, // start from the right edge
+          {
+            x: containerWidth, // move to left edge
+            duration: 5,
+            ease: "linear",
+            onComplete: animateMarquee, // repeat animation after it ends
+          }
+        );
+      };
+
+      animateMarquee(); // start the loop
     }
   }, []);
+
+
 
   return (
     <div className="w-full xl:min-h-screen relative inset-0 bg-[#0f0f0f] bg-cover bg-center bg-no-repeat rounded-br-[60px] rounded-bl-[60px]"
@@ -138,16 +177,16 @@ function HeroSection() {
         <div className="w-full h-[20vh] md:h-0">
           <div className="w-full  relative">
             <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden">
-              <div className="w-full h-full bg-[#111111] rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[112.5px] rounded-br-[60px] sm:rounded-br-[80px] md:rounded-br-[112.5px] z-10 shadow-2xl" />
+              {/* <div className="w-full h-full bg-[#111111] rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[112.5px] rounded-br-[60px] sm:rounded-br-[80px] md:rounded-br-[112.5px] z-10 shadow-2xl" /> */}
 
 
               {/* Target line  */}
-              <div className="block w-[80vw] md:w-[90vw] mx-10 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl">
+              <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden">
                 {/* Marquee flying text (hidden on mobile) */}
                 <div
                   ref={flyTextRef}
-                  className="block text-white font-bold text-xs md:text-xl 
-                       absolute  -left-18 "
+                  className="w-[90vw] block text-white font-bold text-xs md:text-xl mt-1
+                   "
                 >
                   Grow with EtThicks
                 </div>

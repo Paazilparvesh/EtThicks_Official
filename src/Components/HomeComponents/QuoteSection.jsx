@@ -48,15 +48,15 @@ function QuoteSection() {
       >
         {/* ✅ Desktop layout (unchanged) */}
         <div className="hidden lg:flex absolute inset-0 z-0 items-center justify-between px-4 md:px-8">
-          <img src={luf} alt="Left shape" className="background-shape w-40 h-40 opacity-10 object-contain" />
-          <img src={sat} alt="Background star" className="background-shape w-40 h-40 opacity-10 object-contain" />
-          <img src={cur} alt="Background circle" className="background-shape w-40 h-40 opacity-10 object-contain" />
-          <img src={ash} alt="Background shape" className="background-shape w-40 h-40 opacity-10 object-contain" />
-          <img src={gow} alt="Background group" className="background-shape w-40 h-40 opacity-10 object-contain" />
+          <img src={luf} alt="Left shape" className="background-shape w-40 h-40 opacity-30 object-contain" />
+          <img src={sat} alt="Background star" className="background-shape w-40 h-40 opacity-30 object-contain" />
+          <img src={cur} alt="Background circle" className="background-shape w-40 h-40 opacity-30 object-contain" />
+          <img src={ash} alt="Background shape" className="background-shape w-40 h-40 opacity-30 object-contain" />
+          <img src={gow} alt="Background group" className="background-shape w-40 h-40 opacity-30 object-contain" />
         </div>
 
         {/* ✅ Mobile & Tablet layout (centered background shapes) */}
-        <div className="lg:hidden absolute inset-0 z-0 flex flex-wrap items-center justify-center gap-6 opacity-20">
+        <div className="lg:hidden absolute inset-0 z-0 flex flex-wrap items-center justify-center gap-6 opacity-30">
           <img src={luf} alt="Left shape" className="background-shape w-20 h-20 sm:w-24 sm:h-24 object-contain" />
           <img src={sat} alt="Background star" className="background-shape w-20 h-20 sm:w-24 sm:h-24 object-contain" />
           <img src={cur} alt="Background circle" className="background-shape w-20 h-20 sm:w-24 sm:h-24 object-contain" />
@@ -66,11 +66,11 @@ function QuoteSection() {
 
         {/* Text content */}
         <div className="relative z-10 text-center px-4">
-          <div className="text-amber-500 text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold font-['Nunito'] leading-snug md:leading-[60px]">
+          <div className="text-amber-500 text-3xl md:text-5xl lg:text-4xl font-semibold font-['Nunito'] leading-snug md:leading-[60px]">
             Why EtThicks Exists
           </div>
-          <div className="mt-4 w-full max-w-[695px] mx-auto">
-            <span className="text-white text-base sm:text-lg md:text-2xl font-normal font-['Nunito'] leading-relaxed md:leading-10">
+          <div className="mt-4 w-full max-w-5xl mx-auto">
+            <span className="text-gray-300 text-base sm:text-lg md:text-2xl font-normal font-['Nunito'] leading-relaxed md:leading-10">
               “I started EtThicks to take brands in every direction possible —
               not just in reach, but in trust. Because when stories are told
               right, they don’t just sell. They live.”
