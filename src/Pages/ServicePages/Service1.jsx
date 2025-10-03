@@ -1,13 +1,14 @@
+
+import ServiceHero from "/src/Components/service/ServiceHero.jsx";
 import Ourservice from "../../Components/service/Ourservice";
-import Servicelanding from "../../Components/service/servicelanding";
 import WhyWorkWithUs from "../../Components/service/Whyworkwithus";
 
-function Serviceone () {
-  return(
+function Serviceone() {
+  return (
     <>
-    <Servicelanding/>
-    <Ourservice/>
-    <WhyWorkWithUs/>
+      <ServiceHero />
+      <Ourservice />
+      <WhyWorkWithUs />
     </>
   )
 }

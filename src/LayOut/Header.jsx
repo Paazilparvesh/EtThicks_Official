@@ -162,6 +162,7 @@ function Header() {
           >
             <Link
               to="/"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Home
@@ -197,18 +198,21 @@ function Header() {
                   >
                     <Link
                       to="/service1"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
                       Service 1
                     </Link>
                     <Link
                       to="/service2"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
                       Service 2
                     </Link>
                     <Link
                       to="/service3"
+                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
                       Service 3
@@ -221,18 +225,21 @@ function Header() {
 
             <Link
               to="/about"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               About
             </Link>
             <Link
               to="/contact"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Contact
             </Link>
             <Link
               to="/blog"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Blogs
