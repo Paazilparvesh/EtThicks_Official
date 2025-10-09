@@ -25,9 +25,9 @@ function HomePage() {
       <TeamSection />
       <BrandSection />
       <QuoteSection />
-      
       <BlogSection />
       <FaqSection />
+      
       {/* <BrandSection2 />
       <ValueSection /> */}
       <CTASection />

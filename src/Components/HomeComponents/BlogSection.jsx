@@ -21,23 +21,27 @@ function BlogSection() {
       {/* Glowing background circle */}
       <div className="w-[747px] h-[747px] absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 bg-cyan-500 rounded-full blur-[600px] -z-20" />
 
+      <h1 className="lg:hidden text-white text-2xl md:text-5xl font-medium font-['Work_Sans'] uppercase leading-none relative z-10 mb-10">
+        Blog
+      </h1>
+
       {/* -------- Top Section (Latest Blog) -------- */}
-      <div className="flex flex-col lg:flex-row justify-between items-start gap-12 relative">
+      <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-6 relative">
         {/* Left Content */}
         <div className="flex-1 relative w-full cursor-pointer"
-             onClick={() => navigate(`/blog/${latestBlog.id}`)}>
+          onClick={() => navigate(`/blog/${latestBlog.id}`)}>
           {/* Blog Heading */}
-          <h1 className="text-white text-[100px] sm:text-[120px] md:text-[160px] font-medium font-['Work_Sans'] uppercase leading-none relative z-10">
+          <h1 className="hidden lg:flex text-white text-8xl font-semibold font-['Work_Sans'] uppercase leading-none relative z-10 mb-10">
             Blog
           </h1>
 
           {/* Blog Title */}
-          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium font-['Work_Sans'] mt-6 relative z-10">
+          <h2 className="text-white text-2xl md:text-4xl font-medium font-['Work_Sans']  relative z-10">
             {latestBlog.title}
           </h2>
 
           {/* Blog Description */}
-          <p className="text-white text-base sm:text-lg md:text-xl font-normal font-['Work_Sans'] leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
+          <p className="text-gray-500 text-base md:text-xl font-normal font-['Work_Sans'] leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
             {latestBlog.description}{" "}
             <span className="text-amber-500 underline">More</span>
           </p>
@@ -53,7 +57,7 @@ function BlogSection() {
 
         {/* Right Image */}
         <div
-          className="w-full md:w-[499px] h-60 sm:h-72 md:h-96 bg-black/20 rounded-2xl overflow-hidden relative z-10 cursor-pointer"
+          className="w-full lg:w-[499px] h-60 sm:h-72 md:h-96 bg-black/20 rounded-2xl overflow-hidden relative z-10 cursor-pointer"
           onClick={() => navigate(`/blog/${latestBlog.id}`)}
         >
           <img
@@ -65,12 +69,12 @@ function BlogSection() {
       </div>
 
       {/* -------- Bottom Blog Cards -------- */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
         {otherBlogs.map((blog, idx) => (
           <div
             key={blog.id}
             onClick={() => navigate(`/blog/${blog.id}`)}
-            className="relative w-full md:w-96 h-48 sm:h-56 md:h-64 rounded-3xl overflow-hidden cursor-pointer group"
+            className="relative w-full h-48 sm:h-56 md:h-64 rounded-3xl overflow-hidden cursor-pointer group"
           >
             <img
               src={blog.image}

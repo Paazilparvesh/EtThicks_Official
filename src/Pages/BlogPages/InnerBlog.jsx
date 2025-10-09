@@ -17,18 +17,18 @@ function InnerBlog() {
   }
 
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col">
+    <div className="bg-black text-white min-h-screen flex flex-col pt-20">
       {/* Top Banner Image */}
       <div className="w-full flex justify-center">
         <img
           src={end}
           alt="Top Banner"
-          className="w-full max-w-[1400px] h-[400px] object-cover"
+          className="w-full md:h-[400px] xl:h-[500px] object-contain"
         />
       </div>
 
       {/* Blog Content */}
-      <div className="p-8 flex-1 max-w-4xl mx-auto">
+      <div className="w-full p-8 text-sm lg:text-lg flex-1 max-w-4xl xl:max-w-5xl mx-auto">
         <Link
           to="/blog"
           className="text-yellow-400 mb-6 inline-block hover:underline"
@@ -37,7 +37,7 @@ function InnerBlog() {
         </Link>
 
         <h1
-          className="text-4xl font-bold mb-4"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
           style={{ fontFamily: "'Work Sans', sans-serif" }}
         >
           {blog.title}
@@ -46,10 +46,10 @@ function InnerBlog() {
         <p className="text-gray-400 mb-6">{blog.date}</p>
 
         <p
-          className="text-white"
+          className="text-white text-lg"
           style={{
             fontFamily: "'Work Sans', sans-serif",
-            fontSize: "20px",
+            // fontSize: "20px",
             lineHeight: "1.8",
           }}
         >
