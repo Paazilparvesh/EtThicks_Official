@@ -161,7 +161,7 @@ function ServiceSection() {
       </div>
 
       {/* Bottom Marquee linked to scroll */}
-      <div className="absolute bottom-0 w-full h-[40px] sm:h-[48px] md:h-[56px] bg-cyan-700 overflow-hidden z-20">
+      {/* <div className="absolute bottom-0 w-full h-[40px] sm:h-[48px] md:h-[56px] bg-cyan-700 overflow-hidden z-20">
         <div ref={flyTextRef} className="flex w-max h-full whitespace-nowrap">
           {[...items, ...items].map((text, i) => (
             <div key={i} className="flex items-center gap-2 sm:gap-4 px-3 sm:px-4 shrink-0">
@@ -170,7 +170,7 @@ function ServiceSection() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
