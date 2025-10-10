@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import CurveBG from "/src/assets/home/frame.png";
+import CurveBG from "/src/assets/home/Frame.png";
 
 import Pacman from "/src/assets/pacman.gif"; // pacman gif
 import { Link } from "react-router-dom";
