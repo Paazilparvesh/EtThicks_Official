@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import grid from "/src/assets/ContactImage/grid.png";
-import Pacman from "/src/assets/ContactImage/Pacman.png";
+import Pacman from "/src/assets/ContactImage/pacman.png";
 
 const ContactSection = () => {
   const formRef = useRef();

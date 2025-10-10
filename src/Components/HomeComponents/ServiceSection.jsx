@@ -7,7 +7,6 @@ import Lenis from "lenis";
 import img1 from "/src/assets/home/Ser1.png";
 import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
-import moon from "/src/assets/home/moon.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +15,6 @@ function ServiceSection() {
   const contentWrapperRef = useRef(null);
   const flyTextRef = useRef(null);
 
-  const items = ["Grow with EtThicks", "Grow with EtThicks", "Grow with EtThicks", "Grow with EtThicks"];
 
   useEffect(() => {
 
