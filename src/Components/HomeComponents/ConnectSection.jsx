@@ -153,6 +153,42 @@
 
 // export default ConnectSection;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -164,70 +200,160 @@ const ConnectSection = () => {
   const circleRef = useRef(null);
   const gridRef = useRef(null);
   const textRef = useRef(null);
+  const imagesRef = useRef([]);
 
   useEffect(() => {
     if (!pinRef.current || !circleRef.current || !textRef.current || !gridRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Create a timeline with ScrollTrigger
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
-          start: "top top",         // Start when section hits top of viewport
-          end: "+=200%",            // Control how long the section stays pinned
-          scrub: true,              // Smooth scroll-linked animation
-          pin: true,                // Keep the section fixed while animating
-          markers: true,           // Set true for debugging
+          start: "top top",
+          end: "+=1700%", // Increased for 3 batches of images
+          scrub: true,
+          pin: true,
+          markers: true,
         },
       });
 
-      // Step 1: Circle comes down from top to center
+      // Circle from top → center
       tl.fromTo(
         circleRef.current,
         { yPercent: -200, opacity: 0 },
-        { yPercent: 200, opacity: 1, ease: "power2.out", duration: 2 }
+        { yPercent: 0, opacity: 1, ease: "power2.out", duration: 2 }
       );
 
-      // Step 2: Pause briefly at the center (optional)
+      // Pause briefly
       tl.to(circleRef.current, { duration: 0.5 });
 
-      // Step 3: Circle scales up while pinned in center
+      // Circle scales up
       tl.to(circleRef.current, {
         scale: 5,
         ease: "power2.inOut",
         duration: 3,
       });
 
-
-
+      // Text appears upward
       tl.fromTo(
         textRef.current,
-        { opacity: 0, y: 200 },
-        { opacity: 1, y: 0, ease: "power2.out", duration: 2 },
-        "-=4" // overlap with circle scaling
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 }
       );
 
-      // Step 4: Delay (2s scroll duration equivalent) before showing image grid
-      tl.to({}, { duration: 4 }); // acts as a delay inside timeline
+      // Text moves up slightly
+      tl.to(textRef.current, { yPercent: -50, duration: 1 });
 
-      // Step 5: Animate image grid from top (slide-down + fade-in)
+      // Batch 1: First 3 images appear
       tl.fromTo(
-        gridRef.current,
-        { yPercent: -100, opacity: 0 },
-        { yPercent: -50, opacity: 1, ease: "power2.out", duration: 2 }
+        imagesRef.current.slice(0, 3),
+        { 
+          opacity: 0, 
+          yPercent: 100 
+        },
+        { 
+          opacity: 1, 
+          yPercent: 0, 
+          ease: "power2.out", 
+          duration: 2,
+          stagger: 0.1
+        }
       );
 
+      // Batch 1: Images move up and fade out
+      tl.to(
+        imagesRef.current.slice(0, 3),
+        {
+          yPercent: -150,
+          opacity: 0,
+          ease: "power2.inOut",
+          duration: 3,
+          stagger: 0.05
+        }
+      );
+
+      // Batch 2: Next 3 images appear
+      tl.fromTo(
+        imagesRef.current.slice(3, 6),
+        { 
+          opacity: 0, 
+          yPercent: 100 
+        },
+        { 
+          opacity: 1, 
+          yPercent: 0, 
+          ease: "power2.out", 
+          duration: 2,
+          stagger: 0.1
+        }
+      );
+
+      // Batch 2: Images move up and fade out
+      tl.to(
+        imagesRef.current.slice(3, 6),
+        {
+          yPercent: -150,
+          opacity: 0,
+          ease: "power2.inOut",
+          duration: 3,
+          stagger: 0.05
+        }
+      );
+
+      // Batch 3: Last 3 images appear
+      tl.fromTo(
+        imagesRef.current.slice(6, 9),
+        { 
+          opacity: 0, 
+          yPercent: 100 
+        },
+        { 
+          opacity: 1, 
+          yPercent: 0, 
+          ease: "power2.out", 
+          duration: 2,
+          stagger: 0.1
+        }
+      );
+
+      // Batch 3: Images move up and fade out
+      tl.to(
+        imagesRef.current.slice(6, 9),
+        {
+          yPercent: -150,
+          opacity: 0,
+          ease: "power2.inOut",
+          duration: 3,
+          stagger: 0.05
+        }
+      );
+
+      // Final transition - circle and text fade out
+      tl.to(
+        [circleRef.current, textRef.current],
+        {
+          opacity: 0,
+          yPercent: -30,
+          ease: "power2.in",
+          duration: 2
+        },
+        "-=1"
+      );
 
     }, pinRef);
 
-    // Cleanup on unmount
     return () => ctx.revert();
   }, []);
 
-  return (
-    <section className="w-full h-[300vh] bg-black overflow-hidden relative">
+  // Function to add images to ref array
+  const addToRefs = (el) => {
+    if (el && !imagesRef.current.includes(el)) {
+      imagesRef.current.push(el);
+    }
+  };
 
-      {/* Oranger Container */}
+  return (
+    <section className="w-full h-[1800vh] bg-black overflow-hidden relative">
       <div
         ref={pinRef}
         className="w-full h-screen flex items-center justify-center relative"
@@ -235,39 +361,137 @@ const ConnectSection = () => {
         {/* Orange Circle */}
         <div
           ref={circleRef}
-          className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full w-[10vw] h-[20vh] bg-orange-500 shadow-2xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full w-[10vw] h-[10vw] bg-orange-500 shadow-2xl z-10"
         />
-      </div>
 
-      {/* Text Overlay */}
-      <div
-        ref={textRef}
-        className="absolute top-440 left-1/2 -translate-x-1/2 -translate-y-1/2  text-center px-4">
-        <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 font-['Nunito']"> Connect. Build Trust. Grow.</h1>
-        <p className="text-white text-lg md:text-2xl max-w-3xl mx-auto font-['Nunito']">
-          We exist to craft authentic, emotion-driven stories that connect people with brands — building lasting trust and measurable impact.
-        </p>
-      </div>
+        {/* Text */}
+        <div
+          ref={textRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20"
+        >
+          <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 font-['Nunito']">
+            Connect. Build Trust. Grow.
+          </h1>
+          <p className="text-white text-lg md:text-2xl max-w-3xl mx-auto font-['Nunito']">
+            We exist to craft authentic, emotion-driven stories that connect people with brands — building lasting trust and measurable impact.
+          </p>
+        </div>
 
-      {/* Image Grid Overlay (Initially Hidden) */}
-      <div
-        ref={gridRef}
-        className="absolute inset-0 flex flex-wrap items-center justify-center gap-4 p-4 pointer-events-none opacity-0"
-      >
-        {[...Array(8)].map((_, index) => (
+        {/* Image Grid - Total 9 images in 3 batches */}
+        <div ref={gridRef} className="absolute inset-0 z-60 pointer-events-none">
+          
+          {/* Batch 1 - First 3 Images */}
           <div
-            key={index}
-            className="w-32 h-40 bg-white rounded-2xl shadow-lg transform transition-transform duration-300 hover:scale-105"
+            ref={addToRefs}
+            className="absolute w-58 h-80 rounded-2xl overflow-hidden shadow-lg bg-gray-300"
             style={{
-              backgroundImage: `url(https://via.placeholder.com/150?text=Img+${index + 1
-                })`,
+              top: "48%",
+              left: "43%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=500&q=80)`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           />
-        ))}
-      </div>
 
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "30%",
+              left: "74%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80 rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "28%",
+              left: "13%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          {/* Batch 2 - Next 3 Images (different positions) */}
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "25%",
+              left: "43%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "35%",
+              left: "72%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "43%",
+              left: "15%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          {/* Batch 3 - Last 3 Images (different positions) */}
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "40%",
+              left: "70%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "20%",
+              left: "45%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1507591064344-4c6ce005b128?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+
+          <div
+            ref={addToRefs}
+            className="absolute w-58 h-80  rounded-2xl overflow-hidden shadow-lg bg-gray-300"
+            style={{
+              top: "30%",
+              left: "15%",
+              backgroundImage: `url(https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=500&q=80)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </div>
+      </div>
     </section>
   );
 };
