@@ -20,15 +20,15 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<InnerBlog />} />
         
-        {/* Service Routes - Use key prop to force re-render */}
-        <Route path="/service/:id" element={<ServiceMain key="serviceById" />} />
-        <Route path="/Service1" element={<ServiceMain key="service1" />} />
-        <Route path="/Service2" element={<ServiceMain key="service2" />} />
-        <Route path="/Service3" element={<ServiceMain key="service3" />} />
-        <Route path="/Service4" element={<ServiceMain key="service4" />} />
-        <Route path="/Service5" element={<ServiceMain key="service5" />} />
-        <Route path="/Service6" element={<ServiceMain key="service6" />} />
-        <Route path="/Service7" element={<ServiceMain key="service7" />} />
+        {/* Service Routes - Add unique keys for each route */}
+        <Route path="/service/:id" element={<ServiceMain key="service-dynamic" />} />
+        <Route path="/Service1" element={<ServiceMain key="service-1" />} />
+        <Route path="/Service2" element={<ServiceMain key="service-2" />} />
+        <Route path="/Service3" element={<ServiceMain key="service-3" />} />
+        <Route path="/Service4" element={<ServiceMain key="service-4" />} />
+        <Route path="/Service5" element={<ServiceMain key="service-5" />} />
+        <Route path="/Service6" element={<ServiceMain key="service-6" />} />
+        <Route path="/Service7" element={<ServiceMain key="service-7" />} />
         
         {/* Fallback */}
         <Route path="*" element={
