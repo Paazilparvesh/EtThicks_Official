@@ -7,7 +7,7 @@ import AboutPage from "/src/Pages/AboutPage.jsx";
 import ContactPage from "/src/Pages/ContactPage.jsx";
 import BlogPage from "/src/Pages/BlogPages/BlogPage.jsx";
 import InnerBlog from "/src/Pages/BlogPages/InnerBlog.jsx";
-import ServiceMain from "./Pages/ServicePages/ServiceMain";
+import Serviceonepage from "./Pages/servicepage/serviceonepage";
 
 function App() {
   return (
@@ -19,18 +19,9 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<InnerBlog />} />
+        <Route path="/servone" element={<Serviceonepage />} />
         
-        {/* Service Routes - Add unique keys for each route */}
-        <Route path="/service/:id" element={<ServiceMain key="service-dynamic" />} />
-        <Route path="/Service1" element={<ServiceMain key="service-1" />} />
-        <Route path="/Service2" element={<ServiceMain key="service-2" />} />
-        <Route path="/Service3" element={<ServiceMain key="service-3" />} />
-        <Route path="/Service4" element={<ServiceMain key="service-4" />} />
-        <Route path="/Service5" element={<ServiceMain key="service-5" />} />
-        <Route path="/Service6" element={<ServiceMain key="service-6" />} />
-        <Route path="/Service7" element={<ServiceMain key="service-7" />} />
-        
-        {/* Fallback */}
+        {/* 404 Fallback */}
         <Route path="*" element={
           <div className="min-h-screen bg-black text-white flex items-center justify-center">
             <div className="text-center">

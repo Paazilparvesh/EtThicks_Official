@@ -67,7 +67,7 @@ function Header() {
                     {/* Responsive Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       <Link
-                        to="/service1"
+                        to="/servone"
                         className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
                       >
                         <img
