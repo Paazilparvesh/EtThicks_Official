@@ -7,7 +7,7 @@ import TeamSection from "/src/Components/HomeComponents/TeamSection.jsx"
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 
-import Abouthead from '../Components/Aboutcomponents/abouthead'
+import Abouthead from '/src/Components/Aboutcomponents/Abouthead.jsx'
 const AboutPage = () => {
   return (
     <>
