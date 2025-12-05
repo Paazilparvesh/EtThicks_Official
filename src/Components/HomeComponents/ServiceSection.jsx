@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,12 +14,15 @@ function ServiceSection() {
   const contentWrapperRef = useRef(null);
   const flyTextRef = useRef(null);
 
-
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
 
-    // ❌ Skip animation for mobile
-    if (window.innerWidth < 768) return;
-    // Lenis smooth scroll
+    // ✅ Mobile: Skip horizontal scroll, use native vertical scroll
+    if (isMobile) {
+      return; // Exit early - no GSAP animations on mobile
+    }
+
+    // ✅ Desktop: Lenis smooth scroll + horizontal animations
     const lenis = new Lenis({ duration: 1.2, smooth: true });
     function raf(time) {
       lenis.raf(time);
@@ -33,22 +35,15 @@ function ServiceSection() {
       let multiplier = 1;
 
       if (window.innerWidth >= 1440) {
-        // xl
         multiplier = 1.3;
       } else if (window.innerWidth >= 1024) {
-        // lg
         multiplier = 1.08;
       } else if (window.innerWidth >= 768) {
-        // md
-        multiplier = 1;
-      } else {
-        // sm
         multiplier = 1;
       }
 
       const scrollX =
         (contentWrapperRef.current.scrollWidth - window.innerWidth) * multiplier;
-
 
       // Main horizontal scroll
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
@@ -82,7 +77,7 @@ function ServiceSection() {
         ).to(panel, { scale: 0.8, opacity: 0.5, ease: "power2.inOut" });
       });
 
-      // ✅ Marquee scroll linked ONLY to horizontal scroll
+      // Marquee scroll linked to horizontal scroll
       if (flyTextRef.current) {
         const marqueeWidth = flyTextRef.current.scrollWidth / 2;
 
@@ -93,7 +88,7 @@ function ServiceSection() {
             trigger: sectionRef.current,
             scrub: 1,
             start: "top top",
-            end: () => `+=${scrollX}`, // link to main scroll distance
+            end: () => `+=${scrollX}`,
           },
         });
       }
@@ -109,71 +104,71 @@ function ServiceSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen overflow-x-hidden md:overflow-auto"
+      className="w-full min-h-screen overflow-x-hidden"
       style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
     >
-      {/* Horizontal wrapper */}
-      <div ref={contentWrapperRef} className="flex flex-col md:flex-row h-full items-center">
+      {/* Horizontal wrapper for desktop, vertical stack for mobile */}
+      <div 
+        ref={contentWrapperRef} 
+        className="flex flex-col md:flex-row h-full items-center md:items-stretch"
+      >
         {/* Left Title */}
-        <div className="flex-shrink-0 px-6 sm:px-12 md:px-20 text-[#e59300] uppercase font-medium z-10">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl leading-tight">
-            OUR <br className="hidden md:flex" /> Services
+        <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-center md:text-left">
+            OUR <br className="hidden md:block" /> Services
           </h2>
         </div>
 
-        {/* Panels */}
-        <div className="flex flex-col md:flex-row min-h-screen md:h-full items-center gap-6 sm:gap-10 md:gap-16 p-6 md:pr-20">
+        {/* Panels - Reduced gap on mobile only, desktop unchanged */}
+        <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-3 md:gap-12 lg:gap-16 p-6 sm:p-8 md:pr-20 w-full md:w-auto">
           {/* Panel 1 */}
-          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
               Content Creation
             </h3>
-            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
+            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
               Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
             </p>
-            <img src={img1} alt="Content" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img 
+              src={img1} 
+              alt="Content" 
+              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+            />
           </div>
 
           {/* Panel 2 */}
-          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
               Digital Marketing
             </h3>
-            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
+            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
               Social strategy, performance campaigns, platform-specific content that meets people where they are.
             </p>
-            <img src={img2} alt="Marketing" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img 
+              src={img2} 
+              alt="Marketing" 
+              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+            />
           </div>
 
           {/* Panel 3 */}
-          <div className="panel w-full sm:w-[400px] md:w-[640px] h-[280px] sm:h-[340px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-3xl md:text-5xl font-semibold mb-2 sm:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
               Brand Storytelling
             </h3>
-            <p className="text-gray-700 text-sm md:text-xl leading-relaxed">
+            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
               From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
             </p>
-            <img src={img3} alt="Storytelling" className="w-48 h-40 sm:w-48 sm:h-36 md:w-80 md:h-60 absolute bottom-4 right-4" />
+            <img 
+              src={img3} 
+              alt="Storytelling" 
+              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+            />
           </div>
         </div>
       </div>
-
-      {/* Bottom Marquee linked to scroll */}
-      {/* <div className="absolute bottom-0 w-full h-[40px] sm:h-[48px] md:h-[56px] bg-cyan-700 overflow-hidden z-20">
-        <div ref={flyTextRef} className="flex w-max h-full whitespace-nowrap">
-          {[...items, ...items].map((text, i) => (
-            <div key={i} className="flex items-center gap-2 sm:gap-4 px-3 sm:px-4 shrink-0">
-              <img src={moon} alt="" className="w-4 h-5 sm:w-5 sm:h-6 md:w-7 md:h-8" />
-              <span className="text-white text-base sm:text-xl md:text-[30px] font-medium">{text}</span>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </section>
   );
 }
 
 export default ServiceSection;
-
-
-

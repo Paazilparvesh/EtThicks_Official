@@ -98,39 +98,39 @@ function Port() {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                minHeight: "671px",
+                height: "671px",
                 width: "100%"
             }}
-            className="py-12 px-4 md:px-8 lg:px-16"
+            className="py-12 px-4 md:px-8 lg:px-16 flex flex-col"
         >
-            <div className="container mx-auto max-w-7xl">
+            <div className="container mx-auto max-w-7xl flex-1 flex flex-col">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 md:mb-12 text-center sm:text-left">
                     OUR WORKS
                 </h1>
                 
-                {/* Carousel Container with Controls */}
-                <div className="relative h-[671px] flex items-center">
-                    {/* Left Button */}
+                {/* Carousel Container with Controls - Centered */}
+                <div className="relative flex-1 flex items-center justify-center">
+                    {/* Left Button - Inside carousel area */}
                     <button 
                         onClick={slideLeft}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-lg"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
 
-                    {/* Right Button */}
+                    {/* Right Button - Inside carousel area */}
                     <button 
                         onClick={slideRight}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-lg"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
 
-                    <div className="overflow-hidden px-12 w-full">
+                    <div className="overflow-hidden px-16 w-full">
                         <div 
                             ref={carouselRef}
                             className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar"
@@ -143,21 +143,21 @@ function Port() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     key={`${item.documentId}-${index}`}
-                                    className="flex-shrink-0 w-[352px] h-[460px] bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                                    className="flex-shrink-0 w-[352px] h-[460px] bg-white rounded-3xl overflow-hidden shadow-lg cursor-pointer"
                                 >
-                                    <div className="bg-gray-300 h-[340px] w-full flex items-center justify-center overflow-hidden">
+                                    <div className="bg-gray-300 h-[400px] w-full flex items-center justify-center overflow-hidden">
                                         <img 
                                             src={item.image} 
                                             alt={item.title}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
-                                                e.target.src = 'https://via.placeholder.com/352x340/cccccc/000000?text=Error+Loading';
+                                                e.target.src = 'https://via.placeholder.com/352x400/cccccc/000000?text=Error+Loading';
                                             }}
                                         />
                                     </div>
                                     
-                                    <div className="p-6 h-[120px] flex items-center justify-center">
-                                        <h3 className="text-xl font-bold text-black text-center">
+                                    <div className="h-[60px] w-full flex items-center justify-center px-4">
+                                        <h3 className="text-xl font-bold text-black text-center line-clamp-2">
                                             {item.title}
                                         </h3>
                                     </div>

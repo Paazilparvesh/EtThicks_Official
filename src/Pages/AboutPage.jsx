@@ -6,11 +6,13 @@ import Client from '../Components/Aboutcomponents/client'
 import TeamSection from "/src/Components/HomeComponents/TeamSection.jsx"
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
-import Aboutlanding from '../Components/Aboutcomponents/Aboutlanding'
+
+import Abouthead from '../Components/Aboutcomponents/abouthead'
 const AboutPage = () => {
   return (
     <>
-    <Aboutlanding/>
+    
+    <Abouthead/>
     <Count/>
     <Pockyman/>
     <Create/>

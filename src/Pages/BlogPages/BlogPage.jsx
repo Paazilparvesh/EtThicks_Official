@@ -1,39 +1,66 @@
-import React, { useState } from "react";
+// src/Pages/BlogPages/BlogPage.jsx
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import blogImg from "/src/assets/Blog/blow.png";
 import { ArrowUpRight } from "lucide-react";
-import { articlesData } from "/src/Data/Data.jsx";
 
 function Blogs() {
   const navigate = useNavigate();
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState("desc"); // default → Newest first
+  const [sortOrder, setSortOrder] = useState("desc");
 
-  // Find latest blog (highest id)
-  const latestBlog = articlesData.reduce((prev, current) =>
-    prev.id > current.id ? prev : current
-  );
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await fetch("http://localhost:1337/api/blogs?populate=*");
+      const result = await response.json();
+      setBlogs(result.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+      setLoading(false);
+    }
+  };
+
+  const handleBlogClick = (blog) => {
+    navigate("/blog/details", { state: { blog } });
+  };
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-xl">Loading blogs...</p>
+      </div>
+    );
+  }
+
+  // Find latest blog
+  const latestBlog = blogs.length > 0 ? blogs[0] : null;
 
   // Sort by date helper
   const sortByDate = (a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
     return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
   };
 
   // Filter & sort
-  const filteredArticles = [...articlesData]
+  const filteredArticles = [...blogs]
     .filter((a) => {
       const searchLower = search.toLowerCase();
       return (
-        a.title.toLowerCase().includes(searchLower) ||
-        a.date.toLowerCase().includes(searchLower)
+        a.name.toLowerCase().includes(searchLower) ||
+        a.description.toLowerCase().includes(searchLower)
       );
     })
     .sort(sortByDate);
 
-  const ArticleCard = ({ id, date, title, image, heightClass, index }) => {
-    // Only 2nd column moves up
+  const ArticleCard = ({ blog, index }) => {
     const translateClass =
       index % 3 === 1
         ? "lg:-translate-y-6 xl:-translate-y-6 2xl:-translate-y-12"
@@ -41,20 +68,22 @@ function Blogs() {
 
     return (
       <div
-        onClick={() => navigate(`/blog/${id}`)}
-        className={`w-full ${heightClass} bg-[#D9D9D9] rounded-xl flex flex-col overflow-hidden cursor-pointer hover:scale-105 transition transform ${translateClass}`}
+        onClick={() => handleBlogClick(blog)}
+        className={`w-full h-[400px] bg-[#D9D9D9] rounded-xl flex flex-col overflow-hidden cursor-pointer hover:scale-105 transition transform ${translateClass}`}
       >
-        {/* 👇 Blog Image */}
+        {/* Blog Image */}
         <img
-          src={image}
-          alt={title}
-          className="flex-1 w-full h-auto object-contain"
+          src={`http://localhost:1337${blog.image.url}`}
+          alt={blog.image.alternativeText || blog.name}
+          className="flex-1 w-full h-auto object-cover"
         />
 
         {/* Blog Info */}
         <div className="bg-white p-4">
-          <h2 className="text-xs text-gray-500 mb-1">{date}</h2>
-          <p className="text-md xl:text-lg font-medium text-black">{title}</p>
+          <h2 className="text-xs text-gray-500 mb-1">
+            {new Date(blog.createdAt).toLocaleDateString()}
+          </h2>
+          <p className="text-md xl:text-lg font-medium text-black">{blog.name}</p>
         </div>
       </div>
     );
@@ -63,42 +92,47 @@ function Blogs() {
   return (
     <div className="w-full flex flex-col bg-black text-white min-h-screen pt-14 md:pt-0 xl:pt-12">
       {/* ---------------- BlogLanding Section ---------------- */}
-      <div className="flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
-        <div
-          className="relative w-full h-70 sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-          onClick={() => navigate(`/blog/${latestBlog.id}`)}
-        >
-          <img
-            src={blogImg}
-            alt="Blog"
-            className="w-full md:h-full object-contain"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          <div className="absolute bottom-4 sm:bottom-6 left-2 md:left-6 flex flex-col sm:flex-row items-start sm:items-end justify-between">
-            <div className="mb-4 sm:mb-0">
-              <h2
-                className="text-white text-xl md:text-3xl lg:text-5xl xl:text-6xl font-normal"
-                style={{ fontFamily: "'Work Sans', sans-serif" }}
-              >
-                {latestBlog.title}
-              </h2>
-              <p
-                className="text-gray-400 mt-1 text-xs md:text-lg lg:text-xl"
-                style={{ fontFamily: "'Work Sans', sans-serif" }}
-              >
-                {latestBlog.description}
-              </p>
-            </div>
+      {latestBlog && (
+        <div className="flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
+          <div
+            className="relative w-full h-70 sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+            onClick={() => handleBlogClick(latestBlog)}
+          >
+            <img
+              src={blogImg}
+              alt="Blog"
+              className="w-full md:h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            <div className="absolute bottom-4 sm:bottom-6 left-2 md:left-6 flex flex-col sm:flex-row items-start sm:items-end justify-between w-full pr-6">
+              <div className="mb-4 sm:mb-0">
+                <h2
+                  className="text-white text-xl md:text-3xl lg:text-5xl xl:text-6xl font-normal"
+                  style={{ fontFamily: "'Work Sans', sans-serif" }}
+                >
+                  {latestBlog.name}
+                </h2>
+                <p
+                  className="text-gray-400 mt-1 text-xs md:text-lg lg:text-xl"
+                  style={{ fontFamily: "'Work Sans', sans-serif" }}
+                >
+                  {latestBlog.description.substring(0, 100)}...
+                </p>
+              </div>
 
-            <button
-              className="hidden md:flexw-10 h-10 sm:w-12 sm:h-12 rounded-full bg-yellow-500 flex items-center justify-center shadow-lg hover:bg-yellow-400 transition"
-              onClick={() => navigate(`/blog/${latestBlog.id}`)}
-            >
-              <ArrowUpRight className="text-white w-5 sm:w-6 h-5 sm:h-6" />
-            </button>
+              <button
+                className="hidden md:flex w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBlogClick(latestBlog);
+                }}
+              >
+                <ArrowUpRight className="text-white w-5 sm:w-6 h-5 sm:h-6" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* ---------------- Articles Section ---------------- */}
       <div className="w-full p-4 sm:p-6 md:p-8">
@@ -116,13 +150,13 @@ function Blogs() {
               placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-10  text-center md:text-start w-full md:w-60 bg-[#D9D9D9] rounded-full px-3 sm:px-4 text-black outline-none text-sm sm:text-base lg:text-lg"
+              className="h-10 text-center md:text-start w-full md:w-60 bg-[#D9D9D9] rounded-full px-3 sm:px-4 text-black outline-none text-sm sm:text-base lg:text-lg"
             />
             {/* Sort Dropdown */}
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
-              className=" h-10 bg-[#D9D9D9] rounded-full px-3 sm:px-4 text-black outline-none text-sm sm:text-base lg:text-lg"
+              className="h-10 bg-[#D9D9D9] rounded-full px-3 sm:px-4 text-black outline-none text-sm sm:text-base lg:text-lg"
             >
               <option value="desc">Newest First</option>
               <option value="asc">Oldest First</option>
@@ -131,20 +165,8 @@ function Blogs() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:mt-20">
-          {filteredArticles.map((article, index) => (
-            <ArticleCard
-              key={article.id}
-              id={article.id}
-              date={article.date}
-              title={article.title}
-              image={article.image}
-              index={index}
-              // heightClass={
-              //   index % 3 === 1
-              //     ? "h- sm:h-[480px] md:h-[470px] lg:h-[470px]"
-              //     : " sm:h-[420px] md:h-[400px] lg:h-[400px]"
-              // }
-            />
+          {filteredArticles.map((blog, index) => (
+            <ArticleCard key={blog.documentId} blog={blog} index={index} />
           ))}
         </div>
       </div>

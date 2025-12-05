@@ -4,7 +4,6 @@ function Review() {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
     const intervalRef = useRef(null);
 
     // Fetch reviews from Strapi API
@@ -42,7 +41,7 @@ function Review() {
 
     // Auto-scroll vertical carousel effect - automatically moves to next review
     useEffect(() => {
-        if (reviews.length === 0 || isHovered) return;
+        if (reviews.length === 0) return;
 
         intervalRef.current = setInterval(() => {
             setCurrentIndex((prevIndex) => {
@@ -56,23 +55,7 @@ function Review() {
                 clearInterval(intervalRef.current);
             }
         };
-    }, [reviews, isHovered]);
-
-    const goToSlide = (index) => {
-        setCurrentIndex(index);
-    };
-
-    const goToPrevious = () => {
-        setCurrentIndex((prevIndex) => 
-            prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
-        );
-    };
-
-    const goToNext = () => {
-        setCurrentIndex((prevIndex) => 
-            prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
-        );
-    };
+    }, [reviews]);
 
     if (loading) {
         return (
@@ -83,16 +66,31 @@ function Review() {
     }
 
     return (
-        <div className="bg-black min-h-screen py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-16">
-            <div className="container mx-auto max-w-7xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="bg-black px-4 md:px-8 lg:px-16" style={{ height: '436px' }}>
+            <div className="container mx-auto max-w-7xl h-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full">
                     
                     {/* Left Section - Title and Description */}
                     <div className="text-white">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        <h1 
+                            className="mb-6"
+                            style={{
+                                fontFamily: "'Work Sans', sans-serif",
+                                fontWeight: 500,
+                                fontSize: "40px",
+                                lineHeight: "1.2"
+                            }}
+                        >
                             What <span style={{ color: '#FFAE00' }}>Our Customer</span> Says
                         </h1>
-                        <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed">
+                        <p 
+                            className="text-gray-400 leading-relaxed"
+                            style={{
+                                fontFamily: "'Onset', sans-serif",
+                                fontWeight: 400,
+                                fontSize: "16px"
+                            }}
+                        >
                             We combine creativity and technology to create meaningful brand experiences. 
                             From content to design, we deliver solutions that elevate your business. 
                             Specialize in content creation, branding, and digital development. 
@@ -101,25 +99,11 @@ function Review() {
                     </div>
 
                     {/* Right Section - Automatic Vertical Carousel */}
-                    <div className="relative flex justify-center items-center">
-                        {/* Up Arrow Button */}
-                        <button 
-                            onClick={goToPrevious}
-                            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-16 z-10 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-                            style={{ backgroundColor: '#FFAE00' }}
-                            aria-label="Previous review"
-                        >
-                            <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                            </svg>
-                        </button>
-
+                    <div className="relative flex justify-start items-center">
                         {/* Carousel Container */}
                         <div 
                             className="relative overflow-hidden rounded-3xl w-[570px]"
                             style={{ height: '239px' }}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
                         >
                             {/* Slides Wrapper - Vertical Auto Scroll */}
                             <div 
@@ -181,48 +165,22 @@ function Review() {
                             </div>
                         </div>
 
-                        {/* Down Arrow Button */}
-                        <button 
-                            onClick={goToNext}
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-16 z-10 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-                            style={{ backgroundColor: '#FFAE00' }}
-                            aria-label="Next review"
-                        >
-                            <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-
                         {/* Vertical Dots Indicator */}
                         <div className="flex flex-col items-center gap-2 absolute -right-8 top-1/2 -translate-y-1/2">
                             {reviews.map((_, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => goToSlide(index)}
+                                    onClick={() => setCurrentIndex(index)}
                                     className={`rounded-full transition-all duration-300 ${
                                         index === currentIndex 
                                             ? 'w-3 h-8' 
-                                            : 'w-2 h-2 opacity-50 hover:opacity-75'
+                                            : 'w-2 h-2 opacity-50'
                                     }`}
                                     style={{ backgroundColor: '#FFAE00' }}
                                     aria-label={`Go to review ${index + 1}`}
                                 />
                             ))}
                         </div>
-
-                        {/* Progress Bar */}
-                        {!isHovered && (
-                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800 rounded-b-3xl overflow-hidden">
-                                <div 
-                                    className="h-full transition-all"
-                                    style={{ 
-                                        backgroundColor: '#FFAE00',
-                                        width: '100%',
-                                        animation: 'progress 4s linear infinite'
-                                    }}
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
@@ -234,14 +192,6 @@ function Review() {
                     -webkit-line-clamp: 6;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
-                }
-                @keyframes progress {
-                    from {
-                        transform: translateX(-100%);
-                    }
-                    to {
-                        transform: translateX(0);
-                    }
                 }
             `}</style>
         </div>

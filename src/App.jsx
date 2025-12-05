@@ -7,7 +7,7 @@ import AboutPage from "/src/Pages/AboutPage.jsx";
 import ContactPage from "/src/Pages/ContactPage.jsx";
 import BlogPage from "/src/Pages/BlogPages/BlogPage.jsx";
 import InnerBlog from "/src/Pages/BlogPages/InnerBlog.jsx";
-import Serviceonepage from "./Pages/servicepage/serviceonepage";
+import Serviceonepage from "/src/Pages/servicepage/Serviceonepage.jsx";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<InnerBlog />} />
+        <Route path="/blog/details" element={<InnerBlog />} />
         <Route path="/servone" element={<Serviceonepage />} />
         
         {/* 404 Fallback */}
