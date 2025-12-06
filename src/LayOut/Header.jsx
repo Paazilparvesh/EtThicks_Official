@@ -6,6 +6,23 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const SERVICES = [
+  {
+    slug: "content-creation",
+    name: "Content Creation",
+    icon: Service1,
+  },
+  {
+    slug: "digital-marketing",
+    name: "Digital Marketing",
+    icon: Service2,
+  },
+  {
+    slug: "brand-storytelling",
+    name: "Brand Storytelling",
+    icon: Service3,
+  },
+];
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -33,7 +50,7 @@ function Header() {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link to="/" className="flex items-center">
               <img src={Logo} alt="Logo" className="w-auto object-cover" />
             </Link>
@@ -74,43 +91,20 @@ function Header() {
                   >
                     {/* Responsive Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      <Link
-                        to="/servone"
-                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
-                      >
-                        <img
-                          src={Service1}
-                          alt="Service 1"
-                          className="h-16 w-16 object-contain mb-2"
-                        />
-                        <p className="text-orange-300 text-lg font-medium">Content Creation</p>
-                      </Link>
-
-
-                      <Link
-                        to="/service2"
-                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
-                      >
-                        <img
-                          src={Service2}
-                          alt="Service 2"
-                          className="h-16 w-16 object-contain mb-2"
-                        />
-                        <p className="text-orange-300 text-lg font-medium">Digital Marketing</p>
-                      </Link>
-
-
-                      <Link
-                        to="/service3"
-                        className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
-                      >
-                        <img
-                          src={Service3}
-                          alt="Service 3"
-                          className="h-16 w-16 object-contain mb-2"
-                        />
-                        <p className="text-orange-300 text-lg font-medium">Brand Storytelling</p>
-                      </Link>
+                      {SERVICES.map((service) => (
+                        <Link
+                          key={service.slug}
+                          to={`/service/${service.slug}`}
+                          className="flex flex-col items-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
+                        >
+                          <img
+                            src={service.icon}
+                            alt={service.name}
+                            className="h-16 w-16 object-contain mb-2"
+                          />
+                          <p className="text-orange-300 text-lg font-medium">{service.name}</p>
+                        </Link>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -210,27 +204,15 @@ function Header() {
                     transition={{ duration: 0.3 }}
                     className="pl-4 bg-orange-300 text-black overflow-hidden"
                   >
-                    <Link
-                      to="/servone"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
-                    >
-                      Content Creation
-                    </Link>
-                    <Link
-                      to="/service2"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
-                    >
-                      Digital Marketing
-                    </Link>
-                    <Link
-                      to="/service3"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
-                    >
-                      Brand Storytelling
-                    </Link>
+                    {SERVICES.map((service) => (
+                      <Link
+                        key={service.slug}
+                        to={`/service/${service.slug}`}
+                        className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                      >
+                        <p className="text-orange-300 text-lg font-medium">{service.name}</p>
+                      </Link>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
