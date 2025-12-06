@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
+
 
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
@@ -18,14 +20,16 @@ function Header() {
     setIsServicesOpen(true);
   };
 
+
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setIsServicesOpen(false);
-    }, 300); // delay 300ms before closing
+    }, 300);
   };
 
+
   return (
-    <header className="absolute top-0 left-0 w-full z-50 font-inter text-white">
+    <header className="fixed top-0 left-0 w-full z-50 font-inter text-white bg-black bg-opacity-90 backdrop-blur-sm">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
@@ -35,15 +39,18 @@ function Header() {
             </Link>
           </div>
 
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10 text-md lg:text-lg 2xl:text-xl mr-8">
             <Link to="/" className="hover:text-orange-300 transition-colors">
               Home
             </Link>
 
+
             <Link to="/about" className="hover:text-orange-300 transition-colors">
               About
             </Link>
+
 
             {/* Services Dropdown for Desktop */}
             <div
@@ -54,6 +61,7 @@ function Header() {
               <button className="hover:text-orange-300 focus:outline-none">
                 Services
               </button>
+
 
               <AnimatePresence>
                 {isServicesOpen && (
@@ -78,6 +86,7 @@ function Header() {
                         <p className="text-orange-300 text-lg font-medium">Content Creation</p>
                       </Link>
 
+
                       <Link
                         to="/service2"
                         className="flex flex-col items-center justify-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
@@ -89,6 +98,7 @@ function Header() {
                         />
                         <p className="text-orange-300 text-lg font-medium">Digital Marketing</p>
                       </Link>
+
 
                       <Link
                         to="/service3"
@@ -108,6 +118,7 @@ function Header() {
             </div>
 
 
+
             <Link to="/contact" className="hover:text-orange-300 transition-colors">
               Contact
             </Link>
@@ -115,6 +126,7 @@ function Header() {
               Blogs
             </Link>
           </nav>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
@@ -150,6 +162,7 @@ function Header() {
         </div>
       </div>
 
+
       {/* Mobile Menu with animation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -162,11 +175,12 @@ function Header() {
           >
             <Link
               to="/"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Home
             </Link>
+
 
             {/* Services in Mobile */}
             <div className="relative">
@@ -197,25 +211,25 @@ function Header() {
                     className="pl-4 bg-orange-300 text-black overflow-hidden"
                   >
                     <Link
-                      to="/service1"
-                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                      to="/servone"
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
-                      Service 1
+                      Content Creation
                     </Link>
                     <Link
                       to="/service2"
-                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
-                      Service 2
+                      Digital Marketing
                     </Link>
                     <Link
                       to="/service3"
-                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                     >
-                      Service 3
+                      Brand Storytelling
                     </Link>
                   </motion.div>
                 )}
@@ -223,23 +237,24 @@ function Header() {
             </div>
 
 
+
             <Link
               to="/about"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               About
             </Link>
             <Link
               to="/contact"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Contact
             </Link>
             <Link
               to="/blog"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Blogs
@@ -250,5 +265,6 @@ function Header() {
     </header>
   );
 }
+
 
 export default Header;

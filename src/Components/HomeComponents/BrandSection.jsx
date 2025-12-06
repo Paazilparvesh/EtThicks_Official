@@ -34,7 +34,7 @@ function BrandSection() {
         <div className="w-[calc(100vw-150px)] mx-auto h-[calc(100vh-170px)] bg-white/10 rounded-[77px] border border-white/10 backdrop-blur-sm" />
 
         {/* Text Overlay */}
-        <div className="w-full absolute top-60 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none">
+        <div className="w-full absolute top-60 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none pt-12">
           <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold font-['Nunito'] text-center">
             Brand Personality
           </h1>
@@ -46,7 +46,7 @@ function BrandSection() {
       </div>
 
       {/* Mobile & Tablet layout */}
-      <div className="lg:hidden flex flex-col items-center justify-center gap-3 px-4 h-[80vh]">
+      <div className="lg:hidden flex flex-col items-center justify-center gap-3 px-4 h-[80vh] ">
         {/* Text first */}
         <h1 className="text-amber-500 text-3xl md:text-5xl font-semibold font-['Nunito'] text-center">
           Brand Personality

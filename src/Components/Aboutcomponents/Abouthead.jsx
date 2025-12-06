@@ -15,12 +15,16 @@ function Abouthead() {
   const startFrame = 216000;
 
   useEffect(() => {
-    // Init Lenis
+    // Detect mobile device
+    const isMobile = window.innerWidth < 768;
+
+    // Init Lenis with mobile-optimized settings
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isMobile ? 1.0 : 1.2, // Faster on mobile
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      smoothTouch: false,
+      smooth: !isMobile, // Disable smooth scroll on mobile for native feel
+      smoothTouch: false, // Keep native touch scroll
+      touchMultiplier: 2, // Better touch sensitivity on mobile
     });
 
     lenisRef.current = lenis;
@@ -111,36 +115,69 @@ function Abouthead() {
         };
       }
 
-      // ScrollTrigger for scrubbing frames
-      ScrollTrigger.create({
-        trigger: mainRef.current,
-        start: "top top",
-        end: `+=${frameCount * 10}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          const targetFrame = Math.min(
-            frameCount - 1,
-            Math.floor(self.progress * (frameCount - 1))
-          );
-          videoFrames.frame = targetFrame;
-          render();
-        },
+      // Mobile-responsive ScrollTrigger configuration using matchMedia
+      const mm = gsap.matchMedia();
+
+      // Desktop configuration (unchanged)
+      mm.add("(min-width: 768px)", () => {
+        ScrollTrigger.create({
+          trigger: mainRef.current,
+          start: "top top",
+          end: `+=${frameCount * 10}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            const targetFrame = Math.min(
+              frameCount - 1,
+              Math.floor(self.progress * (frameCount - 1))
+            );
+            videoFrames.frame = targetFrame;
+            render();
+          },
+        });
       });
 
-      // Resize handler
+      // Mobile configuration (optimized)
+      mm.add("(max-width: 767px)", () => {
+        ScrollTrigger.create({
+          trigger: mainRef.current,
+          start: "top top",
+          end: `+=${frameCount * 8}`, // Shorter scroll distance on mobile
+          scrub: 0.5, // Smoother scrubbing on mobile
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true, // Better for mobile orientation changes
+          onUpdate: (self) => {
+            const targetFrame = Math.min(
+              frameCount - 1,
+              Math.floor(self.progress * (frameCount - 1))
+            );
+            videoFrames.frame = targetFrame;
+            render();
+          },
+        });
+      });
+
+      // Debounced resize handler for better mobile performance
+      let resizeTimeout;
       const handleResize = () => {
-        setCanvasSize();
-        render();
-        ScrollTrigger.refresh();
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          setCanvasSize();
+          render();
+          ScrollTrigger.refresh();
+        }, 150); // 150ms debounce
       };
 
       window.addEventListener("resize", handleResize);
+      window.addEventListener("orientationchange", handleResize); // Handle mobile orientation
 
       return () => {
         window.removeEventListener("resize", handleResize);
-        // ScrollTriggers created inside this context will be reverted automatically by ctx.revert()
+        window.removeEventListener("orientationchange", handleResize);
+        clearTimeout(resizeTimeout);
+        mm.revert(); // Clean up matchMedia
       };
     }, mainRef);
 
@@ -165,11 +202,11 @@ function Abouthead() {
   return (
     <div ref={mainRef}>
       <section className="relative w-full h-[100svh] flex overflow-hidden bg-black">
-        <canvas ref={canvasRef} className="z-10"></canvas>
+        <canvas ref={canvasRef} className="z-10 touch-none"></canvas>
 
         {/* Main Content */}
         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-          <div className="text-center text-white pt-[384px] md:pt-0">
+          <div className="text-center text-white pt-[384px] md:pt-0 px-4">
             <h2
               className="text-4xl md:text-6xl font-semibold mb-4 font-font-semibold"
               style={{ fontFamily: "DeaconTest, sans-serif" }}
