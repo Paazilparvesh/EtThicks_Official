@@ -14,12 +14,46 @@ function AboutSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1) Scroll-based image resize - responsive height based on screen
       const isMobile = window.matchMedia("(max-width: 768px)").matches;
       
+      // Mobile: No image animation, just text slide up
+      if (isMobile) {
+        // Text fade out on mobile
+        gsap.to(textRef.current, {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "center center",
+            end: "bottom bottom",
+            scrub: 1,
+          },
+        });
+
+        // Text slide up animation on mobile when scroll reaches end
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "center center",
+          end: "bottom bottom",
+          onUpdate: (self) => {
+            if (self.progress >= 0.8 && !animationTriggered.current) {
+              animationTriggered.current = true;
+              gsap.set(overlayTextRef.current, { y: 60, opacity: 0 });
+              gsap.to(overlayTextRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                ease: "power3.out",
+              });
+            }
+          },
+        });
+        return;
+      }
+
+      // Web/Desktop: Original animation (unchanged)
       gsap.to(imageContainerRef.current, {
         width: "100%",
-        height: isMobile ? "50vh" : "70vh", // Smaller height on mobile
+        height: "70vh",
         borderRadius: "0px",
         ease: "none",
         scrollTrigger: {
@@ -28,14 +62,9 @@ function AboutSection() {
           end: "bottom bottom",
           scrub: 1,
           onUpdate: (self) => {
-            // Only trigger text animation when scroll progress reaches 100%
             if (self.progress >= 0.99 && !animationTriggered.current) {
               animationTriggered.current = true;
-              
-              // Responsive y value for slide animation
-              const slideDistance = isMobile ? 50 : 80;
-              
-              gsap.set(overlayTextRef.current, { y: slideDistance, opacity: 0 });
+              gsap.set(overlayTextRef.current, { y: 80, opacity: 0 });
               gsap.to(overlayTextRef.current, {
                 y: 0,
                 opacity: 1,
@@ -48,7 +77,6 @@ function AboutSection() {
         },
       });
 
-      // 2) Fade-out main text while scrolling
       gsap.to(textRef.current, {
         opacity: 0,
         scrollTrigger: {
@@ -94,12 +122,12 @@ function AboutSection() {
         </p>
       </div>
 
-      {/* Image Section - Fully Responsive */}
+      {/* Image Section - Mobile: 347px height, Web: Animated size */}
       <div className="w-full flex-grow flex justify-center items-start mt-4 sm:mt-6 md:mt-10 lg:mt-12">
         <div
           ref={imageContainerRef}
           className="relative w-[95%] sm:w-[85%] md:w-[520px] lg:w-[600px]
-                     h-[200px] sm:h-[280px] md:h-[320px] lg:h-[405px]
+                     h-[347px] sm:h-[250px] md:h-[320px] lg:h-[405px]
                      rounded-xl sm:rounded-2xl md:rounded-3xl
                      overflow-hidden"
         >

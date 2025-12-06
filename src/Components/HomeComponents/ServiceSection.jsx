@@ -6,6 +6,9 @@ import Lenis from "lenis";
 import img1 from "/src/assets/home/Ser1.png";
 import img2 from "/src/assets/home/Ser2.png";
 import img3 from "/src/assets/home/Ser3.png";
+import img4 from "/src/assets/home/comersial.png";
+import img5 from "/src/assets/home/potography.png";
+import img6 from "/src/assets/home/leadgen.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,56 +116,101 @@ function ServiceSection() {
         className="flex flex-col md:flex-row h-full items-center md:items-stretch"
       >
         {/* Left Title */}
-        <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
+        <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-20 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-center md:text-left">
             OUR <br className="hidden md:block" /> Services
           </h2>
         </div>
 
-        {/* Panels - Reduced gap on mobile only, desktop unchanged */}
-        <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-3 md:gap-12 lg:gap-16 p-6 sm:p-8 md:pr-20 w-full md:w-auto">
+        {/* Panels - 6 panels total, reduced gap on mobile */}
+        <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-2 md:gap-12 lg:gap-16 p-4 sm:p-6 md:pr-20 w-full md:w-auto">
           {/* Panel 1 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-[36px] xl:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
               Content Creation
             </h3>
-            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-[24px] leading-relaxed max-w-xs">
               Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
             </p>
             <img 
               src={img1} 
               alt="Content" 
-              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
             />
           </div>
 
           {/* Panel 2 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
               Digital Marketing
             </h3>
-            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xs">
               Social strategy, performance campaigns, platform-specific content that meets people where they are.
             </p>
             <img 
               src={img2} 
               alt="Marketing" 
-              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
             />
           </div>
 
           {/* Panel 3 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-2 sm:mb-3 md:mb-4">
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
               Brand Storytelling
             </h3>
-            <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-xs">
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xs">
               From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
             </p>
             <img 
               src={img3} 
               alt="Storytelling" 
-              className="w-40 h-32 sm:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-4 right-4 object-contain" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
+            />
+          </div>
+
+          {/* Panel 4 - NEW */}
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
+              TV Commercials
+            </h3>
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xs">
+              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+            </p>
+            <img 
+              src={img4} 
+              alt="TV Commercials" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
+            />
+          </div>
+
+          {/* Panel 5 - NEW */}
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
+              Product Photography
+            </h3>
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xs">
+              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+            </p>
+            <img 
+              src={img5} 
+              alt="Photography" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
+            />
+          </div>
+
+          {/* Panel 6 - NEW */}
+          <div className="panel w-full max-w-md sm:max-w-lg md:w-[520px] lg:w-[640px] h-[320px] sm:h-[360px] md:h-96 bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
+            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4">
+              Lead Generation
+            </h3>
+            <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed max-w-xs">
+              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+            </p>
+            <img 
+              src={img6} 
+              alt="Lead Generation" 
+              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-contain" 
             />
           </div>
         </div>

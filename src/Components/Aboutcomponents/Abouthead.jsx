@@ -15,16 +15,12 @@ function Abouthead() {
   const startFrame = 216000;
 
   useEffect(() => {
-    // Detect mobile device
-    const isMobile = window.innerWidth < 768;
-
-    // Init Lenis with mobile-optimized settings
+    // Init Lenis
     const lenis = new Lenis({
-      duration: isMobile ? 1.0 : 1.2, // Faster on mobile
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: !isMobile, // Disable smooth scroll on mobile for native feel
-      smoothTouch: false, // Keep native touch scroll
-      touchMultiplier: 2, // Better touch sensitivity on mobile
+      smooth: true,
+      smoothTouch: false,
     });
 
     lenisRef.current = lenis;
@@ -115,75 +111,50 @@ function Abouthead() {
         };
       }
 
-      // Mobile-responsive ScrollTrigger configuration using matchMedia
-      const mm = gsap.matchMedia();
-
-      // Desktop configuration (unchanged)
-      mm.add("(min-width: 768px)", () => {
-        ScrollTrigger.create({
-          trigger: mainRef.current,
-          start: "top top",
-          end: `+=${frameCount * 10}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            const targetFrame = Math.min(
-              frameCount - 1,
-              Math.floor(self.progress * (frameCount - 1))
-            );
-            videoFrames.frame = targetFrame;
-            render();
-          },
-        });
-      });
-
-      // Mobile configuration (optimized)
-      mm.add("(max-width: 767px)", () => {
-        ScrollTrigger.create({
-          trigger: mainRef.current,
-          start: "top top",
-          end: `+=${frameCount * 8}`, // Shorter scroll distance on mobile
-          scrub: 0.5, // Smoother scrubbing on mobile
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true, // Better for mobile orientation changes
-          onUpdate: (self) => {
-            const targetFrame = Math.min(
-              frameCount - 1,
-              Math.floor(self.progress * (frameCount - 1))
-            );
-            videoFrames.frame = targetFrame;
-            render();
-          },
-        });
-      });
-
-      // Debounced resize handler for better mobile performance
-      let resizeTimeout;
-      const handleResize = () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          setCanvasSize();
+      // ScrollTrigger for scrubbing frames
+      const scrollTriggerInstance = ScrollTrigger.create({
+        trigger: mainRef.current,
+        start: "top top",
+        end: `+=${frameCount * 10}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        pinSpacing: true, // Important for proper cleanup
+        fastScrollEnd: true, // Better performance on fast scrolls
+        onUpdate: (self) => {
+          const targetFrame = Math.min(
+            frameCount - 1,
+            Math.floor(self.progress * (frameCount - 1))
+          );
+          videoFrames.frame = targetFrame;
           render();
-          ScrollTrigger.refresh();
-        }, 150); // 150ms debounce
+        },
+      });
+
+      // Resize handler
+      const handleResize = () => {
+        setCanvasSize();
+        render();
+        ScrollTrigger.refresh();
       };
 
       window.addEventListener("resize", handleResize);
-      window.addEventListener("orientationchange", handleResize); // Handle mobile orientation
 
       return () => {
         window.removeEventListener("resize", handleResize);
-        window.removeEventListener("orientationchange", handleResize);
-        clearTimeout(resizeTimeout);
-        mm.revert(); // Clean up matchMedia
+        // Kill the specific ScrollTrigger instance
+        if (scrollTriggerInstance) {
+          scrollTriggerInstance.kill();
+        }
       };
     }, mainRef);
 
     return () => {
-      // Revert GSAP context (kills ST instances in this component)
+      // Revert GSAP context first (kills ST instances in this component)
       ctx.revert();
+
+      // Kill all ScrollTriggers to prevent blocking navigation
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
       // Destroy Lenis
       if (lenisRef.current) {
@@ -196,19 +167,26 @@ function Abouthead() {
         gsap.ticker.remove(tickerCallbackRef.current);
         tickerCallbackRef.current = null;
       }
+
+      // Reset scroll position and refresh ScrollTrigger
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
     };
   }, []);
 
   return (
-    <div ref={mainRef}>
-      <section className="relative w-full h-[100svh] flex overflow-hidden bg-black">
-        <canvas ref={canvasRef} className="z-10 touch-none"></canvas>
+    <div ref={mainRef} className="w-full px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0">
+      <section className="relative w-full h-[70vh] sm:h-[80vh] md:h-[90vh] lg:h-[100svh] flex overflow-hidden bg-black mx-auto max-w-6xl sm:max-w-7xl">
+        <canvas 
+          ref={canvasRef} 
+          className="z-10 w-full h-full max-w-[95vw] sm:max-w-[90vw] md:max-w-none"
+        ></canvas>
 
         {/* Main Content */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-          <div className="text-center text-white pt-[384px] md:pt-0 px-4">
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-4 sm:px-6 md:px-8">
+          <div className="text-center text-white w-full max-w-xs sm:max-w-md md:max-w-lg pt-[120px] sm:pt-[200px] md:pt-[280px] lg:pt-[384px]">
             <h2
-              className="text-4xl md:text-6xl font-semibold mb-4 font-font-semibold"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-semibold mb-3 sm:mb-4 font-font-semibold px-2 sm:px-4 leading-tight"
               style={{ fontFamily: "DeaconTest, sans-serif" }}
             >
               {/* heading text */}
