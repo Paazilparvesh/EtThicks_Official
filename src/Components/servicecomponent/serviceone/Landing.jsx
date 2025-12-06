@@ -1,7 +1,20 @@
-
 import { motion } from "framer-motion";
 
-const Serlanding = () => {
+// Map slugs → Display titles
+const SERVICE_TITLES = {
+  "content-creation": "Content Creation",
+  "social-media": "Social Media Marketing",
+  "web-development": "Web Development",
+  "branding": "Branding & Identity",
+  "seo": "SEO Optimization",
+  "performance-marketing": "Performance Marketing",
+  // add more slugs here...
+};
+
+const Serlanding = ({ slug }) => {
+
+  const displayTitle = SERVICE_TITLES[slug] || "Our Services";
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black flex flex-col justify-center items-center">
 
@@ -19,7 +32,8 @@ const Serlanding = () => {
           transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
           className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal font-['Brittany_Signature'] italic whitespace-nowrap opacity-80 mb-[24px] text-center px-4 sm:px-0 break-words"
         >
-         content creation
+          {/* content creation */}
+          {displayTitle}
         </motion.span>
       </motion.div>
 
@@ -51,7 +65,7 @@ const Serlanding = () => {
             animate={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
           >
-         ENGAGING
+            ENGAGING
           </motion.text>
 
           <motion.text
@@ -67,7 +81,7 @@ const Serlanding = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
           >
-        ENGAGING
+            ENGAGING
           </motion.text>
         </svg>
       </motion.div>
@@ -100,7 +114,7 @@ const Serlanding = () => {
             animate={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 1.5 }}
           >
-        STORIES
+            STORIES
           </motion.text>
 
           <motion.text
@@ -116,7 +130,7 @@ const Serlanding = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 1.5 }}
           >
-             STORIES
+            STORIES
           </motion.text>
         </svg>
       </motion.div>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import log from "/src/assets/servone/Portfolis.png"
 
-function Port() {
+function OurWorks() {
     const [portfolioItems, setPortfolioItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const carouselRef = useRef(null);
@@ -13,12 +13,12 @@ function Port() {
             try {
                 const response = await fetch('http://localhost:1337/api/portfolios?populate=*');
                 const data = await response.json();
-                
+
                 const portfolioData = data.data.map((item) => {
                     const imageUrl = item.image && item.image.length > 0
                         ? `http://localhost:1337${item.image[0].url}`
                         : 'https://via.placeholder.com/400x300/cccccc/000000?text=No+Image';
-                    
+
                     return {
                         id: item.id,
                         documentId: item.documentId,
@@ -27,7 +27,7 @@ function Port() {
                         url: item.url || '#'
                     };
                 });
-                
+
                 setPortfolioItems(portfolioData);
                 setLoading(false);
             } catch (error) {
@@ -46,14 +46,14 @@ function Port() {
 
         const scrollInterval = setInterval(() => {
             const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            
+
             if (carousel.scrollLeft >= maxScroll - 1) {
                 // Reset to beginning smoothly
                 carousel.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
-                carousel.scrollTo({ 
-                    left: carousel.scrollLeft + 1, 
-                    behavior: 'auto' 
+                carousel.scrollTo({
+                    left: carousel.scrollLeft + 1,
+                    behavior: 'auto'
                 });
             }
         }, 20);
@@ -107,11 +107,11 @@ function Port() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 md:mb-12 text-center sm:text-left">
                     OUR WORKS
                 </h1>
-                
+
                 {/* Carousel Container with Controls - Centered */}
                 <div className="relative flex-1 flex items-center justify-center">
                     {/* Left Button - Inside carousel area */}
-                    <button 
+                    <button
                         onClick={slideLeft}
                         className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-lg"
                     >
@@ -121,7 +121,7 @@ function Port() {
                     </button>
 
                     {/* Right Button - Inside carousel area */}
-                    <button 
+                    <button
                         onClick={slideRight}
                         className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-3 rounded-full shadow-lg"
                     >
@@ -131,7 +131,7 @@ function Port() {
                     </button>
 
                     <div className="overflow-hidden px-16 w-full">
-                        <div 
+                        <div
                             ref={carouselRef}
                             className="flex gap-4 overflow-x-auto scroll-smooth hide-scrollbar"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -146,8 +146,8 @@ function Port() {
                                     className="flex-shrink-0 w-[352px] h-[460px] bg-white rounded-3xl overflow-hidden shadow-lg cursor-pointer"
                                 >
                                     <div className="bg-gray-300 h-[400px] w-full flex items-center justify-center overflow-hidden">
-                                        <img 
-                                            src={item.image} 
+                                        <img
+                                            src={item.image}
                                             alt={item.title}
                                             className="w-full h-full object-cover"
                                             onError={(e) => {
@@ -155,7 +155,7 @@ function Port() {
                                             }}
                                         />
                                     </div>
-                                    
+
                                     <div className="h-[60px] w-full flex items-center justify-center px-4">
                                         <h3 className="text-xl font-bold text-black text-center line-clamp-2">
                                             {item.title}
@@ -177,4 +177,4 @@ function Port() {
     )
 }
 
-export default Port;
+export default OurWorks;
