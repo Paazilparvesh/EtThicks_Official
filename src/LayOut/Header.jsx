@@ -2,9 +2,10 @@ import Logo from "/src/assets/headerasset/EtThicks1.png";
 import Service1 from "/src/assets/home/Ser1.png"
 import Service2 from "/src/assets/home/Ser2.png"
 import Service3 from "/src/assets/home/Ser3.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 
 const SERVICES = [
   {
@@ -24,10 +25,12 @@ const SERVICES = [
   },
 ];
 
+
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
+  const navigate = useNavigate();
 
 
   const handleMouseEnter = () => {
@@ -42,6 +45,24 @@ function Header() {
     closeTimeoutRef.current = setTimeout(() => {
       setIsServicesOpen(false);
     }, 300);
+  };
+
+
+  // Handle service click with page reload
+  const handleServiceClick = (slug) => {
+    // Close menus
+    setIsServicesOpen(false);
+    setIsMobileMenuOpen(false);
+    
+    // Navigate and force reload
+    window.location.href = `/service/${slug}`;
+  };
+
+
+  // Handle regular navigation (close mobile menu only)
+  const handleNavClick = (path) => {
+    setIsMobileMenuOpen(false);
+    navigate(path);
   };
 
 
@@ -92,10 +113,10 @@ function Header() {
                     {/* Responsive Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       {SERVICES.map((service) => (
-                        <Link
+                        <button
                           key={service.slug}
-                          to={`/service/${service.slug}`}
-                          className="flex flex-col items-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition"
+                          onClick={() => handleServiceClick(service.slug)}
+                          className="flex flex-col items-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition cursor-pointer"
                         >
                           <img
                             src={service.icon}
@@ -103,14 +124,13 @@ function Header() {
                             className="h-16 w-16 object-contain mb-2"
                           />
                           <p className="text-orange-300 text-lg font-medium">{service.name}</p>
-                        </Link>
+                        </button>
                       ))}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-
 
 
             <Link to="/contact" className="hover:text-orange-300 transition-colors">
@@ -167,13 +187,12 @@ function Header() {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-black text-md shadow-lg"
           >
-            <Link
-              to="/"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            <button
+              onClick={() => handleNavClick("/")}
+              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Home
-            </Link>
+            </button>
 
 
             {/* Services in Mobile */}
@@ -202,16 +221,16 @@ function Header() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="pl-4 bg-orange-300 text-black overflow-hidden"
+                    className="pl-4 bg-gray-900 overflow-hidden"
                   >
                     {SERVICES.map((service) => (
-                      <Link
+                      <button
                         key={service.slug}
-                        to={`/service/${service.slug}`}
-                        className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                        onClick={() => handleServiceClick(service.slug)}
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
                       >
                         <p className="text-orange-300 text-lg font-medium">{service.name}</p>
-                      </Link>
+                      </button>
                     ))}
                   </motion.div>
                 )}
@@ -219,28 +238,24 @@ function Header() {
             </div>
 
 
-
-            <Link
-              to="/about"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            <button
+              onClick={() => handleNavClick("/about")}
+              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               About
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("/contact")}
+              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Contact
-            </Link>
-            <Link
-              to="/blog"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("/blog")}
+              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Blogs
-            </Link>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

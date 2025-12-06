@@ -1,5 +1,7 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "/src/LayOut/Header.jsx";
 import Footer from "/src/LayOut/Footer.jsx";
 import HomePage from "/src/Pages/HomePage.jsx";
@@ -8,6 +10,7 @@ import ContactPage from "/src/Pages/ContactPage.jsx";
 import BlogPage from "/src/Pages/BlogPages/BlogPage.jsx";
 import InnerBlog from "/src/Pages/BlogPages/InnerBlog.jsx";
 import ServicePage from "/src/Pages/servicepage/ServicePage.jsx";
+
 
 function NotFound() {
   return (
@@ -22,9 +25,27 @@ function NotFound() {
   );
 }
 
+
+// ScrollToTop component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant" // Use "smooth" for animated scroll
+    });
+  }, [pathname]);
+
+  return null;
+}
+
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -41,5 +62,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
