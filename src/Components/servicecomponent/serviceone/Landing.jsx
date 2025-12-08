@@ -209,12 +209,11 @@ const Serlanding = ({ slug }) => {
         minHeight: '-webkit-fill-available'
       }}
     >
-      {/* Video Background - Mobile Optimized */}
+      {/* Video Background - Mobile Optimized - No Loop */}
       <video
         src={ethutioneVideo}
         autoPlay
         muted
-        loop
         playsInline
         webkit-playsinline="true"
         x5-playsinline="true"
