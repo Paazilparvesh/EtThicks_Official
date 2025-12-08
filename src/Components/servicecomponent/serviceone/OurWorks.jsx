@@ -1,21 +1,38 @@
 import { useState, useEffect, useRef } from 'react';
 import log from "/src/assets/servone/Portfolis.png"
 
-function OurWorks() {
+// Map slugs to API endpoints
+const PORTFOLIO_API_MAP = {
+    "content-creation": "http://localhost:1337/api/portfolios?populate=*",
+    "digital-marketing": "http://localhost:1337/api/protfolio-2s?populate=*",
+    "web-development": "http://localhost:1337/api/portfolio-3s?populate=*",
+    "branding": "http://localhost:1337/api/portfolio-4s?populate=*",
+    "seo": "http://localhost:1337/api/portfolio-5s?populate=*",
+    "performance-marketing": "http://localhost:1337/api/portfolio-6s?populate=*",
+};
+
+function OurWorks({ category }) {
     const [portfolioItems, setPortfolioItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const carouselRef = useRef(null);
     const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
-    // Fetch portfolio data from Strapi API
+    // Fetch portfolio data from Strapi API based on category/slug
     useEffect(() => {
         const fetchPortfolio = async () => {
+            setLoading(true);
             try {
-                const response = await fetch('http://localhost:1337/api/portfolios?populate=*');
+                // Get API URL based on slug, fallback to default
+                const apiUrl = PORTFOLIO_API_MAP[category] || PORTFOLIO_API_MAP["content-creation"];
+                
+                const response = await fetch(apiUrl);
                 const data = await response.json();
 
                 const portfolioData = data.data.map((item) => {
-                    const imageUrl = item.image && item.image.length > 0
+                    // Handle single image object (not array)
+                    const imageUrl = item.image?.url
+                        ? `http://localhost:1337${item.image.url}`
+                        : item.image && item.image.length > 0
                         ? `http://localhost:1337${item.image[0].url}`
                         : 'https://via.placeholder.com/400x300/cccccc/000000?text=No+Image';
 
@@ -37,7 +54,7 @@ function OurWorks() {
         };
 
         fetchPortfolio();
-    }, []);
+    }, [category]); // Re-fetch when category changes
 
     // Auto scroll effect with smooth infinite loop
     useEffect(() => {
@@ -88,6 +105,30 @@ function OurWorks() {
         return (
             <div className="flex items-center justify-center min-h-screen text-white text-lg sm:text-xl md:text-2xl">
                 Loading...
+            </div>
+        );
+    }
+
+    // Show message if no portfolio items
+    if (portfolioItems.length === 0) {
+        return (
+            <div
+                style={{
+                    backgroundImage: `url(${log})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    minHeight: "500px",
+                    width: "100%"
+                }}
+                className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col h-auto sm:h-auto md:h-[671px]"
+            >
+                <div className="container mx-auto max-w-7xl flex-1 flex flex-col items-center justify-center">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-center">
+                        OUR WORKS
+                    </h1>
+                    <p className="text-white text-lg sm:text-xl">No portfolio items available for this category.</p>
+                </div>
             </div>
         );
     }
