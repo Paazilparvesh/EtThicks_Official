@@ -22,10 +22,14 @@ const WhyWorkWithUs = () => {
   const gridRef = useRef(null);
 
   useLayoutEffect(() => {
-    const isMobile = window.innerWidth < 768;
-    const initialTitleScale = isMobile ? 1.5 : 3;  // smaller for mobile
-    const initialTitleY = isMobile ? '10vh' : '30vh';
-    const initialGridScale = isMobile ? 1 : 1.5;  // smaller grid scale on mobile
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
+    
+    // Responsive initial values
+    const initialTitleScale = isMobile ? 1.3 : isTablet ? 2 : 3;
+    const initialTitleY = isMobile ? '8vh' : isTablet ? '20vh' : '30vh';
+    const initialGridScale = isMobile ? 0.9 : isTablet ? 1.2 : 1.5;
+    const scrollEndValue = isMobile ? '+=800' : isTablet ? '+=1200' : '+=1500';
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -33,7 +37,7 @@ const WhyWorkWithUs = () => {
           trigger: pinContainerRef.current,
           pin: true,
           start: "top top",
-          end: "+=1500",
+          end: scrollEndValue,
           scrub: 1,
         },
       });
@@ -57,31 +61,35 @@ const WhyWorkWithUs = () => {
   }, []);
 
   return (
-    <div ref={pinContainerRef} className="bg-black py-20 sm:py-24 px-4 sm:px-6 text-center overflow-hidden">
+    <div ref={pinContainerRef} className="bg-black py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 text-center overflow-hidden min-h-screen flex flex-col justify-center">
       
       {/* Title */}
       <h2
         ref={titleRef}
-        className="text-white font-sans font-normal text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] mb-12 sm:mb-16"
+        className="text-white font-sans font-normal text-[22px] sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-16 px-4"
       >
         Why Work With Us?
       </h2>
 
       {/* Feature Cards Grid */}
-      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto place-items-center">
+      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center w-full">
         {features.map((item, idx) => (
           <div
             key={idx}
             className={`
               flex flex-col items-center justify-center
               bg-gradient-to-b from-[#946500] to-black text-white
-              rounded-2xl p-4 sm:p-6 shadow-lg shadow-yellow-900/20
-              h-[240px] sm:h-[280px] md:h-[320px] lg:h-[340px] w-full max-w-[320px] sm:max-w-[360px]
-              ${idx % 3 === 1 ? '-translate-y-2 sm:-translate-y-3 md:-translate-y-5' : ''}
+              rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-6 lg:p-6 shadow-lg shadow-yellow-900/20
+              h-[200px] sm:h-[240px] md:h-[280px] lg:h-[340px] w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px]
+              ${idx % 3 === 1 ? 'sm:-translate-y-3 md:-translate-y-5' : ''}
             `}
           >
-            <div className="text-cyan-400 mb-3 sm:mb-4">{item.icon}</div>
-            <p className="font-sans font-normal text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed">
+            <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
+              {React.cloneElement(item.icon, { 
+                size: window.innerWidth < 640 ? 24 : 28 
+              })}
+            </div>
+            <p className="font-sans font-normal text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] leading-relaxed text-center px-2">
               {item.text}
             </p>
           </div>

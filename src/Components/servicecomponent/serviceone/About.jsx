@@ -1,4 +1,3 @@
-
 import des from "/src/assets/servone/Descriptions.png";
 
 // ---- Dynamic Content by Slug ----
@@ -55,15 +54,14 @@ function Engag({ slug }) {
                 minHeight: "100vh",
                 width: "100%",
             }}
-            className="flex items-center"
+            className="flex items-center py-12 sm:py-16 md:py-20 lg:py-0"
         >
-            <div className="container mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+            <div className="container mx-auto px-6 sm:px-8 md:px-8 lg:px-16 max-w-7xl">
                 <h1
-                    className="text-white leading-tight mb-6"
+                    className="text-white leading-tight mb-4 sm:mb-5 md:mb-6 text-[28px] sm:text-[36px] md:text-[48px]"
                     style={{
                         fontFamily: "'Work Sans', sans-serif",
                         fontWeight: 500,
-                        fontSize: "48px",
                     }}
                 >
                     {content.heading}{" "}
@@ -71,12 +69,10 @@ function Engag({ slug }) {
                 </h1>
 
                 <p
-                    className="text-white leading-relaxed max-w-4xl"
+                    className="text-white leading-relaxed max-w-4xl text-[16px] sm:text-[20px] md:text-[26px] whitespace-pre-line"
                     style={{
                         fontFamily: "'Onset', sans-serif",
                         fontWeight: 400,
-                        fontSize: "26px",
-                        whiteSpace: "pre-line",
                     }}
                 >
                     {content.description}

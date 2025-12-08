@@ -1,7 +1,7 @@
 // src/Pages/BlogPages/InnerBlog.jsx
 import React from "react";
 import { useLocation, Link, Navigate } from "react-router-dom";
-import end from "/src/assets/service/end.png";
+
 
 function InnerBlog() {
   const location = useLocation();
@@ -14,13 +14,7 @@ function InnerBlog() {
   return (
     <div className="bg-black text-white min-h-screen flex flex-col pt-20">
       {/* Top Banner Image */}
-      <div className="w-full flex justify-center">
-        <img
-          src={end}
-          alt="Top Banner"
-          className="w-full md:h-[400px] xl:h-[500px] object-contain"
-        />
-      </div>
+      
 
       {/* Blog Content */}
       <div className="w-full p-8 text-sm lg:text-lg flex-1 max-w-4xl xl:max-w-5xl mx-auto">
