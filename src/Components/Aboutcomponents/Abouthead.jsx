@@ -11,8 +11,9 @@ function Abouthead() {
   const lenisRef = useRef(null);
   const tickerCallbackRef = useRef(null);
 
-  const frameCount = 387; // 00216386 - 00216000 + 1
-  const startFrame = 216000;
+  const startFrame = 216043; // Starting frame number
+  const endFrame = 216386;   // Ending frame number
+  const frameCount = endFrame - startFrame + 1; // Total frames: 344
 
   useEffect(() => {
     // Init Lenis
@@ -55,9 +56,9 @@ function Abouthead() {
 
       setCanvasSize();
 
-      // Frame path generator
+      // Frame path generator - Updated path to /product/
       const currentFrame = (index) =>
-        `/frames/Timeline 1_${(startFrame + index)
+        `/product/Timeline 1_${(startFrame + index)
           .toString()
           .padStart(8, "0")}.png`;
 
