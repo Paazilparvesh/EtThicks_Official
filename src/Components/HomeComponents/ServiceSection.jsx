@@ -135,7 +135,7 @@ function ServiceSection() {
             <img 
               src={img1} 
               alt="Content" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
 
@@ -150,7 +150,7 @@ function ServiceSection() {
             <img 
               src={img2} 
               alt="Marketing" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
 
@@ -165,7 +165,7 @@ function ServiceSection() {
             <img 
               src={img3} 
               alt="Storytelling" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
 
@@ -180,7 +180,7 @@ function ServiceSection() {
             <img 
               src={img4} 
               alt="TV Commercials" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
 
@@ -195,7 +195,7 @@ function ServiceSection() {
             <img 
               src={img5} 
               alt="Photography" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
 
@@ -210,7 +210,7 @@ function ServiceSection() {
             <img 
               src={img6} 
               alt="Lead Generation" 
-              className="w-32 h-28 sm:w-36 sm:h-32 md:w-44 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
+              className="w-48 h-40 sm:w-56 sm:h-48 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
             />
           </div>
         </div>
