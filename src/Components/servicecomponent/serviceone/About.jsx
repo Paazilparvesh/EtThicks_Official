@@ -56,7 +56,7 @@ function Engag({ slug }) {
             }}
             className="flex items-center py-12 sm:py-16 md:py-20 lg:py-0"
         >
-            <div className="container mx-auto px-6 sm:px-8 md:px-8 lg:px-16 max-w-7xl">
+            <div className="container mx-auto px-6 sm:px-8 md:px-8  max-w-7xl">
                 <h1
                     className="text-white leading-tight mb-4 sm:mb-5 md:mb-6 text-[28px] sm:text-[36px] md:text-[48px]"
                     style={{

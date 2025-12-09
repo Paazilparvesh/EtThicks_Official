@@ -197,38 +197,114 @@
 // // export default Serlanding;
 
 // Landing.jsx
+import { useEffect, useRef, useState } from "react";
 import ethutioneVideo from "../../../assets/ethuvideo/ethutionevideo.mp4";
 
 const Serlanding = ({ slug }) => {
+  const videoRef = useRef(null);
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const container = containerRef.current;
+      const containerTop = container.getBoundingClientRect().top;
+      const containerHeight = container.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      // Calculate scroll progress (0 to 1)
+      let scrollProgress = 0;
+      
+      if (containerTop <= windowHeight && containerTop >= -containerHeight) {
+        scrollProgress = (windowHeight - containerTop) / (windowHeight + containerHeight);
+      }
+
+      // Different scale values for mobile and desktop
+      let newScale;
+      if (isMobile) {
+        // Mobile: Very subtle zoom effect (1.1x to 1x) - only 10% zoom
+        newScale = 1.1 - (scrollProgress * 0.1);
+        setScale(Math.max(1, Math.min(1.1, newScale)));
+      } else {
+        // Desktop: More zoom effect (1.5x to 1x)
+        newScale = 1.5 - (scrollProgress * 0.5);
+        setScale(Math.max(1, Math.min(1.5, newScale)));
+      }
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMobile]);
+
   return (
     <div 
-      className="relative w-full bg-black flex items-center justify-center overflow-hidden"
+      ref={containerRef}
+      className="relative w-full bg-black flex items-center justify-center overflow-hidden mt-6"
       style={{
         height: '100vh',
-        height: '100dvh', // Dynamic viewport height for mobile browsers
+        height: '100dvh',
         minHeight: '-webkit-fill-available'
       }}
     >
-      {/* Video Background - Mobile Optimized - No Loop */}
+      {/* Video Background with Scale Transform */}
       <video
+        ref={videoRef}
         src={ethutioneVideo}
         autoPlay
         muted
         playsInline
         webkit-playsinline="true"
         x5-playsinline="true"
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-75 ease-out"
         preload="auto"
         style={{ 
           minHeight: '100vh',
-          minHeight: '100dvh'
+          minHeight: '100dvh',
+          transform: `scale(${scale})`,
+          transformOrigin: 'center center',
+          willChange: 'transform'
         }}
       />
+
+      {/* Optional: Add content overlay */}
+      <div className="relative z-10 text-white text-center px-4">
+        {/* Your content here */}
+      </div>
     </div>
   );
 };
 
 export default Serlanding;
+
+
 
 
 
