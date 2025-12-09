@@ -151,7 +151,7 @@ const ConnectSection = () => {
           </p>
         </div>
 
-        {/* Image Grid - Mobile Smaller Images */}
+        {/* Image Grid - BIGGER Mobile Images */}
         <div ref={gridRef} className="absolute inset-0 z-30 pointer-events-none">
           
           {/* BATCH 1 - First 3 Images */}
@@ -159,7 +159,7 @@ const ConnectSection = () => {
           {/* Image 1: Top-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[80px] h-[105px] sm:w-[110px] sm:h-[145px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[120px] h-[160px] sm:w-[150px] sm:h-[195px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '5%',
               left: '5%',
@@ -172,7 +172,7 @@ const ConnectSection = () => {
           {/* Image 2: Bottom-Center */}
           <div
             ref={addToRefs}
-            className="absolute w-[85px] h-[95px] sm:w-[120px] sm:h-[130px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[130px] h-[145px] sm:w-[160px] sm:h-[180px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '70%',
               left: '35%',
@@ -185,7 +185,7 @@ const ConnectSection = () => {
           {/* Image 3: Top-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[75px] h-[100px] sm:w-[105px] sm:h-[135px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-[320px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[115px] h-[150px] sm:w-[145px] sm:h-[185px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-[320px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '8%',
               left: '70%',
@@ -200,7 +200,7 @@ const ConnectSection = () => {
           {/* Image 4: Mid-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[82px] h-[108px] sm:w-[115px] sm:h-[150px] md:w-[280px] md:h-[330px] lg:w-[320px] lg:h-[360px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[125px] h-[165px] sm:w-[155px] sm:h-[200px] md:w-[280px] md:h-[330px] lg:w-[320px] lg:h-[360px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '25%',
               left: '8%',
@@ -213,7 +213,7 @@ const ConnectSection = () => {
           {/* Image 5: Perfect Center */}
           <div
             ref={addToRefs}
-            className="absolute w-[90px] h-[88px] sm:w-[130px] sm:h-[125px] md:w-[320px] md:h-[295px] lg:w-[360px] lg:h-[330px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[135px] h-[135px] sm:w-[170px] sm:h-[170px] md:w-[320px] md:h-[295px] lg:w-[360px] lg:h-[330px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '45%',
               left: '42%',
@@ -226,7 +226,7 @@ const ConnectSection = () => {
           {/* Image 6: Mid-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[78px] h-[102px] sm:w-[110px] sm:h-[140px] md:w-[270px] md:h-[310px] lg:w-[300px] lg:h-[340px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[118px] h-[155px] sm:w-[148px] sm:h-[190px] md:w-[270px] md:h-[310px] lg:w-[300px] lg:h-[340px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '32%',
               left: '68%',
@@ -241,7 +241,7 @@ const ConnectSection = () => {
           {/* Image 7: Top-Center-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[76px] h-[100px] sm:w-[108px] sm:h-[142px] md:w-[275px] md:h-[325px] lg:w-[310px] lg:h-[355px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[116px] h-[152px] sm:w-[146px] sm:h-[190px] md:w-[275px] md:h-[325px] lg:w-[310px] lg:h-[355px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '12%',
               left: '12%',
@@ -254,7 +254,7 @@ const ConnectSection = () => {
           {/* Image 8: Bottom-Center-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[88px] h-[85px] sm:w-[125px] sm:h-[120px] md:w-[310px] md:h-[285px] lg:w-[350px] lg:h-[315px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[133px] h-[130px] sm:w-[168px] sm:h-[165px] md:w-[310px] md:h-[285px] lg:w-[350px] lg:h-[315px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '68%',
               left: '55%',
@@ -267,7 +267,7 @@ const ConnectSection = () => {
           {/* Image 9: Top-Far-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[72px] h-[95px] sm:w-[102px] sm:h-[132px] md:w-[265px] md:h-[305px] lg:w-[295px] lg:h-[335px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[110px] h-[145px] sm:w-[140px] sm:h-[180px] md:w-[265px] md:h-[305px] lg:w-[295px] lg:h-[335px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '18%',
               left: '75%',
