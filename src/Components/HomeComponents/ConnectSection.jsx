@@ -37,9 +37,9 @@ const ConnectSection = () => {
       // Pause briefly
       tl.to(circleRef.current, { duration: 0.5 });
 
-      // Circle scales up (less scale on mobile)
+      // Circle scales up - mobile fills full width
       tl.to(circleRef.current, {
-        scale: isMobile ? 3 : 5,
+        scale: isMobile ? 8 : 5,
         ease: "power2.inOut",
         duration: 3,
       });
@@ -57,96 +57,46 @@ const ConnectSection = () => {
       // Batch 1: First 3 images appear
       tl.fromTo(
         imagesRef.current.slice(0, 3),
-        {
-          opacity: 0,
-          yPercent: 100
-        },
-        {
-          opacity: 1,
-          yPercent: 0,
-          ease: "power2.out",
-          duration: 2,
-          stagger: 0.1
-        }
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
       );
 
       // Batch 1: Images move up and fade out
       tl.to(
         imagesRef.current.slice(0, 3),
-        {
-          yPercent: -150,
-          opacity: 0,
-          ease: "power2.inOut",
-          duration: 3,
-          stagger: 0.05
-        }
+        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
       );
 
       // Batch 2: Next 3 images appear
       tl.fromTo(
         imagesRef.current.slice(3, 6),
-        {
-          opacity: 0,
-          yPercent: 100
-        },
-        {
-          opacity: 1,
-          yPercent: 0,
-          ease: "power2.out",
-          duration: 2,
-          stagger: 0.1
-        }
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
       );
 
       // Batch 2: Images move up and fade out
       tl.to(
         imagesRef.current.slice(3, 6),
-        {
-          yPercent: -150,
-          opacity: 0,
-          ease: "power2.inOut",
-          duration: 3,
-          stagger: 0.05
-        }
+        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
       );
 
       // Batch 3: Last 3 images appear
       tl.fromTo(
         imagesRef.current.slice(6, 9),
-        {
-          opacity: 0,
-          yPercent: 100
-        },
-        {
-          opacity: 1,
-          yPercent: 0,
-          ease: "power2.out",
-          duration: 2,
-          stagger: 0.1
-        }
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
       );
 
       // Batch 3: Images move up and fade out
       tl.to(
         imagesRef.current.slice(6, 9),
-        {
-          yPercent: -150,
-          opacity: 0,
-          ease: "power2.inOut",
-          duration: 3,
-          stagger: 0.05
-        }
+        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
       );
 
       // Final transition - circle and text fade out
       tl.to(
         [circleRef.current, textRef.current],
-        {
-          opacity: 0,
-          yPercent: -30,
-          ease: "power2.in",
-          duration: 2
-        },
+        { opacity: 0, yPercent: -30, ease: "power2.in", duration: 2 },
         "-=1"
       );
 
@@ -168,36 +118,48 @@ const ConnectSection = () => {
         ref={pinRef}
         className="w-full h-screen flex items-center justify-center relative"
       >
-        {/* Orange Circle - Responsive Size */}
+        {/* Orange Circle - Mobile: Full Width Fill */}
         <div
           ref={circleRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full
-                     w-[20vw] h-[20vw] md:w-[10vw] md:h-[10vw]
-                     bg-orange-500 shadow-2xl z-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] bg-orange-500 shadow-2xl z-10"
         />
 
-        {/* Text - MOBILE ONLY: h1=20px, p=16px (sm+ keeps original) */}
+        {/* Text - Mobile Smaller Size */}
         <div
           ref={textRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20 w-full max-w-[320px] sm:max-w-md md:max-w-2xl lg:max-w-3xl"
         >
-          <h1 className="text-white text-[20px] sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-2 sm:mb-4 font-['Nunito']">
+          <h1 
+            className="text-white mb-2 sm:mb-3 md:mb-4 font-bold"
+            style={{
+              fontFamily: "'Nunito', sans-serif",
+              fontSize: window.innerWidth < 640 ? "18px" : window.innerWidth < 768 ? "24px" : window.innerWidth < 1024 ? "40px" : "56px",
+            }}
+          >
             Connect. Build Trust. Grow.
           </h1>
-          <p className="text-white text-[16px] sm:text-base md:text-xl lg:text-2xl max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto font-['Nunito']">
+          <p 
+            className="text-white"
+            style={{
+              fontFamily: "'Nunito', sans-serif",
+              fontWeight: 400,
+              fontSize: window.innerWidth < 640 ? "14px" : window.innerWidth < 768 ? "16px" : window.innerWidth < 1024 ? "18px" : "22px",
+              lineHeight: "150%",
+            }}
+          >
             We exist to craft authentic, emotion-driven stories that connect people with brands — building lasting trust and measurable impact.
           </p>
         </div>
 
-        {/* Image Grid - MOBILE: PERFECT w-[554px] h-[587px] proportions scaled */}
+        {/* Image Grid - Mobile Smaller Images */}
         <div ref={gridRef} className="absolute inset-0 z-30 pointer-events-none">
           
-          {/* BATCH 1 - First 3 Images - MOBILE PERFECTED */}
+          {/* BATCH 1 - First 3 Images */}
           
           {/* Image 1: Top-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[110px] h-[145px] sm:w-[140px] sm:h-[170px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[80px] h-[105px] sm:w-[110px] sm:h-[145px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '5%',
               left: '5%',
@@ -210,7 +172,7 @@ const ConnectSection = () => {
           {/* Image 2: Bottom-Center */}
           <div
             ref={addToRefs}
-            className="absolute w-[120px] h-[130px] sm:w-[160px] sm:h-[150px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[85px] h-[95px] sm:w-[120px] sm:h-[130px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '70%',
               left: '35%',
@@ -223,7 +185,7 @@ const ConnectSection = () => {
           {/* Image 3: Top-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[105px] h-[135px] sm:w-[135px] sm:h-[160px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-[320px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[75px] h-[100px] sm:w-[105px] sm:h-[135px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-[320px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '8%',
               left: '70%',
@@ -238,7 +200,7 @@ const ConnectSection = () => {
           {/* Image 4: Mid-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[115px] h-[150px] sm:w-[145px] sm:h-[175px] md:w-[280px] md:h-[330px] lg:w-[320px] lg:h-[360px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[82px] h-[108px] sm:w-[115px] sm:h-[150px] md:w-[280px] md:h-[330px] lg:w-[320px] lg:h-[360px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '25%',
               left: '8%',
@@ -251,7 +213,7 @@ const ConnectSection = () => {
           {/* Image 5: Perfect Center */}
           <div
             ref={addToRefs}
-            className="absolute w-[130px] h-[125px] sm:w-[170px] sm:h-[165px] md:w-[320px] md:h-[295px] lg:w-[360px] lg:h-[330px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[90px] h-[88px] sm:w-[130px] sm:h-[125px] md:w-[320px] md:h-[295px] lg:w-[360px] lg:h-[330px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '45%',
               left: '42%',
@@ -264,7 +226,7 @@ const ConnectSection = () => {
           {/* Image 6: Mid-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[110px] h-[140px] sm:w-[140px] sm:h-[170px] md:w-[270px] md:h-[310px] lg:w-[300px] lg:h-[340px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[78px] h-[102px] sm:w-[110px] sm:h-[140px] md:w-[270px] md:h-[310px] lg:w-[300px] lg:h-[340px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '32%',
               left: '68%',
@@ -279,7 +241,7 @@ const ConnectSection = () => {
           {/* Image 7: Top-Center-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[108px] h-[142px] sm:w-[138px] sm:h-[168px] md:w-[275px] md:h-[325px] lg:w-[310px] lg:h-[355px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[76px] h-[100px] sm:w-[108px] sm:h-[142px] md:w-[275px] md:h-[325px] lg:w-[310px] lg:h-[355px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '12%',
               left: '12%',
@@ -292,7 +254,7 @@ const ConnectSection = () => {
           {/* Image 8: Bottom-Center-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[125px] h-[120px] sm:w-[165px] sm:h-[158px] md:w-[310px] md:h-[285px] lg:w-[350px] lg:h-[315px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[88px] h-[85px] sm:w-[125px] sm:h-[120px] md:w-[310px] md:h-[285px] lg:w-[350px] lg:h-[315px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '68%',
               left: '55%',
@@ -305,7 +267,7 @@ const ConnectSection = () => {
           {/* Image 9: Top-Far-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[102px] h-[132px] sm:w-[132px] sm:h-[162px] md:w-[265px] md:h-[305px] lg:w-[295px] lg:h-[335px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[72px] h-[95px] sm:w-[102px] sm:h-[132px] md:w-[265px] md:h-[305px] lg:w-[295px] lg:h-[335px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '18%',
               left: '75%',

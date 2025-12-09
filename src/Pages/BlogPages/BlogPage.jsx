@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
-
 function Blogs() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
@@ -11,11 +10,12 @@ function Blogs() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
 
+  // Default placeholder image URL
+  const DEFAULT_IMAGE = "https://via.placeholder.com/800x600/D9D9D9/666666?text=No+Image+Available";
 
   useEffect(() => {
     fetchBlogs();
   }, []);
-
 
   const fetchBlogs = async () => {
     try {
@@ -29,11 +29,18 @@ function Blogs() {
     }
   };
 
-
   const handleBlogClick = (blog) => {
     navigate("/blog/details", { state: { blog } });
   };
 
+  // Helper function to get image URL safely from array
+  const getImageUrl = (blog) => {
+    // Check if image array exists and has at least one item
+    if (blog?.image && Array.isArray(blog.image) && blog.image.length > 0 && blog.image[0]?.url) {
+      return `http://localhost:1337${blog.image[0].url}`;
+    }
+    return DEFAULT_IMAGE;
+  };
 
   if (loading) {
     return (
@@ -43,10 +50,8 @@ function Blogs() {
     );
   }
 
-
   // Find latest blog
   const latestBlog = blogs.length > 0 ? blogs[0] : null;
-
 
   // Sort by date helper
   const sortByDate = (a, b) => {
@@ -54,7 +59,6 @@ function Blogs() {
     const dateB = new Date(b.createdAt);
     return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
   };
-
 
   // Filter & sort
   const filteredArticles = [...blogs]
@@ -67,26 +71,25 @@ function Blogs() {
     })
     .sort(sortByDate);
 
-
   const ArticleCard = ({ blog, index }) => {
+    const [imageError, setImageError] = useState(false);
     const translateClass =
       index % 3 === 1
         ? "lg:-translate-y-6 xl:-translate-y-6 2xl:-translate-y-12"
         : "";
-
 
     return (
       <div
         onClick={() => handleBlogClick(blog)}
         className={`w-full h-[400px] bg-[#D9D9D9] rounded-xl flex flex-col overflow-hidden cursor-pointer hover:scale-105 transition transform ${translateClass}`}
       >
-        {/* Blog Image */}
+        {/* Blog Image with error handling */}
         <img
-          src={`http://localhost:1337${blog.image.url}`}
-          alt={blog.image.alternativeText || blog.name}
+          src={imageError ? DEFAULT_IMAGE : getImageUrl(blog)}
+          alt={blog.image?.[0]?.alternativeText || blog.name}
+          onError={() => setImageError(true)}
           className="flex-1 w-full h-auto object-cover"
         />
-
 
         {/* Blog Info */}
         <div className="bg-white p-4">
@@ -99,7 +102,6 @@ function Blogs() {
     );
   };
 
-
   return (
     <div className="w-full flex flex-col bg-black text-white min-h-screen pt-14 md:pt-0 xl:pt-12">
       {/* ---------------- BlogLanding Section ---------------- */}
@@ -108,7 +110,7 @@ function Blogs() {
           <div
             className="relative w-full h-70 sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: `url(http://localhost:1337${latestBlog.image.url})`
+              backgroundImage: `url(${getImageUrl(latestBlog)})`
             }}
             onClick={() => handleBlogClick(latestBlog)}
           >
@@ -132,7 +134,6 @@ function Blogs() {
                 </p>
               </div>
 
-
               <button
                 className="hidden md:flex w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition"
                 onClick={(e) => {
@@ -146,7 +147,6 @@ function Blogs() {
           </div>
         </div>
       )}
-
 
       {/* ---------------- Articles Section ---------------- */}
       <div className="w-full p-4 sm:p-6 md:p-8">
@@ -178,7 +178,6 @@ function Blogs() {
           </div>
         </div>
 
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:mt-20">
           {filteredArticles.map((blog, index) => (
             <ArticleCard key={blog.documentId} blog={blog} index={index} />
@@ -188,6 +187,5 @@ function Blogs() {
     </div>
   );
 }
-
 
 export default Blogs;

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import log from "/src/assets/servone/Portfolis.png"
+import log from "/src/assets/servone/Portfolis.png";
 
-// Map slugs to API endpoints
 const PORTFOLIO_API_MAP = {
     "content-creation": "http://localhost:1337/api/portfolios?populate=*",
     "digital-marketing": "http://localhost:1337/api/protfolio-2s?populate=*",
@@ -22,14 +21,12 @@ function OurWorks({ category }) {
         const fetchPortfolio = async () => {
             setLoading(true);
             try {
-                // Get API URL based on slug, fallback to default
                 const apiUrl = PORTFOLIO_API_MAP[category] || PORTFOLIO_API_MAP["content-creation"];
                 
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
                 const portfolioData = data.data.map((item) => {
-                    // Handle single image object (not array)
                     const imageUrl = item.image?.url
                         ? `http://localhost:1337${item.image.url}`
                         : item.image && item.image.length > 0
@@ -54,7 +51,7 @@ function OurWorks({ category }) {
         };
 
         fetchPortfolio();
-    }, [category]); // Re-fetch when category changes
+    }, [category]);
 
     // Auto scroll effect with smooth infinite loop
     useEffect(() => {
@@ -76,30 +73,6 @@ function OurWorks({ category }) {
 
         return () => clearInterval(scrollInterval);
     }, [portfolioItems, isAutoScrolling]);
-
-    const slideLeft = () => {
-        if (carouselRef.current) {
-            const scrollAmount = window.innerWidth < 640 ? 270 : window.innerWidth < 768 ? 310 : 368;
-            carouselRef.current.scrollTo({
-                left: carouselRef.current.scrollLeft - scrollAmount,
-                behavior: 'smooth'
-            });
-            setIsAutoScrolling(false);
-            setTimeout(() => setIsAutoScrolling(true), 3000);
-        }
-    };
-
-    const slideRight = () => {
-        if (carouselRef.current) {
-            const scrollAmount = window.innerWidth < 640 ? 270 : window.innerWidth < 768 ? 310 : 368;
-            carouselRef.current.scrollTo({
-                left: carouselRef.current.scrollLeft + scrollAmount,
-                behavior: 'smooth'
-            });
-            setIsAutoScrolling(false);
-            setTimeout(() => setIsAutoScrolling(true), 3000);
-        }
-    };
 
     if (loading) {
         return (
@@ -150,42 +123,22 @@ function OurWorks({ category }) {
                     OUR WORKS
                 </h1>
 
-                {/* Carousel Container with Controls - Centered */}
+                {/* Carousel Container - No Controls, No Border Radius */}
                 <div className="relative flex-1 flex items-center justify-center">
-                    {/* Left Button - Mobile Responsive */}
-                    <button
-                        onClick={slideLeft}
-                        className="absolute left-1 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-2 sm:p-2.5 md:p-3 rounded-full shadow-lg transition-all active:scale-95"
-                    >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-
-                    {/* Right Button - Mobile Responsive */}
-                    <button
-                        onClick={slideRight}
-                        className="absolute right-1 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-2 sm:p-2.5 md:p-3 rounded-full shadow-lg transition-all active:scale-95"
-                    >
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
-
                     <div className="overflow-hidden px-10 sm:px-12 md:px-14 lg:px-16 w-full">
                         <div
                             ref={carouselRef}
                             className="flex gap-3 sm:gap-3.5 md:gap-4 overflow-x-auto scroll-smooth hide-scrollbar touch-pan-x"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
-                            {/* Duplicate items for infinite loop effect */}
+                            {/* Duplicate items for infinite loop effect - NO BORDER RADIUS */}
                             {[...portfolioItems, ...portfolioItems, ...portfolioItems].map((item, index) => (
                                 <a
                                     href={item.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     key={`${item.documentId}-${index}`}
-                                    className="flex-shrink-0 w-[250px] h-[330px] sm:w-[290px] sm:h-[380px] md:w-[352px] md:h-[460px] bg-white rounded-2xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-lg cursor-pointer hover:shadow-2xl transition-shadow active:scale-95"
+                                    className="flex-shrink-0 w-[250px] h-[330px] sm:w-[290px] sm:h-[380px] md:w-[352px] md:h-[460px] bg-white overflow-hidden shadow-lg cursor-pointer hover:shadow-2xl transition-shadow active:scale-95"
                                 >
                                     <div className="bg-gray-300 h-[270px] sm:h-[320px] md:h-[400px] w-full flex items-center justify-center overflow-hidden">
                                         <img
@@ -217,7 +170,7 @@ function OurWorks({ category }) {
                 }
             `}</style>
         </div>
-    )
+    );
 }
 
 export default OurWorks;
