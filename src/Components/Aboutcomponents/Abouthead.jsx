@@ -10,13 +10,22 @@ function Abouthead() {
   const canvasRef = useRef(null);
   const lenisRef = useRef(null);
   const tickerCallbackRef = useRef(null);
+  const ctxRef = useRef(null);
 
-  const startFrame = 216043; // Starting frame number
-  const endFrame = 216386;   // Ending frame number
-  const frameCount = endFrame - startFrame + 1; // Total frames: 344
+  const startFrame = 216043;
+  const endFrame = 216386;
+  const frameCount = endFrame - startFrame + 1;
 
   useEffect(() => {
-    // Init Lenis
+    // Prevent multiple initializations
+    if (lenisRef.current) return;
+
+    const canvas = canvasRef.current;
+    const mainElement = mainRef.current;
+
+    if (!canvas || !mainElement) return;
+
+    // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -25,23 +34,21 @@ function Abouthead() {
     });
 
     lenisRef.current = lenis;
-
-    // Sync Lenis with ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Ticker callback (store reference for cleanup)
+    // Create ticker callback
     const tickerCallback = (time) => {
-      lenis.raf(time * 1000);
+      if (lenisRef.current) {
+        lenisRef.current.raf(time * 1000);
+      }
     };
     tickerCallbackRef.current = tickerCallback;
 
     gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
+    // Create GSAP context
     const ctx = gsap.context(() => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
       const context = canvas.getContext("2d");
 
       const setCanvasSize = () => {
@@ -56,7 +63,6 @@ function Abouthead() {
 
       setCanvasSize();
 
-      // Frame path generator - Updated path to /product/
       const currentFrame = (index) =>
         `/product/Timeline 1_${(startFrame + index)
           .toString()
@@ -112,9 +118,9 @@ function Abouthead() {
         };
       }
 
-      // ScrollTrigger for scrubbing frames
-      const scrollTriggerInstance = ScrollTrigger.create({
-        trigger: mainRef.current,
+      // ScrollTrigger
+      ScrollTrigger.create({
+        trigger: mainElement,
         start: "top top",
         end: `+=${frameCount * 10}`,
         scrub: 1,
@@ -143,28 +149,49 @@ function Abouthead() {
 
       return () => {
         window.removeEventListener("resize", handleResize);
-        if (scrollTriggerInstance) {
-          scrollTriggerInstance.kill();
-        }
       };
-    }, mainRef);
+    }, mainElement);
 
+    ctxRef.current = ctx;
+
+    // Cleanup function
     return () => {
-      ctx.revert();
+      // Kill all ScrollTriggers created by this component
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === mainElement) {
+          trigger.kill();
+        }
+      });
 
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-        lenisRef.current = null;
+      // Revert GSAP context
+      if (ctxRef.current) {
+        ctxRef.current.revert();
+        ctxRef.current = null;
       }
 
+      // Remove ticker callback
       if (tickerCallbackRef.current) {
         gsap.ticker.remove(tickerCallbackRef.current);
         tickerCallbackRef.current = null;
       }
 
+      // Destroy Lenis
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
+
+      // Clear canvas
+      if (canvas && canvasRef.current) {
+        const context = canvas.getContext("2d");
+        const pixelRatio = window.devicePixelRatio || 1;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Reset scroll position
       window.scrollTo(0, 0);
+
+      // Final refresh
       ScrollTrigger.refresh();
     };
   }, []);
@@ -175,11 +202,9 @@ function Abouthead() {
         <canvas 
           ref={canvasRef} 
           className="z-10 w-screen h-full"
-        ></canvas>
-
-        {/* Main Content - FULL WIDTH CENTERED */}
+        />
         <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-          
+          {/* Your content here */}
         </div>
       </section>
     </div>

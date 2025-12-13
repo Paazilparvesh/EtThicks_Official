@@ -14,7 +14,7 @@ function Create() {
   const sectionRef2 = useRef(null);
 
   useEffect(() => {
-    // First section animation
+    // First section animation - VERY SLOW rotation
     const image1 = imageRef1.current;
     const section1 = sectionRef1.current;
 
@@ -23,17 +23,16 @@ function Create() {
         rotation: 0,
       }, {
         rotation: 360,
-        ease: "power1.out",
+        ease: "none",
         scrollTrigger: {
           trigger: section1,
-          start: "top center",
-          end: "bottom center",
-          scrub: true,
+          start: "top 80%",
+          end: "bottom 20%", // Much longer duration
+          scrub: 5, // VERY SLOW scrub
           markers: false,
         }
       });
 
-      // Clean up for first section
       return () => {
         rotationAnimation1.kill();
       };
@@ -41,7 +40,7 @@ function Create() {
   }, []);
 
   useEffect(() => {
-    // Second section animation
+    // Second section animation - VERY SLOW rotation
     const image2 = imageRef2.current;
     const section2 = sectionRef2.current;
 
@@ -49,18 +48,17 @@ function Create() {
       const rotationAnimation2 = gsap.fromTo(image2, {
         rotation: 0,
       }, {
-        rotation: -360, // Rotate counter-clockwise for variety
-        ease: "power1.out",
+        rotation: -360,
+        ease: "none",
         scrollTrigger: {
           trigger: section2,
-          start: "top center",
-          end: "bottom center",
-          scrub: true,
+          start: "top 80%",
+          end: "bottom 20%", // Much longer duration
+          scrub: 5, // VERY SLOW scrub
           markers: false,
         }
       });
 
-      // Clean up for second section
       return () => {
         rotationAnimation2.kill();
       };

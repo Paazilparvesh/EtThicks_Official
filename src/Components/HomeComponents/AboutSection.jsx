@@ -16,9 +16,56 @@ function AboutSection() {
     const ctx = gsap.context(() => {
       const isMobile = window.matchMedia("(max-width: 768px)").matches;
       
-      // Mobile: No image animation, just text slide up
       if (isMobile) {
-        // Text fade out on mobile
+        // Mobile: NO text fade - text stays visible
+        // Only overlay text animation remains
+        
+        ScrollTrigger.create({
+          trigger: imageContainerRef.current,
+          start: "center center",
+          end: "bottom bottom",
+          onUpdate: (self) => {
+            if (self.progress >= 0.6 && !animationTriggered.current) {
+              animationTriggered.current = true;
+              gsap.set(overlayTextRef.current, { y: 40, opacity: 0 });
+              gsap.to(overlayTextRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out",
+              });
+            }
+          },
+        });
+      } else {
+        // Desktop: Image expansion animation
+        gsap.to(imageContainerRef.current, {
+          width: "100%",
+          height: "70vh",
+          borderRadius: "0px",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            onUpdate: (self) => {
+              if (self.progress >= 0.99 && !animationTriggered.current) {
+                animationTriggered.current = true;
+                gsap.set(overlayTextRef.current, { y: 80, opacity: 0 });
+                gsap.to(overlayTextRef.current, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 1.5,
+                  ease: "power3.out",
+                  delay: 0.3,
+                });
+              }
+            },
+          },
+        });
+
+        // Desktop: Text fade out
         gsap.to(textRef.current, {
           opacity: 0,
           scrollTrigger: {
@@ -28,64 +75,7 @@ function AboutSection() {
             scrub: 1,
           },
         });
-
-        // Text slide up animation on mobile when scroll reaches end
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "center center",
-          end: "bottom bottom",
-          onUpdate: (self) => {
-            if (self.progress >= 0.8 && !animationTriggered.current) {
-              animationTriggered.current = true;
-              gsap.set(overlayTextRef.current, { y: 60, opacity: 0 });
-              gsap.to(overlayTextRef.current, {
-                y: 0,
-                opacity: 1,
-                duration: 1.2,
-                ease: "power3.out",
-              });
-            }
-          },
-        });
-        return;
       }
-
-      // Web/Desktop: Original animation (unchanged)
-      gsap.to(imageContainerRef.current, {
-        width: "100%",
-        height: "70vh",
-        borderRadius: "0px",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-          onUpdate: (self) => {
-            if (self.progress >= 0.99 && !animationTriggered.current) {
-              animationTriggered.current = true;
-              gsap.set(overlayTextRef.current, { y: 80, opacity: 0 });
-              gsap.to(overlayTextRef.current, {
-                y: 0,
-                opacity: 1,
-                duration: 1.5,
-                ease: "power3.out",
-                delay: 0.3,
-              });
-            }
-          },
-        },
-      });
-
-      gsap.to(textRef.current, {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "center center",
-          end: "bottom bottom",
-          scrub: 1,
-        },
-      });
     }, sectionRef);
 
     return () => {
@@ -97,12 +87,12 @@ function AboutSection() {
   return (
     <div
       ref={sectionRef}
-      className="w-full min-h-[150vh] bg-black flex flex-col items-center pt-12 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8 lg:px-10"
+      className="w-full min-h-[150vh] bg-black flex flex-col items-center justify-center md:justify-start pt-8 sm:pt-12 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8 lg:px-10 pb-8 md:pb-0"
     >
-      {/* Text Section - Fully Responsive */}
+      {/* Text Section - Centered */}
       <div
         ref={textRef}
-        className="text-center max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl"
+        className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto"
       >
         <div className="mb-2 sm:mb-3 md:mb-4">
           <h4 className="text-amber-500 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-bold uppercase tracking-wide">
@@ -122,14 +112,14 @@ function AboutSection() {
         </p>
       </div>
 
-      {/* Image Section - Mobile: 347px height, Web: Animated size */}
-      <div className="w-full flex-grow flex justify-center items-start mt-4 sm:mt-6 md:mt-10 lg:mt-12">
+      {/* Image Section - Centered */}
+      <div className="w-full flex flex-col justify-center items-center mt-4 sm:mt-6 md:mt-12 lg:mt-16">
         <div
           ref={imageContainerRef}
-          className="relative w-[95%] sm:w-[85%] md:w-[520px] lg:w-[600px]
-                     h-[347px] sm:h-[250px] md:h-[320px] lg:h-[405px]
+          className="relative w-[90%] sm:w-[85%] md:w-[520px] lg:w-[600px]
+                     h-[347px] sm:h-[280px] md:h-[320px] lg:h-[405px]
                      rounded-xl sm:rounded-2xl md:rounded-3xl
-                     overflow-hidden"
+                     overflow-hidden mx-auto"
         >
           <img
             src={iem}
@@ -137,17 +127,18 @@ function AboutSection() {
             className="w-full h-full object-cover"
           />
 
-          {/* Overlay text at bottom - Fully Responsive */}
+          {/* Overlay text - Centered at bottom */}
           <div
             ref={overlayTextRef}
             className="absolute inset-0 flex items-end justify-center 
-                       p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 
+                       p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 
                        bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0"
           >
             <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px] 
                           text-white text-center font-['Nunito'] 
                           max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl 
-                          leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-loose">
+                          leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-loose
+                          px-2 sm:px-4">
               We combine emotion-first narratives with strategy, helping 
               brands break clutter, spark connection, and drive measurable 
               growth.

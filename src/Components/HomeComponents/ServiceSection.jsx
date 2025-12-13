@@ -20,35 +20,36 @@ function ServiceSection() {
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
 
-    // ✅ Mobile: Skip horizontal scroll, use native vertical scroll
+    // Mobile: let native vertical scroll handle layout
     if (isMobile) {
-      return; // Exit early - no GSAP animations on mobile
+      return;
     }
 
-    // ✅ Desktop: Lenis smooth scroll + horizontal animations
+    // Desktop: Lenis smooth scrolling
     const lenis = new Lenis({ duration: 1.2, smooth: true });
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
+    // Create GSAP context scoped to this component
     const ctx = gsap.context(() => {
+      // panel elements
       const panels = gsap.utils.toArray(".panel");
+
+      // multiplier tweaks to control scroll range on very large screens
       let multiplier = 1;
+      if (window.innerWidth >= 1440) multiplier = 1.3;
+      else if (window.innerWidth >= 1024) multiplier = 1.08;
+      else multiplier = 1;
 
-      if (window.innerWidth >= 1440) {
-        multiplier = 1.3;
-      } else if (window.innerWidth >= 1024) {
-        multiplier = 1.08;
-      } else if (window.innerWidth >= 768) {
-        multiplier = 1;
-      }
-
+      // Compute horizontal scroll distance based on wrapper width minus viewport width
       const scrollX =
         (contentWrapperRef.current.scrollWidth - window.innerWidth) * multiplier;
 
-      // Main horizontal scroll
+      // Main horizontal scroll tween that pins the section
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
         x: -scrollX,
         ease: "none",
@@ -57,11 +58,12 @@ function ServiceSection() {
           pin: true,
           scrub: 1,
           end: () => `+=${scrollX}`,
-          snap: { snapTo: 1 / (panels.length - 1), duration: { min: 0.2, max: 0.3 } },
+          // snap to panels (panels.length - 1 steps)
+          snap: { snapTo: 1 / (panels.length - 1), duration: { min: 0.2, max: 0.35 } },
         },
       });
 
-      // Panels focus zoom
+      // Each panel "zoom in" while in focus
       panels.forEach((panel) => {
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -75,15 +77,14 @@ function ServiceSection() {
 
         tl.fromTo(
           panel,
-          { scale: 0.8, opacity: 0.5 },
+          { scale: 0.92, opacity: 0.6 },
           { scale: 1, opacity: 1, ease: "power2.inOut" }
-        ).to(panel, { scale: 0.8, opacity: 0.5, ease: "power2.inOut" });
+        ).to(panel, { scale: 0.92, opacity: 0.6, ease: "power2.inOut" });
       });
 
-      // Marquee scroll linked to horizontal scroll
+      // Marquee / fly text movement synced to horizontal scroll
       if (flyTextRef.current) {
         const marqueeWidth = flyTextRef.current.scrollWidth / 2;
-
         gsap.to(flyTextRef.current, {
           x: -marqueeWidth,
           ease: "none",
@@ -97,121 +98,158 @@ function ServiceSection() {
       }
     }, sectionRef);
 
+    // Refresh ScrollTrigger on resize so distances are recomputed
+    const onResize = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", onResize);
+
     return () => {
+      // cleanup
       gsap.killTweensOf(flyTextRef.current);
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
+      ctx.revert();
+      window.removeEventListener("resize", onResize);
+      try {
+        lenis.destroy();
+      } catch (e) {
+        // ignore if lenis destroy fails
+      }
     };
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen overflow-x-hidden"
+      className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0"
       style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
     >
-      {/* Horizontal wrapper for desktop, vertical stack for mobile */}
-      <div 
-        ref={contentWrapperRef} 
+      {/* Horizontal wrapper for desktop, vertical for mobile */}
+      <div
+        ref={contentWrapperRef}
         className="flex flex-col md:flex-row h-full items-center md:items-stretch"
       >
         {/* Left Title */}
-        <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-20 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
+        <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-center md:text-left">
             OUR <br className="hidden md:block" /> Services
           </h2>
         </div>
 
-        {/* Panels - 6 panels total, reduced gap on mobile */}
-        <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-2 md:gap-12 lg:gap-16 p-4 sm:p-6 md:pr-20 w-full md:w-auto">
-          {/* Panel 1 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              Content Creation
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
-            </p>
-            <img 
-              src={img1} 
-              alt="Content" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+        {/* Panels container: row on md and up so horizontal scroll will show them side-by-side */}
+        <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
+          {/* Panel 1 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Content Creation
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img1}
+                alt="Content"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
 
-          {/* Panel 2 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              Digital Marketing
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              Social strategy, performance campaigns, platform-specific content that meets people where they are.
-            </p>
-            <img 
-              src={img2} 
-              alt="Marketing" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+          {/* Panel 2 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Digital Marketing
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                Social strategy, performance campaigns, platform-specific content that meets people where they are.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img2}
+                alt="Marketing"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
 
-          {/* Panel 3 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              Brand Storytelling
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-            </p>
-            <img 
-              src={img3} 
-              alt="Storytelling" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+          {/* Panel 3 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Brand Storytelling
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img3}
+                alt="Storytelling"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
 
-          {/* Panel 4 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              TV Commercials
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-            </p>
-            <img 
-              src={img4} 
-              alt="TV Commercials" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+          {/* Panel 4 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                TV Commercials
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                High-impact 30s/60s spots that break through the noise and drive results.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img4}
+                alt="TV Commercials"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
 
-          {/* Panel 5 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              Product Photography
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-            </p>
-            <img 
-              src={img5} 
-              alt="Photography" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+          {/* Panel 5 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Product Photography
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                Studio-quality product shots that make your offerings irresistible.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img5}
+                alt="Photography"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
 
-          {/* Panel 6 */}
-          <div className="panel w-full max-w-md sm:max-w-lg md:w-[471px] lg:w-[790px] h-[314px] sm:h-[360px] md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-5 md:p-6 shadow-lg flex-shrink-0">
-            <h3 className="text-orange-400 text-xl sm:text-2xl md:text-[36px] font-semibold mb-1 sm:mb-2 md:mb-3 md:mb-4 font-semibold">
-              Lead Generation
-            </h3>
-            <p className="text-gray-700 text-xs sm:text-sm md:text-[24px] leading-relaxed max-w-xs font-normal">
-              From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-            </p>
-            <img 
-              src={img6} 
-              alt="Lead Generation" 
-              className="w-56 h-48 sm:w-64 sm:h-56 md:w-64 md:h-48 lg:w-80 lg:h-60 absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-4 md:right-4 object-cover object-center" 
-            />
+          {/* Panel 6 - MOBILE RESPONSIVE */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Lead Generation
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                Funnel-optimized landing pages, email sequences, and conversion funnels that deliver qualified leads.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img6}
+                alt="Lead Generation"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
