@@ -77,10 +77,10 @@ function Create() {
       {/* Section 1 */}
       <div 
         ref={sectionRef1}
-        className="flex flex-col lg:flex-row h-[600px] md:h-[700px] lg:h-[523px] w-full bg-[#000000] items-center py-8 lg:py-0 px-4 lg:px-8 xl:px-12"
+        className="flex flex-col lg:flex-row h-[600px] md:h-[700px] lg:h-[523px] w-full bg-[#000000] items-center py-8 lg:py-0 px-4 lg:px-8 xl:px-10"
       >
         {/* Text Section - Top on mobile, Left on desktop */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 order-1">
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mb-5 lg:mb-0 ">
           <h1 className="text-[#ffffff] text-lg md:text-xl lg:text-[20px] leading-relaxed text-center lg:text-right max-w-lg lg:max-w-none">
             We don't just create content.<br className="hidden md:block" />
             We stage worlds.<br className="hidden md:block" />
@@ -109,7 +109,7 @@ function Create() {
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between h-full gap-8 lg:gap-0">
           {/* Image Section - Top on mobile, Left on desktop */}
-          <div className="w-full lg:w-1/2 flex items-center justify-center order-2 lg:order-1 mb-8 lg:mb-0">
+          <div className="w-full lg:w-1/2 flex items-center justify-center order-2 lg:order-1 mb-48 lg:mb-0">
             <img 
               ref={imageRef2}
               src={red}
