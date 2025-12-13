@@ -9,6 +9,7 @@ import img3 from "/src/assets/home/Ser3.png";
 import img4 from "/src/assets/home/comersial.png";
 import img5 from "/src/assets/home/potography.png";
 import img6 from "/src/assets/home/leadgen.png";
+import img7 from "/src/assets/home/socialone.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -138,7 +139,7 @@ function ServiceSection() {
 
         {/* Panels container: row on md and up so horizontal scroll will show them side-by-side */}
         <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
-          {/* Panel 1 - MOBILE RESPONSIVE */}
+          {/* Panel 1 - Content Creation */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -157,7 +158,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 2 - MOBILE RESPONSIVE */}
+          {/* Panel 2 - Digital Marketing */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -176,7 +177,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 3 - MOBILE RESPONSIVE */}
+          {/* Panel 3 - Brand Storytelling */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -195,7 +196,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 4 - MOBILE RESPONSIVE */}
+          {/* Panel 4 - TV Commercials */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -214,7 +215,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 5 - MOBILE RESPONSIVE */}
+          {/* Panel 5 - Product Photography */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -233,7 +234,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 6 - MOBILE RESPONSIVE */}
+          {/* Panel 6 - Lead Generation */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
@@ -247,6 +248,25 @@ function ServiceSection() {
               <img
                 src={img6}
                 alt="Lead Generation"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Panel 7 - Social Media Management (NEW) */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+                Social Media Management
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img7}
+                alt="Social Media Management"
                 className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
               />
             </div>

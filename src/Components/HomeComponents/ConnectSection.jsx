@@ -8,11 +8,12 @@ const ConnectSection = () => {
   const pinRef = useRef(null);
   const circleRef = useRef(null);
   const gridRef = useRef(null);
-  const textRef = useRef(null);
+  const h1Ref = useRef(null);
+  const pRef = useRef(null);
   const imagesRef = useRef([]);
 
   useEffect(() => {
-    if (!pinRef.current || !circleRef.current || !textRef.current || !gridRef.current) return;
+    if (!pinRef.current || !circleRef.current || !h1Ref.current || !pRef.current || !gridRef.current) return;
 
     const isMobile = window.innerWidth < 768;
 
@@ -44,15 +45,24 @@ const ConnectSection = () => {
         duration: 3,
       });
 
-      // Text appears upward
+      // H1 slides in from TOP
       tl.fromTo(
-        textRef.current,
-        { opacity: 0, yPercent: 100 },
-        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 }
+        h1Ref.current,
+        { opacity: 0, yPercent: -100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
+        "-=1"
       );
 
-      // Text moves up slightly
-      tl.to(textRef.current, { yPercent: -50, duration: 1 });
+      // P slides in from BOTTOM (slightly delayed)
+      tl.fromTo(
+        pRef.current,
+        { opacity: 0, yPercent: 100 },
+        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
+        "-=1.5"
+      );
+
+      // Text moves up slightly together
+      tl.to([h1Ref.current, pRef.current], { yPercent: -50, duration: 1 });
 
       // Batch 1: First 3 images appear
       tl.fromTo(
@@ -95,7 +105,7 @@ const ConnectSection = () => {
 
       // Final transition - circle and text fade out
       tl.to(
-        [circleRef.current, textRef.current],
+        [circleRef.current, h1Ref.current, pRef.current],
         { opacity: 0, yPercent: -30, ease: "power2.in", duration: 2 },
         "-=1"
       );
@@ -118,18 +128,22 @@ const ConnectSection = () => {
         ref={pinRef}
         className="w-full h-screen flex items-center justify-center relative"
       >
-        {/* Orange Circle - Mobile: Full Width Fill */}
+        {/* Orange Circle with Gradient - #E59300 to #D89F5B */}
         <div
           ref={circleRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] bg-orange-500 shadow-2xl z-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] shadow-2xl z-10"
+          style={{
+            background: 'linear-gradient(135deg, #E59300 0%, #D89F5B 100%)'
+          }}
         />
 
-        {/* Text - Mobile Smaller Size */}
+        {/* Text Container */}
         <div
-          ref={textRef}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20 w-full max-w-[320px] sm:max-w-md md:max-w-2xl lg:max-w-3xl"
         >
+          {/* H1 - Slides from TOP */}
           <h1 
+            ref={h1Ref}
             className="text-white mb-2 sm:mb-3 md:mb-4 font-bold"
             style={{
               fontFamily: "'Nunito', sans-serif",
@@ -138,7 +152,10 @@ const ConnectSection = () => {
           >
             Connect. Build Trust. Grow.
           </h1>
+          
+          {/* P - Slides from BOTTOM */}
           <p 
+            ref={pRef}
             className="text-white"
             style={{
               fontFamily: "'Nunito', sans-serif",
@@ -151,7 +168,7 @@ const ConnectSection = () => {
           </p>
         </div>
 
-        {/* Image Grid - BIGGER Mobile Images */}
+        {/* Image Grid */}
         <div ref={gridRef} className="absolute inset-0 z-30 pointer-events-none">
           
           {/* BATCH 1 - First 3 Images */}

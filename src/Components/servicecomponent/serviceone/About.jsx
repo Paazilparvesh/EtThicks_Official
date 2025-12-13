@@ -1,5 +1,5 @@
 import des from "/src/assets/servone/Descriptions.png";
-
+import dig from "/src/assets/about/Digital Marketingg.png"
 // ---- Dynamic Content by Slug ----
 const ENGAG_CONTENT = {
     "content-creation": {
@@ -12,19 +12,43 @@ const ENGAG_CONTENT = {
     },
 
     "digital-marketing": {
-        heading: "SMART MARKETING STRATEGIES THAT",
-        highlight: "ACCELERATE YOUR GROWTH",
+        heading: "Grow Faster With ",
+        highlight: " Data-Driven Digital Marketing",
         description: `
-        Your audience lives online—and your brand should too. Our Digital Marketing Services help you reach the right people at the right time. From social media campaigns to performance-driven ads, our strategies maximize ROI and build meaningful customer connections.
+       Your customers are online—and your brand should be too. Our Digital Marketing Services help you reach the right audience, increase visibility, and convert clicks into loyal customers. With a strategic, results-focused approach, we blend creativity and analytics to elevate your brand in a competitive digital landscape..
     `,
-        background: des,
+        background: dig,
     },
 
     "brand-storytelling": {
-        heading: "POWERFUL STORIES THAT",
-        highlight: "DEFINE YOUR BRAND",
+        heading: "Transform Your Brand Into a .",
+        highlight: "Story People Care About.",
         description: `
-        Every brand has a story—but only the right storytelling makes it memorable. We craft brand narratives that captivate your audience, create emotional impact,and differentiate your identity. Build a brand people connect with.
+       Great brands don’t just sell products—they inspire, connect, and stay remembered. Our Brand Storytelling service helps you uncover the heart of your business and communicate it in a way that builds trust, emotion, and loyalty. We craft stories that spark connection and turn audiences into lifelong advocates.
+        `,
+        background: des,
+    },
+    "social-media-management": {
+        heading: "Grow Your Presence. Engage Your Audience.",
+        highlight: " Strengthen Your Brand.",
+        description: `
+      Social media is one of the most powerful ways to reach your audience—but managing it effectively takes strategy, creativity, and time. Our Social Media Management service handles everything for you, so your brand shows up consistently, authentically, and with purpose.
+        `,
+        background: des,
+    },
+     "lead-generation": {
+        heading: "Fuel Your Sales Pipeline With .",
+        highlight: " High-Quality Leads.",
+        description: `
+     Your business can’t grow without a steady flow of potential customers. Our Lead Generation services are designed to attract, engage, and convert the right prospects—so your sales team spends less time chasing and more time closing.
+        `,
+        background: des,
+    },
+     "product-photography": {
+        heading: " With Stunning, Professional Visuals.",
+        highlight: " Showcase Your Products.",
+        description: `
+   Your products deserve to be seen in the best light—literally. Our Product Photography services help you capture high-quality, eye-catching visuals that highlight the details, craftsmanship, and value of your brand. Whether for e-commerce, social media, ads, or print, we deliver images that elevate perception and drive sales.
         `,
         background: des,
     },

@@ -1,38 +1,71 @@
 import Logo from "/src/assets/headerasset/EtThicks1.png";
-import Service1 from "/src/assets/home/Ser1.png"
-import Service2 from "/src/assets/home/Ser2.png"
-import Service3 from "/src/assets/home/Ser3.png"
+import ContentCreation from "/src/assets/head/youtubepng.png"
+import pearsonalbranding from "/src/assets/head/marketingpng.png"
+import infuencer from "/src/assets/head/influncer.png"
+import social from "/src/assets/head/socialmark.png"
+import leadgeneration from "/src/assets/head/leadgeneration.png"
+import productphotography from "/src/assets/head/productphoto.png"
+import tvcomersials from "/src/assets/head/tv.png"
+import digitalmarketing from"/src/assets/head/productphoto.png"
+import brandstorytelling from"/src/assets/head/productphoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 
 const SERVICES = [
   {
     slug: "content-creation",
     name: "Content Creation",
-    icon: Service1,
+    icon: ContentCreation,
   },
   {
-    slug: "digital-marketing",
-    name: "Digital Marketing",
-    icon: Service2,
+    slug: "personal-branding",
+    name: "Personal Branding",
+    icon: pearsonalbranding,
   },
   {
-    slug: "brand-storytelling",
-    name: "Brand Storytelling",
-    icon: Service3,
+    slug: "influencer-marketing",
+    name: "Influencer Marketing",
+    icon: infuencer,
   },
-  
-];
+  {
+    slug: "social-media-management",
+    name: "Social Media Management",
+    icon: social,
+  },
+  {
+    slug: "lead-generation",
+    name: "Lead Generation",
+    icon: leadgeneration,
+  },
+  {
+    slug: "product-photography",
+    name: "Product Photography",
+    icon: productphotography,
+  },
+  {
+    slug: "tv-commercials",
+    name: "TV Commercials",
+    icon: tvcomersials,
+  },
+  {
+  slug: "digital-marketing",
+  name: "Digital Marketing",
+  icon: digitalmarketing,
+},
+{
+  slug: "brand-storytelling",
+  name: "Brand Storytelling",
+  icon: brandstorytelling,
+},
 
+];
 
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
   const navigate = useNavigate();
-
 
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
@@ -41,31 +74,22 @@ function Header() {
     setIsServicesOpen(true);
   };
 
-
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setIsServicesOpen(false);
     }, 300);
   };
 
-
-  // Handle service click with page reload
   const handleServiceClick = (slug) => {
-    // Close menus
     setIsServicesOpen(false);
     setIsMobileMenuOpen(false);
-    
-    // Navigate and force reload
     window.location.href = `/service/${slug}`;
   };
 
-
-  // Handle regular navigation (close mobile menu only)
   const handleNavClick = (path) => {
     setIsMobileMenuOpen(false);
     navigate(path);
   };
-
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 font-inter text-white bg-black bg-opacity-90 backdrop-blur-sm">
@@ -78,18 +102,11 @@ function Header() {
             </Link>
           </div>
 
-
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10 text-md lg:text-lg 2xl:text-xl mr-8">
             <Link to="/" className="hover:text-orange-300 transition-colors">
               Home
             </Link>
-
-
-            <Link to="/about" className="hover:text-orange-300 transition-colors">
-              About
-            </Link>
-
 
             {/* Services Dropdown for Desktop */}
             <div
@@ -97,10 +114,9 @@ function Header() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="hover:text-orange-300 focus:outline-none">
+              <button className="hover:text-orange-300 focus:outline-none transition-colors">
                 Services
               </button>
-
 
               <AnimatePresence>
                 {isServicesOpen && (
@@ -109,22 +125,26 @@ function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute -right-60 top-8 mt-4 bg-gray-900 shadow-lg rounded-xl p-4 w-[100vw] max-w-5xl"
+                    className="fixed left-[68%] -translate-x-1/2
+ top-20 bg-black bg-opacity-95 shadow-xl rounded-2xl p-6 w-[85vw] max-w-4xl border border-gray-800 z-[100]"
+                    style={{ position: 'fixed' }}
                   >
-                    {/* Responsive Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {/* 3-Column Grid for Desktop */}
+                    <div className="grid grid-cols-3 gap-6">
                       {SERVICES.map((service) => (
                         <button
                           key={service.slug}
                           onClick={() => handleServiceClick(service.slug)}
-                          className="flex flex-col items-center bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition cursor-pointer"
+                          className="flex items-center gap-4 bg-transparent rounded-xl p-4 hover:bg-gray-900 transition-all duration-300 text-left group"
                         >
                           <img
                             src={service.icon}
                             alt={service.name}
-                            className="h-16 w-16 object-contain mb-2"
+                            className="h-10 w-10 object-contain flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
                           />
-                          <p className="text-orange-300 text-lg font-medium">{service.name}</p>
+                          <p className="text-white text-base font-normal group-hover:text-orange-300 transition-colors">
+                            {service.name}
+                          </p>
                         </button>
                       ))}
                     </div>
@@ -133,15 +153,14 @@ function Header() {
               </AnimatePresence>
             </div>
 
+            <Link to="/about" className="hover:text-orange-300 transition-colors">
+              About us
+            </Link>
 
             <Link to="/contact" className="hover:text-orange-300 transition-colors">
-              Contact
-            </Link>
-            <Link to="/blog" className="hover:text-orange-300 transition-colors">
-              Blogs
+              Contact us
             </Link>
           </nav>
-
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
@@ -177,7 +196,6 @@ function Header() {
         </div>
       </div>
 
-
       {/* Mobile Menu with animation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -194,7 +212,6 @@ function Header() {
             >
               Home
             </button>
-
 
             {/* Services in Mobile */}
             <div className="relative">
@@ -222,15 +239,20 @@ function Header() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="pl-4 bg-gray-900 overflow-hidden"
+                    className="bg-gray-900 overflow-hidden"
                   >
                     {SERVICES.map((service) => (
                       <button
                         key={service.slug}
                         onClick={() => handleServiceClick(service.slug)}
-                        className="block w-full text-left px-4 py-2 hover:bg-gray-800 hover:text-orange-300"
+                        className="flex items-center gap-3 w-full px-6 py-3 hover:bg-gray-800 hover:text-orange-300 transition-colors"
                       >
-                        <p className="text-orange-300 text-lg font-medium">{service.name}</p>
+                        <img
+                          src={service.icon}
+                          alt={service.name}
+                          className="h-6 w-6 object-contain"
+                        />
+                        <p className="text-white text-base">{service.name}</p>
                       </button>
                     ))}
                   </motion.div>
@@ -238,24 +260,17 @@ function Header() {
               </AnimatePresence>
             </div>
 
-
             <button
               onClick={() => handleNavClick("/about")}
               className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
-              About
+              About us
             </button>
             <button
               onClick={() => handleNavClick("/contact")}
               className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
-              Contact
-            </button>
-            <button
-              onClick={() => handleNavClick("/blog")}
-              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
-            >
-              Blogs
+              Contact us
             </button>
           </motion.div>
         )}
@@ -263,6 +278,5 @@ function Header() {
     </header>
   );
 }
-
 
 export default Header;
