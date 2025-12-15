@@ -11,7 +11,8 @@ gsap.registerPlugin(ScrollTrigger);
 function Pack() {
   const wrapperRef = useRef(null);
   const imagesRef = useRef(null);
-  const textRef = useRef(null);
+  const headingRef = useRef(null);
+  const descriptionRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -19,13 +20,13 @@ function Pack() {
         scrollTrigger: {
           trigger: wrapperRef.current,
           start: "top center",
-          end: "bottom+=1500 center",
+          end: "bottom+=2000 center",
           scrub: 2,
           markers: true, // remove in production
         },
       });
 
-      // Phase 1: Move yellow pieces to corners and fade out (0-25%)
+      // Phase 1: Move yellow pieces to corners and fade out
       tl.to(".piece", {
         x: (index) => {
           const positions = [
@@ -50,27 +51,12 @@ function Pack() {
         duration: 1,
       }, 0);
 
-      // Phase 2: Bring images from edges to center (25-50%)
-      tl.fromTo(".image-piece",
+      // Phase 2: Bring images from far edges to their final edge positions
+      // pokone (LEFT)
+      tl.fromTo(".image-left",
         {
-          x: (index) => {
-            const positions = [
-              -window.innerWidth / 2,  // pokone left
-              0,                        // poktwo top
-              window.innerWidth / 2,   // pokthree right
-              0,                        // pokfour bottom
-            ];
-            return positions[index];
-          },
-          y: (index) => {
-            const positions = [
-              0,                        // pokone left
-              -window.innerHeight / 2, // poktwo top
-              0,                        // pokthree right
-              window.innerHeight / 2,  // pokfour bottom
-            ];
-            return positions[index];
-          },
+          x: -window.innerWidth / 2 - 100,
+          y: 0,
           opacity: 0,
           scale: 0.5,
         },
@@ -81,33 +67,104 @@ function Pack() {
           scale: 1,
           ease: "power2.out",
           duration: 1.5,
-          stagger: 0.1,
         }, 1);
 
-      // Phase 3: Scale up and fade out images (50-65%)
-      tl.to(".image-piece", {
-        scale: 1.5,
-        opacity: 0,
-        duration: 0.8,
-      }, 2.5);
-
-      // Phase 4: Show and scale text (65-100%)
-      tl.fromTo(textRef.current,
+      // poktwo (TOP)
+      tl.fromTo(".image-top",
         {
+          x: 0,
+          y: -window.innerHeight / 2 - 100,
           opacity: 0,
-          scale: 0.8,
+          scale: 0.5,
         },
         {
+          x: 0,
+          y: 0,
           opacity: 1,
           scale: 1,
           ease: "power2.out",
+          duration: 1.5,
+        }, 1.1);
+
+      // pokthree (RIGHT)
+      tl.fromTo(".image-right",
+        {
+          x: window.innerWidth / 2 + 100,
+          y: 0,
+          opacity: 0,
+          scale: 0.5,
+        },
+        {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "power2.out",
+          duration: 1.5,
+        }, 1.2);
+
+      // pokfour (BOTTOM)
+      tl.fromTo(".image-bottom",
+        {
+          x: 0,
+          y: window.innerHeight / 2 + 100,
+          opacity: 0,
+          scale: 0.5,
+        },
+        {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          ease: "power2.out",
+          duration: 1.5,
+        }, 1.3);
+
+      // Phase 3: Zoom in all images together (scroll பண்ணும்போது zoom)
+      tl.to(".image-piece", {
+        scale: 2.5,
+        ease: "power2.inOut",
+        duration: 1.5,
+      }, 3);
+
+      // Phase 4: Fade out images
+      tl.to(".image-piece", {
+        opacity: 0,
+        duration: 0.8,
+      }, 4.2);
+
+      // Phase 5: "About Us" heading slides in from top
+      tl.fromTo(headingRef.current,
+        {
+          y: -100,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: "power2.out",
           duration: 1,
-        }, 3.3)
-        .to(textRef.current, {
-          scale: 1.1,
-          ease: "power1.inOut",
+        }, 5);
+
+      // Phase 6: Description slides in from bottom
+      tl.fromTo(descriptionRef.current,
+        {
+          y: 100,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          ease: "power2.out",
           duration: 1,
-        }, 4);
+        }, 5.5);
+
+      // Phase 7: Final scale effect on text
+      tl.to([headingRef.current, descriptionRef.current], {
+        scale: 1.05,
+        ease: "power1.inOut",
+        duration: 0.8,
+      }, 6.5);
 
     }, wrapperRef);
 
@@ -115,7 +172,7 @@ function Pack() {
   }, []);
 
   return (
-    <div className="w-screen h-[300vh] flex items-center justify-center bg-black overflow-hidden">
+    <div className="w-screen h-[350vh] flex items-center justify-center bg-black overflow-hidden">
       <div ref={wrapperRef} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         
         {/* Yellow pack pieces */}
@@ -126,7 +183,7 @@ function Pack() {
           <div className="piece bottom-right"></div>
         </div>
 
-        {/* Four images - positioned like in your image */}
+        {/* Four images - positioned at edges and stay visible */}
         <div ref={imagesRef} className="images-container">
           <img src={pokone} alt="" className="image-piece image-left" />
           <img src={poktwo} alt="" className="image-piece image-top" />
@@ -134,10 +191,18 @@ function Pack() {
           <img src={pokfour} alt="" className="image-piece image-bottom" />
         </div>
 
-        {/* About Us Text */}
-        <div ref={textRef} className="text-content">
-          <h2 className="text-5xl font-bold text-[#FFD400] mb-6">About Us</h2>
-          <p className="text-white text-lg leading-relaxed max-w-3xl">
+        {/* About Us Text - Split into heading and description */}
+        <div className="text-content">
+          <h2 
+            ref={headingRef} 
+            className="text-5xl font-bold text-[#FFD400] mb-6 opacity-0"
+          >
+            About Us
+          </h2>
+          <p 
+            ref={descriptionRef} 
+            className="text-white text-lg leading-relaxed max-w-3xl opacity-0"
+          >
             EtThicks is not just another digital agency — we're a storytelling powerhouse 
             rooted in truth, trust, and transformation. Born from the Tamil word "Ettuthikkum", 
             meaning to reach in all eight directions, we specialize in content that carries 
@@ -154,6 +219,7 @@ function Pack() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
+          z-index: 10;
         }
 
         .piece {
@@ -194,6 +260,7 @@ function Pack() {
           transform: translate(-50%, -50%);
           width: 300px;
           height: 300px;
+          z-index: 5;
         }
 
         .image-piece {
@@ -203,28 +270,28 @@ function Pack() {
           object-fit: contain;
         }
 
-        /* pokone - Left */
+        /* pokone - Left edge */
         .image-left {
           top: 50%;
           left: 0;
           transform: translate(-50%, -50%);
         }
 
-        /* poktwo - Top */
+        /* poktwo - Top edge */
         .image-top {
           top: 0;
           left: 50%;
           transform: translate(-50%, -50%);
         }
 
-        /* pokthree - Right */
+        /* pokthree - Right edge */
         .image-right {
           top: 50%;
           right: 0;
           transform: translate(50%, -50%);
         }
 
-        /* pokfour - Bottom */
+        /* pokfour - Bottom edge */
         .image-bottom {
           bottom: 0;
           left: 50%;
@@ -237,8 +304,8 @@ function Pack() {
           left: 50%;
           transform: translate(-50%, -50%);
           text-align: center;
-          opacity: 0;
           padding: 2rem;
+          z-index: 20;
         }
       `}</style>
     </div>
