@@ -30,19 +30,19 @@ function Pack() {
       tl.to(".piece", {
         x: (index) => {
           const positions = [
-            -window.innerWidth / 2 + 10,  // top-left
-            window.innerWidth / 2 - 30,   // top-right
-            -window.innerWidth / 2 + 10,  // bottom-left
-            window.innerWidth / 2 - 30,   // bottom-right
+            -window.innerWidth / 2 + 10,
+            window.innerWidth / 2 - 30,
+            -window.innerWidth / 2 + 10,
+            window.innerWidth / 2 - 30,
           ];
           return positions[index];
         },
         y: (index) => {
           const positions = [
-            -window.innerHeight / 2 + 10, // top-left
-            -window.innerHeight / 2 + 10, // top-right
-            window.innerHeight / 2 - 30,  // bottom-left
-            window.innerHeight / 2 - 30,  // bottom-right
+            -window.innerHeight / 2 + 10,
+            -window.innerHeight / 2 + 10,
+            window.innerHeight / 2 - 30,
+            window.innerHeight / 2 - 30,
           ];
           return positions[index];
         },
@@ -120,20 +120,14 @@ function Pack() {
           duration: 1.5,
         }, 1.3);
 
-      // Phase 3: Zoom in all images together (scroll பண்ணும்போது zoom)
+      // Phase 3: Images stay visible, reduce opacity slightly to show text better
       tl.to(".image-piece", {
-        scale: 2.5,
+        opacity: 0.3,
         ease: "power2.inOut",
-        duration: 1.5,
+        duration: 1,
       }, 3);
 
-      // Phase 4: Fade out images
-      tl.to(".image-piece", {
-        opacity: 0,
-        duration: 0.8,
-      }, 4.2);
-
-      // Phase 5: "About Us" heading slides in from top
+      // Phase 4: "About Us" heading slides in from top
       tl.fromTo(headingRef.current,
         {
           y: -100,
@@ -144,9 +138,9 @@ function Pack() {
           opacity: 1,
           ease: "power2.out",
           duration: 1,
-        }, 5);
+        }, 3.5);
 
-      // Phase 6: Description slides in from bottom
+      // Phase 5: Description slides in from bottom
       tl.fromTo(descriptionRef.current,
         {
           y: 100,
@@ -157,14 +151,14 @@ function Pack() {
           opacity: 1,
           ease: "power2.out",
           duration: 1,
-        }, 5.5);
+        }, 4);
 
-      // Phase 7: Final scale effect on text
+      // Phase 6: Final scale effect on text
       tl.to([headingRef.current, descriptionRef.current], {
         scale: 1.05,
         ease: "power1.inOut",
         duration: 0.8,
-      }, 6.5);
+      }, 5);
 
     }, wrapperRef);
 
@@ -183,7 +177,7 @@ function Pack() {
           <div className="piece bottom-right"></div>
         </div>
 
-        {/* Four images - positioned at edges and stay visible */}
+        {/* Four images - stay visible in background */}
         <div ref={imagesRef} className="images-container">
           <img src={pokone} alt="" className="image-piece image-left" />
           <img src={poktwo} alt="" className="image-piece image-top" />
@@ -191,17 +185,18 @@ function Pack() {
           <img src={pokfour} alt="" className="image-piece image-bottom" />
         </div>
 
-        {/* About Us Text - Split into heading and description */}
+        {/* About Us Text - appears on top of images */}
         <div className="text-content">
           <h2 
             ref={headingRef} 
-            className="text-5xl font-bold text-[#FFD400] mb-6 opacity-0"
+            className="text-6xl font-bold mb-8 opacity-0"
           >
-            About Us
+            <span className="text-white">About </span>
+            <span className="text-[#FFA500]">Us</span>
           </h2>
           <p 
             ref={descriptionRef} 
-            className="text-white text-lg leading-relaxed max-w-3xl opacity-0"
+            className="text-white text-xl leading-relaxed max-w-4xl opacity-0"
           >
             EtThicks is not just another digital agency — we're a storytelling powerhouse 
             rooted in truth, trust, and transformation. Born from the Tamil word "Ettuthikkum", 
@@ -306,6 +301,7 @@ function Pack() {
           text-align: center;
           padding: 2rem;
           z-index: 20;
+          max-width: 90vw;
         }
       `}</style>
     </div>
