@@ -1,13 +1,13 @@
 import Logo from "/src/assets/headerasset/EtThicks1.png";
-import ContentCreation from "/src/assets/head/youtubepng.png"
-import pearsonalbranding from "/src/assets/head/marketingpng.png"
-import infuencer from "/src/assets/head/influncer.png"
-import social from "/src/assets/head/socialmark.png"
-import leadgeneration from "/src/assets/head/leadgeneration.png"
-import productphotography from "/src/assets/head/productphoto.png"
-import tvcomersials from "/src/assets/head/tv.png"
-import digitalmarketing from"/src/assets/head/productphoto.png"
-import brandstorytelling from"/src/assets/head/productphoto.png"
+import ContentCreation from "/src/assets/head/youtubepng.png";
+import pearsonalbranding from "/src/assets/head/marketingpng.png";
+import infuencer from "/src/assets/head/influncer.png";
+import social from "/src/assets/head/socialmark.png";
+import leadgeneration from "/src/assets/head/leadgeneration.png";
+import productphotography from "/src/assets/head/productphoto.png";
+import tvcomersials from "/src/assets/head/tv.png";
+import digitalmarketing from "/src/assets/head/productphoto.png";
+import brandstorytelling from "/src/assets/head/productphoto.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -49,16 +49,15 @@ const SERVICES = [
     icon: tvcomersials,
   },
   {
-  slug: "digital-marketing",
-  name: "Digital Marketing",
-  icon: digitalmarketing,
-},
-{
-  slug: "brand-storytelling",
-  name: "Brand Storytelling",
-  icon: brandstorytelling,
-},
-
+    slug: "digital-marketing",
+    name: "Digital Marketing",
+    icon: digitalmarketing,
+  },
+  {
+    slug: "brand-storytelling",
+    name: "Brand Storytelling",
+    icon: brandstorytelling,
+  },
 ];
 
 function Header() {
@@ -125,9 +124,8 @@ function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed left-[68%] -translate-x-1/2
- top-20 bg-black bg-opacity-95 shadow-xl rounded-2xl p-6 w-[85vw] max-w-4xl border border-gray-800 z-[100]"
-                    style={{ position: 'fixed' }}
+                    className="fixed left-[68%] -translate-x-1/2 top-20 bg-black bg-opacity-95 shadow-xl rounded-2xl p-6 w-[85vw] max-w-4xl border border-gray-800 z-[100]"
+                    style={{ position: "fixed" }}
                   >
                     {/* 3-Column Grid for Desktop */}
                     <div className="grid grid-cols-3 gap-6">
@@ -155,6 +153,10 @@ function Header() {
 
             <Link to="/about" className="hover:text-orange-300 transition-colors">
               About us
+            </Link>
+
+            <Link to="/blog" className="hover:text-orange-300 transition-colors">
+              Blog
             </Link>
 
             <Link to="/contact" className="hover:text-orange-300 transition-colors">
@@ -229,7 +231,12 @@ function Header() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
                 </motion.svg>
               </button>
               <AnimatePresence>
@@ -266,6 +273,14 @@ function Header() {
             >
               About us
             </button>
+
+            <button
+              onClick={() => handleNavClick("/blog")}
+              className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
+            >
+              Blog
+            </button>
+
             <button
               onClick={() => handleNavClick("/contact")}
               className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
