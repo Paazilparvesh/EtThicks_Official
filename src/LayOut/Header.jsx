@@ -6,10 +6,11 @@ import social from "/src/assets/head/socialmark.png";
 import leadgeneration from "/src/assets/head/leadgeneration.png";
 import productphotography from "/src/assets/head/productphoto.png";
 import tvcomersials from "/src/assets/head/tv.png";
-import digitalmarketing from "/src/assets/head/productphoto.png";
-import brandstorytelling from "/src/assets/head/productphoto.png";
+import brandstorytelling from "/src/assets/head/icon12.png";
+import digitalmarketing from "/src/assets/head/people.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 const SERVICES = [

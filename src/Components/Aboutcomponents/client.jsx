@@ -17,8 +17,8 @@ const CarouselRow = ({ reverse = false, duration = 14 }) => {
   return (
     <div className="relative w-full overflow-hidden my-4">
       {/* Gradient Fade on both sides */}
-      <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-black to-transparent z-20 pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-black to-transparent z-20 pointer-events-none"></div>
 
       {/* Animated Scrolling Row */}
       <div
@@ -31,7 +31,7 @@ const CarouselRow = ({ reverse = false, duration = 14 }) => {
         {slides.concat(slides).map((img, idx) => (
           <div
             key={idx}
-            className="flex-shrink-0 w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 mx-6 flex justify-center items-center group"
+            className="shrink-0 size-28 md:size-20 lg:size-40 mx-6 flex justify-center items-center group"
           >
             <div className="relative w-full h-full">
               <img
@@ -50,7 +50,7 @@ const CarouselRow = ({ reverse = false, duration = 14 }) => {
 function Client() {
   return (
     <>
-      <div className="bg-[#000000] min-h-[800px] text-white py-12 relative font-['Nunito']">
+      <div className="bg-[#000000]  text-white py-12 relative font-['Nunito']">
         <h1 className="text-[#FFAE00] text-center font-bold text-[56px] mb-8">
           CLIENTS
         </h1>

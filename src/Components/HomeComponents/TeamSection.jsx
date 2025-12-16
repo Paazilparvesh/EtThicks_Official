@@ -38,31 +38,25 @@ function TeamSection() {
 
       {/* Team Grid - h-812 container */}
       <div className="max-w-7xl mx-auto h-auto lg:min-h-[812px]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="group relative w-full h-[320px] rounded-xl overflow-hidden bg-zinc-900 hover:scale-105 transition-transform duration-300"
+              className="group relative w-full h-52 rounded-xl overflow-hidden bg-zinc-900 hover:scale-105 transition-transform duration-300"
             >
               {/* Image */}
               <div className="w-full h-full">
-                {member.image ? (
+                {member.image && 
                   <img
                     src={`http://localhost:1337${member.image.url}`}
                     alt={member.Name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-                    <span className="text-6xl text-zinc-600">
-                      {member.Name.charAt(0).toUpperCase()}
-                    </span>
-                  </div>
-                )}
+                }
               </div>
 
               {/* Overlay with Name and Role */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+              <div className="hidden group-hover:flex flex-col absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
                 <h3
                   className="text-xl md:text-2xl font-bold text-orange-400 mb-1"
                   style={{ fontFamily: "DeaconTest, sans-serif" }}
