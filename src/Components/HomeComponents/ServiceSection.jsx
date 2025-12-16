@@ -46,9 +46,14 @@ function ServiceSection() {
       else if (window.innerWidth >= 1024) multiplier = 1.08;
       else multiplier = 1;
 
-      // Compute horizontal scroll distance based on wrapper width minus viewport width
-      const scrollX =
-        (contentWrapperRef.current.scrollWidth - window.innerWidth) * multiplier;
+      // Get the last panel width to calculate proper centering
+      const lastPanel = panels[panels.length - 1];
+      const lastPanelWidth = lastPanel.offsetWidth;
+      
+      // Calculate scroll distance - reduce by 15% for perfect centering
+      const totalScrollWidth = contentWrapperRef.current.scrollWidth - window.innerWidth;
+      const reductionAmount = totalScrollWidth * 0.15; // 15% reduction
+      const scrollX = (totalScrollWidth - reductionAmount) * multiplier;
 
       // Main horizontal scroll tween that pins the section
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
@@ -142,10 +147,10 @@ function ServiceSection() {
           {/* Panel 1 - Content Creation */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Content Creation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
               </p>
             </div>
@@ -161,16 +166,16 @@ function ServiceSection() {
           {/* Panel 2 - Digital Marketing */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Digital Marketing
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 Social strategy, performance campaigns, platform-specific content that meets people where they are.
               </p>
             </div>
             <div className="flex justify-center">
               <img
-                src={img2}
+                src={img3}
                 alt="Marketing"
                 className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
               />
@@ -180,16 +185,16 @@ function ServiceSection() {
           {/* Panel 3 - Brand Storytelling */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Brand Storytelling
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
               </p>
             </div>
             <div className="flex justify-center">
               <img
-                src={img3}
+                src={img2}
                 alt="Storytelling"
                 className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
               />
@@ -199,10 +204,10 @@ function ServiceSection() {
           {/* Panel 4 - TV Commercials */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 TV Commercials
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 High-impact 30s/60s spots that break through the noise and drive results.
               </p>
             </div>
@@ -218,10 +223,10 @@ function ServiceSection() {
           {/* Panel 5 - Product Photography */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Product Photography
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 Studio-quality product shots that make your offerings irresistible.
               </p>
             </div>
@@ -237,10 +242,10 @@ function ServiceSection() {
           {/* Panel 6 - Lead Generation */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Lead Generation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 Funnel-optimized landing pages, email sequences, and conversion funnels that deliver qualified leads.
               </p>
             </div>
@@ -253,13 +258,13 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 7 - Social Media Management (NEW) */}
+          {/* Panel 7 - Social Media Management */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
-              <h3 className="text-[#D89F5B] text-lg sm:text-xl md:text-[28px] font-semibold mb-3 sm:mb-4 font-['Plus_Jakarta_Sans']">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
                 Social Media Management
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
                 From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
               </p>
             </div>
@@ -267,6 +272,44 @@ function ServiceSection() {
               <img
                 src={img7}
                 alt="Social Media Management"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Panel 8 - Influencer Marketing (NEW) */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
+                Influencer Marketing
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
+                Social strategy, performance campaigns, platform-specific content that meets people where they are.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img3}
+                alt="Influencer Marketing"
+                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+              />
+            </div>
+          </div>
+
+          {/* Panel 9 - Personal Branding (NEW) */}
+          <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
+            <div>
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
+                Personal Branding
+              </h3>
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-['Work_Sans'] font-extralight">
+                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src={img2}
+                alt="Personal Branding"
                 className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
               />
             </div>
