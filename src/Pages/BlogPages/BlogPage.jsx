@@ -1,5 +1,4 @@
-// src/Pages/BlogPages/BlogPage.jsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 
@@ -116,7 +115,7 @@ function Blogs() {
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            
+
             {/* Content */}
             <div className="absolute bottom-4 sm:bottom-6 left-2 md:left-6 flex flex-col sm:flex-row items-start sm:items-end justify-between w-full pr-6">
               <div className="mb-4 sm:mb-0">

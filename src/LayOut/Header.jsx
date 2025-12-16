@@ -44,9 +44,9 @@ const SERVICES = [
     icon: productphotography,
   },
   {
-    slug: "tv-commercials",
-    name: "TV Commercials",
-    icon: tvcomersials,
+    slug: "brand-storytelling",
+    name: "Brand Storytelling",
+    icon: brandstorytelling,
   },
   {
     slug: "digital-marketing",
@@ -54,9 +54,9 @@ const SERVICES = [
     icon: digitalmarketing,
   },
   {
-    slug: "brand-storytelling",
-    name: "Brand Storytelling",
-    icon: brandstorytelling,
+    slug: "tv-commercials",
+    name: "TV Commercials",
+    icon: tvcomersials,
   },
 ];
 
@@ -90,9 +90,18 @@ function Header() {
     navigate(path);
   };
 
+  const chunkArray = (arr, size) => {
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+  };
+
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 font-inter text-white bg-black bg-opacity-90 backdrop-blur-sm">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 w-full z-50 font-inter text-white bg-black bg-opacity-80 backdrop-blur-sm">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
           <div className="shrink-0">
@@ -103,7 +112,7 @@ function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10 text-md lg:text-lg 2xl:text-xl mr-8">
-            <Link to="/" className="hover:text-orange-300 transition-colors">
+            <Link to="/" className="hover:text-[#F09D01] transition-colors">
               Home
             </Link>
 
@@ -113,7 +122,7 @@ function Header() {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="hover:text-orange-300 focus:outline-none transition-colors">
+              <button className="hover:text-[#F09D01] focus:outline-none transition-colors">
                 Services
               </button>
 
@@ -123,45 +132,80 @@ function Header() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="fixed left-[68%] -translate-x-1/2 top-20 bg-black bg-opacity-95 shadow-xl rounded-2xl p-6 w-[85vw] max-w-4xl border border-gray-800 z-[100]"
-                    style={{ position: "fixed" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="
+        fixed top-16 right-0
+        w-full
+        bg-black
+        border-t border-gray-800
+        px-10 py-6
+        flex justify-end
+      "
                   >
-                    {/* 3-Column Grid for Desktop */}
-                    <div className="grid grid-cols-3 gap-6">
-                      {SERVICES.map((service) => (
-                        <button
-                          key={service.slug}
-                          onClick={() => handleServiceClick(service.slug)}
-                          className="flex items-center gap-4 bg-transparent rounded-xl p-4 hover:bg-gray-900 transition-all duration-300 text-left group"
+                    {/* Right aligned container */}
+                    <div className=" w-full space-y-8 font-worksans">
+                      {chunkArray(SERVICES, 3).map((row, rowIndex) => (
+                        <div
+                          key={rowIndex}
+                          className="flex justify-end gap-8"
                         >
-                          <img
-                            src={service.icon}
-                            alt={service.name}
-                            className="h-10 w-10 object-contain flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
-                          />
-                          <p className="text-white text-base font-normal group-hover:text-orange-300 transition-colors">
-                            {service.name}
-                          </p>
-                        </button>
+                          {row.map((service) => (
+                            <button
+                              key={service.slug}
+                              onClick={() => handleServiceClick(service.slug)}
+                              className="
+                  flex items-center gap-3
+                  text-right
+                  group
+                  transition
+                "
+                            >
+                              <img
+                                src={service.icon}
+                                alt={service.name}
+                                className="
+                    h-5 w-5
+                    object-contain
+                    group-hover:scale-110
+                    transition-transform duration-300
+                  "
+                              />
+                              <span
+                                className="
+                    text-white
+                    text-xl
+                    group-hover:text-[#F09D01]
+                    transition-colors
+                  "
+                              >
+                                {service.name}
+                              </span>
+                            </button>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
+
+
+
             </div>
 
             <Link to="/about" className="hover:text-orange-300 transition-colors">
               About us
             </Link>
 
+            <Link to="/contact" className="hover:text-orange-300 transition-colors">
+              Contact us
+            </Link>
+
             <Link to="/blog" className="hover:text-orange-300 transition-colors">
               Blog
             </Link>
 
-            <Link to="/contact" className="hover:text-orange-300 transition-colors">
-              Contact us
-            </Link>
+
           </nav>
 
           {/* Mobile Menu Button */}
@@ -206,7 +250,7 @@ function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black text-md shadow-lg"
+            className="md:hidden bg-black text-md shadow-lg py-5 px-4"
           >
             <button
               onClick={() => handleNavClick("/")}
@@ -219,7 +263,7 @@ function Header() {
             <div className="relative">
               <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300 focus:outline-none flex justify-between items-center"
+                className="w-full text-left px-4 py-3 bg-black focus:outline-none flex justify-between items-center"
               >
                 Services
                 <motion.svg
@@ -246,7 +290,7 @@ function Header() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-gray-900 overflow-hidden"
+                    className="bg-black overflow-hidden shadow-[inset_0_6px_12px_rgba(255,255,255,0.08)]"
                   >
                     {SERVICES.map((service) => (
                       <button
