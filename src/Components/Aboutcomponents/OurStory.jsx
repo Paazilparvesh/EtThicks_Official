@@ -3,7 +3,7 @@ import Image1 from "/src/assets/about/poky.png";
 function OurStory() {
   return (
     <>
-      <div className="w-full bg-black py-12 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12 xl:px-0">
+      <div className="w-full bg-black py-12 md:py-20 lg:py-0 lg:pb-16 px-4 md:px-8 lg:px-12 xl:px-0">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-center gap-8 lg:gap-20 xl:gap-40 h-[600px] md:h-[700px] lg:h-[800px]">
           {/* Image Section - Mobile first */}
           <div className="w-full lg:w-1/3 order-2 lg:order-1 xl:pt-40">

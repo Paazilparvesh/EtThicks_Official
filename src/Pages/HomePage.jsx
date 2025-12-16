@@ -22,10 +22,9 @@ function HomePage() {
         <ServiceSection />
 
         <ConnectSection />
-        
-        
-        <Creative/>
-        
+
+        <Creative />
+
         <TeamSection />
 
         <BrandSection />

@@ -7,7 +7,7 @@ import WhyWorkWithUs from "../Components/servicecomponent/serviceone/WhyWorkWith
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 
 function Serviceonepage() {
-    const { slug } = useParams(); // dynamic category
+    const { slug } = useParams();
 
     return (
         <>

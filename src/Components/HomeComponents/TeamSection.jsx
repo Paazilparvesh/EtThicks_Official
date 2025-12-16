@@ -27,11 +27,10 @@ function TeamSection() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 px-4 sm:px-6 md:px-10 lg:px-16">
+    <div className=" bg-black text-white pt-16 px-4 sm:px-6 md:px-10 lg:px-16">
       {/* Header */}
       <h1
-        className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16"
-        style={{ fontFamily: "DeaconTest, sans-serif" }}
+        className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#FFAE00] mb-16"
       >
         Our Team
       </h1>
@@ -46,7 +45,7 @@ function TeamSection() {
             >
               {/* Image */}
               <div className="w-full h-full">
-                {member.image && 
+                {member.image &&
                   <img
                     src={`http://localhost:1337${member.image.url}`}
                     alt={member.Name}
@@ -56,16 +55,14 @@ function TeamSection() {
               </div>
 
               {/* Overlay with Name and Role */}
-              <div className="hidden group-hover:flex flex-col absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
+              <div className="lg:hidden group-hover:flex flex-col absolute bottom-0 left-0 right-0 bg-linear-to-t from-black via-black/80 to-transparent p-2 lg:p-4">
                 <h3
-                  className="text-xl md:text-2xl font-bold text-orange-400 mb-1"
-                  style={{ fontFamily: "DeaconTest, sans-serif" }}
+                  className="text-lg md:text-xl lg:text-2xl font-bold text-orange-400"
                 >
                   {member.Name}
                 </h3>
                 <p
-                  className="text-sm md:text-base text-gray-300"
-                  style={{ fontFamily: "anta, sans-serif" }}
+                  className="text-xs md:text-sm lg:text-lg text-gray-300"
                 >
                   {member.role}
                 </p>

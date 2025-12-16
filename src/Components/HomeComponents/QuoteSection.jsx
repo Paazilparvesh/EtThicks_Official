@@ -44,7 +44,7 @@ function QuoteSection() {
     <>
       <div
         ref={sectionRef}
-        className="self-stretch min-h-[469px] relative bg-black flex items-center justify-center px-4 overflow-hidden"
+        className="self-stretch  relative bg-black flex items-center justify-center px-4 overflow-hidden"
       >
         {/* ✅ Desktop layout (unchanged) */}
         <div className="hidden lg:flex absolute inset-0 z-0 items-center justify-between px-4 md:px-8">

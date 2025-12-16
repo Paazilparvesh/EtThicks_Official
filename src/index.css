@@ -34,3 +34,22 @@
   min-width: 100%;
   animation: marquee 12s linear infinite;
 }
+
+
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-scroll-text {
+  animation: scrollText 40s linear infinite;
+  display: flex;
+  align-items: center;
+}
+.animate-scroll-text:hover {
+  animation-play-state: paused;
+}

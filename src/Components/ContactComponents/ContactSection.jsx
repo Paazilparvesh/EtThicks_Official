@@ -230,26 +230,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Add custom CSS for the animations */}
-      <style jsx>{`
-        @keyframes scrollText {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-scroll-text {
-          animation: scrollText 40s linear infinite;
-          display: flex;
-          align-items: center;
-        }
-        .animate-scroll-text:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </div>
   );
 };
