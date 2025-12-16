@@ -7,7 +7,7 @@ import BrandSection from "/src/Components/HomeComponents/BrandSection.jsx";
 import BlogSection from "/src/Components/HomeComponents/BlogSection.jsx";
 import FaqSection from "/src/Components/HomeComponents/FaqSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
-import Creative from "../Components/HomeComponents/creative";
+import Creative from "/src/Components/HomeComponents/Creative.jsx";
 
 
 function HomePage() {
