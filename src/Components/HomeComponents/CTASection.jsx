@@ -2,7 +2,7 @@ import teg from "/src/assets/home/icon2.png";
 
 function CTASection() {
   return (
-    <div className="w-full min-h-screen bg-black flex flex-col items-center justify-center px-4">
+    <div className="w-full md:min-h-screen bg-black flex flex-col items-center justify-center px-4">
       {/* Icon box */}
       <div className="w-20 md:w-26 h-20 md:h-26 xl:w-30 xl:h-30 bg-amber-500 rounded-4xl shadow-[0px_-3px_5px_0px_rgba(255,174,0,0.09),0px_12px_13px_0px_rgba(255,174,0,0.17),0px_4px_6px_0px_rgba(255,174,0,0.12),0px_-12px_30px_0px_rgba(255,174,0,0.12),0px_54px_55px_0px_rgba(255,174,0,0.25)] flex items-center justify-center mb-8">
         <img src={teg} alt="icon" className="w-10 h-10 object-contain" />

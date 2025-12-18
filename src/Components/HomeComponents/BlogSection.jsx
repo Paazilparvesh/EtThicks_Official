@@ -1,6 +1,8 @@
 // src/Components/Home/BlogSection.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import yellow from "/src/assets/home/yellowLine.jpg"
+
 
 function BlogSection() {
   const navigate = useNavigate();
@@ -87,36 +89,49 @@ function BlogSection() {
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden px-6 sm:px-8 md:px-12 py-16" style={{ background: 'radial-gradient(ellipse at center, #072a31, #000000)' }}>
-      <h1 className="lg:hidden text-white text-2xl md:text-5xl font-medium uppercase leading-none relative z-10 mb-10">
+      {/* <div className="border-b-4 border-yellow-500 w-19 md:w-30 -mb-4.5 md:-mb-7"></div> */}
+      <h1
+        style={{
+          backgroundImage: `url(${yellow})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+        }}
+        className="lg:hidden bg-clip-text text-transparent md:text-center text-3xl md:text-5xl font-medium uppercase leading-none relative z-10 mb-10"
+      >
         Blog
       </h1>
 
+
+
       {/* -------- Top Section (Latest Blog) -------- */}
-      <div className="flex flex-col-reverse lg:flex-row justify-between items-start gap-6 relative">
+      <div className="w-full h-auto flex flex-col-reverse lg:flex-row justify-between items-start xl:items-stretch gap-6 relative">
         {/* Left Content */}
         <div
-          className="flex-1 relative w-full cursor-pointer"
+          className="flex-1 relative w-full h-auto cursor-pointer flex flex-col justify-between"
           onClick={() => handleBlogClick(latestBlog)}
         >
           {/* Blog Heading */}
-          <h1 className="hidden lg:flex text-white text-8xl font-semibold uppercase leading-none relative z-10 mb-10">
+          <h1 className="hidden lg:flex text-white text-8xl xl:text-9xl xl:scale-125 xl:translate-x-20 font-semibold uppercase leading-none relative z-10 mb-10">
             Blog
           </h1>
 
-          {/* Blog Title */}
-          <h2 className="text-white text-2xl md:text-4xl font-medium relative z-10">
-            {latestBlog.name}
-          </h2>
+          <div className="">
 
-          {/* Blog Description */}
-          <p className="text-gray-500 text-base md:text-xl font-normal leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
-            {latestBlog.description.substring(0, 150)}...{" "}
-            <span className="text-amber-500 underline">More</span>
-          </p>
+            {/* Blog Title */}
+            <h2 className="text-white text-2xl md:text-3xl lg:text-2xl xl:text-4xl font-medium relative z-10">
+              {latestBlog.name}
+            </h2>
+
+            {/* Blog Description */}
+            <p className="text-gray-300 text-lg md:text-lg lg:text-sm xl:text-xl font-normal leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
+              {latestBlog.description.substring(0, 150)}...{" "}
+              <span className="text-amber-500 underline">More</span>
+            </p>
+          </div>
 
           {/* Subheading Number */}
           <span
-            className="absolute top-0 left-0 text-white/10 text-[60px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-bold  uppercase z-0 pointer-events-none"
+            className="absolute top-2 lg:top-26 xl:top-40 right-0 md:-left-6 text-gray-600 text-8xl sm:text-[80px] md:text-[100px] lg:text-8xl font-medium  uppercase z-0 pointer-events-none"
             aria-hidden="true"
           >
             01
@@ -125,30 +140,30 @@ function BlogSection() {
 
         {/* Right Image */}
         <div
-          className="w-full lg:w-[499px] h-60 sm:h-72 md:h-96 bg-black/20 rounded-2xl overflow-hidden relative z-10 cursor-pointer"
+          className="flex-1 w-full lg:w-1/2 h-auto sm:h-72 md:h-96  rounded-2xl overflow-hidden relative z-10 cursor-pointer"
           onClick={() => handleBlogClick(latestBlog)}
         >
           <BlogImage
             blog={latestBlog}
-            className="w-full h-full object-cover rounded-2xl"
+            className="w-full h-auto object-contain rounded-2xl"
           />
         </div>
       </div>
 
       {/* -------- Bottom Blog Cards -------- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 lg:-mt-10 xl:mt-10">
         {otherBlogs.map((blog) => (
           <div
             key={blog.documentId}
             onClick={() => handleBlogClick(blog)}
-            className="relative w-full h-48 sm:h-56 md:h-64 rounded-3xl overflow-hidden cursor-pointer group"
+            className="relative w-full h-auto sm:h-56 md:h-64 rounded-3xl overflow-hidden cursor-pointer group"
           >
             <BlogImage
               blog={blog}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+              className="w-full h-full object-fit group-hover:scale-105 transition-transform"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black to-transparent" />
-            <p className="absolute bottom-4 left-4 text-white text-base sm:text-lg md:text-xl font-medium leading-snug">
+            <p className="absolute bottom-4 left-4 text-white text-xl sm:text-lg md:text-xl font-medium leading-snug">
               {blog.name}
             </p>
           </div>

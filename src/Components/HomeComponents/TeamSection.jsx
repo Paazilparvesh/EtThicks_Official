@@ -29,7 +29,7 @@ function TeamSection() {
   }
 
   return (
-    <div className=" bg-black text-white pt-16 px-4 sm:px-6 md:px-10 lg:px-16">
+    <div className=" bg-black text-white py-16 px-4 sm:px-6 md:px-10 lg:px-16">
       {/* Header */}
       <h1
         className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#FFAE00] mb-16"
@@ -38,7 +38,7 @@ function TeamSection() {
       </h1>
 
       {/* Team Grid - h-812 container */}
-      <div className="max-w-7xl mx-auto h-auto lg:min-h-[812px]">
+      <div className="max-w-7xl mx-auto h-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
           {teamMembers.map((member) => (
             <div
