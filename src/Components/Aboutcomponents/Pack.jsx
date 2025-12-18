@@ -1,6 +1,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// pacone
+import pockone from "/src/assets/about/pocky one.png";
+import pocktwo from "/src/assets/about/pocktwo.png";
+import pockthree from "/src/assets/about/pokythree.png";
+import pockfour from "/src/assets/about/poky four.png";
+
+// pactwo
 import pokone from "/src/assets/about/pokone.png";
 import poktwo from "/src/assets/about/poktwo.png";
 import pokthree from "/src/assets/about/pokthree.png";
@@ -26,7 +33,7 @@ function Pack() {
         },
       });
 
-      // Phase 1: Move yellow pieces to corners and fade out
+      // Phase 1: Move pack images to corners and fade out
       tl.to(".piece", {
         x: (index) => {
           const positions = [
@@ -169,12 +176,12 @@ function Pack() {
     <div className="w-screen h-[350vh] flex items-center justify-center bg-black overflow-hidden">
       <div ref={wrapperRef} className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         
-        {/* Yellow pack pieces */}
+        {/* Pack pieces - now using images instead of yellow divs */}
         <div className="pack-wrapper">
-          <div className="piece top-left"></div>
-          <div className="piece top-right"></div>
-          <div className="piece bottom-left"></div>
-          <div className="piece bottom-right"></div>
+          <img src={pockone} alt="" className="piece top-left" />
+          <img src={pocktwo} alt="" className="piece top-right" />
+          <img src={pockthree} alt="" className="piece bottom-left" />
+          <img src={pockfour} alt="" className="piece bottom-right" />
         </div>
 
         {/* Four images - stay visible in background */}
@@ -220,8 +227,8 @@ function Pack() {
         .piece {
           width: 20px;
           height: 20px;
-          background: #FFD400;
           position: absolute;
+          object-fit: cover;
         }
 
         .top-left {

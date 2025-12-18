@@ -63,7 +63,7 @@ function Creative() {
                 </div>
                 
                 {/* Scrolling Pacman Animation at Bottom */}
-                <div className="w-full h-16 sm:h-20 flex items-center overflow-hidden bg-[#007388]">
+                <div className="w-full h-16 sm:h-20 flex items-center overflow-hidden bg-[#007388]  -rotate-2 mb-2.5">
                     <div className="animate-scroll-text flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-10 h-full w-max">
                         {/* Double the content for seamless looping */}
                         {[...Array(4)].map((_, setIndex) => (
@@ -77,7 +77,7 @@ function Creative() {
                                             <img
                                                 src={pack}
                                                 alt="divider"
-                                                className="w-8 sm:w-10 md:w-12 h-auto shrink-0"
+                                                className="w-8 sm:w-10 md:w-20 h-auto shrink-0"
                                             />
                                         )}
                                     </React.Fragment>
