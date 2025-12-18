@@ -7,6 +7,8 @@ function InnerBlog() {
   const blog = location.state?.blog;
   const [imageError, setImageError] = useState(false);
 
+  const Base_Url = import.meta.env.VITE_API_URL
+
   // Default placeholder image URL
   const DEFAULT_IMAGE = "https://via.placeholder.com/1200x600/D9D9D9/666666?text=No+Image+Available";
 
@@ -14,7 +16,7 @@ function InnerBlog() {
   const getImageUrl = (blog) => {
     // Check if image array exists and has at least one item
     if (blog?.image && Array.isArray(blog.image) && blog.image.length > 0 && blog.image[0]?.url) {
-      return `http://localhost:1337${blog.image[0].url}`;
+      return `${Base_Url}${blog.image[0].url}`;
     }
     return DEFAULT_IMAGE;
   };
@@ -36,7 +38,6 @@ function InnerBlog() {
 
         <h1
           className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
-          style={{ fontFamily: "'Work Sans', sans-serif" }}
         >
           {blog.name}
         </h1>
@@ -57,10 +58,6 @@ function InnerBlog() {
 
         <p
           className="text-white text-justify text-lg"
-          style={{
-            fontFamily: "'Work Sans', sans-serif",
-            lineHeight: "1.8",
-          }}
         >
           {blog.description}
         </p>

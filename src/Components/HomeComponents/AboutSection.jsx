@@ -99,11 +99,11 @@ function AboutSection() {
             About Us
           </h4>
         </div>
-        <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal font-['Nunito'] text-white uppercase leading-tight sm:leading-snug md:leading-snug">
+        <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug">
           Your Brand Has a <span className="text-orange-400">Story</span>. We'll
           Take It <span className="text-orange-400">Everywhere</span>
         </h2>
-        <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal font-['Nunito'] leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8">
+        <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8">
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word "Ettuthikkum", meaning to reach in all eight directions, we
@@ -117,7 +117,7 @@ function AboutSection() {
         <div
           ref={imageContainerRef}
           className="relative w-[90%] sm:w-[85%] md:w-[520px] lg:w-[600px]
-                     h-[347px] sm:h-[280px] md:h-[320px] lg:h-[405px]
+                     h-[347px] sm:h-[280px] md:h-80 lg:h-[405px]
                      rounded-xl sm:rounded-2xl md:rounded-3xl
                      overflow-hidden mx-auto"
         >
@@ -132,10 +132,10 @@ function AboutSection() {
             ref={overlayTextRef}
             className="absolute inset-0 flex items-end justify-center 
                        p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 
-                       bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0"
+                       bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0"
           >
             <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[26px] 
-                          text-white text-center font-['Nunito'] 
+                          text-white text-center 
                           max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl 
                           leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-loose
                           px-2 sm:px-4">

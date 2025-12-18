@@ -2,8 +2,6 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaShieldAlt, FaBrain, FaTrophy, FaHeart, FaChartLine } from "react-icons/fa";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
 
 
 // Register ScrollTrigger plugin
@@ -160,7 +158,7 @@ const WhyWorkWithUs = ({ slug }) => {
         {/* Title */}
         <h2
           ref={titleRef}
-          className="text-white font-sans font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4"
+          className="text-white font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4"
         >
           {content.title}
         </h2>
@@ -192,7 +190,7 @@ const WhyWorkWithUs = ({ slug }) => {
                 <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
                   {React.cloneElement(item.icon, { size: 38 })}
                 </div>
-                <p className="font-sans font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2">
+                <p className="font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2">
                   {item.text}
                 </p>
               </div>

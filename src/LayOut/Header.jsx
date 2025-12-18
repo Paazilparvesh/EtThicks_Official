@@ -101,7 +101,7 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 font-inter text-white bg-black bg-opacity-80 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black bg-opacity-80 backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
@@ -144,7 +144,7 @@ function Header() {
       "
                   >
                     {/* Right aligned container */}
-                    <div className=" w-full space-y-8 font-worksans">
+                    <div className=" w-full space-y-8">
                       {chunkArray(SERVICES, 3).map((row, rowIndex) => (
                         <div
                           key={rowIndex}

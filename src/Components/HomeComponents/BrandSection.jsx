@@ -35,10 +35,10 @@ function BrandSection() {
 
         {/* Text Overlay */}
         <div className="w-full absolute top-60 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none pt-12">
-          <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold font-['Nunito'] text-center">
+          <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold text-center">
             Brand Personality
           </h1>
-          <p className="text-white text-xl md:text-2xl mt-6 text-center max-w-3xl leading-relaxed font-['Nunito']">
+          <p className="text-white text-xl md:text-2xl mt-6 text-center max-w-3xl leading-relaxed">
             We aim to take brands in all eight directions — expanding their reach
             while making them trusted, impactful, and unforgettable.
           </p>
@@ -48,10 +48,10 @@ function BrandSection() {
       {/* Mobile & Tablet layout */}
       <div className="lg:hidden flex flex-col items-center justify-center gap-3 px-4 h-[80vh] ">
         {/* Text first */}
-        <h1 className="text-amber-500 text-3xl md:text-5xl font-semibold font-['Nunito'] text-center">
+        <h1 className="text-amber-500 text-3xl md:text-5xl font-semibold text-center">
           Brand Personality
         </h1>
-        <p className="text-gray-200 text-base sm:text-lg md:text-xl mx-10 text-center leading-relaxed font-['Nunito']">
+        <p className="text-gray-200 text-base sm:text-lg md:text-xl mx-10 text-center leading-relaxed">
           We aim to take brands in all eight directions — expanding their reach
           while making them trusted, impactful, and unforgettable.
         </p>

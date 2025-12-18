@@ -9,6 +9,8 @@ function Blogs() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
 
+  const Base_Url = import.meta.env.VITE_API_URL
+
   // Default placeholder image URL
   const DEFAULT_IMAGE = "https://via.placeholder.com/800x600/D9D9D9/666666?text=No+Image+Available";
 
@@ -18,7 +20,7 @@ function Blogs() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("http://localhost:1337/api/blogs?populate=*");
+      const response = await fetch(`${Base_Url}/api/blogs?populate=*`);
       const result = await response.json();
       setBlogs(result.data);
       setLoading(false);
@@ -36,7 +38,7 @@ function Blogs() {
   const getImageUrl = (blog) => {
     // Check if image array exists and has at least one item
     if (blog?.image && Array.isArray(blog.image) && blog.image.length > 0 && blog.image[0]?.url) {
-      return `http://localhost:1337${blog.image[0].url}`;
+      return `${Base_Url}${blog.image[0].url}`;
     }
     return DEFAULT_IMAGE;
   };
@@ -121,13 +123,11 @@ function Blogs() {
               <div className="mb-0 sm:mb-0">
                 <h2
                   className="text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl font-normal"
-                  style={{ fontFamily: "'Work Sans', sans-serif" }}
                 >
                   {latestBlog.name}
                 </h2>
                 <p
                   className="text-gray-400 mt-1 text-xs md:text-md lg:text-lg"
-                  style={{ fontFamily: "'Work Sans', sans-serif" }}
                 >
                   {latestBlog.description.substring(0, 100)}...
                 </p>

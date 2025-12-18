@@ -22,6 +22,8 @@ function Review() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const intervalRef = useRef(null);
 
+    const Base_Url = import.meta.env.VITE_API_URL
+
     const isMobile = useMediaQuery("(max-width: 767px)");
     const isTab = useMediaQuery("(max-width: 1024px)");
     const isLaptop = useMediaQuery("(max-width: 1440px)");
@@ -30,11 +32,11 @@ function Review() {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await fetch('http://localhost:1337/api/reviews/?populate=*');
+                const response = await fetch(`${Base_Url}/api/reviews/?populate=*`);
                 const data = await response.json();
 
                 const reviewData = data.data.map((item) => {
-                    const imageUrl = item.image && item.image.length > 0 && `http://localhost:1337${item.image[0].url}`
+                    const imageUrl = item.image && item.image.length > 0 && `${Base_Url}${item.image[0].url}`
 
                     return {
                         id: item.id,
@@ -98,10 +100,6 @@ function Review() {
                 <div className=" w-full md:w-1/2 text-white z-20">
                     <h1
                         className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight"
-                        style={{
-                            fontFamily: "'Work Sans', sans-serif",
-                            fontWeight: 500,
-                        }}
                     >
                         What <span style={{ color: '#FFAE00' }}>Our<br className='hidden lg:block' /> Customer</span> Says
                     </h1>
@@ -219,7 +217,7 @@ function Review() {
                                         </div>
 
                                         <div
-                                            className="absolute -top-8 right-6 text-gray-600 text-7xl sm:text-4xl md:text-7xl scale-150 font-serif leading-none opacity-50">,,
+                                            className="absolute -top-8 right-6 text-gray-600 text-7xl sm:text-4xl md:text-7xl scale-150 leading-none opacity-50">,,
                                         </div>
 
                                         {/* Right Side - Content */}

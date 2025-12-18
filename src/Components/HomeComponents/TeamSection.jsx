@@ -4,9 +4,11 @@ function TeamSection() {
   const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const Base_Url = import.meta.env.VITE_API_URL
+
   useEffect(() => {
     // Fetch team data from API
-    fetch("http://localhost:1337/api/employees/?populate=*")
+    fetch(`${Base_Url}/api/employees/?populate=*`)
       .then((response) => response.json())
       .then((data) => {
         setTeamMembers(data.data);
@@ -47,7 +49,7 @@ function TeamSection() {
               <div className="w-full h-full">
                 {member.image &&
                   <img
-                    src={`http://localhost:1337${member.image.url}`}
+                    src={`${Base_Url}${member.image.url}`}
                     alt={member.Name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />

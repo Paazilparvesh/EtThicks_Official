@@ -21,7 +21,7 @@ function Creative() {
                             <img
                                 src={pack}
                                 alt="Pacman Left"
-                                className="w-32 h-40 sm:w-48 sm:h-60 md:w-[248px] md:h-[320px] object-contain relative z-10"
+                                className="w-32 h-40 sm:w-48 sm:h-60 md:w-[248px] md:h-80 object-contain relative z-10"
                             />
                         </div>
                     </div>
@@ -29,18 +29,18 @@ function Creative() {
                     {/* Center Content Container */}
                     <div className="relative z-10 w-full max-w-6xl mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6">
                         {/* Top Label */}
-                        <p className="text-white/70 font-['Nunito'] font-normal text-sm sm:text-base tracking-wider uppercase mb-4">
+                        <p className="text-white/70 font-normal text-sm sm:text-base tracking-wider uppercase mb-4">
                             Our vision
                         </p>
 
                         {/* Main Heading */}
-                        <h1 className="text-white font-['Nunito'] font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
+                        <h1 className="text-white font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
                             To Be the <span className="text-[#D89F5B]">Creative</span> Force Behind Brands<br className="hidden sm:block" />
                             That <span className="text-[#D89F5B]">Travel the World</span>
                         </h1>
                         
                         {/* Description */}
-                        <p className="text-white font-['Nunito'] font-normal text-base sm:text-lg md:text-xl lg:text-[28px] leading-relaxed max-w-4xl mx-auto">
+                        <p className="text-white font-normal text-base sm:text-lg md:text-xl lg:text-[28px] leading-relaxed max-w-4xl mx-auto">
                             We aim to take brands in all eight directions — expanding<br className="hidden md:block" />
                             their reach while making them trusted, impactful, and<br className="hidden md:block" />
                             unforgettable.
@@ -55,7 +55,7 @@ function Creative() {
                             <img
                                 src={pack}
                                 alt="Pacman Right"
-                                className="w-32 h-40 sm:w-48 sm:h-60 md:w-[248px] md:h-[320px] object-contain transform scale-x-[-1] relative z-10"
+                                className="w-32 h-40 sm:w-48 sm:h-60 md:w-[248px] md:h-80 object-contain transform scale-x-[-1] relative z-10"
                             />
                         </div>
                     </div>

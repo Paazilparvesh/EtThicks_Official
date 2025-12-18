@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import log from "/src/assets/servone/Portfolis.png";
 
+const Base_Url = import.meta.env.VITE_API_URL
+
 const PORTFOLIO_API_MAP = {
-    "content-creation": "http://localhost:1337/api/portfolios?populate=*",
-    "digital-marketing": "http://localhost:1337/api/protfolio-2s?populate=*",
-    "web-development": "http://localhost:1337/api/portfolio-3s?populate=*",
-    "branding": "http://localhost:1337/api/portfolio-4s?populate=*",
-    "seo": "http://localhost:1337/api/portfolio-5s?populate=*",
-    "performance-marketing": "http://localhost:1337/api/portfolio-6s?populate=*",
+    "content-creation": `${Base_Url}/api/portfolios?populate=*`,
+    "digital-marketing": `${Base_Url}/api/protfolio-2s?populate=*`,
+    "web-development": `${Base_Url}/api/portfolio-3s?populate=*`,
+    "branding": `${Base_Url}/api/portfolio-4s?populate=*`,
+    "seo": `${Base_Url}/api/portfolio-5s?populate=*`,
+    "performance-marketing": `${Base_Url}/api/portfolio-6s?populate=*`,
 };
 
 function OurWorks({ category }) {
@@ -28,9 +30,9 @@ function OurWorks({ category }) {
 
                 const portfolioData = data.data.map((item) => {
                     const imageUrl = item.image?.url
-                        ? `http://localhost:1337${item.image.url}`
+                        ? `${Base_Url}${item.image.url}`
                         : item.image && item.image.length > 0
-                            ? `http://localhost:1337${item.image[0].url}`
+                            ? `${Base_Url}${item.image[0].url}`
                             : 'https://via.placeholder.com/400x300/cccccc/000000?text=No+Image';
 
                     return {

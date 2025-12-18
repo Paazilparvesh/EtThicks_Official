@@ -146,7 +146,6 @@ const ConnectSection = () => {
             ref={h1Ref}
             className="text-white mb-2 sm:mb-3 md:mb-4 font-bold"
             style={{
-              fontFamily: "'Nunito', sans-serif",
               fontSize: window.innerWidth < 640 ? "18px" : window.innerWidth < 768 ? "24px" : window.innerWidth < 1024 ? "40px" : "56px",
             }}
           >
@@ -158,7 +157,6 @@ const ConnectSection = () => {
             ref={pRef}
             className="text-white"
             style={{
-              fontFamily: "'Nunito', sans-serif",
               fontWeight: 400,
               fontSize: window.innerWidth < 640 ? "14px" : window.innerWidth < 768 ? "16px" : window.innerWidth < 1024 ? "18px" : "22px",
               lineHeight: "150%",
@@ -176,7 +174,7 @@ const ConnectSection = () => {
           {/* Image 1: Top-Left */}
           <div
             ref={addToRefs}
-            className="absolute w-[120px] h-[160px] sm:w-[150px] sm:h-[195px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[120px] h-40 sm:w-[150px] sm:h-[195px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '5%',
               left: '5%',
@@ -189,7 +187,7 @@ const ConnectSection = () => {
           {/* Image 2: Bottom-Center */}
           <div
             ref={addToRefs}
-            className="absolute w-[130px] h-[145px] sm:w-[160px] sm:h-[180px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[130px] h-[145px] sm:w-40 sm:h-[180px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '70%',
               left: '35%',
@@ -202,7 +200,7 @@ const ConnectSection = () => {
           {/* Image 3: Top-Right */}
           <div
             ref={addToRefs}
-            className="absolute w-[115px] h-[150px] sm:w-[145px] sm:h-[185px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-[320px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
+            className="absolute w-[115px] h-[150px] sm:w-[145px] sm:h-[185px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-80 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
             style={{
               top: '8%',
               left: '70%',

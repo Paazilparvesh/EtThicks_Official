@@ -37,10 +37,10 @@ function FaqSection() {
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* ✅ Top Row: Heading + Description */}
         <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-2">
-          <h2 className="w-full lg:w-1/2 text-white text-xl lg:text-4xl xl:text-5xl font-semibold font-['Nunito'] leading-snug">
+          <h2 className="w-full lg:w-1/2 text-white text-xl lg:text-4xl xl:text-5xl font-semibold leading-snug">
             All of Your Digital Marketing FAQ’s
           </h2>
-          <p className="w-full lg:w-1/2 text-gray-400 text-sm lg:text-lg xl:text-xl font-light lg:pl-30 font-['Work_Sans'] lg:max-w-xl">
+          <p className="w-full lg:w-1/2 text-gray-400 text-sm lg:text-lg xl:text-xl font-light lg:pl-30 lg:max-w-xl">
             We blend creativity with performance to help brands grow, convert,
             and dominate their category.
           </p>
@@ -55,7 +55,7 @@ function FaqSection() {
               alt="FAQ Illustration"
               className="w-full h-64 md:h-96 lg:h-[420px] object-cover rounded-2xl"
             />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-xl px-4 py-3 text-center text-zinc-800 text-base sm:text-lg font-medium font-['Nunito'] shadow-lg">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-xl px-4 py-3 text-center text-zinc-800 text-base sm:text-lg font-medium shadow-lg">
               Get Answer for All doubts here
             </div>
           </div>

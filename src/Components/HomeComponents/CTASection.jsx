@@ -9,23 +9,23 @@ function CTASection() {
       </div>
 
       {/* Heading */}
-      <h1 className="text-white text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-medium font-['Nunito'] text-center mb-6">
+      <h1 className="text-white text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-center mb-6">
         Get Started
       </h1>
 
       {/* Description */}
-      <p className="text-neutral-500 text-center text-md md:text-lg xl:text-xl font-medium font-['Nunito'] leading-relaxed max-w-lg xl:max-w-xl mb-10">
+      <p className="text-neutral-500 text-center text-md md:text-lg xl:text-xl font-medium leading-relaxed max-w-lg xl:max-w-xl mb-10">
         Reach out today — we’d love to hear your story and explore how design can amplify your message.
       </p>
 
       {/* Input + Button */}
       <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-center">
         <div className="w-full rounded-2xl outline-1 outline-amber-500 px-5 flex items-center max-w-xs py-2">
-          <span className="text-neutral-500 text-lg sm:text-2xl font-medium font-['Nunito']">
+          <span className="text-neutral-500 text-lg sm:text-2xl font-medium">
             Enter Your E-mail
           </span>
         </div>
-        <button className="px-8 md:px-6 py-1 md:py-2 bg-amber-500 rounded-3xl md:rounded-2xl text-white text-lg sm:text-2xl font-medium font-['Nunito'] hover:bg-amber-600 transition">
+        <button className="px-8 md:px-6 py-1 md:py-2 bg-amber-500 rounded-3xl md:rounded-2xl text-white text-lg sm:text-2xl font-medium  hover:bg-amber-600 transition">
           Send
         </button>
       </div>

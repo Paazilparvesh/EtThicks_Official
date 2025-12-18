@@ -7,6 +7,8 @@ function BlogSection() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const Base_Url = import.meta.env.VITE_API_URL
+
   // Default placeholder image URL
   const DEFAULT_IMAGE = "https://via.placeholder.com/800x600/D9D9D9/666666?text=No+Image+Available";
 
@@ -16,7 +18,7 @@ function BlogSection() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("http://localhost:1337/api/blogs?populate=*");
+      const response = await fetch(`${Base_Url}/api/blogs?populate=*`);
       const result = await response.json();
       setBlogs(result.data);
       setLoading(false);
@@ -30,7 +32,7 @@ function BlogSection() {
   const getImageUrl = (blog) => {
     // Check if image array exists and has at least one item
     if (blog?.image && Array.isArray(blog.image) && blog.image.length > 0 && blog.image[0]?.url) {
-      return `http://localhost:1337${blog.image[0].url}`;
+      return `${Base_Url}${blog.image[0].url}`;
     }
     return DEFAULT_IMAGE;
   };
@@ -72,7 +74,7 @@ function BlogSection() {
   // Blog Image Component with error handling
   const BlogImage = ({ blog, className }) => {
     const [imageError, setImageError] = useState(false);
-    
+
     return (
       <img
         src={imageError ? DEFAULT_IMAGE : getImageUrl(blog)}
@@ -85,7 +87,7 @@ function BlogSection() {
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden px-6 sm:px-8 md:px-12 py-16" style={{ background: 'radial-gradient(ellipse at center, #072a31, #000000)' }}>
-      <h1 className="lg:hidden text-white text-2xl md:text-5xl font-medium font-['Work_Sans'] uppercase leading-none relative z-10 mb-10">
+      <h1 className="lg:hidden text-white text-2xl md:text-5xl font-medium uppercase leading-none relative z-10 mb-10">
         Blog
       </h1>
 
@@ -97,24 +99,24 @@ function BlogSection() {
           onClick={() => handleBlogClick(latestBlog)}
         >
           {/* Blog Heading */}
-          <h1 className="hidden lg:flex text-white text-8xl font-semibold font-['Work_Sans'] uppercase leading-none relative z-10 mb-10">
+          <h1 className="hidden lg:flex text-white text-8xl font-semibold uppercase leading-none relative z-10 mb-10">
             Blog
           </h1>
 
           {/* Blog Title */}
-          <h2 className="text-white text-2xl md:text-4xl font-medium font-['Work_Sans'] relative z-10">
+          <h2 className="text-white text-2xl md:text-4xl font-medium relative z-10">
             {latestBlog.name}
           </h2>
 
           {/* Blog Description */}
-          <p className="text-gray-500 text-base md:text-xl font-normal font-['Work_Sans'] leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
+          <p className="text-gray-500 text-base md:text-xl font-normal leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
             {latestBlog.description.substring(0, 150)}...{" "}
             <span className="text-amber-500 underline">More</span>
           </p>
 
           {/* Subheading Number */}
           <span
-            className="absolute top-0 left-0 text-white/10 text-[60px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-bold font-['Work_Sans'] uppercase z-0 pointer-events-none"
+            className="absolute top-0 left-0 text-white/10 text-[60px] sm:text-[80px] md:text-[100px] lg:text-[120px] font-bold  uppercase z-0 pointer-events-none"
             aria-hidden="true"
           >
             01
@@ -145,8 +147,8 @@ function BlogSection() {
               blog={blog}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-            <p className="absolute bottom-4 left-4 text-white text-base sm:text-lg md:text-xl font-medium font-['Work_Sans'] leading-snug">
+            <div className="absolute inset-0 bg-linear-to-t from-black to-transparent" />
+            <p className="absolute bottom-4 left-4 text-white text-base sm:text-lg md:text-xl font-medium leading-snug">
               {blog.name}
             </p>
           </div>

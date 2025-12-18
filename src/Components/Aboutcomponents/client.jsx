@@ -50,7 +50,7 @@ const CarouselRow = ({ reverse = false, duration = 14 }) => {
 function Client() {
   return (
     <>
-      <div className="bg-[#000000]  text-white py-12 relative font-['Nunito']">
+      <div className="bg-[#000000]  text-white py-12 relative">
         <h1 className="text-[#FFAE00] text-center font-bold text-[56px] mb-8">
           CLIENTS
         </h1>
