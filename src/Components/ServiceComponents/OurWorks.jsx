@@ -14,7 +14,7 @@ function OurWorks({ category }) {
     const [portfolioItems, setPortfolioItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const carouselRef = useRef(null);
-    const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+    const [isAutoScrolling] = useState(true);
 
     // Fetch portfolio data from Strapi API based on category/slug
     useEffect(() => {
@@ -22,7 +22,7 @@ function OurWorks({ category }) {
             setLoading(true);
             try {
                 const apiUrl = PORTFOLIO_API_MAP[category] || PORTFOLIO_API_MAP["content-creation"];
-                
+
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
@@ -30,8 +30,8 @@ function OurWorks({ category }) {
                     const imageUrl = item.image?.url
                         ? `http://localhost:1337${item.image.url}`
                         : item.image && item.image.length > 0
-                        ? `http://localhost:1337${item.image[0].url}`
-                        : 'https://via.placeholder.com/400x300/cccccc/000000?text=No+Image';
+                            ? `http://localhost:1337${item.image[0].url}`
+                            : 'https://via.placeholder.com/400x300/cccccc/000000?text=No+Image';
 
                     return {
                         id: item.id,
@@ -116,19 +116,19 @@ function OurWorks({ category }) {
                 minHeight: "500px",
                 width: "100%"
             }}
-            className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col h-auto sm:h-auto md:h-[671px]"
+            className="py-6 px-6 sm:px-6 md:px-8 lg:px-16 flex flex-col h-auto sm:h-auto md:h-[671px] rounded-4xl lg:py-10"
         >
-            <div className="container mx-auto max-w-7xl flex-1 flex flex-col">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 md:mb-12 text-center sm:text-left">
+            <div className="container mx-auto flex-1 flex flex-col">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-start sm:text-left">
                     OUR WORKS
                 </h1>
 
                 {/* Carousel Container - No Controls, No Border Radius */}
                 <div className="relative flex-1 flex items-center justify-center">
-                    <div className="overflow-hidden px-10 sm:px-12 md:px-14 lg:px-16 w-full">
+                    <div className="overflow-hidden w-full">
                         <div
                             ref={carouselRef}
-                            className="flex gap-3 sm:gap-3.5 md:gap-4 overflow-x-auto scroll-smooth hide-scrollbar touch-pan-x"
+                            className="flex gap-3 sm:gap-3.5 md:gap-4 overflow-x-auto scroll-smooth hide-scrollbar touch-pan-x "
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {/* Duplicate items for infinite loop effect - NO BORDER RADIUS */}
@@ -138,13 +138,13 @@ function OurWorks({ category }) {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     key={`${item.documentId}-${index}`}
-                                    className="flex-shrink-0 w-[250px] h-[330px] sm:w-[290px] sm:h-[380px] md:w-[352px] md:h-[460px] bg-white overflow-hidden shadow-lg cursor-pointer hover:shadow-2xl transition-shadow active:scale-95"
+                                    className="shrink-0 w-[250px] h-auto md:w-[320px] md:h-auto bg-[#212121]  overflow-hidden shadow-lg cursor-pointer hover:shadow-2xl transition-shadow active:scale-95 rounded-3xl"
                                 >
-                                    <div className="bg-gray-300 h-[270px] sm:h-[320px] md:h-[400px] w-full flex items-center justify-center overflow-hidden">
+                                    <div className=" h-[270px] sm:h-80 md:h-[400px] w-full flex items-center justify-center overflow-hidden">
                                         <img
                                             src={item.image}
                                             alt={item.title}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover p-2 rounded-3xl shadow-2xl "
                                             loading="lazy"
                                             onError={(e) => {
                                                 e.target.src = 'https://via.placeholder.com/352x400/cccccc/000000?text=Error+Loading';
@@ -152,8 +152,8 @@ function OurWorks({ category }) {
                                         />
                                     </div>
 
-                                    <div className="h-[60px] w-full flex items-center justify-center px-3 sm:px-4">
-                                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-black text-center line-clamp-2">
+                                    <div className=" w-full flex items-center justify-start px-6 py-4 sm:px-4">
+                                        <h3 className="text-2xl sm:text-base md:text-lg lg:text-2xl font-bold text-white text-start line-clamp-2">
                                             {item.title}
                                         </h3>
                                     </div>

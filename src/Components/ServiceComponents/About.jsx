@@ -36,7 +36,7 @@ const ENGAG_CONTENT = {
         `,
         background: des,
     },
-     "lead-generation": {
+    "lead-generation": {
         heading: "Fuel Your Sales Pipeline With .",
         highlight: " High-Quality Leads.",
         description: `
@@ -44,7 +44,7 @@ const ENGAG_CONTENT = {
         `,
         background: des,
     },
-     "product-photography": {
+    "product-photography": {
         heading: " With Stunning, Professional Visuals.",
         highlight: " Showcase Your Products.",
         description: `
@@ -72,28 +72,26 @@ function Engag({ slug }) {
         <div
             style={{
                 backgroundImage: `url(${content.background})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                // backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                minHeight: "100vh",
                 width: "100%",
             }}
-            className="flex items-center py-12 sm:py-16 md:py-20 lg:py-0"
+            className="flex items-center py-40 sm:py-16 md:py-20 lg:py-0 md:min-h-screen bg-cover bg-bottom-right "
         >
-            <div className="container mx-auto px-6 sm:px-8 md:px-8  max-w-7xl">
+            <div className=" px-6 md:px-8">
                 <h1
-                    className="text-white leading-tight mb-4 sm:mb-5 md:mb-6 text-[28px] sm:text-[36px] md:text-[48px]"
+                    className="text-white text-center md:text-start leading-tight tracking-wider mb-4 sm:mb-5 md:mb-6 text-[28px] md:text-4xl lg:text-5xl"
                     style={{
                         fontFamily: "'Work Sans', sans-serif",
                         fontWeight: 500,
                     }}
                 >
-                    {content.heading}{" "}
+                    {content.heading}{" "} <br className="hidden xl:block" />
                     <span style={{ color: "#FFB414" }}>{content.highlight}</span>
                 </h1>
 
                 <p
-                    className="text-white leading-relaxed max-w-4xl text-[16px] sm:text-[20px] md:text-[26px] whitespace-pre-line"
+                    className="text-white text-center md:text-start leading-relaxed max-w-4xl tracking-wider text-xl md:text-lg xl:text-xl whitespace-pre-line"
                     style={{
                         fontFamily: "'Onset', sans-serif",
                         fontWeight: 400,

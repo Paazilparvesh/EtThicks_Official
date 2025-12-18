@@ -2,6 +2,9 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaShieldAlt, FaBrain, FaTrophy, FaHeart, FaChartLine } from "react-icons/fa";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
+
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -89,86 +92,120 @@ const WhyWorkWithUs = ({ slug }) => {
   };
 
   const content = contentMap[slug] || defaultContent;
+  const rawFeatures = content.features;
+  // if exactly 5 items, insert a placeholder at position 1 (second cell)
+  const displayFeatures =
+    rawFeatures.length === 5
+      ? [
+        rawFeatures[0],
+        { isPlaceholder: true }, // empty 2nd cell
+        ...rawFeatures.slice(1),
+      ]
+      : rawFeatures;
 
   const pinContainerRef = useRef(null);
   const titleRef = useRef(null);
   const gridRef = useRef(null);
 
   useLayoutEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
-    
-    // Responsive initial values
-    const initialTitleScale = isMobile ? 1.3 : isTablet ? 2 : 3;
-    const initialTitleY = isMobile ? '8vh' : isTablet ? '20vh' : '30vh';
-    const initialGridScale = isMobile ? 0.9 : isTablet ? 1.2 : 1.5;
-    const scrollEndValue = isMobile ? '+=800' : isTablet ? '+=1200' : '+=1500';
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    if (isMobile) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinContainerRef.current,
+          start: "clamp(top top)",
+          end: "clamp(+=2500)",
           pin: true,
-          start: "top top",
-          end: scrollEndValue,
-          scrub: 1,
+          scrub: 1.5,
+          // markers: true,
         },
       });
 
-      // Animate title
+      // 1. Background + title reveal (same as now)
       tl.fromTo(
         titleRef.current,
-        { scale: initialTitleScale, y: initialTitleY, opacity: 1 },
-        { scale: 1, y: 0, duration: 1, ease: 'power2.inOut' }
-      );
-
-      // Animate grid
-      tl.from(
-        gridRef.current,
-        { scale: initialGridScale, opacity: 0, duration: 1, ease: 'power2.inOut' },
-        "<"
-      );
+        { scale: 2.5, y: "25vh" },
+        { scale: 1, y: 0, ease: "power2.out" }
+      )
+        // 2. Background/grid fade in (no vertical motion yet)
+        .fromTo(
+          gridRef.current,
+          { scale: 1.1, opacity: 0 },
+          { scale: 1, opacity: 1, ease: "power2.out" },
+          "<"
+        )
+        // 3. Card entrance from bottom AFTER grid is visible
+        .from(
+          gridRef.current.querySelectorAll(".why-card"),
+          {
+            y: 60,
+            opacity: 0,
+            stagger: 0.02,
+            ease: "power2.out",
+          },
+          ">0.1" // start just after previous step
+        );
     }, pinContainerRef);
 
     return () => ctx.revert();
   }, []);
 
-  return (
-    <div ref={pinContainerRef} className="bg-black py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 text-center overflow-hidden min-h-screen flex flex-col justify-center">
-      
-      {/* Title */}
-      <h2
-        ref={titleRef}
-        className="text-white font-sans font-normal text-[22px] sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-16 px-4"
-      >
-        {content.title}
-      </h2>
 
-      {/* Feature Cards Grid */}
-      <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center w-full">
-        {content.features.map((item, idx) => (
-          <div
-            key={idx}
-            className={`
-              flex flex-col items-center justify-center
-              bg-gradient-to-b from-[#946500] to-black text-white
-              rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-6 lg:p-6 shadow-lg shadow-yellow-900/20
-              h-[200px] sm:h-[240px] md:h-[280px] lg:h-[340px] w-full max-w-[280px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px]
-              ${idx % 3 === 1 ? 'sm:-translate-y-3 md:-translate-y-5' : ''}
+  return (
+    <>
+      <div ref={pinContainerRef} className="bg-black py-20 md:py-0 md:pt-20 lg:py-24 sm:px-6 md:px-8 text-center overflow-hidden min-h-screen flex flex-col justify-center">
+
+        {/* Title */}
+        <h2
+          ref={titleRef}
+          className="text-white font-sans font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4"
+        >
+          {content.title}
+        </h2>
+
+        {/* Feature Cards Grid */}
+        <div ref={gridRef} className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center w-full px-8 ${rawFeatures.length === 6 ? "md:mt-40" : ""}  `}>
+          {displayFeatures.map((item, idx) => {
+            if (item.isPlaceholder) {
+              return (
+                <div
+                  key={`empty-${idx}`}
+                  className="w-full max-w-[280px] sm:max-w-[300px] lg:max-w-[300px]"
+                />
+              );
+            }
+
+            return (
+              <div
+                key={idx}
+                className={`
+                  why-card
+              flex flex-col items-start justify-start gap-4
+              bg-linear-to-b from-[#946500] to-black text-white
+              rounded-xl sm:rounded-2xl p-6 sm:p-6 md:p-6 lg:p-6 shadow-lg shadow-yellow-900/20
+              h-64 sm:h-60 md:h-[280px] lg:h-[300px] w-full sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px]
+              ${idx % 3 === 1 ? 'md:-translate-y-35' : ''} ${rawFeatures.length === 6 ? "md:-translate-y-15" : ""} 
             `}
-          >
-            <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
-              {React.cloneElement(item.icon, { 
-                size: window.innerWidth < 640 ? 24 : 28 
-              })}
-            </div>
-            <p className="font-sans font-normal text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] leading-relaxed text-center px-2">
-              {item.text}
-            </p>
-          </div>
-        ))}
+              >
+                <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
+                  {React.cloneElement(item.icon, { size: 38 })}
+                </div>
+                <p className="font-sans font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2">
+                  {item.text}
+                </p>
+              </div>
+            )
+          }
+          )}
+        </div>
       </div>
-    </div>
+
+
+
+    </>
+
   );
 };
 

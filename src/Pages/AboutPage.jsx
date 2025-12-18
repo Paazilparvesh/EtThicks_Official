@@ -15,7 +15,7 @@ const AboutPage = () => {
     <>
       {/* <Pack /> */}
 
-      <Abouthead />
+      {/* <Abouthead /> */}
 
       <CountSection />
 

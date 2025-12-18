@@ -8,6 +8,7 @@ import BlogSection from "/src/Components/HomeComponents/BlogSection.jsx";
 import FaqSection from "/src/Components/HomeComponents/FaqSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 import Creative from "/src/Components/HomeComponents/Creative.jsx";
+import Review from "/src/Components/ServiceComponents/Review";
 
 
 function HomePage() {
@@ -30,6 +31,8 @@ function HomePage() {
         <BrandSection />
 
         <BlogSection />
+
+        <Review />
 
         <FaqSection />
 

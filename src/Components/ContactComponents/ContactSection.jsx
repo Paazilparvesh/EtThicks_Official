@@ -10,7 +10,7 @@ const ContactSection = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [dotsPosition, setDotsPosition] = useState(0);
-  const [setTotalChars] = useState(0);
+  const [totalChars, setTotalChars] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -56,7 +56,7 @@ function InnerBlog() {
         )}
 
         <p
-          className="text-white text-lg"
+          className="text-white text-justify text-lg"
           style={{
             fontFamily: "'Work Sans', sans-serif",
             lineHeight: "1.8",

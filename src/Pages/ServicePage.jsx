@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import Landing from "../Components/servicecomponent/serviceone/Landing";
-import About from "../Components/servicecomponent/serviceone/About";
-import OurWorks from "../Components/servicecomponent/serviceone/OurWorks";
-import Review from "../Components/servicecomponent/serviceone/Review";
-import WhyWorkWithUs from "../Components/servicecomponent/serviceone/WhyWorkWithUs";
+import Landing from "/src/Components/ServiceComponents/Landing";
+import About from "/src/Components/ServiceComponents/About";
+import OurWorks from "/src/Components/ServiceComponents/OurWorks";
+import Review from "/src/Components/ServiceComponents/Review";
+import WhyWorkWithUs from "/src/Components/ServiceComponents/WhyWorkWithUs";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 
-function Serviceonepage() {
+function ServicePage() {
     const { slug } = useParams();
 
     return (
@@ -15,15 +15,17 @@ function Serviceonepage() {
 
             <About slug={slug} />
 
-            <OurWorks category={slug} />
-
+            <div className="bg-black">
+                <OurWorks category={slug} />
+            </div>
+            
             <WhyWorkWithUs slug={slug} />
 
-            <Review slug={slug} />
+            <Review />
 
             <CTASection />
         </>
     );
 }
 
-export default Serviceonepage;
+export default ServicePage;
