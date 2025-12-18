@@ -3,7 +3,7 @@ import Pack from '/src/Components/Aboutcomponents/Pack.jsx'
 import CountSection from '/src/Components/Aboutcomponents/CountSection'
 import OurStory from '/src/Components/Aboutcomponents/OurStory'
 import AboutSection from '/src/Components/Aboutcomponents/AboutSection'
-import Client from '/src/Components/Aboutcomponents/Client.jsx'
+import Client from './Components/Aboutcomponents/Client.jsx'
 import TeamSection from "/src/Components/HomeComponents/TeamSection.jsx"
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
