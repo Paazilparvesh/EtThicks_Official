@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import CurveBG from "/src/assets/home/Frame.png";
-
 import Pacman from "/src/assets/pacman.gif"; // pacman gif
 import { Link } from "react-router-dom";
 
@@ -10,47 +9,7 @@ function HeroSection() {
   const flyTextRef = useRef(null); // marquee text
   const pacmanRef = useRef(null); // gif pacman
 
-  // useEffect(() => {
-  // // Rotate the circle + arrow continuously
-  // gsap.to(circleRef.current, {
-  //   rotation: 360,
-  //   duration: 6,
-  //   repeat: -1,
-  //   ease: "linear",
-  //   transformOrigin: "50% 50%",
-  // });
-
-  //   // Animate "Grow with EtThicks"
-  //   const text = flyTextRef.current;
-  //   const pacman = pacmanRef.current;
-
-  //   if (text && pacman) {
-  //     const endX = pacman.offsetLeft + 40;
-  //     const startX = 120;
-
-  //     gsap.fromTo(
-  //       text,
-  //       { x: startX, opacity: 1 },
-  //       {
-  //         x: endX,
-  //         duration: 5,
-  //         ease: "linear",
-  //         repeat: -1,
-  //         onRepeat: () => gsap.set(text, { opacity: 1 }),
-  //         onUpdate: function () {
-  //           const textX = gsap.getProperty(text, "x");
-  //           if (textX >= endX - 10) {
-  //             gsap.to(text, { opacity: 0, duration: 0.3 });
-  //           }
-  //         },
-  //       }
-  //     );
-  //   }
-  // }, []);
-
-
   useEffect(() => {
-
     // Rotate the circle + arrow continuously
     gsap.to(circleRef.current, {
       rotation: 360,
@@ -59,7 +18,6 @@ function HeroSection() {
       ease: "linear",
       transformOrigin: "50% 50%",
     });
-
 
     const text = flyTextRef.current;
     const container = text.parentElement; // relative div
@@ -85,19 +43,17 @@ function HeroSection() {
     }
   }, []);
 
-
-
   return (
-    <div className="w-full xl:min-h-screen relative inset-0 bg-[#0f0f0f] bg-cover bg-center bg-no-repeat rounded-br-[60px] rounded-bl-[60px]"
+    <div
+      className="w-full xl:min-h-screen relative inset-0 bg-[#0f0f0f] bg-cover bg-center bg-no-repeat rounded-br-[60px] rounded-bl-[60px] "
       style={{
-        backgroundImage: `url(${CurveBG})`
+        backgroundImage: `url(${CurveBG})`,
       }}
     >
-      <div className="w-full h-full flex flex-col gap-10 ">
-
+      <div className="w-full h-full flex flex-col gap-10 mt-5 ">
         {/* Top Container */}
+        <div className="mt-13">
         <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-26 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-10  ">
-
           {/* Heading */}
           <div className="w-full md:w-[60vw] xl:w-[70vw] md:text-4xl text-white">
             <h1 className="mb-4">
@@ -126,14 +82,14 @@ function HeroSection() {
             <div className="mt-8 sm:mt-6">
               <Link to="/contact">
                 <button className="px-8 py-2 bg-orange-400 rounded-2xl text-gray-100 text-md md:text-sm lg:text-lg font-medium hover:scale-110 transition-all duration-500">
-                  Let’s Create Together
+                  Let's Create Together
                 </button>
               </Link>
             </div>
             <div className="flex flex-col items-start gap-3 mt-8">
               {/* Profile Images */}
               <div className="flex justify-center items-center gap-2">
-                <div className="flex  -space-x-2">
+                {/* <div className="flex  -space-x-2">
                   <img
                     src="https://randomuser.me/api/portraits/men/32.jpg"
                     alt="Client 1"
@@ -149,44 +105,40 @@ function HeroSection() {
                     alt="Client 3"
                     className="w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-black"
                   />
-                </div>
+                </div> */}
                 {/* 2k+ */}
-                <div className="text-white text-3xl sm:text-xl md:text-2xl font-semibold">
+                {/* <div className="text-white text-3xl sm:text-xl md:text-2xl font-semibold">
                   2K<span className="text-gray-300 text-3xl sm:text-lg">+</span>
-                </div>
+                </div> */}
               </div>
 
               {/* Number + Text */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-
-
                 {/* Dot + Happy Clients */}
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
-                  <span className="text-gray-400 text-xs md:text-lg">
+                  {/* <span className="w-2 h-2 rounded-full bg-yellow-500"></span> */}
+                  {/* <span className="text-gray-400 text-xs md:text-lg">
                     Happy Clients
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
-
           </div>
+        </div>
         </div>
 
         {/* Bottom Animation */}
-        <div className="w-full h-[20vh] md:h-0">
+        <div className="w-full h-[20vh] md:h-0 md:mt-34">
           <div className="w-full  relative">
             <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden">
               {/* <div className="w-full h-full bg-[#111111] rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[112.5px] rounded-br-[60px] sm:rounded-br-[80px] md:rounded-br-[112.5px] z-10 shadow-2xl" /> */}
-
 
               {/* Target line  */}
               <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden">
                 {/* Marquee flying text (hidden on mobile) */}
                 <div
                   ref={flyTextRef}
-                  className="w-[90vw] block text-white font-bold text-xs md:text-xl mt-1
-                   "
+                  className="w-[90vw] block text-white font-bold text-xs md:text-xl mt-1"
                 >
                   Grow with EtThicks
                 </div>
@@ -230,13 +182,12 @@ function HeroSection() {
                 </div>
               </div>
 
-
-
               {/* Pac-Man Gif */}
               <img
                 ref={pacmanRef}
                 className="absolute right-5 md:right-10 lg:right-14 2xl:right-18 md:-top-36 2xl:-top-30 transform scale-x-[-1] w-14 md:w-18 xl:w-22"
                 src={Pacman}
+                alt="Pacman"
               />
             </div>
           </div>

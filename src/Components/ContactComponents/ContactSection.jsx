@@ -1,6 +1,5 @@
 // src/components/ContactSection.jsx
 import React, { useRef, useState } from "react";
-// import emailjs from "@emailjs/browser";
 import grid from "/src/assets/ContactImage/grid.png";
 import Pacman from "/src/assets/Gif/Pacman.gif";
 
@@ -12,33 +11,50 @@ const ContactSection = () => {
   const [dotsPosition, setDotsPosition] = useState(0);
   const [totalChars, setTotalChars] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setSuccessMsg("");
     setErrorMsg("");
 
-    // emailjs
-    //   .sendForm(
-    //     "service_6t1wjag", // Your Service ID
-    //     "template_wzuocj8", // Your Template ID
-    //     formRef.current,
-    //     "4AnXDmbIUVcrm3tHZ" // ✅ Your Public Key
-    //   )
-    //   .then(
-    //     () => {
-    //       setLoading(false);
-    //       setSuccessMsg("Message sent successfully!");
-    //       formRef.current.reset();
-    //       setTotalChars(0);
-    //       setDotsPosition(0);
-    //     },
-    //     (error) => {
-    //       setLoading(false);
-    //       setErrorMsg("Oops! Something went wrong, please try again.");
-    //       console.error("EmailJS error:", error.text);
-    //     }
-    //   );
+    // Get form data
+    const formData = new FormData(formRef.current);
+    const data = {
+      data: {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      },
+    };
+
+    try {
+      const response = await fetch("http://localhost:1337/api/talk-with-uses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Success:", result);
+        setLoading(false);
+        setSuccessMsg("Message sent successfully!");
+        formRef.current.reset();
+        setTotalChars(0);
+        setDotsPosition(0);
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        setLoading(false);
+        setErrorMsg("Oops! Something went wrong, please try again.");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      setLoading(false);
+      setErrorMsg("Network error. Please check your connection and try again.");
+    }
   };
 
   const handleInputChange = () => {
@@ -80,7 +96,7 @@ const ContactSection = () => {
               className="flex gap-14"
               style={{
                 transform: `translateX(-${dotsPosition}px)`,
-                transition: 'transform 0.3s ease-out'
+                transition: "transform 0.3s ease-out",
               }}
             >
               {/* Generate enough dots to cover the movement */}
@@ -97,9 +113,7 @@ const ContactSection = () => {
         {/* Right Side: Heading + Form */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           {/* Playful "Let's talk!" heading with Nunito font */}
-          <h2
-            className="text-white text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-8 flex gap-1 leading-none font-nunito md:-ml-18 xl:ml-0"
-          >
+          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-8 flex gap-1 leading-none font-nunito md:-ml-18 xl:ml-0">
             <span className="inline-block transform -rotate-18">L</span>
             <span className="inline-block transform -rotate-15 -mt-2">e</span>
             <span className="inline-block transform rotate-3 -mt-2">t</span>
@@ -201,9 +215,7 @@ const ContactSection = () => {
       {/* ⬇ Full-width tilted line with animated ETTHICKS + Subtract.svg */}
       <div className="absolute top-40 md:top-130 left-0 w-full h-[42px] mt-16 flex items-center justify-center -rotate-5 overflow-hidden">
         {/* Static blue background */}
-        <div
-          className="absolute inset-0 w-full h-full bg-[#007388]"
-        ></div>
+        <div className="absolute inset-0 w-full h-full bg-[#007388]"></div>
 
         {/* Animated content */}
         <div className="relative w-full h-full flex items-center overflow-hidden">
@@ -211,20 +223,22 @@ const ContactSection = () => {
             {/* Double the content for seamless looping */}
             {[...Array(4)].map((_, setIndex) => (
               <React.Fragment key={setIndex}>
-                {Array(5).fill("EtThicks").map((word, i) => (
-                  <React.Fragment key={`${setIndex}-${i}`}>
-                    <span className="text-white text-2xl font-semibold tracking-wide whitespace-nowrap">
-                      {word}
-                    </span>
-                    {i !== 9 && (
-                      <img
-                        src={Pacman}
-                        alt="divider"
-                        className="w-16 h-auto shrink-0 p-1.5 rotate-x-180 rotate-z-180"
-                      />
-                    )}
-                  </React.Fragment>
-                ))}
+                {Array(5)
+                  .fill("EtThicks")
+                  .map((word, i) => (
+                    <React.Fragment key={`${setIndex}-${i}`}>
+                      <span className="text-white text-2xl font-semibold tracking-wide whitespace-nowrap">
+                        {word}
+                      </span>
+                      {i !== 9 && (
+                        <img
+                          src={Pacman}
+                          alt="divider"
+                          className="w-16 h-auto shrink-0 p-1.5 rotate-x-180 rotate-z-180"
+                        />
+                      )}
+                    </React.Fragment>
+                  ))}
               </React.Fragment>
             ))}
           </div>

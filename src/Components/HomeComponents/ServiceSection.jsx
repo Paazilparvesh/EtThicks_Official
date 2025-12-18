@@ -37,23 +37,17 @@ function ServiceSection() {
 
     // Create GSAP context scoped to this component
     const ctx = gsap.context(() => {
-      // panel elements
       const panels = gsap.utils.toArray(".panel");
 
-      // multiplier tweaks to control scroll range on very large screens
-      let multiplier = 1;
-      if (window.innerWidth >= 1440) multiplier = 1.3;
-      else if (window.innerWidth >= 1024) multiplier = 1.08;
-      else multiplier = 1;
-
-      // Get the last panel width to calculate proper centering
+      // Get the last panel to calculate proper centering
       const lastPanel = panels[panels.length - 1];
       const lastPanelWidth = lastPanel.offsetWidth;
-      
-      // Calculate scroll distance - reduce by 15% for perfect centering
-      const totalScrollWidth = contentWrapperRef.current.scrollWidth - window.innerWidth;
-      const reductionAmount = totalScrollWidth * 0.15; // 15% reduction
-      const scrollX = (totalScrollWidth - reductionAmount) * multiplier;
+      const viewportWidth = window.innerWidth;
+
+      // Calculate the exact scroll distance needed to center the last panel
+      // Total scroll width minus viewport width, plus half viewport minus half panel width
+      const totalScrollWidth = contentWrapperRef.current.scrollWidth;
+      const scrollX = totalScrollWidth - viewportWidth + (viewportWidth - lastPanelWidth) / 3;
 
       // Main horizontal scroll tween that pins the section
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
@@ -64,8 +58,11 @@ function ServiceSection() {
           pin: true,
           scrub: 1,
           end: () => `+=${scrollX}`,
-          // snap to panels (panels.length - 1 steps)
-          snap: { snapTo: 1 / (panels.length - 1), duration: { min: 0.2, max: 0.35 } },
+          // Snap to panels
+          snap: { 
+            snapTo: 1 / (panels.length - 1), 
+            duration: { min: 0.2, max: 0.35 } 
+          },
         },
       });
 
@@ -104,14 +101,13 @@ function ServiceSection() {
       }
     }, sectionRef);
 
-    // Refresh ScrollTrigger on resize so distances are recomputed
+    // Refresh ScrollTrigger on resize
     const onResize = () => {
       ScrollTrigger.refresh();
     };
     window.addEventListener("resize", onResize);
 
     return () => {
-      // cleanup
       gsap.killTweensOf(flyTextRef.current);
       ScrollTrigger.getAll().forEach((t) => t.kill());
       ctx.revert();
@@ -130,19 +126,18 @@ function ServiceSection() {
       className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0"
       style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
     >
-      {/* Horizontal wrapper for desktop, vertical for mobile */}
       <div
         ref={contentWrapperRef}
         className="flex flex-col md:flex-row h-full items-center md:items-stretch"
       >
-        {/* Left Title */}
+        {/* Left Title with 100px font size */}
         <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight text-center md:text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-[100px] leading-tight text-center md:text-left">
             OUR <br className="hidden md:block" /> Services
           </h2>
         </div>
 
-        {/* Panels container: row on md and up so horizontal scroll will show them side-by-side */}
+        {/* Panels container */}
         <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
           {/* Panel 1 - Content Creation */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
@@ -277,7 +272,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 8 - Influencer Marketing (NEW) */}
+          {/* Panel 8 - Influencer Marketing */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
@@ -296,7 +291,7 @@ function ServiceSection() {
             </div>
           </div>
 
-          {/* Panel 9 - Personal Branding (NEW) */}
+          {/* Panel 9 - Personal Branding */}
           <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg flex-shrink-0 overflow-hidden flex flex-col justify-between">
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4 font-['Nunito']">
