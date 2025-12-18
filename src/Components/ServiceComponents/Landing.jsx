@@ -70,166 +70,24 @@ const Landing = ({ slug }) => {
     <>
       <div className="relative min-h-screen bg-black flex justify-center items-center overflow-hidden">
         {/* Black layer (always full height, behind white layer) */}
-        <div className="absolute top-1/4 left-0 w-full min-h-[50%] bg-black text-white flex flex-col justify-center items-center gap-24 z-30">
-          <h1 className="animate-[top-text_1.5s_ease-out_0.5s_forwards] block text-5xl md:text-9xl md:scale-200 -mt-50 opacity-0 font-bold">{heroText.top}</h1>
-          <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-sm md:text-9xl md:scale-200 -mb-50 opacity-0 font-bold">{heroText.bottom}</h1>
+        <div className="absolute top-1/4 left-0 w-full min-h-[50%] bg-black text-white flex flex-col justify-center items-center gap-18  lg:gap-24 xl:gap-36 z-30 lg:mt-1">
+          <h1 className="animate-[top-text_1.5s_ease-out_0.5s_forwards] block text-7xl md:text-9xl lg:scale-140 xl:scale-170 opacity-0 font-bold -mt-2">{heroText.top}</h1>
+          <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-7xl md:text-9xl lg:scale-140 xl:scale-170 opacity-0 font-bold md:-mt-14">{heroText.bottom}</h1>
         </div>
 
         {/* White layer (padding animates from py-0 to py-50) */}
         <div
           ref={whiteLayerRef}
-          className="absolute top-1/2 left-0 w-full  bg-[#009BB5] flex flex-col justify-center items-center gap-24 z-40 py-0 -translate-y-1/2 animate-[paddingGrow_1.5s_ease-out_1s_forwards] overflow-hidden"
+          className="absolute top-1/2 -translate-y-1/2 left-0 w-full bg-[#009BB5] flex flex-col justify-center items-center gap-18 lg:gap-24 xl:gap-36 z-40 py-0  animate-[paddingGrow_1.5s_ease-out_1s_forwards] overflow-hidden blur-xs lg:mt-2"
         >
-          <h1 className="animate-[top-text_1.5s_ease-out_0.5s_forwards] block text-6xl md:text-9xl md:scale-200 -mt-50 text-[#FFAE00] font-bold">{heroText.top}</h1>
-          <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-6xl md:text-9xl md:scale-200 -mb-50 text-[#FFAE00] font-bold">{heroText.bottom}</h1>
+          <h1 className="animate-[top-text_1.5s_ease-out_0.5s_forwards] block text-7xl md:text-9xl lg:scale-140 xl:scale-170 -mt-52 text-[#FFAE00] font-bold ">{heroText.top}</h1>
+          <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-7xl md:text-9xl lg:scale-140 xl:scale-170 -mb-50 md:-mt-14 text-[#FFAE00] font-bold">{heroText.bottom}</h1>
         </div>
 
-        <div className="absolute top-1/2 left-0 w-full text-white flex flex-col justify-center items-center -mt-8 z-50">
-          <h1 className="text-6xl text-black font-normal font-['Brittany_Signature'] italic whitespace-nowrap">{displayTitle}</h1>
+        <div className="absolute top-1/2 left-0 w-full text-white flex flex-col justify-center items-center -mt-5 md:-mt-7 xl:-mt-10 z-50">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-normal italic whitespace-nowrap opacity-0 animate-[center-text_1.5s_ease-out_1.8s_forwards]">{displayTitle}</h1>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes paddingGrow {
-          from {
-            padding-top: -120px;
-            padding-bottom: 0;
-          }
-          to {
-            padding-top: 6.5rem;
-            padding-bottom: 6.5rem;
-          }
-        }
-        @keyframes top-text {
-          from {
-            transform: translateY(-150px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0px);
-            opacity: 1;
-          }
-        }
-
-        @keyframes bottom-text {
-          from {
-            transform: translateY(150px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0px);
-            opacity: 1;
-          }
-        }
-
-          /* Mobile (below md breakpoint ~768px) */
-  @media (max-width: 767px) {
-    @keyframes paddingGrow {
-      from {
-        padding-top: -80px;
-        padding-bottom: 0;
-      }
-      to {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-      }
-    }
-
-    @keyframes top-text {
-      from {
-        transform: translateY(-100px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-
-    @keyframes bottom-text {
-      from {
-        transform: translateY(100px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-  }
-
-  /* Tablet (768px - 1023px) */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    @keyframes paddingGrow {
-      from {
-        padding-top: -100px;
-        padding-bottom: 0;
-      }
-      to {
-        padding-top: 4.5rem;
-        padding-bottom: 4.5rem;
-      }
-    }
-
-    @keyframes top-text {
-      from {
-        transform: translateY(-120px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-
-    @keyframes bottom-text {
-      from {
-        transform: translateY(120px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-  }
-
-  /* Large desktop (above 1280px) */
-  @media (min-width: 1280px) {
-    @keyframes paddingGrow {
-      from {
-        padding-top: -140px;
-        padding-bottom: 0;
-      }
-      to {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-      }
-    }
-
-    @keyframes top-text {
-      from {
-        transform: translateY(-180px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-
-    @keyframes bottom-text {
-      from {
-        transform: translateY(180px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0px);
-        opacity: 1;
-      }
-    }
-  }
-      `}</style>
     </>
   )
 }
