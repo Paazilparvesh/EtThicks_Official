@@ -52,6 +52,7 @@ function HeroSection() {
     >
       <div className="w-full h-full flex flex-col gap-10 mt-5 ">
         {/* Top Container */}
+        <div className="mt-13">
         <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-26 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-10  ">
           {/* Heading */}
           <div className="w-full md:w-[60vw] xl:w-[70vw] md:text-4xl text-white">
@@ -123,6 +124,7 @@ function HeroSection() {
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         {/* Bottom Animation */}

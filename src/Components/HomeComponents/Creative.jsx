@@ -63,7 +63,7 @@ function Creative() {
                 </div>
                 
                 {/* Scrolling Pacman Animation at Bottom */}
-                <div className="w-full h-16 sm:h-20 flex items-center overflow-hidden bg-[#007388]  -rotate-2 mb-2.5">
+                <div className="w-full h-16 sm:h-20 flex items-center overflow-hidden bg-[#007388]  -rotate-1 mb-2.5">
                     <div className="animate-scroll-text flex items-center justify-center gap-3 sm:gap-4 px-6 sm:px-10 h-full w-max">
                         {/* Double the content for seamless looping */}
                         {[...Array(4)].map((_, setIndex) => (
