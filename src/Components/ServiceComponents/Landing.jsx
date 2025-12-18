@@ -78,14 +78,14 @@ const Landing = ({ slug }) => {
         {/* White layer (padding animates from py-0 to py-50) */}
         <div
           ref={whiteLayerRef}
-          className="absolute top-1/2 -translate-y-1/2 left-0 w-full bg-[#009BB5] flex flex-col justify-center items-center gap-18 lg:gap-24 xl:gap-36 z-40 py-0  animate-[paddingGrow_1.5s_ease-out_1s_forwards] overflow-hidden blur-xs lg:mt-2"
+          className="absolute top-1/2 -translate-y-1/2 left-0 w-full bg-[#009BB5] flex flex-col justify-center items-center gap-18 lg:gap-24 xl:gap-36 z-40 py-0  animate-[paddingGrow_1.5s_ease-out_1s_forwards] overflow-hidden lg:mt-2"
         >
           <h1 className="animate-[top-text_1.5s_ease-out_0.5s_forwards] block text-7xl md:text-9xl lg:scale-140 xl:scale-170 -mt-52 text-[#FFAE00] font-bold ">{heroText.top}</h1>
           <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-7xl md:text-9xl lg:scale-140 xl:scale-170 -mb-50 md:-mt-14 text-[#FFAE00] font-bold">{heroText.bottom}</h1>
         </div>
 
         <div className="absolute top-1/2 left-0 w-full text-white flex flex-col justify-center items-center -mt-5 md:-mt-7 xl:-mt-10 z-50">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-normal italic whitespace-nowrap opacity-0 animate-[center-text_1.5s_ease-out_1.8s_forwards]">{displayTitle}</h1>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-normal italic whitespace-nowrap opacity-0 animate-[center-text_1.5s_ease-out_1.8s_forwards]  font-waterfall">{displayTitle}</h1>
         </div>
       </div>
     </>
