@@ -1,60 +1,53 @@
-import React from 'react';
 import pack from "/src/assets/Gif/Pacman.gif";
 
 function Creative() {
     return (
         <>
             <section
-                className="relative w-full min-h-screen flex flex-col items-center justify-between overflow-hidden"
+                className="relative w-full min-h-[calc(100vh-18vh)]  flex flex-col items-center overflow-hidden"
                 style={{
                     background: 'radial-gradient(ellipse at center, #072a31, #000000)'
                 }}
             >
                 {/* Main Content Area with Pacman GIFs */}
-                <div className="relative w-full flex-1 flex items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
+                <div className="relative w-full flex-1 flex items-strecth justify-center px-4 sm:px-0">
 
                     {/* Left Pacman GIF with Blur Effect */}
-                    <div className="absolute top-14 left-0 sm:left-10 md:top-1/2 -translate-y-1/2 lg:block rotate-90">
+                    <div className="absolute top-1 left-0 lg:-left-50 md:top-1/2 -translate-y-1/2 lg:block rotate-90 md:rotate-0 opacity-85">
                         <div className="relative">
-                            {/* Blur background layer */}
-                            <div className="absolute inset-0 rounded-3xl -z-10"></div>
                             <img
                                 src={pack}
                                 alt="Pacman Left"
-                                className="size-120 sm:w-48 sm:h-60 md:w-[248px] md:h-80 object-contain relative z-10"
+                                className="size-120 md:size-70 lg:size-110 xl:size-130 object-contain scale-150 relative z-10"
                             />
                         </div>
                     </div>
 
                     {/* Center Content Container */}
-                    <div className="relative z-10 w-full max-w-6xl mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6">
-                        {/* Top Label */}
-                        <p className="text-white/70 font-normal text-sm sm:text-base tracking-wider uppercase mb-4">
-                            Our vision
-                        </p>
+                    <div className="flex-1 relative flex flex-col items-center justify-center z-10 w-full mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6 backdrop-blur-xs ">
 
                         {/* Main Heading */}
-                        <h1 className="text-white font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight">
+                        <h1 className="text-white font-normal text-3xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl leading-tight">
                             To Be the <span className="text-[#D89F5B]">Creative</span> Force Behind Brands<br className="hidden sm:block" />
                             That <span className="text-[#D89F5B]">Travel the World</span>
                         </h1>
 
                         {/* Description */}
-                        <p className="text-white font-normal text-base sm:text-lg md:text-xl lg:text-[28px] leading-relaxed max-w-4xl mx-auto">
-                            We aim to take brands in all eight directions — expanding<br className="hidden md:block" />
-                            their reach while making them trusted, impactful, and<br className="hidden md:block" />
+                        <p className="text-white font-light text-md sm:text-lg md:text-xl lg:text-xl leading-relaxed tracking-wider max-w-xl  mx-auto">
+                            We aim to take brands in all eight directions expanding
+                            their reach while making them trusted, impactful, and
                             unforgettable.
                         </p>
                     </div>
 
                     {/* Right Pacman GIF with Blur Effect */}
-                    <div className="absolute -bottom-50 right-0 sm:right-10 md:top-1/2  lg:block rotate-90 ">
+                    <div className="absolute -bottom-118 md:bottom-0 lg:-bottom-50 xl:-bottom-68 right-0 lg:-right-50 md:top-1/2 -translate-y-1/2 -rotate-90 md:rotate-0 opacity-85">
                         <div className="relative">
                             {/* Blur background layer */}
                             <img
                                 src={pack}
                                 alt="Pacman Right"
-                                className="size-120 sm:w-48 sm:h-60 md:w-[248px] md:h-80 object-contain transform scale-x-[-1] relative z-10"
+                                className="size-120 md:size-70 lg:size-110 xl:size-130 object-contain md:scale-x-[-1.5] transform scale-150 relative z-10"
                             />
                         </div>
                     </div>

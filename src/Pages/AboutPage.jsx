@@ -13,7 +13,7 @@ import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 const AboutPage = () => {
   return (
     <>
-      <Pack />
+      {/* <Pack /> */}
 
       {/* <Abouthead /> */}
 
