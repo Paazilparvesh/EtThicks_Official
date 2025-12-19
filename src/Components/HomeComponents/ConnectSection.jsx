@@ -7,13 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 const ConnectSection = () => {
   const pinRef = useRef(null);
   const circleRef = useRef(null);
-  const gridRef = useRef(null);
+  const gridRef1 = useRef(null);
+  const gridRef2 = useRef(null);
+  const gridRef3 = useRef(null);
   const h1Ref = useRef(null);
   const pRef = useRef(null);
   const imagesRef = useRef([]);
 
   useEffect(() => {
-    if (!pinRef.current || !circleRef.current || !h1Ref.current || !pRef.current || !gridRef.current) return;
+    if (!pinRef.current || !circleRef.current || !h1Ref.current || !pRef.current || !gridRef1.current || !gridRef2.current || !gridRef3.current) return;
 
     const isMobile = window.innerWidth < 768;
 
@@ -26,6 +28,11 @@ const ConnectSection = () => {
           scrub: true,
           pin: true,
         },
+      });
+
+      // ensure grids start hidden
+      gsap.set([gridRef1.current, gridRef2.current, gridRef3.current], {
+        autoAlpha: 0,
       });
 
       // Circle from top → center
@@ -61,49 +68,46 @@ const ConnectSection = () => {
         "-=1"
       );
 
-      // Batch 1: First 3 images appear
+      // GRID 1: comes in from left, then exits left
       tl.fromTo(
-        imagesRef.current.slice(0, 3),
-        { opacity: 0, yPercent: 100 },
-        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
-      );
+        gridRef1.current,
+        { autoAlpha: 0, yPercent: 50 },
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+      ).to(gridRef1.current, {
+        autoAlpha: 0,
+        yPercent: -50,
+        duration: 2,
+        ease: "power2.in",
+      });
 
-      // Batch 1: Images move up and fade out
-      tl.to(
-        imagesRef.current.slice(0, 3),
-        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
-      );
-
-      // Batch 2: Next 3 images appear
+      // GRID 2: comes in from right after grid1 leaves
       tl.fromTo(
-        imagesRef.current.slice(3, 6),
-        { opacity: 0, yPercent: 100 },
-        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
-      );
+        gridRef2.current,
+        { autoAlpha: 0, yPercent: 50 },
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+      ).to(gridRef2.current, {
+        autoAlpha: 0,
+        yPercent: -50,
+        duration: 2,
+        ease: "power2.in",
+      });
 
-      // Batch 2: Images move up and fade out
-      tl.to(
-        imagesRef.current.slice(3, 6),
-        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
-      );
-
-      // Batch 3: Last 3 images appear
+      // GRID 3: comes in from right after grid2 leaves
       tl.fromTo(
-        imagesRef.current.slice(6, 9),
-        { opacity: 0, yPercent: 100 },
-        { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2, stagger: 0.1 }
-      );
-
-      // Batch 3: Images move up and fade out
-      tl.to(
-        imagesRef.current.slice(6, 9),
-        { yPercent: -150, opacity: 0, ease: "power2.inOut", duration: 3, stagger: 0.05 }
-      );
+        gridRef3.current,
+        { autoAlpha: 0, yPercent: 50 },
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+      ).to(gridRef3.current, {
+        autoAlpha: 0,
+        yPercent: -50,
+        duration: 2,
+        ease: "power2.in",
+      });
 
       // Final transition - circle and text fade out
       tl.to(
         [circleRef.current, h1Ref.current, pRef.current],
-        { opacity: 0, yPercent: -30, ease: "power2.in", duration: 2 },
+        { opacity: 0, ease: "power2.in", duration: 2 },
         "-=1"
       );
 
@@ -155,136 +159,105 @@ const ConnectSection = () => {
           </p>
         </div>
 
-        {/* Image Grid */}
-        <div ref={gridRef} className="absolute inset-0 z-30 pointer-events-none flex flex-col items-center justify-center h-[300vh]">
+        <div
+          ref={gridRef1}
+          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
+        >
+          {/* 1st image: row 1, col 1 */}
+          <img
+            ref={el => (imagesRef.current[0] = el)}
+            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c"
+            alt=""
+            className="w-full h-full object-cover row-start-1 col-start-1"
+          />
 
-          <div className="flex items-center justify-center">
-            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c" alt="" className="w-[120px] h-40 sm:w-[150px] sm:h-[195px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl" />
-          </div>
+          {/* 2nd image: row 1, col 3 */}
+          <img
+            ref={el => (imagesRef.current[1] = el)}
+            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c"
+            alt=""
+            className="w-full h-full object-cover row-start-1 col-start-4"
+          />
 
-          {/* BATCH 1 - First 3 Images */}
+          {/* 3rd image: row 2, col 2 */}
+          <img
+            ref={el => (imagesRef.current[2] = el)}
+            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c"
+            alt=""
+            className="w-full h-full object-cover row-start-2 col-start-3"
+          />
 
-          {/* Image 1: Top-Left */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[120px] h-40 sm:w-[150px] sm:h-[195px] md:w-[260px] md:h-[310px] lg:w-[300px] lg:h-[350px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '5%',
-              left: '5%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
+          {/* 4th image: row 2, col 2 */}
+          <img
+            ref={el => (imagesRef.current[3] = el)}
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978"
+            alt=""
+            className="w-full h-full object-cover row-start-3 col-start-1"
+          />
 
-          {/* Image 2: Bottom-Center */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[130px] h-[145px] sm:w-40 sm:h-[180px] md:w-[300px] md:h-[270px] lg:w-[340px] lg:h-[300px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '70%',
-              left: '35%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* Image 3: Top-Right */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[115px] h-[150px] sm:w-[145px] sm:h-[185px] md:w-[250px] md:h-[290px] lg:w-[280px] lg:h-80 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '8%',
-              left: '70%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* BATCH 2 - Next 3 Images */}
-
-          {/* Image 4: Mid-Left */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[125px] h-[165px] sm:w-[155px] sm:h-[200px] md:w-[280px] md:h-[330px] lg:w-[320px] lg:h-[360px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '25%',
-              left: '8%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* Image 5: Perfect Center */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[135px] h-[135px] sm:w-[170px] sm:h-[170px] md:w-[320px] md:h-[295px] lg:w-[360px] lg:h-[330px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '45%',
-              left: '42%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* Image 6: Mid-Right */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[118px] h-[155px] sm:w-[148px] sm:h-[190px] md:w-[270px] md:h-[310px] lg:w-[300px] lg:h-[340px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '32%',
-              left: '68%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* BATCH 3 - Last 3 Images */}
-
-          {/* Image 7: Top-Center-Left */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[116px] h-[152px] sm:w-[146px] sm:h-[190px] md:w-[275px] md:h-[325px] lg:w-[310px] lg:h-[355px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '12%',
-              left: '12%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* Image 8: Bottom-Center-Right */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[133px] h-[130px] sm:w-[168px] sm:h-[165px] md:w-[310px] md:h-[285px] lg:w-[350px] lg:h-[315px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '68%',
-              left: '55%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
-
-          {/* Image 9: Top-Far-Right */}
-          {/* <div
-            ref={addToRefs}
-            className="absolute w-[110px] h-[145px] sm:w-[140px] sm:h-[180px] md:w-[265px] md:h-[305px] lg:w-[295px] lg:h-[335px] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            style={{
-              top: '18%',
-              left: '75%',
-              backgroundImage: `url(https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=500&q=80)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          /> */}
         </div>
+        <div
+          ref={gridRef2}
+          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
+        >
+
+          {/* 4th image: row 2, col 1 */}
+          <img
+            ref={el => (imagesRef.current[3] = el)}
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+            alt=""
+            className="w-full h-full object-cover row-start-2 col-start-1"
+          />
+
+          {/* 5th image: row 2, col 3 */}
+          <img
+            ref={el => (imagesRef.current[4] = el)}
+            src="https://images.unsplash.com/photo-1535378917042-10a22c95931a"
+            alt=""
+            className="w-full h-full object-cover row-start-2 col-start-3"
+          />
+
+          {/* 6th image: row 3, col 2 */}
+          <img
+            ref={el => (imagesRef.current[5] = el)}
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978"
+            alt=""
+            className="w-full h-full object-cover row-start-3 col-start-2"
+          />
+        </div>
+        <div
+          ref={gridRef3}
+          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
+        >
+
+
+          {/* 7th image: row 3, col 1 */}
+          <img
+            ref={el => (imagesRef.current[6] = el)}
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0"
+            alt=""
+            className="w-full h-full object-cover row-start-3 col-start-1"
+          />
+
+          {/* 8th image: row 3, col 3 */}
+          <img
+            ref={el => (imagesRef.current[7] = el)}
+            src="https://images.unsplash.com/photo-1557804506-669a67965ba0"
+            alt=""
+            className="w-full h-full object-cover row-start-3 col-start-3"
+          />
+
+          {/* 9th image: wherever you want, e.g. row 1, col 2 */}
+          <img
+            ref={el => (imagesRef.current[8] = el)}
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+            alt=""
+            className="w-full h-full object-cover row-start-1 col-start-2"
+          />
+        </div>
+
+
+
       </div>
     </section>
   );
