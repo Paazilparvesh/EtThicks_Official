@@ -23,105 +23,168 @@ function Pack() {
   const descriptionRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          start: "top top",
-          end: "bottom+=3500 center",
-          scrub: 2,
-          pin: true,
-          markers: true,
-        },
-      });
+    if (!wrapperRef.current) return;
+    const mm = gsap.matchMedia();
+    mm.add(
+      {
+        isDesktop: "(min-width: 1024px)",
+        isTablet: "(min-width: 768px) and (max-width: 1023px)",
+        isMobile: "(max-width: 767px)",
+      },
+      (context) => {
 
-      /* ===== PACK 1 (OUTWARD) ===== */
-      tl.to(".pack1-left", { x: -window.innerWidth / 2, duration: 1 }, 0);
-      tl.to(".pack1-top", { y: -window.innerHeight / 2, duration: 1 }, 0);
-      tl.to(".pack1-right", { x: window.innerWidth / 2, duration: 1 }, 0);
-      tl.to(".pack1-bottom", { y: window.innerHeight / 2, duration: 1 }, 0);
+        const { isDesktop, isTablet } = context.conditions;
+        // const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: isDesktop
+              ? "top top"
+              : isTablet
+                ? "top top"
+                : "top top", // mobile
+            end: isDesktop
+              ? "bottom+=2500 center+=150"
+              : isTablet
+                ? "bottom+=2500 center+=150"
+                : "bottom+=3000 center",
+            scrub: isDesktop ? 2 : 1, // smoother on desktop, faster on mobile
+            pin: true,
+          },
+        });
 
-      /* ===== PACK 2 (COME IN) ===== */
-      tl.fromTo(
-        ".image-left",
-        { x: -window.innerWidth / 2 - 100, opacity: 0, scale: 0.5 },
-        { x: 0, opacity: 1, scale: 1, duration: 1.5 },
-        1
-      );
+        // const tl = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: wrapperRef.current,
+        //     start: "top top",
+        //     end: "bottom+=3500 bottom",
+        //     scrub: 2,
+        //     pin: true,
+        //     markers: true,
+        //   },
+        // });
 
-      tl.fromTo(
-        ".image-top",
-        { y: -window.innerHeight / 2 - 100, opacity: 0, scale: 0.5 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5 },
-        1.1
-      );
+        const factor = 1.5; // 1.5x viewport
+        /* ===== PACK 1 (OUTWARD) ===== */
+        tl.to(".pack1-left", { x: -window.innerWidth * factor, duration: 1 }, 0);
+        tl.to(".pack1-top", { y: -window.innerHeight * factor, duration: 1 }, 0);
+        tl.to(".pack1-right", { x: window.innerWidth * factor, duration: 1 }, 0);
+        tl.to(".pack1-bottom", { y: window.innerHeight * factor, duration: 1 }, 0);
 
-      tl.fromTo(
-        ".image-right",
-        { x: window.innerWidth / 2 + 100, opacity: 0, scale: 0.5 },
-        { x: 0, opacity: 1, scale: 1, duration: 1.5 },
-        1.2
-      );
+        gsap.to(".pack1-left", {
+          rotation: 90,
+          transformOrigin: "50% 50%",
+          duration: 1,
+          ease: "power2.inOut",
+        });
 
-      tl.fromTo(
-        ".image-bottom",
-        { y: window.innerHeight / 2 + 100, opacity: 0, scale: 0.5 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5 },
-        1.3
-      );
+        gsap.to(".pack1-top", {
+          rotation: -90,
+          transformOrigin: "50% 50%",
+          duration: 1,
+          ease: "power2.inOut",
+        });
 
-      /* ===== SCALE UP ===== */
-      tl.to(imagesRef.current, { scale: 25, duration: 3 }, 3);
+        gsap.to(".pack1-bottom", {
+          rotation: 90,
+          transformOrigin: "50% 50%",
+          duration: 1,
+          ease: "power2.inOut",
+        });
 
-      /* ===== TEXT FADE IN ===== */
-      tl.fromTo(
-        headingRef.current,
-        { scale: 0.5, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.5 },
-        3.5
-      );
+        gsap.to(".pack1-right", {
+          rotation: -90,
+          transformOrigin: "50% 50%",
+          duration: 1,
+          ease: "power2.inOut",
+        });
 
-      tl.fromTo(
-        descriptionRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5 },
-        3.8
-      );
-    }, wrapperRef);
 
-    return () => ctx.revert();
+        /* ===== PACK 2 (COME IN) ===== */
+        tl.fromTo(
+          ".image-left",
+          { x: -window.innerWidth / 2 - 100, opacity: 0, scale: 1 },
+          { x: 0, opacity: 1, scale: 1, duration: 1.5 },
+          1
+        );
+
+        tl.fromTo(
+          ".image-top",
+          { y: -window.innerHeight / 2 - 100, opacity: 0, scale: 0.5 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.5 },
+          1
+        );
+
+        tl.fromTo(
+          ".image-right",
+          { x: window.innerWidth / 2 + 100, opacity: 0, scale: 0.5 },
+          { x: 0, opacity: 1, scale: 1, duration: 1.5 },
+          1
+        );
+
+        tl.fromTo(
+          ".image-bottom",
+          { y: window.innerHeight / 2 + 100, opacity: 0, scale: 0.5 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.5 },
+          1
+        );
+
+        /* ===== SCALE UP ===== */
+        tl.to(imagesRef.current, { scale: 25, duration: 3 }, 3);
+
+        /* ===== TEXT FADE IN ===== */
+        tl.fromTo(
+          headingRef.current,
+          { scale: 0.5, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 1.5 },
+          3
+        );
+
+        tl.fromTo(
+          descriptionRef.current,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.5 },
+          3.3
+        );
+
+        return () => {
+          tl.kill();
+        };
+      }, wrapperRef);
+
+    return () => mm.revert();
   }, []);
 
   return (
-    <div className="w-screen h-[450vh] bg-black overflow-hidden">
+    <div className="w-full h-[450vh] md:h-[550vh] xl:h-auto bg-black overflow-hidden">
       <div
         ref={wrapperRef}
-        className="w-full h-screen relative overflow-hidden"
+        className="w-full min-h-screen relative overflow-hidden"
       >
         {/* ===== PACK 1 ===== */}
-        <div className="pack1-container">
-          <img src={pockone} className="pack1 pack1-left" alt="Pack piece 1" />
-          <img src={pocktwo} className="pack1 pack1-top" alt="Pack piece 2" />
-          <img src={pockthree} className="pack1 pack1-right" alt="Pack piece 3" />
-          <img src={pockfour} className="pack1 pack1-bottom" alt="Pack piece 4" />
+        <div className="pack1-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-10 h-10">
+          <img src={pockone} className="pack1 pack1-left absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 1" />
+          <img src={pocktwo} className="pack1 pack1-top absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 2" />
+          <img src={pockthree} className="pack1 pack1-right absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 3" />
+          <img src={pockfour} className="pack1 pack1-bottom absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 4" />
         </div>
 
         {/* ===== PACK 2 ===== */}
-        <div ref={imagesRef} className="images-container">
-          <img src={pokone} className="image-piece image-left" alt="Image piece 1" />
-          <img src={poktwo} className="image-piece image-top" alt="Image piece 2" />
-          <img src={pokthree} className="image-piece image-right" alt="Image piece 3" />
-          <img src={pokfour} className="image-piece image-bottom" alt="Image piece 4" />
+        <div ref={imagesRef} className="images-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px]">
+          <img src={pokone} className="image-piece image-left absolute " alt="Image piece 1" />
+          <img src={poktwo} className="image-piece image-top absolute" alt="Image piece 2" />
+          <img src={pokthree} className="image-piece image-right absolute" alt="Image piece 3" />
+          <img src={pokfour} className="image-piece image-bottom absolute" alt="Image piece 4" />
         </div>
 
         {/* ===== TEXT ===== */}
-        <div className="text-content">
-          <h2 ref={headingRef} className="text-6xl font-bold mb-8 opacity-0">
+        <div className="text-content w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
+          <h2 ref={headingRef} className="text-5xl md:text-7xl font-bold mb-8 opacity-0">
             <span className="text-white">About </span>
             <span className="text-[#FFA500]">Us</span>
           </h2>
 
-          <p ref={descriptionRef} className="text-white text-xl opacity-0 max-w-4xl">
+          <p ref={descriptionRef} className="text-white text-lg opacity-0 max-w-xl mx-10 lg:mx-auto tracking-wider ">
             EtThicks is not just another digital agency — we're a storytelling
             powerhouse rooted in truth, trust, and transformation. Born from the
             Tamil word "Ettuthikkum", meaning to reach in all eight directions,
@@ -132,23 +195,6 @@ function Pack() {
       </div>
 
       <style>{`
-        /* ===== PACK 1 (CENTER FLOWER) ===== */
-        .pack1-container {
-          position: absolute;
-          width: 56px;
-          height: 56px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 10;
-        }
-
-        .pack1 {
-          position: absolute;
-          width: 22px;
-          height: 22px;
-        }
-
         .pack1-left {
           top: 50%;
           left: 0;
@@ -171,21 +217,6 @@ function Pack() {
         }
 
         /* ===== PACK 2 ===== */
-        .images-container {
-          position: absolute;
-          width: 300px;
-          height: 300px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-
-        .image-piece {
-          position: absolute;
-          width: 100px;
-          height: 100px;
-        }
-
         .image-left {
           top: 50%;
           left: 0;
@@ -205,15 +236,6 @@ function Pack() {
           bottom: 0;
           left: 50%;
           transform: translate(-50%, 50%);
-        }
-
-        .text-content {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          text-align: center;
-          z-index: 20;
         }
       `}</style>
     </div>
