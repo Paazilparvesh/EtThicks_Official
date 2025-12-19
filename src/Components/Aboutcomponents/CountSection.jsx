@@ -8,12 +8,14 @@ function CountSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const Base_Url = import.meta.env.VITE_API_URL
+
   // Fetch data from Strapi API
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:1337/api/count");
+        const response = await axios.get(`${Base_Url}/api/count`);
 
         // Extract data from Strapi response
         const apiData = response.data.data;
@@ -101,26 +103,26 @@ function CountSection() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-8 sm:gap-12">
         {/* Projects */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-[Work Sans]">
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
             {counts.projects}+
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] font-[Nunito] mt-2">PROJECTS</p>
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">PROJECTS</p>
         </div>
 
         {/* Clients */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-[Work Sans]">
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
             {counts.clients}+
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] font-[Nunito] mt-2">CLIENTS</p>
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">CLIENTS</p>
         </div>
 
         {/* Content Produced */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-[Work Sans]">
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
             {counts.contents}+
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] font-[Nunito] mt-2">
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">
             CONTENT PRODUCED
           </p>
         </div>

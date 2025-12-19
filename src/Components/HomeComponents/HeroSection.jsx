@@ -57,10 +57,10 @@ function HeroSection() {
           {/* Heading */}
           <div className="w-full md:w-[60vw] xl:w-[70vw] md:text-4xl text-white">
             <h1 className="mb-4">
-              <span className="inline text-white text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase leading-snug md:leading-[0px] tracking-wider">
+              <span className="inline text-white text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase leading-snug md:leading-0 tracking-wider">
                 Ettuthikkum
               </span>{" "}
-              <span className="inline text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-snug md:leading-[0px] tracking-wide">
+              <span className="inline text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-snug md:leading-0 tracking-wide">
                 comes
               </span>{" "}
               <span className="text-[#f09d01] text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold uppercase leading-snug tracking-wider">
@@ -178,7 +178,7 @@ function HeroSection() {
 
                 {/* Center Triangle */}
                 <div className="relative">
-                  <div className="w-0 h-0 border-l-[8px] sm:border-l-[10px] md:border-l-[12px] border-r-[8px] sm:border-r-[10px] md:border-r-[12px] border-t-[12px] sm:border-t-[15px] md:border-t-[18px] border-l-transparent border-r-transparent border-t-yellow-600"></div>
+                  <div className="w-0 h-0 border-l-8 sm:border-l-10 md:border-l-12 border-r-8 sm:border-r-10 md:border-r-12 border-t-12 sm:border-t-15 md:border-t-18 border-l-transparent border-r-transparent border-t-yellow-600"></div>
                 </div>
               </div>
 

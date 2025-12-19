@@ -44,7 +44,7 @@ function QuoteSection() {
     <>
       <div
         ref={sectionRef}
-        className="self-stretch  relative bg-black flex items-center justify-center px-4 overflow-hidden"
+        className="self-stretch  relative bg-black flex items-center justify-center px-4 py-50 overflow-hidden"
       >
         {/* ✅ Desktop layout (unchanged) */}
         <div className="hidden lg:flex absolute inset-0 z-0 items-center justify-between px-4 md:px-8">
@@ -66,20 +66,20 @@ function QuoteSection() {
 
         {/* Text content */}
         <div className="relative z-10 text-center px-4">
-          <div className="text-amber-500 text-3xl md:text-5xl lg:text-4xl font-semibold font-['Nunito'] leading-snug md:leading-[60px]">
+          <div className="text-amber-500 text-3xl md:text-5xl lg:text-4xl font-semibold leading-snug md:leading-[60px]">
             Why EtThicks Exists
           </div>
           <div className="mt-4 w-full max-w-5xl mx-auto">
-            <span className="text-gray-300 text-base sm:text-lg md:text-2xl font-normal font-['Nunito'] leading-relaxed md:leading-10">
+            <span className="text-gray-300 text-base sm:text-lg md:text-2xl font-normal leading-relaxed md:leading-10">
               “I started EtThicks to take brands in every direction possible —
               not just in reach, but in trust. Because when stories are told
               right, they don’t just sell. They live.”
               <br />
             </span>
-            <span className="text-white text-sm sm:text-lg md:text-2xl font-normal font-['Nunito'] leading-relaxed md:leading-9">
+            <span className="text-white text-sm sm:text-lg md:text-2xl font-normal leading-relaxed md:leading-9">
               {" "}—{" "}
             </span>
-            <span className="text-white text-sm sm:text-lg md:text-2xl font-semibold font-['Nunito'] leading-relaxed md:leading-9">
+            <span className="text-white text-sm sm:text-lg md:text-2xl font-semibold leading-relaxed md:leading-9">
               Lenin, Founder & Content Strategist
             </span>
           </div>

@@ -37,10 +37,10 @@ function FaqSection() {
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         {/* ✅ Top Row: Heading + Description */}
         <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-2">
-          <h2 className="w-full lg:w-1/2 text-white text-xl lg:text-4xl xl:text-5xl font-semibold font-['Nunito'] leading-snug">
-            All of Your Digital Marketing FAQ’s
+          <h2 className="w-full lg:w-1/2 xl:w-full text-white md:text-center lg:text-left text-2xl md:text-4xl lg:text-3xl xl:text-5xl font-normal leading-snug tracking-wider">
+            All of Your Digital Marketing <br className="hidden xl:block" /> FAQ’s
           </h2>
-          <p className="w-full lg:w-1/2 text-gray-400 text-sm lg:text-lg xl:text-xl font-light lg:pl-30 font-['Work_Sans'] lg:max-w-xl">
+          <p className="w-full lg:w-1/2 text-gray-300 md:text-center lg:text-right text-lg lg:text-lg xl:text-2xl font-light lg:pl-30 xl:pl-0">
             We blend creativity with performance to help brands grow, convert,
             and dominate their category.
           </p>
@@ -49,31 +49,31 @@ function FaqSection() {
         {/* ✅ Bottom Row: Image + FAQ List */}
         <div className="flex flex-col lg:flex-row items-start gap-12">
           {/* Left: Image with overlay */}
-          <div className="relative w-full lg:max-w-md mx-auto lg:mx-0">
+          <div className="relative w-full lg:max-w-sm mx-auto lg:mx-0">
             <img
               src={nam}
               alt="FAQ Illustration"
-              className="w-full h-64 md:h-96 lg:h-[420px] object-cover rounded-2xl"
+              className="w-full h-auto md:h-96 lg:h-[420px] object-cover rounded-2xl"
             />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-xl px-4 py-3 text-center text-zinc-800 text-base sm:text-lg font-medium font-['Nunito'] shadow-lg">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-xl px-4 py-3 text-center text-zinc-800 text-base sm:text-lg font-medium shadow-lg">
               Get Answer for All doubts here
             </div>
           </div>
 
           {/* Right: FAQ List */}
-          <div className="w-full flex-1 flex flex-col gap-4">
+          <div className="w-full flex-1 flex flex-col gap-4 lg:mt-4">
             {faqs.map((item, i) => (
               <div
                 key={i}
                 onClick={() => handleToggle(i)}
-                className="bg-zinc-900 rounded-xl border border-zinc-700 cursor-pointer transition-all duration-300 px-2 md:px-8 py-4 flex flex-col"
+                className="bg-zinc-900 rounded-xl border border-gray-200 cursor-pointer transition-all duration-300 px-2 md:px-4 py-2 lg:py-3 flex flex-col"
               >
                 <div className="flex justify-between items-center">
-                  <div className="flex items-center gap-1 md:gap-8">
-                    <span className="bg-amber-500 text-black text-sm sm:text-base font-bold px-2 py-1 rounded-full">
+                  <div className="flex items-center gap-1 md:gap-2">
+                    <span className="text-[#FFAE00] text-lg sm:text-base lg:text-xl xl:text-3xl font-bold px-2 py-1 rounded-full">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-white text-sm sm:text-lg font-normal">
+                    <span className="text-white text-sm sm:text-lg xl:text-xl font-normal">
                       {item.q}
                     </span>
                   </div>

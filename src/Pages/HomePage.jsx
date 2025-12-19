@@ -10,6 +10,9 @@ import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 import Creative from "/src/Components/HomeComponents/Creative.jsx";
 import Review from "/src/Components/ServiceComponents/Review";
 
+import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
+import Scrolling from "/src/Components/HomeComponents/Scrolling.jsx";
+
 
 function HomePage() {
   return (
@@ -25,10 +28,13 @@ function HomePage() {
         <ConnectSection />
 
         <Creative />
+        <Scrolling />
 
         <TeamSection />
 
         <BrandSection />
+
+        <QuoteSection />
 
         <BlogSection />
 

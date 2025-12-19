@@ -17,10 +17,10 @@ function OurStory() {
           {/* Text Section */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left order-1 lg:order-2">
             <h1 className="leading-none mb-4 md:mb-6">
-              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#FFAE00] font-semibold font-worksans uppercase ">
+              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#FFAE00] font-semibold uppercase ">
                 our{" "}
               </span>
-              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#ffffff] font-semibold font-worksans uppercase">
+              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#ffffff] font-semibold uppercase">
                 story
               </span>
             </h1>

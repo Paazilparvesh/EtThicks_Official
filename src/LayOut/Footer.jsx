@@ -20,19 +20,19 @@ const Footer = () => {
             <h3 className="text-gray-400 uppercase tracking-widest text-sm mb-2">
               Contact Us
             </h3>
-            <p className="font-inter text-sm text-gray-200">+1 891 989-11-91</p>
-            <p className="font-inter text-sm text-gray-200">info@logoipsum.com</p>
+            <p className="text-sm text-gray-200">+1 891 989-11-91</p>
+            <p className="text-sm text-gray-200">info@logoipsum.com</p>
           </div>
 
           {/* Right - Social Buttons */}
           <div className="flex justify-center md:justify-end space-x-4">
-            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs font-inter hover:bg-gray-800 transition">
+            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs hover:bg-gray-800 transition">
               Instagram
             </button>
-            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs font-inter hover:bg-gray-800 transition">
+            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs hover:bg-gray-800 transition">
               Whatsapp
             </button>
-            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs font-inter hover:bg-gray-800 transition">
+            <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs hover:bg-gray-800 transition">
               Twitter
             </button>
           </div>

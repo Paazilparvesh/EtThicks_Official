@@ -81,10 +81,6 @@ function Engag({ slug }) {
             <div className=" px-6 md:px-8">
                 <h1
                     className="text-white text-center md:text-start leading-tight tracking-wider mb-4 sm:mb-5 md:mb-6 text-[28px] md:text-4xl lg:text-5xl"
-                    style={{
-                        fontFamily: "'Work Sans', sans-serif",
-                        fontWeight: 500,
-                    }}
                 >
                     {content.heading}{" "} <br className="hidden xl:block" />
                     <span style={{ color: "#FFB414" }}>{content.highlight}</span>
@@ -92,10 +88,6 @@ function Engag({ slug }) {
 
                 <p
                     className="text-white text-center md:text-start leading-relaxed max-w-4xl tracking-wider text-xl md:text-lg xl:text-xl whitespace-pre-line"
-                    style={{
-                        fontFamily: "'Onset', sans-serif",
-                        fontWeight: 400,
-                    }}
                 >
                     {content.description}
                 </p>

@@ -9,7 +9,10 @@ const ContactSection = () => {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [dotsPosition, setDotsPosition] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [totalChars, setTotalChars] = useState(0);
+
+  const Base_Url = import.meta.env.VITE_API_URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ const ContactSection = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:1337/api/talk-with-uses", {
+      const response = await fetch(`${Base_Url}/api/talk-with-uses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +116,7 @@ const ContactSection = () => {
         {/* Right Side: Heading + Form */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           {/* Playful "Let's talk!" heading with Nunito font */}
-          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-8 flex gap-1 leading-none font-nunito md:-ml-18 xl:ml-0">
+          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-8 flex gap-1 leading-none md:-ml-18 xl:ml-0">
             <span className="inline-block transform -rotate-18">L</span>
             <span className="inline-block transform -rotate-15 -mt-2">e</span>
             <span className="inline-block transform rotate-3 -mt-2">t</span>
