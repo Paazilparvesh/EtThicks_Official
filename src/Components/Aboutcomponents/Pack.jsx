@@ -27,9 +27,10 @@ function Pack() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapperRef.current,
-          start: "top center",
+          start: "top top",
           end: "bottom+=3500 center",
           scrub: 2,
+          pin: true,
           markers: true,
         },
       });
@@ -40,37 +41,51 @@ function Pack() {
       tl.to(".pack1-right", { x: window.innerWidth / 2, duration: 1 }, 0);
       tl.to(".pack1-bottom", { y: window.innerHeight / 2, duration: 1 }, 0);
 
-      /* ===== PACK 2 (UNCHANGED) ===== */
-      tl.fromTo(".image-left",
+      /* ===== PACK 2 (COME IN) ===== */
+      tl.fromTo(
+        ".image-left",
         { x: -window.innerWidth / 2 - 100, opacity: 0, scale: 0.5 },
-        { x: 0, opacity: 1, scale: 1, duration: 1.5 }, 1
+        { x: 0, opacity: 1, scale: 1, duration: 1.5 },
+        1
       );
 
-      tl.fromTo(".image-top",
+      tl.fromTo(
+        ".image-top",
         { y: -window.innerHeight / 2 - 100, opacity: 0, scale: 0.5 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5 }, 1.1
+        { y: 0, opacity: 1, scale: 1, duration: 1.5 },
+        1.1
       );
 
-      tl.fromTo(".image-right",
+      tl.fromTo(
+        ".image-right",
         { x: window.innerWidth / 2 + 100, opacity: 0, scale: 0.5 },
-        { x: 0, opacity: 1, scale: 1, duration: 1.5 }, 1.2
+        { x: 0, opacity: 1, scale: 1, duration: 1.5 },
+        1.2
       );
 
-      tl.fromTo(".image-bottom",
+      tl.fromTo(
+        ".image-bottom",
         { y: window.innerHeight / 2 + 100, opacity: 0, scale: 0.5 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5 }, 1.3
+        { y: 0, opacity: 1, scale: 1, duration: 1.5 },
+        1.3
       );
 
+      /* ===== SCALE UP ===== */
       tl.to(imagesRef.current, { scale: 25, duration: 3 }, 3);
 
-      tl.fromTo(headingRef.current,
+      /* ===== TEXT FADE IN ===== */
+      tl.fromTo(
+        headingRef.current,
         { scale: 0.5, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.5 }, 3.5
+        { scale: 1, opacity: 1, duration: 1.5 },
+        3.5
       );
 
-      tl.fromTo(descriptionRef.current,
+      tl.fromTo(
+        descriptionRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5 }, 3.8
+        { y: 0, opacity: 1, duration: 1.5 },
+        3.8
       );
     }, wrapperRef);
 
@@ -81,23 +96,22 @@ function Pack() {
     <div className="w-screen h-[450vh] bg-black overflow-hidden">
       <div
         ref={wrapperRef}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+        className="w-full h-screen relative overflow-hidden"
       >
-
         {/* ===== PACK 1 ===== */}
         <div className="pack1-container">
-          <img src={pockone} className="pack1 pack1-left" />
-          <img src={pocktwo} className="pack1 pack1-top" />
-          <img src={pockthree} className="pack1 pack1-right" />
-          <img src={pockfour} className="pack1 pack1-bottom" />
+          <img src={pockone} className="pack1 pack1-left" alt="Pack piece 1" />
+          <img src={pocktwo} className="pack1 pack1-top" alt="Pack piece 2" />
+          <img src={pockthree} className="pack1 pack1-right" alt="Pack piece 3" />
+          <img src={pockfour} className="pack1 pack1-bottom" alt="Pack piece 4" />
         </div>
 
         {/* ===== PACK 2 ===== */}
         <div ref={imagesRef} className="images-container">
-          <img src={pokone} className="image-piece image-left" />
-          <img src={poktwo} className="image-piece image-top" />
-          <img src={pokthree} className="image-piece image-right" />
-          <img src={pokfour} className="image-piece image-bottom" />
+          <img src={pokone} className="image-piece image-left" alt="Image piece 1" />
+          <img src={poktwo} className="image-piece image-top" alt="Image piece 2" />
+          <img src={pokthree} className="image-piece image-right" alt="Image piece 3" />
+          <img src={pokfour} className="image-piece image-bottom" alt="Image piece 4" />
         </div>
 
         {/* ===== TEXT ===== */}
@@ -108,13 +122,17 @@ function Pack() {
           </h2>
 
           <p ref={descriptionRef} className="text-white text-xl opacity-0 max-w-4xl">
-           EtThicks is not just another digital agency — we're a storytelling powerhouse rooted in truth, trust, and transformation. Born from the Tamil word “Ettuthikkum”, meaning to reach in all eight directions, we specialize in content that carries your brand farther — emotionally, culturally, and commercially..
+            EtThicks is not just another digital agency — we're a storytelling
+            powerhouse rooted in truth, trust, and transformation. Born from the
+            Tamil word "Ettuthikkum", meaning to reach in all eight directions,
+            we specialize in content that carries your brand farther —
+            emotionally, culturally, and commercially.
           </p>
         </div>
       </div>
 
       <style>{`
-        /* ===== PACK 1 (CORRECT CENTER FLOWER) ===== */
+        /* ===== PACK 1 (CENTER FLOWER) ===== */
         .pack1-container {
           position: absolute;
           width: 56px;
@@ -131,12 +149,28 @@ function Pack() {
           height: 22px;
         }
 
-        .pack1-left   { top: 50%; left: 0; transform: translate(-50%, -50%); }
-        .pack1-top    { top: 0; left: 50%; transform: translate(-50%, -50%); }
-        .pack1-right  { top: 50%; right: 0; transform: translate(50%, -50%); }
-        .pack1-bottom { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+        .pack1-left {
+          top: 50%;
+          left: 0;
+          transform: translate(-50%, -50%);
+        }
+        .pack1-top {
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .pack1-right {
+          top: 50%;
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+        .pack1-bottom {
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 50%);
+        }
 
-        /* ===== PACK 2 (UNTOUCHED) ===== */
+        /* ===== PACK 2 ===== */
         .images-container {
           position: absolute;
           width: 300px;
@@ -152,10 +186,26 @@ function Pack() {
           height: 100px;
         }
 
-        .image-left { top: 50%; left: 0; transform: translate(-70%, -50%); }
-        .image-top { top: 17%; left: 50%; transform: translate(-50%, -50%); }
-        .image-right { top: 50%; right: 0; transform: translate(50%, -50%); }
-        .image-bottom { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+        .image-left {
+          top: 50%;
+          left: 0;
+          transform: translate(-70%, -50%);
+        }
+        .image-top {
+          top: 17%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .image-right {
+          top: 50%;
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+        .image-bottom {
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 50%);
+        }
 
         .text-content {
           position: absolute;
