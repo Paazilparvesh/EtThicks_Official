@@ -29,12 +29,13 @@ function ServiceSection() {
 
     // Desktop: Lenis smooth scrolling
     const lenis = new Lenis({ duration: 1.2, smooth: true });
+    let rafId;
 
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Create GSAP context scoped to this component
     const ctx = gsap.context(() => {
@@ -46,9 +47,11 @@ function ServiceSection() {
       const viewportWidth = window.innerWidth;
 
       // Calculate the exact scroll distance needed to center the last panel
-      // Total scroll width minus viewport width, plus half viewport minus half panel width
       const totalScrollWidth = contentWrapperRef.current.scrollWidth;
-      const scrollX = totalScrollWidth - viewportWidth + (viewportWidth - lastPanelWidth) / 3;
+      const scrollX =
+        totalScrollWidth -
+        viewportWidth +
+        (viewportWidth - lastPanelWidth) / 3;
 
       // Main horizontal scroll tween that pins the section
       const mainScrollTween = gsap.to(contentWrapperRef.current, {
@@ -62,7 +65,7 @@ function ServiceSection() {
           // Snap to panels
           snap: {
             snapTo: 1 / (panels.length - 1),
-            duration: { min: 0.2, max: 0.35 }
+            duration: { min: 0.2, max: 0.35 },
           },
         },
       });
@@ -83,7 +86,11 @@ function ServiceSection() {
           panel,
           { scale: 0.92, opacity: 0.6 },
           { scale: 1, opacity: 1, ease: "power2.inOut" }
-        ).to(panel, { scale: 0.92, opacity: 0.6, ease: "power2.inOut" });
+        ).to(panel, {
+          scale: 0.92,
+          opacity: 0.6,
+          ease: "power2.inOut",
+        });
       });
 
       // Marquee / fly text movement synced to horizontal scroll
@@ -109,37 +116,31 @@ function ServiceSection() {
     window.addEventListener("resize", onResize);
 
     return () => {
-      gsap.killTweensOf(flyTextRef.current);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      // Proper cleanup order
+      if (rafId) cancelAnimationFrame(rafId);
       ctx.revert();
+      if (lenis) lenis.destroy();
       window.removeEventListener("resize", onResize);
-      try {
-        lenis.destroy();
-      } catch (err) {
-        // ignore if lenis destroy fails
-        console.error("Error :", err)
-      }
     };
   }, []);
 
-
-  // Framer Motion variants for mobile entrance animations
+  // Framer Motion variants for mobile entrance animations - FASTER LOADING
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.8,
-        delayChildren: 0.5
-      }
-    }
+        staggerChildren: 0.3,
+        delayChildren: 0.2, // Reduced from 0.5 to 0.2 for faster loading
+      },
+    },
   };
 
   const panelVariants = {
     hidden: {
       opacity: 0,
-      y: 80,
-      scale: 0.6
+      y: 50, // Reduced from 80 for faster animation
+      scale: 0.8, // Reduced from 0.6 for smoother effect
     },
     visible: {
       opacity: 1,
@@ -147,220 +148,32 @@ function ServiceSection() {
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    }
+        stiffness: 120, // Increased for faster response
+        damping: 15, // Increased for less bounce
+      },
+    },
   };
 
   const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 }, // Reduced from 30
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        duration: 0.6, // Reduced from 0.8
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
-    // <section
-    //   ref={sectionRef}
-    //   className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0"
-    //   style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
-    // >
-    //   <div
-    //     ref={contentWrapperRef}
-    //     className="flex flex-col md:flex-row h-full items-center md:items-stretch"
-    //   >
-    //     {/* Left Title with 100px font size */}
-    //     <div className="shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center">
-    //       <h2 className="text-3xl sm:text-4xl md:text-[100px] leading-tight text-center md:text-left">
-    //         OUR <br className="hidden md:block" /> Services
-    //       </h2>
-    //     </div>
-
-    //     {/* Panels container */}
-    //     <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
-    //       {/* Panel 1 - Content Creation */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Content Creation
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img1}
-    //             alt="Content"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 2 - Digital Marketing */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Digital Marketing
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             Social strategy, performance campaigns, platform-specific content that meets people where they are.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img3}
-    //             alt="Marketing"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 3 - Brand Storytelling */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Brand Storytelling
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img2}
-    //             alt="Storytelling"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 4 - TV Commercials */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             TV Commercials
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             High-impact 30s/60s spots that break through the noise and drive results.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img4}
-    //             alt="TV Commercials"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 5 - Product Photography */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Product Photography
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             Studio-quality product shots that make your offerings irresistible.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img5}
-    //             alt="Photography"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 6 - Lead Generation */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Lead Generation
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             Funnel-optimized landing pages, email sequences, and conversion funnels that deliver qualified leads.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img6}
-    //             alt="Lead Generation"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 7 - Social Media Management */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Social Media Management
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img7}
-    //             alt="Social Media Management"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 8 - Influencer Marketing */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Influencer Marketing
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             Social strategy, performance campaigns, platform-specific content that meets people where they are.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img3}
-    //             alt="Influencer Marketing"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-
-    //       {/* Panel 9 - Personal Branding */}
-    //       <div className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between">
-    //         <div>
-    //           <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
-    //             Personal Branding
-    //           </h3>
-    //           <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-    //             From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
-    //           </p>
-    //         </div>
-    //         <div className="flex justify-center">
-    //           <img
-    //             src={img2}
-    //             alt="Personal Branding"
-    //             className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
     <section
       ref={sectionRef}
       className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0"
-      style={{ backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)" }}
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse at center, #072a31, #000000)",
+      }}
     >
       <motion.div
         ref={contentWrapperRef}
@@ -368,7 +181,7 @@ function ServiceSection() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0.2 }} // Reduced from 0.3 for earlier trigger
       >
         {/* Left Title with 100px font size */}
         <motion.div
@@ -384,198 +197,216 @@ function ServiceSection() {
         <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
           {/* Panel 1 - Content Creation */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Content Creation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                Reels, ad films, corporate AVs, long-form YouTube — stories that captivate and convert.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                Reels, ad films, corporate AVs, long-form YouTube — stories that
+                captivate and convert.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img1}
                 alt="Content"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 2 - Digital Marketing */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Digital Marketing
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                Social strategy, performance campaigns, platform-specific content that meets people where they are.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                Social strategy, performance campaigns, platform-specific
+                content that meets people where they are.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img3}
                 alt="Marketing"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 3 - Brand Storytelling */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Brand Storytelling
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                From positioning and emotional narrative to campaign ideation —
+                we give your brand a powerful voice.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img2}
                 alt="Storytelling"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 4 - TV Commercials */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 TV Commercials
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                High-impact 30s/60s spots that break through the noise and drive results.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                High-impact 30s/60s spots that break through the noise and drive
+                results.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img4}
                 alt="TV Commercials"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 5 - Product Photography */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Product Photography
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                Studio-quality product shots that make your offerings irresistible.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                Studio-quality product shots that make your offerings
+                irresistible.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img5}
                 alt="Photography"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 6 - Lead Generation */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Lead Generation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                Funnel-optimized landing pages, email sequences, and conversion funnels that deliver qualified leads.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                Funnel-optimized landing pages, email sequences, and conversion
+                funnels that deliver qualified leads.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img6}
                 alt="Lead Generation"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 7 - Social Media Management */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Social Media Management
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                From positioning and emotional narrative to campaign ideation —
+                we give your brand a powerful voice.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img7}
                 alt="Social Media Management"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 8 - Influencer Marketing */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Influencer Marketing
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                Social strategy, performance campaigns, platform-specific content that meets people where they are.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                Social strategy, performance campaigns, platform-specific
+                content that meets people where they are.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img3}
                 alt="Influencer Marketing"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
 
           {/* Panel 9 - Personal Branding */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[640px] h-[300px] sm:h-[360px] md:h-[432px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
               <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
                 Personal Branding
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-tight line-clamp-2 max-w-xs font-extralight">
-                From positioning and emotional narrative to campaign ideation — we give your brand a powerful voice.
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+                From positioning and emotional narrative to campaign ideation —
+                we give your brand a powerful voice.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <img
                 src={img2}
                 alt="Personal Branding"
-                className="w-32 h-24 sm:w-40 sm:h-28 md:w-56 md:h-40 lg:w-64 lg:h-44 object-cover object-center rounded-md mx-auto"
+                loading="lazy"
+                className="w-[316px] h-[233px] object-cover object-center rounded-md"
               />
             </div>
           </motion.div>
