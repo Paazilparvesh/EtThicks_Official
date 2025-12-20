@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import CurveBG from "/src/assets/home/Frame.png";
-import Pacman from "/src/assets/pacman.gif"; // pacman gif
+import Pacman from "/src/assets/Gif/Pacman.gif"; // pacman gif
 import { Link } from "react-router-dom";
 
 function HeroSection() {
@@ -23,23 +23,36 @@ function HeroSection() {
     const container = text.parentElement; // relative div
 
     if (text && container) {
-      const containerWidth = container.offsetWidth;
-      const textWidth = text.offsetWidth;
+      // const containerWidth = container.offsetWidth;
+      // const textWidth = text.offsetWidth;
 
-      const animateMarquee = () => {
-        gsap.fromTo(
-          text,
-          { x: -textWidth }, // start from the right edge
-          {
-            x: containerWidth, // move to left edge
-            duration: 5,
-            ease: "linear",
-            onComplete: animateMarquee, // repeat animation after it ends
-          }
-        );
-      };
+      // Duplicate text for seamless loop
+      text.innerHTML = "Grow with EtThicks • Grow with EtThicks • Grow with EtThicks";
 
-      animateMarquee(); // start the loop
+      gsap.to(text, {
+        xPercent: -100, // Move exactly 1 text width left
+        duration: 8,
+        ease: "none",
+        repeat: -1, // Infinite loop
+        modifiers: {
+          xPercent: (x) => (parseFloat(x) % 100) + "px" // Seamless reset
+        }
+      })
+
+      // const animateMarquee = () => {
+      //   gsap.fromTo(
+      //     text,
+      //     { x: -textWidth }, // start from the right edge
+      //     {
+      //       x: containerWidth, // move to left edge
+      //       duration: 5,
+      //       ease: "linear",
+      //       onComplete: animateMarquee, // repeat animation after it ends
+      //     }
+      //   );
+      // };
+
+      // animateMarquee(); // start the loop
     }
   }, []);
 
@@ -50,12 +63,11 @@ function HeroSection() {
         backgroundImage: `url(${CurveBG})`,
       }}
     >
-      <div className="w-full h-full flex flex-col gap-10 mt-5 ">
+      <div className="w-full h-full flex flex-col items-between mt-5 ">
         {/* Top Container */}
-        <div className="mt-13">
-        <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-26 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-10  ">
+        <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-26 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-0  ">
           {/* Heading */}
-          <div className="w-full md:w-[60vw] xl:w-[70vw] md:text-4xl text-white">
+          <div className="w-full md:w-[60vw] xl:w-[70vw] text-4xl md:text-4xl text-white">
             <h1 className="mb-4">
               <span className="inline text-white text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase leading-snug md:leading-0 tracking-wider">
                 Ettuthikkum
@@ -74,14 +86,14 @@ function HeroSection() {
 
           {/* Button & Description */}
           <div className="w-full md:w-[40vw] lg:w-[35vw] xl:max-w-sm">
-            <div className="text-gray-400 text-sm md:text-md xl:text-lg font-medium">
+            <div className="text-[#828282] text-sm md:text-md xl:text-lg font-medium">
               Our team of creatives, strategists, and storytellers works closely
               with clients to turn ideas into impactful media that connects with
               real people.
             </div>
-            <div className="mt-8 sm:mt-6">
+            <div className="mt-12 sm:mt-6">
               <Link to="/contact">
-                <button className="px-8 py-2 bg-orange-400 rounded-2xl text-gray-100 text-md md:text-sm lg:text-lg font-medium hover:scale-110 transition-all duration-500">
+                <button className="px-8 py-2 bg-[#f09d01] rounded-2xl text-gray-100 text-md md:text-sm lg:text-lg font-light hover:scale-110 transition-all duration-500">
                   Let's Create Together
                 </button>
               </Link>
@@ -125,16 +137,14 @@ function HeroSection() {
             </div>
           </div>
         </div>
-        </div>
 
         {/* Bottom Animation */}
-        <div className="w-full h-[20vh] md:h-0 md:mt-34">
-          <div className="w-full  relative">
-            <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden">
-              {/* <div className="w-full h-full bg-[#111111] rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[112.5px] rounded-br-[60px] sm:rounded-br-[80px] md:rounded-br-[112.5px] z-10 shadow-2xl" /> */}
+        <div className="w-full h-[10vh] md:h-0 mt-10 md:mt-34 ">
+          <div className="w-full  relative bg-white z-40">
+            <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden bg-white z-40">
 
               {/* Target line  */}
-              <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden">
+              <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden ">
                 {/* Marquee flying text (hidden on mobile) */}
                 <div
                   ref={flyTextRef}
@@ -185,7 +195,7 @@ function HeroSection() {
               {/* Pac-Man Gif */}
               <img
                 ref={pacmanRef}
-                className="absolute right-5 md:right-10 lg:right-14 2xl:right-18 md:-top-36 2xl:-top-30 transform scale-x-[-1] w-14 md:w-18 xl:w-22"
+                className="absolute -top-4 md:-top-48 lg:-top-52 2xl:-top-50 right-0 transform scale-x-[-1] size-24 md:size-44 lg:size-52 2xl:size-62"
                 src={Pacman}
                 alt="Pacman"
               />
