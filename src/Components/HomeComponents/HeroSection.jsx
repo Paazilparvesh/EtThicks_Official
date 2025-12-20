@@ -10,51 +10,33 @@ function HeroSection() {
   const pacmanRef = useRef(null); // gif pacman
 
   useEffect(() => {
-    // Rotate the circle + arrow continuously
+    // Rotate circle
     gsap.to(circleRef.current, {
       rotation: 360,
-      duration: 6,
+      duration: 10,
       repeat: -1,
       ease: "linear",
       transformOrigin: "50% 50%",
     });
 
-    const text = flyTextRef.current;
-    const container = text.parentElement; // relative div
+    // Marquee animation (LEFT ➜ RIGHT)
+    const marquee = flyTextRef.current;
 
-    if (text && container) {
-      // const containerWidth = container.offsetWidth;
-      // const textWidth = text.offsetWidth;
+    if (marquee) {
+      const totalWidth = marquee.scrollWidth / 2;
 
-      // Duplicate text for seamless loop
-      text.innerHTML = "Grow with EtThicks • Grow with EtThicks • Grow with EtThicks";
+      // Start off-screen left
+      gsap.set(marquee, { x: -totalWidth });
 
-      gsap.to(text, {
-        xPercent: -100, // Move exactly 1 text width left
-        duration: 8,
-        ease: "none",
-        repeat: -1, // Infinite loop
-        modifiers: {
-          xPercent: (x) => (parseFloat(x) % 100) + "px" // Seamless reset
-        }
-      })
-
-      // const animateMarquee = () => {
-      //   gsap.fromTo(
-      //     text,
-      //     { x: -textWidth }, // start from the right edge
-      //     {
-      //       x: containerWidth, // move to left edge
-      //       duration: 5,
-      //       ease: "linear",
-      //       onComplete: animateMarquee, // repeat animation after it ends
-      //     }
-      //   );
-      // };
-
-      // animateMarquee(); // start the loop
+      gsap.to(marquee, {
+        x: 0,
+        duration: 10,
+        ease: "linear",
+        repeat: -1,
+      });
     }
   }, []);
+
 
   return (
     <div
@@ -144,15 +126,24 @@ function HeroSection() {
             <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden bg-white z-40">
 
               {/* Target line  */}
-              <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9  absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden ">
-                {/* Marquee flying text (hidden on mobile) */}
+              <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9 absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden">
                 <div
                   ref={flyTextRef}
-                  className="w-[90vw] block text-white font-bold text-xs md:text-xl mt-1"
+                  className="flex whitespace-nowrap text-white font-bold text-xs md:text-xl will-change-transform"
                 >
-                  Grow with EtThicks
+                  {Array.from({ length: 20 }).map((_, index) => (
+                    <>
+                      <span key={index} className="mx-6">
+                        Grow with EtThicks
+                      </span>
+                      <span key={index} className="">
+                        •
+                      </span>
+                    </>
+                  ))}
                 </div>
               </div>
+
 
               {/* Rotating Circle + Arrow (hidden on mobile)  */}
               <div
