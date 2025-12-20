@@ -31,7 +31,7 @@ function Blogs() {
   };
 
   const handleBlogClick = (blog) => {
-    navigate("/blog/details", { state: { blog } });
+    navigate("/blogs/details", { state: { blog } });
   };
 
   // Helper function to get image URL safely from array

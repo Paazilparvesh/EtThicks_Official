@@ -320,7 +320,7 @@ function Header() {
             </button>
 
             <button
-              onClick={() => handleNavClick("/blog")}
+              onClick={() => handleNavClick("/blogs")}
               className="block w-full text-left px-4 py-3 hover:bg-gray-800 hover:text-orange-300"
             >
               Blog

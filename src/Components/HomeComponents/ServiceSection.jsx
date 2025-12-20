@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { motion } from "framer-motion";
@@ -169,7 +170,7 @@ function ServiceSection() {
   return (
     <section
       ref={sectionRef}
-      className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0"
+      className="w-full min-h-screen overflow-x-hidden pt-8 md:pt-0 hide-scrollbar"
       style={{
         backgroundImage:
           "radial-gradient(ellipse at center, #072a31, #000000)",

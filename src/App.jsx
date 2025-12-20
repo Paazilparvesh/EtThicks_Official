@@ -52,8 +52,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/details" element={<InnerBlog />} />
+        <Route path="/blogs" element={<BlogPage />} />
+        <Route path="/blogs/details" element={<InnerBlog />} />
         <Route path="/service/:slug" element={<ServicePage />} />
         {/* 404 Fallback */}
         <Route path="*" element={<NotFound />} />
