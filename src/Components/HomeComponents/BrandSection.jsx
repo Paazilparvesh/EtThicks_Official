@@ -11,30 +11,56 @@ import img9 from "/src/assets/home/pep.png";
 
 function BrandSection() {
   return (
-    <div 
-      className="w-full relative overflow-hidden py-12"
+    <div
+      className="w-full relative h-screen px-0 bg-black"
       style={{
         backgroundImage: "radial-gradient(ellipse at center, #072a31, #000000)"
       }}
     >
       {/* Desktop (1440px) layout */}
-      <div className="hidden lg:block w-full relative">
-        <img src={img5} alt="Brand 5" className="w-30 xl:w-30 h-36 left-[84px] top-[145px] xl:top-[15px] absolute object-contain" />
-        <img src={img6} alt="Brand 6" className="w-30 xl:w-36 h-50 xl:h-72 left-[84px] top-[330px] xl:top-[220px] absolute" />
-        <img src={img4} alt="Brand 4" className="w-30 xl:w-34 h-54 xl:h-80 left-[800px] xl:left-[1210px] xl:top-[180px] top-[145px] absolute" />
-        <img src={img9} alt="Brand 9" className="w-36 xl:w-80 h-36 xl:h-30 left-[790px] xl:left-[850px] top-[379px] absolute object-cover" />
+      <div className="hidden lg:block w-[calc(100vw-150px)] mx-auto h-[calc(100vh-30vh)] relative">
 
-        <img src={img1} alt="Brand 1" className="w-60 xl:w-64 h-26 xl:h-36 left-[81px] xl:left-[230px] top-[5px] xl:top-[15px] absolute" />
-        <img src={img2} alt="Brand 2" className="w-46 xl:w-70 h-26 xl:h-36 left-[382px] xl:left-[550px] top-[5px] xl:top-[15px] absolute" />
-        <img src={img7} alt="Brand 7" className="w-52 h-30 left-[248px] top-[405px] absolute" />
-        <img src={img8} alt="Brand 8" className="w-56 h-26 left-[530px] top-[409px] absolute" />
-        <img src={img3} alt="Brand 3" className="w-66 xl:w-120 h-26 xl:h-36 left-[635px] xl:left-[880px] xl:top-[15px] top-[5px] absolute" />
-
-        {/* Outer Rounded Container */}
-        <div className="w-[calc(100vw-150px)] mx-auto h-[calc(100vh-170px)] bg-white/10 rounded-[77px] border border-white/10 backdrop-blur-sm" />
+        <div className="w-[calc(100vw-150px)] mx-auto lg:h-[calc(100vh-59vh)] xl:h-[calc(100vh-25vh)] 2xl:h-[calc(100vh-8vh)] bg-white/10 rounded-[77px] border border-white/10 backdrop-blur-xs  absolute" />
+        {/* TOP */}
+        <div className="w-full flex items-center justify-between gap-10 px-5 xl:px-10 2xl:px-5 pt-8  opacity-90 2xl:opacity-100">
+          <div className="">
+            <img src={img1} alt="Brand 1" className="2xl:w-[calc(100%-10%)] h-auto" />
+          </div>
+          <div className="">
+            <img src={img2} alt="Brand 2" className="2xl:w-[calc(100%-10%)] h-auto" />
+          </div>
+          <div className="flex justify-end">
+            <img src={img3} alt="Brand 3" className="2xl:w-[calc(100%-10%)] h-auto" />
+          </div>
+        </div>
+        {/* BOTTOM */}
+        <div className="flex items-end justify-between px-5 xl:px-10 2xl:px-5 gap-10 opacity-90  2xl:opacity-100">
+          <div className="flex flex-col gap-6">
+            <div className="">
+              <img src={img5} alt="Brand 5" className="2xl:size-[calc(100%-10%)]" />
+            </div>
+            <div className="">
+              <img src={img6} alt="Brand 6" className="2xl:size-[calc(100%-10%)]" />
+            </div>
+          </div>
+          <div className="">
+            <img src={img7} alt="Brand 7" className="2xl:size-[calc(100%-10%)]" />
+          </div>
+          <div className="">
+            <img src={img8} alt="Brand 8" className="2xl:size-[calc(100%-10%)]" />
+          </div>
+          <div className="flex flex-col gap-6">
+            <div className="">
+              <img src={img4} alt="Brand 4" className="2xl:size-[calc(100%-10%)]" />
+            </div>
+            <div className="">
+              <img src={img9} alt="Brand 9" className="2xl:size-[calc(100%-10%)]" />
+            </div>
+          </div>
+        </div>
 
         {/* Text Overlay */}
-        <div className="w-full absolute top-60 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none pt-12">
+        <div className="w-full absolute top-60 lg:top-70 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none xl:pt-12">
           <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold text-center">
             Brand Personality
           </h1>
@@ -57,7 +83,7 @@ function BrandSection() {
         </p>
 
         {/* Brands in Bento Grid */}
-        <div className="absolute grid grid-cols-4 grid-rows-3 gap-4 mt-8 opacity-40 blur-sm px-10">
+        <div className="absolute grid grid-cols-4 grid-rows-3 gap-4 mt-8 opacity-20 blur-sm px-10">
           <img src={img1} alt="Brand 1" className="w-full h-full object-cover col-span-2 row-span-1" />
           <img src={img2} alt="Brand 2" className="w-full h-full object-cover col-span-2 row-span-1" />
           <img src={img3} alt="Brand 3" className="w-full h-full object-cover col-span-1 row-span-1" />
