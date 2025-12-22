@@ -13,6 +13,17 @@ import img5 from "/src/assets/home/potography.png";
 import img6 from "/src/assets/home/leadgen.png";
 import img7 from "/src/assets/home/socialone.png";
 
+// Import SVG images
+import svg1 from "/src/assets/Homeconnect/11.svg";
+import svg2 from "/src/assets/Homeconnect/22.svg";
+import svg3 from "/src/assets/Homeconnect/33.svg";
+import svg4 from "/src/assets/Homeconnect/44.svg";
+import svg5 from "/src/assets/Homeconnect/55.svg";
+import svg6 from "/src/assets/Homeconnect/66.svg";
+import svg7 from "/src/assets/Homeconnect/77.svg";
+import svg8 from "/src/assets/Homeconnect/88.svg";
+import svg9 from "/src/assets/Homeconnect/99.svg";
+
 gsap.registerPlugin(ScrollTrigger);
 
 function ServiceSection() {
@@ -132,7 +143,7 @@ function ServiceSection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.3,
-        delayChildren: 0.2, // Reduced from 0.5 to 0.2 for faster loading
+        delayChildren: 0.2,
       },
     },
   };
@@ -140,8 +151,8 @@ function ServiceSection() {
   const panelVariants = {
     hidden: {
       opacity: 0,
-      y: 50, // Reduced from 80 for faster animation
-      scale: 0.8, // Reduced from 0.6 for smoother effect
+      y: 50,
+      scale: 0.8,
     },
     visible: {
       opacity: 1,
@@ -149,19 +160,19 @@ function ServiceSection() {
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 120, // Increased for faster response
-        damping: 15, // Increased for less bounce
+        stiffness: 120,
+        damping: 15,
       },
     },
   };
 
   const titleVariants = {
-    hidden: { opacity: 0, y: 20 }, // Reduced from 30
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6, // Reduced from 0.8
+        duration: 0.6,
         ease: "easeOut",
       },
     },
@@ -182,7 +193,7 @@ function ServiceSection() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }} // Reduced from 0.3 for earlier trigger
+        viewport={{ once: true, amount: 0.2 }}
       >
         {/* Left Title with 100px font size */}
         <motion.div
@@ -212,10 +223,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img1}
+                src={svg1}
                 alt="Content"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -236,10 +247,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img3}
+                src={svg2}
                 alt="Marketing"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -260,10 +271,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img2}
+                src={svg3}
                 alt="Storytelling"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -284,10 +295,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img4}
+                src={svg4}
                 alt="TV Commercials"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -308,10 +319,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img5}
+                src={svg5}
                 alt="Photography"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -332,10 +343,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img6}
+                src={svg6}
                 alt="Lead Generation"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -356,10 +367,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img7}
+                src={svg7}
                 alt="Social Media Management"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[506px] h-[353px] object-contain"
               />
             </div>
           </motion.div>
@@ -380,10 +391,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img3}
+                src={svg8}
                 alt="Influencer Marketing"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
@@ -404,10 +415,10 @@ function ServiceSection() {
             </div>
             <div className="flex justify-center mt-4">
               <img
-                src={img2}
+                src={svg9}
                 alt="Personal Branding"
                 loading="lazy"
-                className="w-[316px] h-[233px] object-cover object-center rounded-md"
+                className="w-[396px] h-[293px] object-contain"
               />
             </div>
           </motion.div>
