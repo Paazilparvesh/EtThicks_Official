@@ -15,6 +15,11 @@ import iconthree from "/src/assets/icons/iconthre.png";
 import iconfour from "/src/assets/icons/iconfour.png";
 import iconfive from "/src/assets/icons/iconfive.png";
 import iconsix from "/src/assets/icons/iconsix.png";
+import iconseven from "/src/assets/icons/iconseven.png"
+import iconeight from "/src/assets/icons/iconeight.png"
+import iconnine from "/src/assets/icons/iconnine.png"
+import iconten from "/src/assets/icons/iconten.png"
+import iconeleven from "/src/assets/icons/iconeleven.png"
 
 import TailoredSocial from "/src/assets/icons/Frame 1686559148.png";
 import DataTrends from "/src/assets/icons/Frame 1686559149.png";
@@ -36,14 +41,56 @@ const WhyWorkWithUs = ({ slug }) => {
     "digital-marketing": {
       title: "Why Work With Us?",
       features: [
-        { icon: <FaShieldAlt size={28} />, text: "Boosts Trust & Credibility" },
-        { icon: <FaBrain size={28} />, text: "Helps People Remember You" },
-        { icon: <FaTrophy size={28} />, text: "Sets You Apart in a Crowded Market" },
-        { icon: <FaHeart size={28} />, text: "Creates Emotional Connections" },
-        {
-          icon: <FaChartLine size={28} />,
-          text: "Increases Conversions & Brand Loyalty",
-        },
+       {
+    icon: (
+      <img
+        src={iconseven}
+        alt="Trust & Credibility"
+        className="w-7 h-7"
+      />
+    ),
+    text: "Boosts Trust & Credibility",
+  },
+  {
+    icon: (
+      <img
+        src={iconeight}
+        alt="Brand Recall"
+        className="w-7 h-7"
+      />
+    ),
+    text: "Helps People Remember You",
+  },
+  {
+    icon: (
+      <img
+        src={iconnine}
+        alt="Market Differentiation"
+        className="w-7 h-7"
+      />
+    ),
+    text: "Sets You Apart in a Crowded Market",
+  },
+  {
+    icon: (
+      <img
+        src={iconten}
+        alt="Emotional Connection"
+        className="w-7 h-7"
+      />
+    ),
+    text: "Creates Emotional Connections",
+  },
+  {
+    icon: (
+      <img
+        src={iconeleven}
+        alt="Conversions & Loyalty"
+        className="w-7 h-7"
+      />
+    ),
+    text: "Increases Conversions & Brand Loyalty",
+  },
       ],
     },
 
