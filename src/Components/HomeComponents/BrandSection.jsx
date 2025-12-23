@@ -61,10 +61,10 @@ function BrandSection() {
 
         {/* Text Overlay */}
         <div className="w-full absolute top-60 lg:top-70 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center pointer-events-none xl:pt-12">
-          <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold text-center">
+          <h1 className="text-amber-500 text-6xl md:text-7xl xl:text-8xl font-semibold text-center font-worksans">
             Brand Personality
           </h1>
-          <p className="text-white text-xl md:text-2xl mt-6 text-center max-w-3xl leading-relaxed">
+          <p className="text-white text-xl md:text-2xl mt-6 text-center max-w-3xl leading-relaxed font-nunito">
             We aim to take brands in all eight directions — expanding their reach
             while making them trusted, impactful, and unforgettable.
           </p>

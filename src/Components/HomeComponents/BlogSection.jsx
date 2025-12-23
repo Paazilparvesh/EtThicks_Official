@@ -89,14 +89,13 @@ function BlogSection() {
 
   return (
     <div className="w-full min-h-screen relative overflow-hidden px-6 sm:px-8 md:px-12 py-16" style={{ background: 'radial-gradient(ellipse at center, #072a31, #000000)' }}>
-      {/* <div className="border-b-4 border-yellow-500 w-19 md:w-30 -mb-4.5 md:-mb-7"></div> */}
       <h1
         style={{
           backgroundImage: `url(${yellow})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
         }}
-        className="lg:hidden bg-clip-text text-transparent md:text-center text-3xl md:text-5xl font-medium uppercase leading-none relative z-10 mb-10"
+        className="lg:hidden bg-clip-text text-transparent md:text-center text-3xl md:text-5xl font-medium uppercase leading-none relative z-10 mb-10 font-worksans"
       >
         Blog
       </h1>
@@ -111,19 +110,19 @@ function BlogSection() {
           onClick={() => handleBlogClick(latestBlog)}
         >
           {/* Blog Heading */}
-          <h1 className="hidden lg:flex text-white text-8xl xl:text-9xl xl:scale-125 xl:translate-x-20 font-semibold uppercase leading-none relative z-10 mb-10">
+          <h1 className="hidden lg:flex text-white text-8xl xl:text-9xl xl:scale-125 xl:translate-x-20 font-semibold uppercase leading-none relative z-10 mb-10 font-worksans">
             Blog
           </h1>
 
           <div className="">
 
             {/* Blog Title */}
-            <h2 className="text-white text-2xl md:text-3xl lg:text-2xl xl:text-4xl font-medium relative z-10">
+            <h2 className="text-white text-2xl md:text-3xl lg:text-2xl xl:text-4xl font-medium relative z-10 font-worksans">
               {latestBlog.name}
             </h2>
 
             {/* Blog Description */}
-            <p className="text-gray-300 text-lg md:text-lg lg:text-sm xl:text-xl font-normal leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10">
+            <p className="text-gray-300 text-lg md:text-lg lg:text-sm xl:text-xl font-normal leading-relaxed mt-4 max-w-full md:max-w-2xl relative z-10 font-nunito">
               {latestBlog.description.substring(0, 150)}...{" "}
               <span className="text-amber-500 underline">More</span>
             </p>
@@ -163,7 +162,7 @@ function BlogSection() {
               className="w-full h-full object-fit group-hover:scale-105 transition-transform"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black to-transparent" />
-            <p className="absolute bottom-4 left-4 text-white text-xl sm:text-lg md:text-xl font-medium leading-snug">
+            <p className="absolute bottom-4 left-4 text-white text-xl sm:text-lg md:text-xl font-medium leading-snug font-nunito">
               {blog.name}
             </p>
           </div>

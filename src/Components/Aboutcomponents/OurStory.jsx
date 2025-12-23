@@ -17,15 +17,15 @@ function OurStory() {
           {/* Text Section */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left order-1 lg:order-2">
             <h1 className="leading-none mb-4 md:mb-6">
-              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#FFAE00] font-semibold uppercase ">
+              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#FFAE00] font-semibold uppercase font-worksans ">
                 our{" "}
               </span>
-              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#ffffff] font-semibold uppercase">
+              <span className="text-5xl md:text-7xl lg:text-8xl xl:text-[152px] text-[#ffffff] font-semibold uppercase font-worksans">
                 story
               </span>
             </h1>
 
-            <h2 className="text-gray-300 text-lg md:text-[16px] lg:text-xl font-normal leading-relaxed tracking-wide max-w-2xl lg:max-w-4xl mx-auto lg:mx-0">
+            <h2 className="text-gray-300 text-lg md:text-[16px] lg:text-xl font-normal leading-relaxed tracking-wide max-w-2xl lg:max-w-4xl mx-auto lg:mx-0 font-nunito">
               It began with a spark. A thought. A question: "What if stories
               could travel?" From that spark, EtThicks came to life. Not in a
               boardroom. Not from a brief. But where creativity meets

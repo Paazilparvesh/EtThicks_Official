@@ -116,7 +116,7 @@ const ContactSection = () => {
         {/* Right Side: Heading + Form */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
           {/* Playful "Let's talk!" heading with Nunito font */}
-          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-extrabold mb-8 flex gap-1 leading-none md:-ml-18 xl:ml-0">
+          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-semibold mb-8 flex gap-1 leading-none md:-ml-18 xl:ml-0 font-worksans">
             <span className="inline-block transform -rotate-18">L</span>
             <span className="inline-block transform -rotate-15 -mt-2">e</span>
             <span className="inline-block transform rotate-3 -mt-2">t</span>
@@ -133,7 +133,7 @@ const ContactSection = () => {
           {/* Form Box */}
           <div className="relative bg-white shadow-lg overflow-hidden [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
             <div className="p-4 xl:p-6">
-              <p className="text-gray-700 text-sm md:text-base mb-8 leading-relaxed pr-10">
+              <p className="text-gray-700 text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
                 If you have any questions, just fill in the contact form, and we
                 will answer you shortly. If you are living nearby, come visit at
                 one of our comfortable offices.
@@ -147,7 +147,7 @@ const ContactSection = () => {
               >
                 {/* Name */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1">
+                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
                     Name:
                   </label>
                   <input
@@ -161,7 +161,7 @@ const ContactSection = () => {
 
                 {/* Email */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1">
+                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
                     Email address:
                   </label>
                   <input
@@ -175,7 +175,7 @@ const ContactSection = () => {
 
                 {/* Message */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1">
+                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
                     Message:
                   </label>
                   <textarea

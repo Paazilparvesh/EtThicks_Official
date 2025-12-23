@@ -99,7 +99,7 @@ function OurWorks({ category }) {
                 className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 md:px-8 lg:px-16 flex flex-col h-auto sm:h-auto md:h-[671px]"
             >
                 <div className="container mx-auto max-w-7xl flex-1 flex flex-col items-center justify-center">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-center">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-center font-worksans">
                         OUR WORKS
                     </h1>
                     <p className="text-white text-lg sm:text-xl">No portfolio items available for this category.</p>
@@ -121,7 +121,7 @@ function OurWorks({ category }) {
             className="py-6 px-6 sm:px-6 md:px-8 lg:px-16 flex flex-col h-auto sm:h-auto md:h-[671px] rounded-4xl lg:py-10"
         >
             <div className="container mx-auto flex-1 flex flex-col">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-start sm:text-left">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white text-start sm:text-left font-worksans">
                     OUR WORKS
                 </h1>
 
@@ -155,7 +155,7 @@ function OurWorks({ category }) {
                                     </div>
 
                                     <div className=" w-full flex items-center justify-start px-6 py-4 sm:px-4">
-                                        <h3 className="text-2xl sm:text-base md:text-lg lg:text-2xl font-bold text-white text-start line-clamp-2">
+                                        <h3 className="text-2xl sm:text-base md:text-lg lg:text-2xl font-bold text-white text-start line-clamp-2 font-nunito">
                                             {item.title}
                                         </h3>
                                     </div>

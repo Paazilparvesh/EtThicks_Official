@@ -31,18 +31,18 @@ function InnerBlog() {
       <div className="w-full p-8 text-sm lg:text-lg flex-1 max-w-4xl xl:max-w-5xl mx-auto">
         <Link
           to="/blog"
-          className="text-yellow-400 mb-6 inline-block hover:underline"
+          className="text-yellow-400 mb-6 inline-block hover:underline font-nunito"
         >
           ← Back to Blogs
         </Link>
 
         <h1
-          className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+          className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-4 font-worksans"
         >
           {blog.name}
         </h1>
 
-        <p className="text-gray-400 mb-6">
+        <p className="text-gray-400 mb-6 ">
           {new Date(blog.createdAt).toLocaleDateString()}
         </p>
 
@@ -57,7 +57,7 @@ function InnerBlog() {
         )}
 
         <p
-          className="text-white text-justify text-lg"
+          className="text-white text-justify text-lg font-nunito"
         >
           {blog.description}
         </p>

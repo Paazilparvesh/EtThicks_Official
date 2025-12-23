@@ -65,12 +65,12 @@ function QuoteSection() {
         </div>
 
         {/* Text content */}
-        <div className="relative z-10 text-center px-4">
-          <div className="text-amber-500 text-3xl md:text-5xl lg:text-4xl font-semibold leading-snug md:leading-[60px]">
+        <div className="relative z-10 text-center px-4 h-auto">
+          <div className="text-amber-500 text-3xl md:text-5xl lg:text-4xl font-semibold leading-snug md:leading-[60px]font-worksans">
             Why EtThicks Exists
           </div>
           <div className="mt-4 w-full max-w-5xl mx-auto">
-            <span className="text-gray-300 text-base sm:text-lg md:text-2xl font-normal leading-relaxed md:leading-10">
+            <span className="text-gray-300 text-base sm:text-lg md:text-2xl font-normal leading-relaxed md:leading-10 font-nunito">
               “I started EtThicks to take brands in every direction possible —
               not just in reach, but in trust. Because when stories are told
               right, they don’t just sell. They live.”
@@ -79,8 +79,9 @@ function QuoteSection() {
             <span className="text-white text-sm sm:text-lg md:text-2xl font-normal leading-relaxed md:leading-9">
               {" "}—{" "}
             </span>
-            <span className="text-white text-sm sm:text-lg md:text-2xl font-semibold leading-relaxed md:leading-9">
-              Lenin, Founder & Content Strategist
+            <span className=" text-gray-300 text-sm sm:text-lg md:text-2xl font-semibold leading-relaxed md:leading-9 font-nunito">
+              <span className="font-worksans md:text-3xl text-white mr-2">
+                Lenin,</span> Founder & Content Strategist
             </span>
           </div>
         </div>

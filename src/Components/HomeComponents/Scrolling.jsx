@@ -11,7 +11,7 @@ const Scrolling = () => {
                         <React.Fragment key={setIndex}>
                             {Array(12).fill("EtThicks").map((word, i) => (
                                 <React.Fragment key={`${setIndex}-${i}`}>
-                                    <span className="text-white text-3xl md:text-2xl font-semibold tracking-wide whitespace-nowrap">
+                                    <span className="text-white text-3xl md:text-2xl font-medium tracking-wide whitespace-nowrap font-worksans">
                                         {word}
                                     </span>
                                     {i !== 4 && (

@@ -27,13 +27,13 @@ function Creative() {
                     <div className="flex-1 relative flex flex-col items-center justify-center z-10 w-full mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6 backdrop-blur-xs ">
 
                         {/* Main Heading */}
-                        <h1 className="text-white font-normal text-3xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl leading-tight">
+                        <h1 className="text-white font-normal text-3xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl leading-tight font-worksans">
                             To Be the <span className="text-[#D89F5B]">Creative</span> Force Behind Brands<br className="hidden sm:block" />
                             That <span className="text-[#D89F5B]">Travel the World</span>
                         </h1>
 
                         {/* Description */}
-                        <p className="text-white font-light text-md sm:text-lg md:text-xl lg:text-xl leading-relaxed tracking-wider max-w-xl  mx-auto">
+                        <p className="text-white font-light text-md sm:text-lg md:text-xl lg:text-xl leading-relaxed tracking-wider max-w-xl  mx-auto font-nunito">
                             We aim to take brands in all eight directions expanding
                             their reach while making them trusted, impactful, and
                             unforgettable.

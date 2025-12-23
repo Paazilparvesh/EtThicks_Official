@@ -158,7 +158,7 @@ const WhyWorkWithUs = ({ slug }) => {
         {/* Title */}
         <h2
           ref={titleRef}
-          className="text-white font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4"
+          className="text-white font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4 font-worksans"
         >
           {content.title}
         </h2>
@@ -190,7 +190,7 @@ const WhyWorkWithUs = ({ slug }) => {
                 <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
                   {React.cloneElement(item.icon, { size: 38 })}
                 </div>
-                <p className="font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2">
+                <p className="font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2 font-nunito">
                   {item.text}
                 </p>
               </div>

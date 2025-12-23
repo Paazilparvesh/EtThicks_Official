@@ -202,7 +202,7 @@ function Header() {
               Contact us
             </Link>
 
-            <Link to="/blog" className="hover:text-orange-300 transition-colors">
+            <Link to="/blogs" className="hover:text-orange-300 transition-colors">
               Blog
             </Link>
 

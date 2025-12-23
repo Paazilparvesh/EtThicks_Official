@@ -29,10 +29,10 @@ function TeamSection() {
   }
 
   return (
-    <div className=" bg-black text-white py-16 px-4 sm:px-6 md:px-10 lg:px-16">
+    <div className=" bg-black text-white py-20 px-4 sm:px-6 md:px-10 lg:px-16">
       {/* Header */}
       <h1
-        className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#FFAE00] mb-16"
+        className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#FFAE00] mb-16 font-worksans"
       >
         Our Team
       </h1>
@@ -59,12 +59,12 @@ function TeamSection() {
               {/* Overlay with Name and Role */}
               <div className="lg:hidden group-hover:flex flex-col absolute bottom-0 left-0 right-0 bg-linear-to-t from-black via-black/80 to-transparent p-2 lg:p-4">
                 <h3
-                  className="text-lg md:text-xl lg:text-2xl font-bold text-orange-400"
+                  className="text-lg md:text-xl lg:text-2xl font-semibold text-orange-400 font-worksans"
                 >
                   {member.Name}
                 </h3>
                 <p
-                  className="text-xs md:text-sm lg:text-lg text-gray-300"
+                  className="text-xs md:text-sm lg:text-lg text-gray-300 font-nunito"
                 >
                   {member.role}
                 </p>

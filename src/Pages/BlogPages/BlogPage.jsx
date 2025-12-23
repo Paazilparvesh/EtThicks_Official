@@ -94,10 +94,10 @@ function Blogs() {
 
         {/* Blog Info */}
         <div className="bg-gray-50 p-4">
-          <h2 className="text-xs text-gray-500 mb-1">
+          <h2 className="text-xs text-gray-500 mb-1 font-nunito">
             {new Date(blog.createdAt).toLocaleDateString()}
           </h2>
-          <p className="text-lg md:text-sm xl:text-lg font-medium text-black">{blog.name}</p>
+          <p className="text-lg md:text-sm xl:text-lg font-medium text-black font-worksans">{blog.name}</p>
         </div>
       </div>
     );
@@ -122,12 +122,12 @@ function Blogs() {
             <div className="absolute bottom-4 sm:bottom-6 left-2 md:left-6 flex flex-col sm:flex-row items-start sm:items-end justify-between w-full pr-6">
               <div className="mb-0 sm:mb-0">
                 <h2
-                  className="text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl font-normal"
+                  className="text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl font-normal font-worksans"
                 >
                   {latestBlog.name}
                 </h2>
                 <p
-                  className="text-gray-400 mt-1 text-xs md:text-md lg:text-lg"
+                  className="text-gray-400 mt-1 text-xs md:text-md lg:text-lg font-nunito"
                 >
                   {latestBlog.description.substring(0, 100)}...
                 </p>
@@ -151,7 +151,7 @@ function Blogs() {
       <div className="w-full p-8 sm:p-6 md:p-8">
         <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-12 gap-4 sm:gap-0">
           <h1
-            className="w-full text-4xl md:text-5xl lg:text-6xl font-normal"
+            className="w-full text-4xl md:text-5xl lg:text-6xl font-normal font-worksans"
           >
             Articles
           </h1>
@@ -162,13 +162,13 @@ function Blogs() {
               placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-10 md:h-auto text-start w-full md:w-60 bg-[#D9D9D9] rounded-full px-6 sm:px-4 md:py-2 text-black outline-none text-sm md:text-xs lg:text-sm xl:text-md"
+              className="h-10 md:h-auto text-start w-full md:w-60 bg-[#D9D9D9] rounded-full px-6 sm:px-4 md:py-2 text-black outline-none text-sm md:text-xs lg:text-sm xl:text-md font-nunito"
             />
             {/* Sort Dropdown */}
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
-              className="h-10 md:h-auto bg-[#D9D9D9] rounded-full px-3 sm:px-4 md:py-2 text-black outline-none text-sm sm:text-xs lg:text-sm xl:text-md"
+              className="h-10 md:h-auto bg-[#D9D9D9] rounded-full px-3 sm:px-4 md:py-2 text-black outline-none text-sm sm:text-xs lg:text-sm xl:text-md font-nunito"
             >
               <option value="desc">Newest First</option>
               <option value="asc">Oldest First</option>

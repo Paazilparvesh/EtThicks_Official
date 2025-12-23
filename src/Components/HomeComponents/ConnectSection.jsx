@@ -24,7 +24,6 @@ const ConnectSection = () => {
   const gridRef3 = useRef(null);
   const h1Ref = useRef(null);
   const pRef = useRef(null);
-  const imagesRef = useRef([]);
 
   useEffect(() => {
     if (
@@ -143,14 +142,14 @@ const ConnectSection = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
           <h1
             ref={h1Ref}
-            className="text-white font-medium text-3xl lg:text-4xl xl:text-6xl"
+            className="text-white font-medium text-3xl lg:text-4xl xl:text-5xl font-worksans"
           >
             Connect. Build Trust. Grow.
           </h1>
 
           <p
             ref={pRef}
-            className="text-white text-xl xl:text-3xl md:max-w-sm lg:max-w-lg xl:max-w-3xl tracking-wider"
+            className="text-white text-xl xl:text-3xl md:max-w-sm lg:max-w-lg xl:max-w-3xl tracking-wider font-nunito"
           >
             We exist to craft authentic, emotion-driven stories that connect
             people with brands building lasting trust and measurable impact.
@@ -193,5 +192,5 @@ const ConnectSection = () => {
 };
 
 export default ConnectSection;
-  
+
 

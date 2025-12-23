@@ -81,7 +81,7 @@ function AboutSection() {
       >
         {/* Text Section - Top on mobile, Left on desktop */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-5 lg:mb-0 ">
-          <h1 className="text-gray-200 text-xl md:text-base lg:text-3xl leading-relaxed text-center md:text-right max-w-lg lg:max-w-none">
+          <h1 className="text-gray-200 text-xl md:text-base lg:text-3xl leading-relaxed text-center md:text-right max-w-lg lg:max-w-none font-worksans">
             We don't just create content.
             We stage worlds.
             We craft experiences that people feel, remember, and
@@ -119,13 +119,11 @@ function AboutSection() {
 
         {/* Text Section - Bottom on mobile, Right on desktop */}
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-start order-1 lg:order-2">
-          <h1 className="text-gray-300 text-xl md:text-base lg:text-3xl leading-relaxed text-center md:text-left max-w-lg lg:max-w-none">
-            We don't just create content.
-            We stage worlds.
-            We craft experiences that people feel, remember, and
-            carry forward.
-            Every frame, every word, every campaign is guided by
-            a single principle:
+          <h1 className="text-gray-300 text-xl md:text-base lg:text-3xl leading-relaxed text-center md:text-left max-w-lg lg:max-w-none font-worksans">
+            We started small: ideas sketched on paper, reels on screens, dreams in our minds.
+Yet every story found its journey.
+A small retailer became unforgettable.
+A reel travelled from a casual scroll to a shared moment across millions of feeds.
           </h1>
         </div>
       </div>

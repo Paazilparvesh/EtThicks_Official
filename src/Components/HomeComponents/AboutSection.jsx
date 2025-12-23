@@ -49,15 +49,15 @@ function AboutSection() {
       {/* Text Section */}
       <div className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-max-5xl mx-auto">
         <div className="mb-2 sm:mb-3 md:mb-4">
-          <h4 className="text-[#E69500] text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-bold uppercase tracking-wide">
+          <h4 className="text-[#E69500] text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-bold uppercase tracking-wide font-nunito">
             About Us
           </h4>
         </div>
-        <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider">
+        <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans">
           Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />
           Take It <span className="text-[#E69500]">Everywhere</span>
         </h2>
-        <p className="text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 tracking-wider">
+        <p className="text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 tracking-wider font-nunito">
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word "Ettuthikkum", meaning to reach in all eight directions, we

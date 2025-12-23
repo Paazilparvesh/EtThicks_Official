@@ -99,12 +99,12 @@ function Review() {
                 {/* Left Section - Title and Description */}
                 <div className=" w-full md:w-1/2 text-white z-20">
                     <h1
-                        className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight"
+                        className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight font-worksans font-medium"
                     >
                         What <span style={{ color: '#FFAE00' }}>Our<br className='hidden lg:block' /> Customer</span> Says
                     </h1>
                     <p
-                        className="text-[#797979] leading-relaxed tracking-widest text-center md:text-start text-lg md:text-sm lg:text-lg"
+                        className="text-[#BABABA] leading-relaxed tracking-widest text-center md:text-start text-lg md:text-sm lg:text-lg font-nunito"
                     >
                         We combine creativity and technology to create meaningful brand experiences.
                         From content to design, we deliver solutions that elevate your business.
@@ -210,19 +210,19 @@ function Review() {
                                                 />
                                             </div>
                                             <div className="text-left sm:text-center">
-                                                <h3 className="text-white font-bold text-2xl sm:text-sm -mt-2 ml-2">
+                                                <h3 className="text-white font-bold text-2xl sm:text-sm -mt-2 ml-2 capitalize font-worksans">
                                                     {review.name}
                                                 </h3>
                                             </div>
                                         </div>
 
                                         <div
-                                            className="absolute -top-8 right-6 text-gray-600 text-7xl sm:text-4xl md:text-7xl scale-150 leading-none opacity-50">,,
+                                            className="absolute -top-8 right-6 text-gray-600 text-7xl sm:text-4xl md:text-7xl scale-150 leading-none opacity-50 font-nunito">,,
                                         </div>
 
                                         {/* Right Side - Content */}
                                         <div className="flex-1 p-4">
-                                            <p className="text-white text-left text-lg sm:text-sm leading-relaxed line-clamp-4 md:line-clamp-6 sm:pr-6">
+                                            <p className="text-white text-left text-lg sm:text-sm leading-relaxed line-clamp-4 md:line-clamp-6 sm:pr-6 font-nunito">
                                                 {review.content}
                                             </p>
                                         </div>

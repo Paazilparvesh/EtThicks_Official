@@ -200,7 +200,7 @@ function ServiceSection() {
           className="shrink-0 px-6 sm:px-8 md:px-12 lg:px-20 py-8 md:py-0 text-[#e59300] uppercase font-medium z-10 flex items-center"
           variants={titleVariants}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-[100px] leading-tight text-center md:text-left">
+          <h2 className="text-3xl sm:text-4xl md:text-[100px] leading-tight text-center md:text-left font-worksans font-semibold">
             OUR <br className="hidden md:block" /> Services
           </h2>
         </motion.div>
@@ -213,10 +213,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Content Creation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 Reels, ad films, corporate AVs, long-form YouTube — stories that
                 captivate and convert.
               </p>
@@ -237,10 +237,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Digital Marketing
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 Social strategy, performance campaigns, platform-specific
                 content that meets people where they are.
               </p>
@@ -261,10 +261,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Brand Storytelling
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 From positioning and emotional narrative to campaign ideation —
                 we give your brand a powerful voice.
               </p>
@@ -285,10 +285,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 TV Commercials
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 High-impact 30s/60s spots that break through the noise and drive
                 results.
               </p>
@@ -309,10 +309,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Product Photography
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 Studio-quality product shots that make your offerings
                 irresistible.
               </p>
@@ -333,10 +333,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Lead Generation
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 Funnel-optimized landing pages, email sequences, and conversion
                 funnels that deliver qualified leads.
               </p>
@@ -357,10 +357,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Social Media Management
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 From positioning and emotional narrative to campaign ideation —
                 we give your brand a powerful voice.
               </p>
@@ -381,10 +381,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Influencer Marketing
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 Social strategy, performance campaigns, platform-specific
                 content that meets people where they are.
               </p>
@@ -405,10 +405,10 @@ function ServiceSection() {
             variants={panelVariants}
           >
             <div>
-              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-[36px] font-semibold mb-3 sm:mb-4">
+              <h3 className="text-[#D89F5B] text-2xl sm:text-3xl md:text-5xl font-medium mb-3 sm:mb-4 font-worksans">
                 Personal Branding
               </h3>
-              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal">
+              <p className="text-[#000000] text-xs sm:text-sm md:text-[24px] leading-[150%] line-clamp-2 font-normal font-nunito">
                 From positioning and emotional narrative to campaign ideation —
                 we give your brand a powerful voice.
               </p>

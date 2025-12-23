@@ -103,26 +103,26 @@ function CountSection() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-8 sm:gap-12">
         {/* Projects */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
-            {counts.projects}+
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+            {counts.projects}<span className="font-medium text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">PROJECTS</p>
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">PROJECTS</p>
         </div>
 
         {/* Clients */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
-            {counts.clients}+
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+            {counts.clients}<span className="font-medium text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">CLIENTS</p>
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">CLIENTS</p>
         </div>
 
         {/* Content Produced */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px]">
-            {counts.contents}+
+          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+            {counts.contents}<span className="font-medium text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2">
+          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">
             CONTENT PRODUCED
           </p>
         </div>
