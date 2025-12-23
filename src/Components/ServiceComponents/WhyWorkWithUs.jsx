@@ -33,6 +33,19 @@ import lead3 from "/src/assets/icons/lead3.png";
 import lead4 from "/src/assets/icons/lead4.png";
 import lead5 from "/src/assets/icons/lead5.png";
 import lead6 from "/src/assets/icons/lead6.png"; 
+import Brand1 from "/src/assets/icons/Brand1.png";
+import Brand2 from "/src/assets/icons/Brand2.png";
+import Brand3 from "/src/assets/icons/Brand3.png";
+import Brand4 from "/src/assets/icons/Brand4.png";
+import Brand5 from "/src/assets/icons/Brand5.png";
+import photo1 from "/src/assets/icons/photo1.png";
+import photo2 from "/src/assets/icons/photo2.png";
+import photo3 from "/src/assets/icons/photo3.png";
+import photo4 from "/src/assets/icons/photo4.png";
+import photo5 from "/src/assets/icons/photo5.png";
+import photo6 from "/src/assets/icons/photo6.png";
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,23 +142,23 @@ const WhyWorkWithUs = ({ slug }) => {
       title: "Why Work With Us?",
       features: [
         {
-          icon: <FaShieldAlt size={28} />,
+       icon: <img src={Brand1} alt="Proven results" className="w-10 h-10" />,
           text: "Proven Track Record Across Industries",
         },
         {
-          icon: <FaBrain size={28} />,
+          icon: <img src={Brand2} alt="Proven results" className="w-10 h-10" />,
           text: "Transparent Reporting & Weekly Updates",
         },
         {
-          icon: <FaTrophy size={28} />,
+         icon: <img src={Brand3} alt="Proven results" className="w-10 h-10" />,
           text: "Campaigns Focused on ROI — Not Vanity Metrics",
         },
         {
-          icon: <FaHeart size={28} />,
+         icon: <img src={Brand4} alt="Proven results" className="w-10 h-10" />,
           text: "Fast Response Time & Dedicated Support",
         },
         {
-          icon: <FaChartLine size={28} />,
+         icon: <img src={Brand5} alt="Proven results" className="w-10 h-10" />,
           text: "Flexible Plans with Scalable Results",
         },
       ],
@@ -215,27 +228,27 @@ const WhyWorkWithUs = ({ slug }) => {
       title: "Why Work With Us?",
       features: [
         {
-          icon: <FaShieldAlt size={28} />,
+          icon: <img src={photo1} alt="Proven results" className="w-10 h-10" />,
           text: "Creative Direction Aligned with Brand Aesthetic",
         },
         {
-          icon: <FaBrain size={28} />,
+         icon: <img src={photo2} alt="Proven results" className="w-10 h-10" />,
           text: "High-End Equipment for Flawless Results",
         },
         {
-          icon: <FaTrophy size={28} />,
+         icon: <img src={photo3} alt="Proven results" className="w-10 h-10" />,
           text: "Versatile Styles for Every Visual Need",
         },
         {
-          icon: <FaHeart size={28} />,
+         icon: <img src={photo4} alt="Proven results" className="w-10 h-10" />,
           text: "Fast Turnaround for Campaign Readiness",
         },
         {
-          icon: <FaChartLine size={28} />,
+         icon: <img src={photo5} alt="Proven results" className="w-10 h-10" />,
           text: "Brand Consistency Across Every Visual",
         },
         {
-          icon: <FaChartLine size={28} />,
+         icon: <img src={photo6} alt="Proven results" className="w-10 h-10" />,
           text: "Conversion-Focused Visuals That Drive Sales",
         },
       ],
