@@ -134,7 +134,7 @@ function OurWorks({ category }) {
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {/* Duplicate items for infinite loop effect - NO BORDER RADIUS */}
-                            {[...portfolioItems, ...portfolioItems, ...portfolioItems].map((item, index) => (
+                            {[...portfolioItems].map((item, index) => (
                                 <a
                                     href={item.url}
                                     target="_blank"

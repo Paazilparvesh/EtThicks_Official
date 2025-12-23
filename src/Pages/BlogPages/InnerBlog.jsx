@@ -30,7 +30,7 @@ function InnerBlog() {
       {/* Blog Content */}
       <div className="w-full p-8 text-sm lg:text-lg flex-1 max-w-4xl xl:max-w-5xl mx-auto">
         <Link
-          to="/blog"
+          to="/blogs"
           className="text-yellow-400 mb-6 inline-block hover:underline font-nunito"
         >
           ← Back to Blogs

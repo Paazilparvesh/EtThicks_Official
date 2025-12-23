@@ -8,10 +8,11 @@ function TeamSection() {
 
   useEffect(() => {
     // Fetch team data from API
-    fetch(`${Base_Url}/api/employees/?populate=*`)
+    fetch(`${Base_Url}/api/employees?populate=*`)
       .then((response) => response.json())
       .then((data) => {
         setTeamMembers(data.data);
+        console.log("Data :", data.data)
         setLoading(false);
       })
       .catch((error) => {
@@ -49,7 +50,7 @@ function TeamSection() {
               <div className="w-full h-full">
                 {member.image &&
                   <img
-                    src={`${Base_Url}${member.image.url}`}
+                    src={`${Base_Url}${member.image[0].url}`}
                     alt={member.Name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                   />
