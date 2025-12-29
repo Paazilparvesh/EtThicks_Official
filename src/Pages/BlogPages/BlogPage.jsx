@@ -9,7 +9,7 @@ function Blogs() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
 
-  const Base_Url = import.meta.env.VITE_API_URL
+  const Base_Url = import.meta.env.VITE_API_URL;
 
   // Default placeholder image URL
   const DEFAULT_IMAGE = "https://via.placeholder.com/800x600/D9D9D9/666666?text=No+Image+Available";
@@ -105,54 +105,65 @@ function Blogs() {
 
   return (
     <div className="w-full flex flex-col bg-black text-white min-h-screen pt-14 md:pt-0 xl:pt-12">
-      {/* ---------------- BlogLanding Section ---------------- */}
+      {/* ---------------- BlogLanding Section with Fixed Dimensions ---------------- */}
       {latestBlog && (
         <div className="flex items-center justify-center p-4 md:p-6 lg:p-10 mt-10 md:mt-20 xl:mt-6">
           <div
-            className="relative w-full h-64 md:h-96 xl:h-[500px] overflow-hidden rounded-2xl shadow-lg cursor-pointer bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${getImageUrl(latestBlog)})`
-            }}
+            className="relative w-full max-w-[1280px] h-[400px] md:h-[500px] lg:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer"
             onClick={() => handleBlogClick(latestBlog)}
           >
+            {/* Background Image */}
+            <img
+              src={getImageUrl(latestBlog)}
+              alt={latestBlog.name}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 md:via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
 
-            {/* Content */}
-            <div className="absolute bottom-4 sm:bottom-6 left-2 md:left-6 flex flex-col sm:flex-row items-start sm:items-end justify-between w-full pr-6">
-              <div className="mb-0 sm:mb-0">
-                <h2
-                  className="text-white text-xl md:text-2xl lg:text-3xl xl:text-5xl font-normal font-worksans"
+            {/* "BLOG" Text at Top Left */}
+            <div className="absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8">
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-worksans tracking-wider">
+                BLOG
+              </h1>
+            </div>
+
+            {/* Blog Name and Description at Bottom Left */}
+            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 md:left-6 lg:left-8 right-4 md:right-16 lg:right-20">
+              <div className="flex items-end justify-between">
+                <div className="max-w-[75%]">
+                  <p className="text-gray-300 text-xs md:text-sm lg:text-base font-nunito mb-1">
+                    Blog Name
+                  </p>
+                  <h2 className="text-white text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal font-worksans leading-tight">
+                    {latestBlog.name}
+                  </h2>
+                  <p className="text-gray-400 mt-2 text-xs md:text-sm lg:text-base font-nunito line-clamp-2">
+                    {latestBlog.description.substring(0, 120)}...
+                  </p>
+                </div>
+
+                {/* Yellow Arrow Button */}
+                <button
+                  className="hidden md:flex w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition flex-shrink-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBlogClick(latestBlog);
+                  }}
                 >
-                  {latestBlog.name}
-                </h2>
-                <p
-                  className="text-gray-400 mt-1 text-xs md:text-md lg:text-lg font-nunito"
-                >
-                  {latestBlog.description.substring(0, 100)}...
-                </p>
+                  <ArrowUpRight className="text-white w-5 lg:w-6 xl:w-7 h-5 lg:h-6 xl:h-7" />
+                </button>
               </div>
-
-              <button
-                className="hidden md:flex w-10 h-10 sm:w-12 sm:h-11 md:h-12 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition mr-10"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleBlogClick(latestBlog);
-                }}
-              >
-                <ArrowUpRight className="text-white w-5 sm:w-6 h-5 sm:h-6" />
-              </button>
             </div>
           </div>
         </div>
       )}
 
       {/* ---------------- Articles Section ---------------- */}
-      <div className="w-full p-8 sm:p-6 md:p-8">
+      <div className="w-full p-8 sm:p-6 md:p-8 lg:p-10 xl:p-12">
         <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-12 gap-4 sm:gap-0">
-          <h1
-            className="w-full text-4xl md:text-5xl lg:text-6xl font-normal font-worksans"
-          >
+          <h1 className="w-full text-4xl md:text-5xl lg:text-6xl font-normal font-worksans">
             Articles
           </h1>
           <div className="w-full flex items-center justify-end gap-2 sm:gap-4">

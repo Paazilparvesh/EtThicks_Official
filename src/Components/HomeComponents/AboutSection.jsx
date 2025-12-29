@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import iem from "/src/assets/home/abt.png";
+import iem from "/src/assets/home/ico3.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,7 +28,7 @@ function AboutSection() {
             ease: "none"
           });
 
-          if (self.progress >= 0.6 && !animationTriggered.current) {
+          if (self.progress >= 0.5 && !animationTriggered.current) {
             animationTriggered.current = true;
           }
         }
@@ -49,9 +49,10 @@ function AboutSection() {
       {/* Text Section */}
       <div className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-max-5xl mx-auto">
         <div className="mb-2 sm:mb-3 md:mb-4">
-          <h4 className="text-[#E69500] text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-bold uppercase tracking-wide font-nunito">
-            About Us
-          </h4>
+        <h4 className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold uppercase tracking-wide font-nunito">
+  About Us
+</h4>
+
         </div>
         <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans">
           Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />

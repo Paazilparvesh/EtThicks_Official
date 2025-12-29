@@ -13,7 +13,7 @@ function Creative() {
                 <div className="relative w-full flex-1 flex items-strecth justify-center px-4 sm:px-0">
 
                     {/* Left Pacman GIF with Blur Effect */}
-                    <div className="absolute top-1 left-0 lg:-left-50 md:top-1/2 -translate-y-1/2 lg:block rotate-90 md:rotate-0 opacity-85">
+                    <div className="absolute top-1 left-0 lg:-left-50 md:top-1/2 -translate-y-1/2 lg:block rotate-90 md:rotate-0 ">
                         <div className="relative">
                             <img
                                 src={pack}
@@ -24,7 +24,7 @@ function Creative() {
                     </div>
 
                     {/* Center Content Container */}
-                    <div className="flex-1 relative flex flex-col items-center justify-center z-10 w-full mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6 backdrop-blur-xs ">
+                    <div className="flex-1 relative flex flex-col items-center justify-center z-10 w-full mx-auto text-center space-y-4 sm:space-y-6 px-4 sm:px-6  ">
 
                         {/* Main Heading */}
                         <h1 className="text-white font-normal text-3xl sm:text-3xl md:text-4xl lg:text-[40px] xl:text-5xl leading-tight font-worksans">

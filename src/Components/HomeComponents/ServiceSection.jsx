@@ -209,7 +209,7 @@ function ServiceSection() {
         <div className="flex flex-col md:flex-row md:min-h-screen md:h-full items-center gap-6 md:gap-12 p-4 sm:p-6 md:pr-20 w-full md:w-auto pb-8 md:pb-0">
           {/* Panel 1 - Content Creation */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -233,7 +233,7 @@ function ServiceSection() {
 
           {/* Panel 2 - Digital Marketing */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -257,7 +257,7 @@ function ServiceSection() {
 
           {/* Panel 3 - Brand Storytelling */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -281,7 +281,7 @@ function ServiceSection() {
 
           {/* Panel 4 - TV Commercials */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -305,7 +305,7 @@ function ServiceSection() {
 
           {/* Panel 5 - Product Photography */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -329,7 +329,7 @@ function ServiceSection() {
 
           {/* Panel 6 - Lead Generation */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -353,7 +353,7 @@ function ServiceSection() {
 
           {/* Panel 7 - Social Media Management */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -377,7 +377,7 @@ function ServiceSection() {
 
           {/* Panel 8 - Influencer Marketing */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
@@ -401,7 +401,7 @@ function ServiceSection() {
 
           {/* Panel 9 - Personal Branding */}
           <motion.div
-            className="panel w-full sm:w-[90vw] md:w-[790px] h-auto sm:h-auto md:h-[532px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
+            className="panel w-full sm:w-[90vw] md:w-[650px] h-auto sm:h-auto md:h-[500px] bg-white rounded-2xl sm:rounded-3xl relative p-4 sm:p-6 shadow-lg shrink-0 overflow-hidden flex flex-col justify-between"
             variants={panelVariants}
           >
             <div>
