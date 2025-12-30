@@ -95,7 +95,7 @@ function Review() {
     return (
         <div className="w-full bg-black px-4 md:px-10 pt-40 min-h-screen md:min-h-auto flex flex-col md:flex-row justify-center items-center overflow-hidden relative">
             {/* Top Black Fade */}
-<div className="pointer-events-none absolute top-0 left-0 w-full h-48 md:h-64 bg-gradient-to-b from-blue-600/60 via-blue-600/30 to-transparent z-30"></div>
+<div className="pointer-events-none absolute top-20 left-0 w-full h-48 md:h-64 bg-gradient-to-b from-black via-back-600/30 to-transparent z-30"></div>
             
       
           

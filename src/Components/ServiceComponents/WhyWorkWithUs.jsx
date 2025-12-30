@@ -353,7 +353,7 @@ const WhyWorkWithUs = ({ slug }) => {
           return (
             <div
               key={idx}
-              className={`why-card flex flex-col items-start justify-start gap-4 bg-linear-to-b from-[#946500] to-black text-white rounded-xl sm:rounded-2xl p-6 sm:p-6 md:p-6 lg:p-6 shadow-lg shadow-yellow-900/20 h-64 sm:h-60 md:h-[280px] lg:h-[300px] w-full sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px] ${idx % 3 === 1 ? "md:-translate-y-35" : ""
+              className={`why-card flex flex-col items-start justify-start gap-4 bg-linear-to-b from-[#946500] to-black text-white rounded-xl sm:rounded-2xl p-6 sm:p-6 md:p-6 lg:p-6 shadow-lg  h-64 sm:h-60 md:h-[280px] lg:h-[300px] w-full sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px] ${idx % 3 === 1 ? "md:-translate-y-35" : ""
                 } ${rawFeatures.length === 6 ? "md:-translate-y-15" : ""}`}
             >
               <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
