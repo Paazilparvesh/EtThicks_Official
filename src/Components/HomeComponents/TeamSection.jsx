@@ -111,7 +111,7 @@ function TeamSection() {
 
   return (
     <div className="bg-black text-white py-20 px-4 sm:px-6 md:px-10 lg:px-16">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-[#FFAE00] mb-16 font-worksans">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-center text-[#FFAE00] mb-16 font-worksans">
         Our Team
       </h1>
 

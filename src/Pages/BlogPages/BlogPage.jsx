@@ -107,7 +107,7 @@ function Blogs() {
     <div className="w-full flex flex-col bg-black text-white min-h-screen pt-14 md:pt-0 xl:pt-12">
       {/* ---------------- BlogLanding Section with Fixed Dimensions ---------------- */}
       {latestBlog && (
-        <div className="flex items-center justify-center p-4 md:p-6 lg:p-10 mt-10 md:mt-20 xl:mt-6">
+        <div className="flex items-center justify-center p-4 md:p-6 lg:p-1 mt-10 md:mt-20 xl:mt-6">
           <div
             className="relative w-full max-w-[1280px] h-[400px] md:h-[500px] lg:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer"
             onClick={() => handleBlogClick(latestBlog)}
@@ -124,9 +124,24 @@ function Blogs() {
 
             {/* "BLOG" Text at Top Left */}
             <div className="absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8">
-              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-worksans tracking-wider">
-                BLOG
-              </h1>
+             <h1
+  className="text-4xl md:text-5xl lg:text-6xl xl:text-9xl font-medium font-worksans tracking-wider text-transparent bg-clip-text"
+  style={{
+    backgroundImage: `
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 40%,
+        #f8a81c 40%,
+        #f8a81c 60%,
+        #ffffff 60%,
+        #ffffff 100%
+      )
+    `,
+  }}
+>
+  BLOG
+</h1>
             </div>
 
             {/* Blog Name and Description at Bottom Left */}
@@ -161,9 +176,9 @@ function Blogs() {
       )}
 
       {/* ---------------- Articles Section ---------------- */}
-      <div className="w-full p-8 sm:p-6 md:p-8 lg:p-10 xl:p-12">
-        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-6 sm:mb-12 gap-4 sm:gap-0">
-          <h1 className="w-full text-4xl md:text-5xl lg:text-6xl font-normal font-worksans">
+      <div className="w-full p-8 sm:p-6 md:p-8 lg:p-10   xl:p-12">
+        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-2 sm:mb-10 gap-4 sm:gap-0">
+          <h1 className="w-full pl-20 text-4xl md:text-5xl lg:text-4xl font-normal font-worksans">
             Articles
           </h1>
           <div className="w-full flex items-center justify-end gap-2 sm:gap-4">
@@ -177,17 +192,20 @@ function Blogs() {
             />
             {/* Sort Dropdown */}
             <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="h-10 md:h-auto bg-[#D9D9D9] rounded-full px-3 sm:px-4 md:py-2 text-black outline-none text-sm sm:text-xs lg:text-sm xl:text-md font-nunito"
-            >
-              <option value="desc">Newest First</option>
-              <option value="asc">Oldest First</option>
-            </select>
+  value={sortOrder}
+  onChange={(e) => setSortOrder(e.target.value)}
+  className="h-10 mr-20 md:h-auto bg-[#D9D9D9] rounded-full 
+             px-3 sm:px-4 md:py-2 pr-10
+             text-black outline-none text-sm sm:text-xs lg:text-sm xl:text-md font-nunito"
+>
+  <option value="desc">Newest First</option>
+  <option value="asc">Oldest First</option>
+</select>
+
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4 lg:mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4 lg:mt-40">
           {filteredArticles.map((blog, index) => (
             <ArticleCard key={blog.documentId} blog={blog} index={index} />
           ))}

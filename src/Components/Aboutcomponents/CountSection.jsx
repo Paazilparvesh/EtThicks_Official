@@ -1,24 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import now from "/src/assets/about/now.png";
 
 function CountSection() {
-  const [counts, setCounts] = useState({ projects: 0, clients: 0, contents: 0 });
-  const [targetCounts, setTargetCounts] = useState({ projects: 0, clients: 0, contents: 0 });
+  const sectionRef = useRef(null);
+
+  const [counts, setCounts] = useState({
+    projects: 0,
+    clients: 0,
+    contents: 0,
+  });
+
+  const [targetCounts, setTargetCounts] = useState({
+    projects: 0,
+    clients: 0,
+    contents: 0,
+  });
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-  const Base_Url = import.meta.env.VITE_API_URL
+  const Base_Url = import.meta.env.VITE_API_URL;
 
-  // Fetch data from Strapi API
+  /* ---------------- Fetch data ---------------- */
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${Base_Url}/api/count`);
-
-        // Extract data from Strapi response
-        const apiData = response.data.data;
+        const res = await axios.get(`${Base_Url}/api/count`);
+        const apiData = res.data.data;
 
         setTargetCounts({
           projects: apiData.projects || 0,
@@ -37,92 +48,118 @@ function CountSection() {
     fetchData();
   }, []);
 
-  // Animate counter once data is loaded
+  /* ---------------- Scroll trigger ---------------- */
   useEffect(() => {
-    if (loading) return; // Don't start animation until data is loaded
+    if (loading || hasAnimated) return;
 
-    const speed = 30;
-
-    const interval = setInterval(() => {
-      setCounts((prev) => {
-        let done = true;
-        const updated = { ...prev };
-
-        for (const key in targetCounts) {
-          if (prev[key] < targetCounts[key]) {
-            updated[key] = Math.min(prev[key] + 1, targetCounts[key]);
-            done = false;
-          }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startSmoothCounter();
+          setHasAnimated(true);
         }
+      },
+      { threshold: 0.4 }
+    );
 
-        if (done) clearInterval(interval);
-        return updated;
-      });
-    }, speed);
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
-    return () => clearInterval(interval);
-  }, [targetCounts, loading]);
+    return () => observer.disconnect();
+  }, [loading, hasAnimated]);
 
+  /* ---------------- Smooth animation ---------------- */
+  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+  const animateValue = (key, target, duration = 1700) => {
+    let start = null;
+
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = easeOutCubic(progress);
+
+      setCounts((prev) => ({
+        ...prev,
+        [key]: Math.floor(eased * target),
+      }));
+
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const startSmoothCounter = () => {
+    animateValue("projects", targetCounts.projects);
+    animateValue("clients", targetCounts.clients);
+    animateValue("contents", targetCounts.contents);
+  };
+
+  /* ---------------- Loading ---------------- */
   if (loading) {
     return (
       <div
-        className="w-full bg-cover bg-center py-12 sm:py-16 md:py-24 px-4 sm:px-6"
-        style={{
-          backgroundImage: `url(${now})`,
-        }}
+        className="w-full bg-cover bg-center py-12 md:py-24 px-4"
+        style={{ backgroundImage: `url(${now})` }}
       >
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-white text-xl sm:text-2xl">Loading...</p>
+          <p className="text-white text-xl">Loading...</p>
         </div>
       </div>
     );
   }
 
+  /* ---------------- Error ---------------- */
   if (error) {
     return (
       <div
-        className="w-full bg-cover bg-center py-12 sm:py-16 md:py-24 px-4 sm:px-6"
-        style={{
-          backgroundImage: `url(${now})`,
-        }}
+        className="w-full bg-cover bg-center py-12 md:py-24 px-4"
+        style={{ backgroundImage: `url(${now})` }}
       >
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-red-500 text-xl sm:text-2xl">Error: {error}</p>
+          <p className="text-red-500 text-xl">Error: {error}</p>
         </div>
       </div>
     );
   }
 
+  /* ---------------- UI ---------------- */
   return (
     <div
-      className="w-full bg-cover bg-center py-12 md:py-24 px-4 md:px-26"
-      style={{
-        backgroundImage: `url(${now})`,
-      }}
+      ref={sectionRef}
+      className="w-full bg-cover bg-center py-12 md:py-24 px-4"
+      style={{ backgroundImage: `url(${now})` }}
     >
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-8 sm:gap-12">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-8">
         {/* Projects */}
         <div>
           <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
-            {counts.projects}<span className="font-medium text-white lg:text-6xl">+</span>
+            {counts.projects}
+            <span className="text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">PROJECTS</p>
+          <p className="text-white lg:text-[32px] mt-2 font-nunito">
+            PROJECTS
+          </p>
         </div>
 
         {/* Clients */}
         <div>
           <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
-            {counts.clients}<span className="font-medium text-white lg:text-6xl">+</span>
+            {counts.clients}
+            <span className="text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">CLIENTS</p>
+          <p className="text-white lg:text-[32px] mt-2 font-nunito">
+            CLIENTS
+          </p>
         </div>
 
-        {/* Content Produced */}
+        {/* Content */}
         <div>
           <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
-            {counts.contents}<span className="font-medium text-white lg:text-6xl">+</span>
+            {counts.contents}
+            <span className="text-white lg:text-6xl">+</span>
           </h1>
-          <p className="text-white text-lg md:text-xl lg:text-[32px] mt-2 font-nunito">
+          <p className="text-white lg:text-[32px] mt-2 font-nunito">
             CONTENT PRODUCED
           </p>
         </div>

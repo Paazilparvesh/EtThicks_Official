@@ -75,7 +75,7 @@ const ContactSection = () => {
   };
 
   return (
-    <div className="w-full min-h-screen relative overflow-hidden flex flex-col-reverse md:flex-row items-center justify-center bg-black py-20">
+    <div className="w-full min-h-screen pt-26 relative overflow-hidden flex flex-col-reverse md:flex-row items-center justify-center bg-black py-20">
       {/* Background Grid */}
       <img
         src={grid}
@@ -114,7 +114,7 @@ const ContactSection = () => {
         </div>
 
         {/* Right Side: Heading + Form */}
-        <div className="w-full md:w-1/2 flex flex-col items-center md:items-start">
+        <div className="w-full md:w-1/2 flex  flex-col items-center md:items-start">
           {/* Playful "Let's talk!" heading with Nunito font */}
           <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-semibold mb-8 flex gap-1 leading-none md:-ml-18 xl:ml-0 font-worksans">
             <span className="inline-block transform -rotate-18">L</span>
@@ -131,9 +131,9 @@ const ContactSection = () => {
           </h2>
 
           {/* Form Box */}
-          <div className="relative bg-white shadow-lg overflow-hidden [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
+          <div className="relative  ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
             <div className="p-4 xl:p-6">
-              <p className="text-gray-700 text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
+              <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
                 If you have any questions, just fill in the contact form, and we
                 will answer you shortly. If you are living nearby, come visit at
                 one of our comfortable offices.
@@ -147,42 +147,42 @@ const ContactSection = () => {
               >
                 {/* Name */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
+                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
                     Name:
                   </label>
                   <input
                     type="text"
                     name="name"
                     required
-                    className="border-b border-[#e2250c] outline-none py-2 text-gray-700 placeholder:text-gray-400 focus:border-[#e2250c]"
+                    className="border-b border-grey-800 outline-none py-2 text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   />
                 </div>
 
                 {/* Email */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
+                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
                     Email address:
                   </label>
                   <input
                     type="email"
                     name="email"
                     required
-                    className="border-b border-[#e2250c] outline-none py-2 text-gray-700 placeholder:text-gray-400 focus:border-[#e2250c]"
+                    className="border-b border-grey-800 outline-none py-2 text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   />
                 </div>
 
                 {/* Message */}
                 <div className="flex flex-col">
-                  <label className="text-[#e2250c] text-sm font-medium mb-1 font-worksans">
+                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
                     Message:
                   </label>
                   <textarea
                     name="message"
                     required
                     rows="4"
-                    className="border-b border-[#e2250c] outline-none py-2 resize-none text-gray-700 placeholder:text-gray-400 focus:border-[#e2250c]"
+                    className="border-b border-grey-500 outline-none -py-5 resize-none text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
@@ -216,7 +216,7 @@ const ContactSection = () => {
       </div>
 
       {/* ⬇ Full-width tilted line with animated ETTHICKS + Subtract.svg */}
-      <div className="absolute top-40 md:top-130 left-0 w-full h-[42px] mt-16 flex items-center justify-center -rotate-5 overflow-hidden">
+      <div className="absolute top-40 md:top-130 left-0 w-full h-[42px] mt-26 flex items-center justify-center -rotate-5 overflow-hidden">
         {/* Static blue background */}
         <div className="absolute inset-0 w-full h-full bg-[#007388]"></div>
 

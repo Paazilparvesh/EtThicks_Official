@@ -128,7 +128,7 @@ function HeroSection() {
                 <div className="absolute inset-0 bg-sky-900 rounded-full -m-2"></div>
 
                 {/* Circular Text */}
-                <svg viewBox="0 0 200 200" className="absolute w-full h-full font-worksans">
+                <svg viewBox="0 0 200 200" className="absolute pr-1 w-full h-full font-worksans">
                   <defs>
                     <path
                       id="circlePath"
@@ -146,8 +146,9 @@ function HeroSection() {
                       xlinkHref="#circlePath"
                       startOffset="0"
                       textAnchor="middle"
+                      className="text-[31px]" 
                     >
-                      EXPLORE MORE • EXPLORE MORE • EXPLORE MORE
+                      EXPLORE ABOUT ETTHICKS  EXPLORE ABOUT ETTHICKS 
                     </textPath>
                   </text>
                 </svg>

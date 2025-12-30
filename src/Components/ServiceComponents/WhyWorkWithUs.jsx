@@ -322,18 +322,22 @@ const WhyWorkWithUs = ({ slug }) => {
   return (
     <div
       ref={pinContainerRef}
-      className="bg-black py-20 md:py-0 md:pt-20 lg:py-24 sm:px-6 md:px-8 text-center overflow-hidden min-h-screen flex flex-col justify-center"
+      className="bg-black py-20 md:py-0 md:pt-20 lg:py-24 sm:px-6 md:px-8 text-center overflow-hidden min-h-screen flex flex-col justify-center relative"
     >
+     
+      {/* Bottom Black Fade */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black to-transparent z-10"></div>
+
       <h2
         ref={titleRef}
-        className="text-white font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4 font-worksans"
+        className="text-white font-normal text-3xl sm:text-[26px] md:text-[32px] lg:text-[36px] mb-8 sm:mb-12 md:mb-1 px-4 font-worksans z-20"
       >
         {content.title}
       </h2>
 
       <div
         ref={gridRef}
-        className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center w-full px-8 ${rawFeatures.length === 6 ? "md:mt-40" : ""
+        className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-6xl mx-auto place-items-center w-full px-8 z-20 ${rawFeatures.length === 6 ? "md:mt-40" : ""
           }`}
       >
         {displayFeatures.map((item, idx) => {
