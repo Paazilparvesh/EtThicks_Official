@@ -1,13 +1,41 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Image1 from "/src/assets/about/poky.png";
 
 function OurStory() {
+  const imageRef = useRef(null);
+
+useEffect(() => {
+  if (!imageRef.current) return;
+
+  // Start exactly at CSS position
+  gsap.set(imageRef.current, {
+    y: 0,
+  });
+
+  // Vertical up & down movement only
+  const anim = gsap.to(imageRef.current, {
+    y: -40,          // move UP (negative = up)
+    duration: 2.5,   // smooth speed
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true,      // go back DOWN
+  });
+
+  return () => anim.kill();
+}, []);
+
+
+
   return (
     <>
       <div className="w-full bg-black py-12 md:py-20 lg:py-0 lg:pb-16 px-4 md:px-8 lg:px-12 xl:px-0">
         <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-center gap-8 lg:gap-20 xl:gap-40 h-[600px] md:h-[700px] lg:h-[800px]">
+          
           {/* Image Section - Mobile first */}
           <div className="w-full lg:w-1/3 order-2 lg:order-1 xl:pt-40">
             <img
+              ref={imageRef}
               src={Image1}
               alt="Illustrator"
               className="w-[80%] md:w-[40%] lg:w-[90%] h-auto max-h-[400px] md:max-h-[500px] lg:max-h-[600px] object-contain lg:scale-150 mx-auto"
@@ -30,8 +58,7 @@ function OurStory() {
               could travel?" From that spark, EtThicks came to life. Not in a
               boardroom. Not from a brief. But where creativity meets
               obsession, where curiosity refuses to be silent. Eight directions.
-              Eight
-              paths. Eight ways a story can move. That's why we chose our name:
+              Eight paths. Eight ways a story can move. That's why we chose our name:
               Ettuthikkum. Because a story told well never stays in one place.
             </h2>
           </div>

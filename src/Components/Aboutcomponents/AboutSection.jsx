@@ -13,57 +13,57 @@ function AboutSection() {
   const imageRef2 = useRef(null);
   const sectionRef2 = useRef(null);
 
-  useEffect(() => {
-    // First section animation - VERY SLOW rotation
-    const image1 = imageRef1.current;
-    const section1 = sectionRef1.current;
+ useEffect(() => {
+  const img = imageRef1.current;
+  const section = sectionRef1.current;
+  if (!img || !section) return;
 
-    if (image1 && section1) {
-      const rotationAnimation1 = gsap.fromTo(image1, {
-        rotation: 0,
-      }, {
-        rotation: 100,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section1,
-          start: "top 80%",
-          end: "bottom 20%", // Much longer duration
-          scrub: 5, // VERY SLOW scrub
-          // markers: true,
-        }
-      });
+  // ✅ START STRAIGHT
+  gsap.set(img, {
+    rotation: 0,
+    transformOrigin: "center center",
+  });
 
-      return () => {
-        rotationAnimation1.kill();
-      };
-    }
-  }, []);
+  // ✅ TILT ON SCROLL
+  const anim = gsap.to(img, {
+    rotation: 15, // 👈 natural PNG tilt
+    ease: "none",
+    scrollTrigger: {
+      trigger: section,
+      start: "top 75%",
+      end: "top 45%",
+      scrub: 1.2, // smooth + visible
+    },
+  });
 
-  useEffect(() => {
-    // Second section animation - VERY SLOW rotation
-    const image2 = imageRef2.current;
-    const section2 = sectionRef2.current;
+  return () => anim.kill();
+}, []);
 
-    if (image2 && section2) {
-      const rotationAnimation2 = gsap.fromTo(image2, {
-        rotation: 0,
-      }, {
-        rotation: -100,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section2,
-          start: "top 80%",
-          end: "bottom 20%", // Much longer duration
-          scrub: 5, // VERY SLOW scrub
-          // markers: false,
-        }
-      });
+useEffect(() => {
+  const img = imageRef2.current;
+  const section = sectionRef2.current;
+  if (!img || !section) return;
 
-      return () => {
-        rotationAnimation2.kill();
-      };
-    }
-  }, []);
+  // ✅ START STRAIGHT
+  gsap.set(img, {
+    rotation: 0,
+    transformOrigin: "center center",
+  });
+
+  // ✅ TILT ON SCROLL (opposite direction)
+  const anim = gsap.to(img, {
+    rotation: -15,
+    ease: "none",
+    scrollTrigger: {
+      trigger: section,
+      start: "top 75%",
+      end: "top 45%",
+      scrub: 1.2,
+    },
+  });
+
+  return () => anim.kill();
+}, []);
 
   // Clean up all ScrollTriggers on component unmount
   useEffect(() => {
