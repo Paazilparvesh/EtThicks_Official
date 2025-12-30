@@ -20,11 +20,11 @@ function AboutSection() {
         trigger: imageContainerRef.current,
         start: "top 80%",
         end: "bottom 50%",
-        scrub: 1.5,
+        scrub: 1,
         onUpdate: (self) => {
           // Smooth scale from 0 → 1.5 based on scroll progress (BOTH devices)
           gsap.to(imageRef.current, {
-            scale: 1.5 * self.progress,
+            scale: 1 * self.progress,
             ease: "none"
           });
 

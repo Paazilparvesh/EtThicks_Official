@@ -93,11 +93,17 @@ function Review() {
     }
 
     return (
-        <div className="w-full bg-black px-4 md:px-10 min-h-screen md:min-h-auto flex flex-col md:flex-row justify-center items-center overflow-hidden">
-            <div className="relative w-full flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-12 xl:px-16 md:py-20">
+        <div className="w-full bg-black px-4 md:px-10 pt-40 min-h-screen md:min-h-auto flex flex-col md:flex-row justify-center items-center overflow-hidden relative">
+            {/* Top Black Fade */}
+<div className="pointer-events-none absolute top-0 left-0 w-full h-48 md:h-64 bg-gradient-to-b from-blue-600/60 via-blue-600/30 to-transparent z-30"></div>
+            
+      
+          
+
+            <div className="relative w-full flex flex-col md:flex-row justify-center items-center gap-6 md:gap-8 lg:gap-12 xl:px-16 md:py-20 z-20">
 
                 {/* Left Section - Title and Description */}
-                <div className=" w-full md:w-1/2 text-white z-20">
+                <div className="w-full md:w-1/2 text-white z-20">
                     <h1
                         className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight font-worksans font-medium"
                     >
@@ -122,8 +128,8 @@ function Review() {
                             const isPrev = index === (currentIndex - 1 + reviews.length) % reviews.length;
                             const isNext = index === (currentIndex + 1) % reviews.length;
 
-                            let translateY = 20;   // default “far” position
-                            let translateX = 20;   // default “far” position
+                            let translateY = 20;   // default "far" position
+                            let translateX = 20;   // default "far" position
                             let scale = 0.9;
                             let opacity = 0;
                             let zIndex = 0;
@@ -249,10 +255,6 @@ function Review() {
                         ))}
                     </div>
                 </div>
-
-
-                <div className="absolute top-0 bg-linear-to-b from-black/80 via-black/40 to-transparent z-10" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/20 to-transparent z-10" />
             </div>
 
             {/* Custom Styles */}

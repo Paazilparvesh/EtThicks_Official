@@ -15,8 +15,7 @@ const ENGAG_CONTENT = {
         heading: "Grow Faster With ",
         highlight: " Data-Driven Digital Marketing",
         description: `
-       Your customers are online—and your brand should be too. Our Digital Marketing Services help you reach the right audience, increase visibility, and convert clicks into loyal customers. With a strategic, results-focused approach, we blend creativity and analytics to elevate your brand in a competitive digital landscape..
-    `,
+Your customers are online—and your brand should be too. Our Digital Marketing Services help you reach the right audience, increase visibility, and convert clicks into loyal customers. With a strategic, results-focused approach, we blend creativity and analytics to elevate your brand in a competitive digital landscape.    `,
         background: dig,
     },
 
@@ -24,32 +23,28 @@ const ENGAG_CONTENT = {
         heading: "Transform Your Brand Into a .",
         highlight: "Story People Care About.",
         description: `
-       Great brands don’t just sell products—they inspire, connect, and stay remembered. Our Brand Storytelling service helps you uncover the heart of your business and communicate it in a way that builds trust, emotion, and loyalty. We craft stories that spark connection and turn audiences into lifelong advocates.
-        `,
+Great brands don’t just sell products—they inspire, connect, and stay remembered. Our Brand Storytelling service helps you uncover the heart of your business and communicate it in a way that builds trust, emotion, and loyalty. We craft stories that spark connection and turn audiences into lifelong advocates.        `,
         background: des,
     },
     "social-media-management": {
         heading: "Grow Your Presence. Engage Your Audience.",
         highlight: " Strengthen Your Brand.",
         description: `
-      Social media is one of the most powerful ways to reach your audience—but managing it effectively takes strategy, creativity, and time. Our Social Media Management service handles everything for you, so your brand shows up consistently, authentically, and with purpose.
-        `,
+Social media is one of the most powerful ways to reach your audience—but managing it effectively takes strategy, creativity, and time. Our Social Media Management service handles everything for you, so your brand shows up consistently, authentically, and with purpose.        `,
         background: des,
     },
     "lead-generation": {
         heading: "Fuel Your Sales Pipeline With .",
         highlight: " High-Quality Leads.",
         description: `
-     Your business can’t grow without a steady flow of potential customers. Our Lead Generation services are designed to attract, engage, and convert the right prospects—so your sales team spends less time chasing and more time closing.
-        `,
+Your business can’t grow without a steady flow of potential customers. Our Lead Generation services are designed to attract, engage, and convert the right prospects—so your sales team spends less time chasing and more time closing.        `,
         background: des,
     },
     "product-photography": {
         heading: " With Stunning, Professional Visuals.",
         highlight: " Showcase Your Products.",
         description: `
-   Your products deserve to be seen in the best light—literally. Our Product Photography services help you capture high-quality, eye-catching visuals that highlight the details, craftsmanship, and value of your brand. Whether for e-commerce, social media, ads, or print, we deliver images that elevate perception and drive sales.
-        `,
+Your products deserve to be seen in the best light—literally. Our Product Photography services help you capture high-quality, eye-catching visuals that highlight the details, craftsmanship, and value of your brand. Whether for e-commerce, social media, ads, or print, we deliver images that elevate perception and drive sales.        `,
         background: des,
     },
 };
@@ -80,9 +75,9 @@ function Engag({ slug }) {
         >
             <div className=" px-6 md:px-8">
                 <h1
-                    className="text-white text-center md:text-start leading-tight tracking-wider mb-4 sm:mb-5 md:mb-6 text-[28px] md:text-4xl lg:text-5xl font-worksans"
+                    className="text-white font-medium text-center md:text-start leading-tight tracking-wider mb-4 sm:mb-5 md:mb-0 text-[28px] md:text-4xl lg:text-5xl font-worksans"
                 >
-                    {content.heading}{" "} <br className="hidden xl:block" />
+                    {content.heading}{" "} <br className="hidden xl:block " />
                     <span style={{ color: "#FFB414" }}>{content.highlight}</span>
                 </h1>
 
