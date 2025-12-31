@@ -43,8 +43,8 @@ const ConnectSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
-          start: "top top",
-          end: isMobile ? "+=1200%" : "+=1700%",
+          start: "top 90",
+          end: isMobile ? "+=1150%" : "+=1650%",
           scrub: true,
           pin: true,
         },
@@ -57,7 +57,7 @@ const ConnectSection = () => {
       tl.fromTo(
         circleRef.current,
         { yPercent: -200, opacity: 0 },
-        { yPercent: 0, opacity: 1, ease: "power2.out", duration: 2 }
+        { yPercent: -40, opacity: 1, ease: "power2.out", duration: 2 }
       );
 
       tl.to(circleRef.current, { duration: 0.5 });
@@ -139,7 +139,7 @@ const ConnectSection = () => {
           }}
         />
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
           <h1
             ref={h1Ref}
             className="text-white font-medium text-3xl lg:text-4xl xl:text-5xl font-worksans"

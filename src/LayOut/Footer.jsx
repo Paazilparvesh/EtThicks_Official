@@ -16,7 +16,7 @@ const Footer = () => {
           </div>
 
           {/* Center - Contact Info */}
-          <div className="text-left mb-10 md:mb-0">
+          <div className="text-left pt-30 mb-10 md:mb-0">
             <h3 className="text-gray-400 uppercase tracking-widest text-sm mb-2">
               Contact Us
             </h3>
@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
 
           {/* Right - Social Buttons */}
-          <div className="flex justify-center md:justify-end space-x-4">
+          <div className="flex justify-center pt-40 md:justify-end space-x-4">
             <button className="border border-gray-600 rounded-full text-gray-300 px-6 py-1 text-sm md:text-xs hover:bg-gray-800 transition">
               Instagram
             </button>

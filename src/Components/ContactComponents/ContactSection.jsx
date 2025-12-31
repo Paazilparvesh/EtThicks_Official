@@ -84,7 +84,7 @@ const ContactSection = () => {
       />
 
       {/* Main Content */}
-      <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center w-full relative z-10 gap-10 xl:gap-0 px-4 md:px-20">
+      <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center w-full relative z-10 gap-10 xl:gap-5 px-4 md:px-20">
         {/* Left Side: Pac-Man with Animated Dots */}
         <div className="w-full md:w-1/2 flex justify-center items-center">
           <img
@@ -94,12 +94,12 @@ const ContactSection = () => {
           />
 
           {/* Animated Orange Dots Container */}
-          <div className="flex items-center -ml-28 xl:-ml-48  md:-mt-20 overflow-hidden relative">
+          <div className="flex items-center -ml-28 xl:-ml-48   xl:-mr-25  md:-mt-20 overflow-hidden relative">
             <div
-              className="flex gap-14"
+              className="flex gap-20"
               style={{
                 transform: `translateX(-${dotsPosition}px)`,
-                transition: "transform 0.3s ease-out",
+                transition: "transform 0.8s ease-out",
               }}
             >
               {/* Generate enough dots to cover the movement */}
@@ -154,7 +154,7 @@ const ContactSection = () => {
                     type="text"
                     name="name"
                     required
-                    className="border-b border-grey-800 outline-none py-2 text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
+                    className="border-b border-grey-800 outline-none py-2 text-yellow-400  placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   />
                 </div>
@@ -168,7 +168,7 @@ const ContactSection = () => {
                     type="email"
                     name="email"
                     required
-                    className="border-b border-grey-800 outline-none py-2 text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
+                    className="border-b border-grey-800 outline-none py-2 text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   />
                 </div>
@@ -182,7 +182,7 @@ const ContactSection = () => {
                     name="message"
                     required
                     rows="4"
-                    className="border-b border-grey-500 outline-none -py-5 resize-none text-white placeholder:text-gray-400 focus:border-[#f8a81c]"
+                    className="border-b border-grey-500 outline-none -py-5 resize-none text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
