@@ -53,13 +53,12 @@ useEffect(() => {
               </span>
             </h1>
 
-            <h2 className="text-gray-300 text-lg md:text-[16px] lg:text-xl font-normal leading-relaxed tracking-wide max-w-2xl lg:max-w-4xl mx-auto lg:mx-0 font-nunito">
+            <h2 className="text-gray-300 text-lg md:text-[16px] lg:text-2xl font-normal leading-relaxed tracking-wide max-w-2xl lg:max-w-4xl mx-auto lg:mx-0 font-nunito">
               It began with a spark. A thought. A question: "What if stories
               could travel?" From that spark, EtThicks came to life. Not in a
               boardroom. Not from a brief. But where creativity meets
               obsession, where curiosity refuses to be silent. Eight directions.
-              Eight paths. Eight ways a story can move. That's why we chose our name:
-              Ettuthikkum. Because a story told well never stays in one place.
+              Eight paths. Eight ways a story can move. 
             </h2>
           </div>
         </div>
