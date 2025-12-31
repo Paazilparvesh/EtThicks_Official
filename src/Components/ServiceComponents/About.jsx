@@ -1,4 +1,4 @@
-import des from "/src/assets/servone/Descriptions.png";
+import des from "/src/assets/Descriptions.png";
 import dig from "/src/assets/about/Digital Marketingg.png";
 import overhead from "/src/assets/overhead.png";
 import Digtal from "/src/assets/Digital.png"; 
