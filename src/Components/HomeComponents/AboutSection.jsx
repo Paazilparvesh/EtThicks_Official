@@ -10,19 +10,74 @@ function AboutSection() {
   const imageContainerRef = useRef(null);
   const imageRef = useRef(null);
   const animationTriggered = useRef(false);
+  const textRef = useRef(null);
+  const headingRef = useRef(null);
+  const paragraphRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // SAME animation for BOTH mobile AND desktop
+      // Reset states
       gsap.set(imageRef.current, { scale: 0, transformOrigin: "center center" });
+      gsap.set(textRef.current, { opacity: 0, y: 20 });
+      gsap.set(headingRef.current, { opacity: 0, y: 30 });
+      gsap.set(paragraphRef.current, { opacity: 0, y: 40 });
 
+      // Text reveal animation with ScrollTrigger
+      gsap.to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          toggleActions: "play none none reverse",
+          markers: false, // Set to true for debugging
+          once: true // This ensures it only animates once
+        }
+      });
+
+      gsap.to(headingRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 85%",
+          end: "bottom 60%",
+          toggleActions: "play none none reverse",
+          markers: false,
+          once: true
+        }
+      });
+
+      gsap.to(paragraphRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        delay: 0.4,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: paragraphRef.current,
+          start: "top 85%",
+          end: "bottom 60%",
+          toggleActions: "play none none reverse",
+          markers: false,
+          once: true
+        }
+      });
+
+      // SAME animation for BOTH mobile AND desktop for image
       ScrollTrigger.create({
         trigger: imageContainerRef.current,
         start: "top 80%",
         end: "bottom 50%",
         scrub: 1,
         onUpdate: (self) => {
-          // Smooth scale from 0 → 1.5 based on scroll progress (BOTH devices)
+          // Smooth scale from 0 → 1 based on scroll progress (BOTH devices)
           gsap.to(imageRef.current, {
             scale: 1 * self.progress,
             ease: "none"
@@ -47,18 +102,29 @@ function AboutSection() {
       className="w-full md:min-h-[150vh] bg-black flex flex-col items-center justify-center md:justify-start pt-20 sm:pt-12 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8 lg:px-10 pb-8 md:pb-0"
     >
       {/* Text Section */}
-      <div className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-max-5xl mx-auto">
+      <div 
+        ref={textRef}
+        className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-max-5xl mx-auto"
+      >
         <div className="mb-2 sm:mb-3 md:mb-2">
-        <h4 className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-wide font-nunito ">
-  About Us
-</h4>
-
+          <h4 
+            ref={headingRef}
+            className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-wide font-nunito"
+          >
+            About Us
+          </h4>
         </div>
-        <h2 className="text-xl sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans">
+        <h2 
+          ref={headingRef}
+          className="text-xl sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans"
+        >
           Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />
           Take It <span className="text-[#E69500]">Everywhere</span>
         </h2>
-        <p className="text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 tracking-wider font-nunito">
+        <p 
+          ref={paragraphRef}
+          className="text-sm sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 tracking-wider font-nunito"
+        >
           EtThicks is not just another digital agency — we're a storytelling
           powerhouse rooted in truth, trust, and transformation. Born from the
           Tamil word "Ettuthikkum", meaning to reach in all eight directions, we
