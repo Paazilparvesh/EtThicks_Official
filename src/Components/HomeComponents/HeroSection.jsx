@@ -30,7 +30,7 @@ function HeroSection() {
 
       gsap.to(marquee, {
         x: 0,
-        duration: 10,
+        duration: 40,
         ease: "linear",
         repeat: -1,
       });
@@ -154,9 +154,9 @@ function HeroSection() {
                       xlinkHref="#circlePath"
                       startOffset="0"
                       textAnchor="middle"
-                      className="text-[31px]" 
+                      className="text-[29px]" 
                     >
-                      EXPLORE ABOUT ETTHICKS  EXPLORE ABOUT ETTHICKS 
+                      EXPLORE ABOUT ETTHICKS  • EXPLORE ABOUT ETTHICKS 
                     </textPath>
                   </text>
                 </svg>

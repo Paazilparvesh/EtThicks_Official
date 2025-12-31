@@ -180,8 +180,8 @@ function Pack() {
         {/* ===== TEXT ===== */}
         <div className="text-content w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
           <h2 ref={headingRef} className="text-5xl md:text-7xl font-bold mb-8 opacity-0">
-            <span className="text-white font-worksans font-semibold">About </span>
-            <span className="text-[#FFA500] font-worksans font-semibold">Us</span>
+            <span className="text-white font-worksans font-medium">About </span>
+            <span className="text-[#FFA500] font-worksans font-medium">Us</span>
           </h2>
 
           <p ref={descriptionRef} className="text-white text-lg opacity-0 max-w-xl mx-10 lg:mx-auto tracking-wider font-nunito">

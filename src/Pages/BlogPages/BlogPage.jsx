@@ -122,6 +122,11 @@ function Blogs() {
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
 
+            {/* Bottom Fade Effect */}
+            <div className="pointer-events-none absolute -bottom-1 left-0 w-full h-48 md:h-64 
+              bg-gradient-to-t from-black via-black/30 to-transparent z-30">
+            </div>
+
             {/* "BLOG" Text at Top Left */}
             <div className="absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8">
              <h1
@@ -145,7 +150,7 @@ function Blogs() {
             </div>
 
             {/* Blog Name and Description at Bottom Left */}
-            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 md:left-6 lg:left-8 right-4 md:right-16 lg:right-20">
+            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 md:left-6 lg:left-8 right-4 md:right-16 lg:right-20 z-40">
               <div className="flex items-end justify-between">
                 <div className="max-w-[75%]">
                   <p className="text-gray-300 text-xs md:text-sm lg:text-base font-nunito mb-1">
@@ -161,7 +166,7 @@ function Blogs() {
 
                 {/* Yellow Arrow Button */}
                 <button
-                  className="hidden md:flex w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition flex-shrink-0"
+                  className="hidden md:flex w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 rounded-full bg-yellow-500 items-center justify-center shadow-lg hover:bg-yellow-400 transition flex-shrink-0 z-50"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleBlogClick(latestBlog);
