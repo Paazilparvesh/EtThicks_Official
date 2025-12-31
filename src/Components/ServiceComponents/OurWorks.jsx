@@ -67,7 +67,7 @@ function OurWorks({ category }) {
                 carousel.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
                 carousel.scrollTo({
-                    left: carousel.scrollLeft + 1,
+                    left: carousel.scrollLeft + 1.7,
                     behavior: 'auto'
                 });
             }

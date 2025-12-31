@@ -106,7 +106,7 @@ function Review() {
                 {/* Left Section - Title and Description */}
                 <div className="w-full md:w-1/2 text-white z-20">
                     <h1
-                        className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl leading-tight font-worksans font-medium"
+                        className="mb-4 text-center md:text-start text-3xl md:text-4xl lg:text-5xl xl:text-7xl  font-worksans font-medium"
                     >
                         What <span style={{ color: '#FFAE00' }}>Our<br className='hidden lg:block' /> Customer</span> Says
                     </h1>

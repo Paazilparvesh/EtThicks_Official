@@ -12,58 +12,132 @@ function AboutSection() {
   const sectionRef1 = useRef(null);
   const imageRef2 = useRef(null);
   const sectionRef2 = useRef(null);
+  const textRef1 = useRef(null);
+  const textRef2 = useRef(null);
 
- useEffect(() => {
-  const img = imageRef1.current;
-  const section = sectionRef1.current;
-  if (!img || !section) return;
+  // Animation for first section
+  useEffect(() => {
+    const img = imageRef1.current;
+    const section = sectionRef1.current;
+    const textContainer = textRef1.current;
+    
+    if (!img || !section || !textContainer) return;
 
-  // ✅ START STRAIGHT
-  gsap.set(img, {
-    rotation: 0,
-    transformOrigin: "center center",
-  });
+    // Reset states
+    gsap.set(img, {
+      rotation: 0,
+      transformOrigin: "center center",
+    });
 
-  // ✅ TILT ON SCROLL
-  const anim = gsap.to(img, {
-    rotation: 15, // 👈 natural PNG tilt
-    ease: "none",
-    scrollTrigger: {
-      trigger: section,
-      start: "top 75%",
-      end: "top 45%",
-      scrub: 1.2, // smooth + visible
-    },
-  });
+    // Split text into words for word-by-word animation
+    const originalText = textContainer.innerText;
+    const words = originalText.split(' ');
+    
+    textContainer.innerHTML = words
+      .map(word => `<span class="word opacity-0 inline-block mr-1">${word}</span>`)
+      .join(' ');
 
-  return () => anim.kill();
-}, []);
+    const wordElements = textContainer.querySelectorAll('.word');
+    
+    // Text reveal animation with precise timing
+    const textTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        end: "top 40%",
+        toggleActions: "play none none reverse",
+        once: true,
+      }
+    });
 
-useEffect(() => {
-  const img = imageRef2.current;
-  const section = sectionRef2.current;
-  if (!img || !section) return;
+    // Word-by-word animation with smooth timing
+    textTl.to(wordElements, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.05,
+      ease: "power2.out"
+    }, 0);
 
-  // ✅ START STRAIGHT
-  gsap.set(img, {
-    rotation: 0,
-    transformOrigin: "center center",
-  });
+    // Image tilt animation - starts slightly after text begins
+    const imgAnim = gsap.to(img, {
+      rotation: 15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        end: "top 45%",
+        scrub: 1.2,
+      },
+    });
 
-  // ✅ TILT ON SCROLL (opposite direction)
-  const anim = gsap.to(img, {
-    rotation: -15,
-    ease: "none",
-    scrollTrigger: {
-      trigger: section,
-      start: "top 75%",
-      end: "top 45%",
-      scrub: 1.2,
-    },
-  });
+    return () => {
+      imgAnim.kill();
+      textTl.kill();
+    };
+  }, []);
 
-  return () => anim.kill();
-}, []);
+  // Animation for second section
+  useEffect(() => {
+    const img = imageRef2.current;
+    const section = sectionRef2.current;
+    const textContainer = textRef2.current;
+    
+    if (!img || !section || !textContainer) return;
+
+    // Reset states
+    gsap.set(img, {
+      rotation: 0,
+      transformOrigin: "center center",
+    });
+
+    // Split text into words for word-by-word animation
+    const originalText = textContainer.innerText;
+    const words = originalText.split(' ');
+    
+    textContainer.innerHTML = words
+      .map(word => `<span class="word opacity-0 inline-block mr-1">${word}</span>`)
+      .join(' ');
+
+    const wordElements = textContainer.querySelectorAll('.word');
+    
+    // Text reveal animation
+    const textTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        end: "top 40%",
+        toggleActions: "play none none reverse",
+        once: true,
+      }
+    });
+
+    // Word-by-word animation
+    textTl.to(wordElements, {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      stagger: 0.05,
+      ease: "power2.out"
+    }, 0);
+
+    // Image tilt animation
+    const imgAnim = gsap.to(img, {
+      rotation: -15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        end: "top 45%",
+        scrub: 1.2,
+      },
+    });
+
+    return () => {
+      imgAnim.kill();
+      textTl.kill();
+    };
+  }, []);
 
   // Clean up all ScrollTriggers on component unmount
   useEffect(() => {
@@ -80,8 +154,11 @@ useEffect(() => {
         className="flex flex-col-reverse md:flex-row w-full bg-black items-center justify-center gap-12 pt-16 md:pt-0 px-4 md:px-10 xl:px-10"
       >
         {/* Text Section - Top on mobile, Left on desktop */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-5 lg:mb-0 ">
-          <h1 className="text-gray-200 text-xl md:text-base lg:text-2xl leading-relaxed text-center md:text-right max-w-lg lg:max-w-none font-worksans">
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end mb-5 lg:mb-0">
+          <h1 
+            ref={textRef1}
+            className="text-gray-200 text-xl md:text-base lg:text-2xl leading-relaxed text-center md:text-right max-w-lg lg:max-w-none font-worksans"
+          >
             We don't just create content.
             We stage worlds.
             We craft experiences that people feel, remember, and
@@ -119,11 +196,14 @@ useEffect(() => {
 
         {/* Text Section - Bottom on mobile, Right on desktop */}
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-start order-1 lg:order-2">
-          <h1 className="text-gray-300 text-xl md:text-base lg:text-2xl leading-relaxed text-center md:text-left max-w-lg lg:max-w-none font-worksans">
+          <h1 
+            ref={textRef2}
+            className="text-gray-300 text-xl md:text-base lg:text-2xl leading-relaxed text-center md:text-left max-w-lg lg:max-w-none font-worksans"
+          >
             We started small: ideas sketched on paper, reels on screens, dreams in our minds.
-Yet every story found its journey.
-A small retailer became unforgettable.
-A reel travelled from a casual scroll to a shared moment across millions of feeds.
+            Yet every story found its journey.
+            A small retailer became unforgettable.
+            A reel travelled from a casual scroll to a shared moment across millions of feeds.
           </h1>
         </div>
       </div>

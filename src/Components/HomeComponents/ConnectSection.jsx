@@ -44,7 +44,7 @@ const ConnectSection = () => {
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top 90",
-          end: isMobile ? "+=1150%" : "+=1650%",
+          end: isMobile ? "+=150%" : "+=600%",
           scrub: true,
           pin: true,
         },
@@ -167,8 +167,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-1 col-start-1
-    
+object-contain
+    row-start-1 col-start-1
+    translate-x-24 -translate-y-5    
   "
 />
 
@@ -178,8 +179,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-1 col-start-4
-    
+object-contain
+    row-start-1 col-start-1
+    translate-x-284 translate-y-56    
   "
 />
 
@@ -188,7 +190,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-2 col-start-3
+   object-contain
+    row-start-1 col-start-1
+    translate-x-234 -translate-y-10    
     
   "
 />
@@ -199,7 +203,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-2 col-start-2
+    object-contain
+    row-start-1 col-start-1
+    translate-x-120 translate-y-106    
     
   "
 />
@@ -216,8 +222,10 @@ const ConnectSection = () => {
   src={img5}
   className="
     max-w-full
-    h-auto
-    object-contain row-start-1 col-start-1
+    h-50
+  object-contain
+    row-start-1 col-start-1
+    translate-x-220 -translate-y-18  
     
   "
 />
@@ -228,8 +236,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-2 col-start-4
-    
+ object-contain
+    row-start-1 col-start-1
+    translate-x-258 translate-y-106      
   "
 />
 
@@ -239,8 +248,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-2 col-start-2
-    
+ object-contain
+    row-start-1 col-start-1
+    translate-x-14 translate-y-30     
   "
 />
 
@@ -257,8 +267,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-3 col-start-1
-    
+object-contain
+    row-start-1 col-start-1
+    translate-x-44 translate-y-2         
   "
 />
 
@@ -268,7 +279,9 @@ const ConnectSection = () => {
   className="
     max-w-full
     h-auto
-    object-contain row-start-3 col-start-3
+    object-contain
+    row-start-1 col-start-1
+    translate-x-124 translate-y-100     
     
   "
 />
@@ -278,9 +291,10 @@ const ConnectSection = () => {
   src={img10}
   className="
     max-w-full
-    h-auto
-    object-contain row-start-1 col-start-2
-    
+    h-64
+object-contain
+    row-start-1 col-start-1
+    translate-x-224 -translate-y-14        
   "
 />
 
