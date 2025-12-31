@@ -1,3 +1,96 @@
+// import { useEffect, useRef } from "react";
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import teg from "/src/assets/home/icon2.png";
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// function CTASection() {
+//   const headingRef = useRef(null);
+//   const descRef = useRef(null);
+
+//   useEffect(() => {
+//     gsap.fromTo(
+//       headingRef.current,
+//       {
+//         y: 80,
+//         opacity: 0,
+//       },
+//       {
+//         y: 0,
+//         opacity: 1,
+//         duration: 1,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: headingRef.current,
+//           start: "top 80%",
+//           once: true,
+//         },
+//       }
+//     );
+
+//     gsap.fromTo(
+//       descRef.current,
+//       {
+//         y: 60,
+//         opacity: 0,
+//       },
+//       {
+//         y: 0,
+//         opacity: 1,
+//         duration: 1,
+//         delay: 0.2,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: descRef.current,
+//           start: "top 80%",
+//           once: true,
+//         },
+//       }
+//     );
+//   }, []);
+
+//   return (
+//     <div className="w-full md:min-h-screen bg-black flex flex-col items-center justify-center px-4">
+      
+//       {/* Icon box (NO animation) */}
+//       <div className="w-20 md:w-26 h-20 md:h-26 xl:w-30 xl:h-30 bg-amber-500 rounded-4xl shadow-[0px_-3px_5px_0px_rgba(255,174,0,0.09),0px_12px_13px_0px_rgba(255,174,0,0.17),0px_4px_6px_0px_rgba(255,174,0,0.12),0px_-12px_30px_0px_rgba(255,174,0,0.12),0px_54px_55px_0px_rgba(255,174,0,0.25)] flex items-center justify-center mb-8">
+//         <img src={teg} alt="icon" className="w-10 h-10 object-contain" />
+//       </div>
+
+//       {/* Heading (REVEAL) */}
+//       <h1
+//         ref={headingRef}
+//         className="text-white text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-center mb-6 font-worksans opacity-0"
+//       >
+//         Get Started
+//       </h1>
+
+//       {/* Description (REVEAL) */}
+//       <p
+//         ref={descRef}
+//         className="text-neutral-500 text-center text-md md:text-lg xl:text-xl font-medium leading-relaxed max-w-lg xl:max-w-xl mb-10 font-nunito opacity-0"
+//       >
+//         Reach out today — we’d love to hear your story and explore how design can amplify your message.
+//       </p>
+
+//       {/* Input + Button (NO animation) */}
+//       <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-center">
+//         <div className="w-full rounded-2xl outline-1 outline-amber-500 px-5 flex items-center max-w-xs py-2">
+//           <span className="text-neutral-500 text-lg sm:text-xl font-regular font-nunito">
+//             Enter Your E-mail
+//           </span>
+//         </div>
+
+//         <button className="px-8 md:px-6 py-1 md:py-2 bg-amber-500 rounded-3xl md:rounded-2xl text-white text-lg sm:text-2xl font-regular hover:bg-amber-600 transition font-worksans">
+//           Send
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default CTASection;
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,10 +105,7 @@ function CTASection() {
   useEffect(() => {
     gsap.fromTo(
       headingRef.current,
-      {
-        y: 80,
-        opacity: 0,
-      },
+      { y: 80, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -31,10 +121,7 @@ function CTASection() {
 
     gsap.fromTo(
       descRef.current,
-      {
-        y: 60,
-        opacity: 0,
-      },
+      { y: 60, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -51,17 +138,18 @@ function CTASection() {
   }, []);
 
   return (
-    <div className="w-full md:min-h-screen bg-black flex flex-col items-center justify-center px-4">
-      
+    <div className="w-full bg-black px-4 py-16 md:py-20">
       {/* Icon box (NO animation) */}
-      <div className="w-20 md:w-26 h-20 md:h-26 xl:w-30 xl:h-30 bg-amber-500 rounded-4xl shadow-[0px_-3px_5px_0px_rgba(255,174,0,0.09),0px_12px_13px_0px_rgba(255,174,0,0.17),0px_4px_6px_0px_rgba(255,174,0,0.12),0px_-12px_30px_0px_rgba(255,174,0,0.12),0px_54px_55px_0px_rgba(255,174,0,0.25)] flex items-center justify-center mb-8">
-        <img src={teg} alt="icon" className="w-10 h-10 object-contain" />
+      <div className="flex justify-center mb-6">
+        <div className="w-20 md:w-26 h-20 md:h-26 xl:w-30 xl:h-30 bg-amber-500 rounded-4xl shadow-[0px_-3px_5px_0px_rgba(255,174,0,0.09),0px_12px_13px_0px_rgba(255,174,0,0.17),0px_4px_6px_0px_rgba(255,174,0,0.12),0px_-12px_30px_0px_rgba(255,174,0,0.12),0px_54px_55px_0px_rgba(255,174,0,0.25)] flex items-center justify-center">
+          <img src={teg} alt="icon" className="w-10 h-10 object-contain" />
+        </div>
       </div>
 
       {/* Heading (REVEAL) */}
       <h1
         ref={headingRef}
-        className="text-white text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-center mb-6 font-worksans opacity-0"
+        className="text-white text-3xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-center mb-4 font-worksans opacity-0"
       >
         Get Started
       </h1>
@@ -69,20 +157,21 @@ function CTASection() {
       {/* Description (REVEAL) */}
       <p
         ref={descRef}
-        className="text-neutral-500 text-center text-md md:text-lg xl:text-xl font-medium leading-relaxed max-w-lg xl:max-w-xl mb-10 font-nunito opacity-0"
+        className="text-neutral-500 text-center text-md md:text-lg xl:text-xl font-medium leading-relaxed max-w-lg xl:max-w-xl mx-auto mb-8 font-nunito opacity-0"
       >
-        Reach out today — we’d love to hear your story and explore how design can amplify your message.
+        Reach out today — we’d love to hear your story and explore how design can
+        amplify your message.
       </p>
 
       {/* Input + Button (NO animation) */}
       <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-center">
-        <div className="w-full rounded-2xl outline-1 outline-amber-500 px-5 flex items-center max-w-xs py-2">
-          <span className="text-neutral-500 text-lg sm:text-xl font-regular font-nunito">
+        <div className="w-full rounded-2xl outline outline-1 outline-amber-500 px-5 py-2 flex items-center max-w-xs">
+          <span className="text-neutral-500 text-lg sm:text-xl font-nunito">
             Enter Your E-mail
           </span>
         </div>
 
-        <button className="px-8 md:px-6 py-1 md:py-2 bg-amber-500 rounded-3xl md:rounded-2xl text-white text-lg sm:text-2xl font-regular hover:bg-amber-600 transition font-worksans">
+        <button className="px-8 md:px-6 py-1 md:py-2 bg-amber-500 rounded-3xl md:rounded-2xl text-white text-lg sm:text-2xl hover:bg-amber-600 transition font-worksans">
           Send
         </button>
       </div>
