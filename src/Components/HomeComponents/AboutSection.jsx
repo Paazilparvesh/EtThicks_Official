@@ -48,8 +48,8 @@ function AboutSection() {
     >
       {/* Text Section */}
       <div className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-max-5xl mx-auto">
-        <div className="mb-2 sm:mb-3 md:mb-4">
-        <h4 className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold uppercase tracking-wide font-nunito">
+        <div className="mb-2 sm:mb-3 md:mb-2">
+        <h4 className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold tracking-wide font-nunito ">
   About Us
 </h4>
 

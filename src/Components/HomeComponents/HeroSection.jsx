@@ -39,15 +39,23 @@ function HeroSection() {
 
 
   return (
-    <div
-      className="w-full xl:min-h-screen relative inset-0 bg-[#0f0f0f] bg-cover bg-center bg-no-repeat rounded-br-[60px] rounded-bl-[60px] "
-      style={{
-        backgroundImage: `url(${CurveBG})`,
-      }}
-    >
+   
+ <div
+  className="
+    w-full
+    min-h-[300px] md:min-h-[400px] xl:min-h-[720px]
+    relative
+    bg-[#0f0f0f]
+    bg-cover bg-center bg-no-repeat
+    rounded-br-[60px] rounded-bl-[60px]
+  "
+  style={{ backgroundImage: `url(${CurveBG})` }}
+>
+
+
       <div className="w-full h-full flex flex-col items-between mt-5 font-nunito">
         {/* Top Container */}
-        <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-26 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-0  ">
+        <div className="w-full  flex flex-col md:flex-row justify-center items-center md:items-start md:gap-8 md:py-50 px-5 md:px-10 xl:px-16 mt-26 md:mt-0 2xl:mt-0  ">
           {/* Heading */}
           <div className="w-full md:w-[60vw] xl:w-[70vw] text-4xl md:text-4xl text-white">
             <h1 className="mb-4">
@@ -96,7 +104,7 @@ function HeroSection() {
         </div>
 
         {/* Bottom Animation */}
-        <div className="w-full h-[10vh] md:h-0 mt-10 md:mt-34 ">
+        <div className="w-full h-[10vh] md:h-0 mt-10 md:mt-5 ">
           <div className="w-full  relative bg-white z-40">
             <div className="w-full rounded-bl-[60px] sm:rounded-bl-[80px] md:rounded-bl-[128px]   sm:rounded-br-[80px] md:rounded-br-[128px] overflow-hidden bg-white z-40">
 
