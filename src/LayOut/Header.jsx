@@ -1,4 +1,4 @@
-import Logo from "/src/assets/headerasset/EtThicks1.png";
+import Logo from "/src/assets/headerasset/logo.png";
 import ContentCreation from "/src/assets/head/youtubepng.png";
 import pearsonalbranding from "/src/assets/head/marketingpng.png";
 import infuencer from "/src/assets/head/influncer.png";
@@ -105,7 +105,7 @@ function Header() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
-          <div className="shrink-0">
+          <div className="shrink-0 h-30 w-30">
             <Link to="/" className="flex items-center">
               <img src={Logo} alt="Logo" className="w-auto object-cover" />
             </Link>

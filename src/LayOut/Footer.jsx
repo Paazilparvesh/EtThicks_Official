@@ -1,4 +1,4 @@
-import Logo from "/Logo.png";
+import Logo from "../assets/headerasset/logo.png";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="size-56 md:size-64 xl:size-80 object-cover -ml-7 -mb-8 md:ml-0 md:mb-0"
+              className="size-56 md:size-64 xl:size-70 object-cover -ml-7 -mb-8 md:ml-0 md:mb-0"
             />
           </div>
 
