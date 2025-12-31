@@ -131,7 +131,7 @@ const ContactSection = () => {
           </h2>
 
           {/* Form Box */}
-          <div className="relative  ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
+          <div className="relative   ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
             <div className="p-4 xl:p-6">
               <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
                 If you have any questions, just fill in the contact form, and we
