@@ -155,7 +155,7 @@ const ContactSection = () => {
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-8"
+                className="flex flex-col gap-2 md:gap-8"
                 onChange={handleInputChange}
               >
                 {/* Name */}
@@ -167,7 +167,7 @@ const ContactSection = () => {
                     type="text"
                     name="name"
                     required
-                    className="border-b border-grey-800 outline-none py-2 text-yellow-400  placeholder:text-gray-400 focus:border-[#f8a81c]"
+                    className="border-b border-grey-800 outline-none py-2  text-yellow-400  placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   />
                 </div>
@@ -195,7 +195,7 @@ const ContactSection = () => {
                     name="message"
                     required
                     rows="4"
-                    className="border-b border-grey-500 outline-none -py-5 resize-none text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
+                    className="border-b border-grey-500 outline-none -py-2 md:-py-5 resize-none text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
@@ -208,7 +208,7 @@ const ContactSection = () => {
               form={formRef.current ? formRef.current.id : undefined}
               disabled={loading}
               onClick={handleSubmit}
-              className="bg-[#f8a81c] text-white font-semibold text-lg py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
+              className="bg-[#f8a81c] text-white font-semibold text-lg py-2 md:py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
             >
               {loading ? "Sending..." : "Send"}
             </button>
