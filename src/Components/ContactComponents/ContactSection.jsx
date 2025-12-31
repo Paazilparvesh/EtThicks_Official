@@ -116,22 +116,35 @@ const ContactSection = () => {
         {/* Right Side: Heading + Form */}
         <div className="w-full md:w-1/2 flex  flex-col items-center md:items-start">
           {/* Playful "Let's talk!" heading with Nunito font */}
-          <h2 className="text-white text-7xl lg:text-8xl xl:text-9xl font-semibold mb-8 flex gap-1 leading-none md:-ml-18 xl:ml-0 font-worksans">
-            <span className="inline-block transform -rotate-18">L</span>
-            <span className="inline-block transform -rotate-15 -mt-2">e</span>
-            <span className="inline-block transform rotate-3 -mt-2">t</span>
-            <span className="inline-block transform  ml-1">'</span>
-            <span className="inline-block transform rotate-12">s</span>
-            <span className="inline-block w-5 md:w-3"></span>
-            <span className="inline-block transform -rotate-8">t</span>
-            <span className="inline-block transform -rotate-8">a</span>
-            <span className="inline-block transform -rotate-6">l</span>
-            <span className="inline-block transform rotate-0">k</span>
-            <span className="inline-block transform -rotate-2">!</span>
-          </h2>
+ <h2 className="
+  text-white 
+  text-5xl sm:text-6xl lg:text-8xl xl:text-9xl 
+  font-semibold 
+  mb-8 
+  flex flex-wrap justify-center lg:justify-start
+  gap-1 
+  leading-none 
+  text-center lg:text-left
+  font-worksans
+">
+  <span className="inline-block -rotate-18">L</span>
+  <span className="inline-block -rotate-15 -mt-1">e</span>
+  <span className="inline-block rotate-3 -mt-1">t</span>
+  <span className="inline-block ml-1">'</span>
+  <span className="inline-block rotate-12">s</span>
+
+  <span className="inline-block w-2 sm:w-3"></span>
+
+  <span className="inline-block -rotate-8">t</span>
+  <span className="inline-block -rotate-8">a</span>
+  <span className="inline-block -rotate-6">l</span>
+  <span className="inline-block">k</span>
+  <span className="inline-block -rotate-2">!</span>
+</h2>
+
 
           {/* Form Box */}
-          <div className="relative  ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] ">
+          <div className="relative  ml-2 xl:ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] pt-4 xl:pt-0 ">
             <div className="p-4 xl:p-6">
               <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
                 If you have any questions, just fill in the contact form, and we

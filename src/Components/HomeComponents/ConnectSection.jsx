@@ -8,7 +8,7 @@ import img2 from "/src/assets/Homeconnect/2.png";
 import img3 from "/src/assets/Homeconnect/3.png";
 import img4 from "/src/assets/Homeconnect/4.png";
 import img5 from "/src/assets/Homeconnect/5.png";
-import img6 from "/src/assets/Homeconnect/6.png";
+import img6 from "/src/assets/Homeconnect/6 .png";
 import img7 from "/src/assets/Homeconnect/7.png";
 import img8 from "/src/assets/Homeconnect/8.png";
 import img9 from "/src/assets/Homeconnect/9.png";
@@ -161,10 +161,49 @@ const ConnectSection = () => {
           ref={gridRef1}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img src={img1} className="w-full h-full object-cover row-start-1 col-start-1" />
-          <img src={img2} className="w-full h-full object-cover row-start-1 col-start-4" />
-          <img src={img3} className="w-full h-full object-cover row-start-2 col-start-3" />
-          <img src={img4} className="w-full h-full object-cover row-start-3 col-start-1" />
+         
+            <img
+  src={img1}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-1 col-start-1
+    
+  "
+/>
+
+        
+            <img
+  src={img2}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-1 col-start-4
+    
+  "
+/>
+
+            <img
+  src={img3}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-2 col-start-3
+    
+  "
+/>
+
+     
+            <img
+  src={img4}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-2 col-start-2
+    
+  "
+/>
+
         </div>
 
         {/* GRID 2 */}
@@ -172,9 +211,39 @@ const ConnectSection = () => {
           ref={gridRef2}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img src={img5} className="w-full h-full object-cover row-start-2 col-start-1" />
-          <img src={img6} className="w-full h-full object-cover row-start-2 col-start-3" />
-          <img src={img7} className="w-full h-full object-cover row-start-3 col-start-2" />
+ 
+            <img
+  src={img5}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-1 col-start-1
+    
+  "
+/>
+
+        
+            <img
+  src={img6}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-2 col-start-4
+    
+  "
+/>
+
+       
+            <img
+  src={img7}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-2 col-start-2
+    
+  "
+/>
+
         </div>
 
         {/* GRID 3 */}
@@ -182,9 +251,39 @@ const ConnectSection = () => {
           ref={gridRef3}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img src={img8} className="w-full h-full object-cover row-start-3 col-start-1" />
-          <img src={img9} className="w-full h-full object-cover row-start-3 col-start-3" />
-          <img src={img10} className="w-full h-full object-cover row-start-1 col-start-2" />
+      
+            <img
+  src={img8}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-3 col-start-1
+    
+  "
+/>
+
+          
+            <img
+  src={img9}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-3 col-start-3
+    
+  "
+/>
+
+          
+          <img
+  src={img10}
+  className="
+    max-w-full
+    h-auto
+    object-contain row-start-1 col-start-2
+    
+  "
+/>
+
         </div>
       </div>
     </section>
