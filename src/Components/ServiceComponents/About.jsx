@@ -105,21 +105,26 @@
 
 // export default Engag;
 // import overhead from "/src/assets/overhead.png";
+
+
+
+
+
 import des from "/src/assets/Descriptions.png";
 import Digtal from "/src/assets/Digital.png"; 
 import Brand from "/src/assets/Brand.png";
-import Description from "/src/assets/Descriptions.png";
+import Social from "/src/assets/Social.png";
 import LeadGen from "/src/assets/Lead Generation.png";
 import ProductPhoto from "/src/assets/Product Photography.png";
 import PersonalBranding from "/src/assets/PersonalBranding.png";
 import TvCommercial from "/src/assets/Tvcommercial.png";
-import influence from "/src/assets/Descriptions.png";
+import Influence from "/src/assets/influnceer.png";
 
 const ENGAG_CONTENT = {
   "content-creation": {
     heading: "ENGAGING CONTENT THAT",
     highlight: "ELEVATES YOUR BRAND",
-    description: `In today’s digital world, high-quality content isn’t optional—it’s the engine that drives awareness, trust, and growth. Our Content Creation Services are designed to help your brand communicate with clarity, creativity, and impact. Whether you need compelling visuals, strategic messaging, or consistent storytelling across platforms, we bring your ideas to life with content that resonates.`,
+    description: `In today's digital world, high-quality content isn't optional—it's the engine that drives awareness, trust, and growth. Our Content Creation Services are designed to help your brand communicate with clarity, creativity, and impact. Whether you need compelling visuals, strategic messaging, or consistent storytelling across platforms, we bring your ideas to life with content that resonates.`,
     background: des,
   },
 
@@ -133,21 +138,21 @@ const ENGAG_CONTENT = {
   "brand-storytelling": {
     heading: "Transform Your Brand Into a .",
     highlight: "Story People Care About.",
-    description: `Great brands don’t just sell products—they inspire, connect, and stay remembered. Our Brand Storytelling service helps you uncover the heart of your business and communicate it in a way that builds trust, emotion, and loyalty. We craft stories that spark connection and turn audiences into lifelong advocates.`,
+    description: `Great brands don't just sell products—they inspire, connect, and stay remembered. Our Brand Storytelling service helps you uncover the heart of your business and communicate it in a way that builds trust, emotion, and loyalty. We craft stories that spark connection and turn audiences into lifelong advocates.`,
     background: Brand,
   },
 
   "social-media-management": {
     heading: "Grow Your Presence. Engage Your Audience.",
     highlight: " Strengthen Your Brand.",
-    description: `Your personal brand is more than an online presence — it’s your reputation, your influence, and the story that sets you apart. Our Personal Branding Services help entrepreneurs, creators, coaches, and industry professionals build a magnetic identity that attracts opportunities, grows trust, and communicates expertise with clarity and confidence.`,
-    background: Description,
+    description: `Your personal brand is more than an online presence — it's your reputation, your influence, and the story that sets you apart. Our Personal Branding Services help entrepreneurs, creators, coaches, and industry professionals build a magnetic identity that attracts opportunities, grows trust, and communicates expertise with clarity and confidence.`,
+    background: Social,
   },
 
   "lead-generation": {
     heading: "Fuel Your Sales Pipeline With .",
     highlight: " High-Quality Leads.",
-    description: `Your business can’t grow without a steady flow of potential customers. Our Lead Generation services are designed to attract, engage, and convert the right prospects—so your sales team spends less time chasing and more time closing.`,
+    description: `Your business can't grow without a steady flow of potential customers. Our Lead Generation services are designed to attract, engage, and convert the right prospects—so your sales team spends less time chasing and more time closing.`,
     background: LeadGen,
   },
 
@@ -159,9 +164,9 @@ const ENGAG_CONTENT = {
   },
 
   "personal-branding": {
-    heading: "Grow Faster With ",
-    highlight: "Data-Driven Digital Marketing", 
-    description: `Your customers are online—and your brand should be too. Our Digital Marketing Services help you reach the right audience, increase visibility, and convert clicks into loyal customers. With a strategic, results-focused approach, we blend creativity and analytics to elevate your brand in a competitive digital landscape..`,
+    heading: "Build a Magnetic Personal Brand That",
+    highlight: " Attracts Opportunities",
+    description: `Your personal brand is more than an online presence — it's your reputation, your influence, and the story that sets you apart. Our Personal Branding Services help entrepreneurs, creators, coaches, and industry professionals build a magnetic identity that attracts opportunities, grows trust, and communicates expertise with clarity and confidence.`,
     background: PersonalBranding,
   },
 
@@ -171,7 +176,13 @@ const ENGAG_CONTENT = {
     description: `From concept to execution, we create TV commercials that connect emotionally and build brand recall.`,
     background: TvCommercial,
   },
-  
+
+  "influencer-marketing": {
+    heading: "Leverage Trust & Reach with",
+    highlight: " Strategic Influencer Marketing",
+    description: `Tap into established audiences and authentic voices that align with your brand values. Our Influencer Marketing services connect you with the right creators to build credibility, drive engagement, and amplify your message through trusted recommendations that convert.`,
+    background: Influence,
+  },
 };
 
 function Engag({ slug }) {
