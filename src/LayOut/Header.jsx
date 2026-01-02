@@ -80,11 +80,20 @@ function Header() {
     }, 300);
   };
 
+  // const handleServiceClick = (slug) => {
+  //   setIsServicesOpen(false);
+  //   setIsMobileMenuOpen(false);
+  //   window.location.href = `/service/${slug}`;
+  // };
   const handleServiceClick = (slug) => {
-    setIsServicesOpen(false);
-    setIsMobileMenuOpen(false);
-    window.location.href = `/service/${slug}`;
-  };
+  setIsServicesOpen(false);
+  setIsMobileMenuOpen(false);
+
+  navigate(`/service/${slug}`, {
+    state: { scrollTo: "about-section" }, // 👈 section id
+  });
+};
+
 
   const handleNavClick = (path) => {
     setIsMobileMenuOpen(false);
