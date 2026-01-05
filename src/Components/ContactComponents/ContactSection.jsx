@@ -118,13 +118,14 @@ const ContactSection = () => {
           {/* Playful "Let's talk!" heading with Nunito font */}
  <h2 className="
   text-white 
-  text-5xl sm:text-6xl lg:text-8xl xl:text-9xl 
+  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 
   font-semibold 
   mb-8 
   flex flex-wrap justify-center lg:justify-start
   gap-1 
   leading-none 
-  text-center lg:text-left
+  xl:ml-20 
+  text-center lg:text-left 
   font-worksans
 ">
   <span className="inline-block -rotate-18">L</span>

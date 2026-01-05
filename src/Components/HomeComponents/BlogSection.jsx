@@ -281,10 +281,22 @@ function BlogSection() {
           backgroundImage: `url(${yellow})`,
           backgroundSize: "contain",
           backgroundPosition: "center",
+           backgroundImage: `
+                    linear-gradient(
+                      to bottom,
+                      #ffffff 0%,
+                      #ffffff 40%,
+                      #f8a81c 40%,
+                      #f8a81c 60%,
+                      #ffffff 60%,
+                      #ffffff 100%
+                    )
+                  `
         }}
-        className="lg:hidden bg-clip-text text-transparent md:text-center text-3xl md:text-5xl font-medium uppercase mb-10 font-worksans"
-      >
+        className="lg:hidden bg-clip-text text-transparent md:text-center text-3xl md:text-5xl font-medium uppercase mb-10 font-worksans" 
+       >
         Blog
+        
       </h1>
 
       {/* ---------- TOP BLOG ---------- */}
@@ -294,9 +306,25 @@ function BlogSection() {
           className="flex-1 cursor-pointer flex flex-col justify-between"
           onClick={() => handleBlogClick(latestBlog)}
         >
-          <h1 className="hidden lg:flex text-white text-8xl xl:text-9xl xl:scale-125 xl:translate-x-20 font-semibold uppercase mb-10 font-worksans">
-            Blog
-          </h1>
+           <h1
+                className="text-4xl hidden md:block
+ md:text-5xl lg:text-6xl xl:text-9xl font-medium font-worksans tracking-wider text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(
+                      to bottom,
+                      #ffffff 0%,
+                      #ffffff 40%,
+                      #f8a81c 40%,
+                      #f8a81c 60%,
+                      #ffffff 60%,
+                      #ffffff 100%
+                    )
+                  `,
+                }}
+              >
+                BLOG
+              </h1>
 
           <div>
             <h2 className="text-white text-2xl md:text-3xl xl:text-4xl font-medium font-worksans">
@@ -307,11 +335,24 @@ function BlogSection() {
               {(latestBlog.description || "").substring(0, 150)}...
               <span className="text-amber-500 underline ml-1">More</span>
             </p>
+              <span
+  className="
+    absolute
+    top-100 left-4
+    lg:top-68 lg:left-13
+    opacity-26
+    text-gray-600
+    text-6xl lg:text-8xl
+    font-medium
+    pointer-events-none
+  "
+>
+  01
+</span>
+
           </div>
 
-          <span className="absolute top-2 right-0 text-gray-600 text-8xl font-medium pointer-events-none">
-            01
-          </span>
+        
         </div>
 
         {/* Right Image */}

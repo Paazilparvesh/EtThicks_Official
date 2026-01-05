@@ -4,7 +4,7 @@ import pack from "/src/assets/Gif/Pacman.gif";
 const Scrolling = () => {
     return (
         <>
-            <div div className="w-full h-auto flex items-center overflow-hidden bg-[#007388]  -rotate-2 mt-5.5" >
+            <div div className="w-full h-auto flex items-center overflow-hidden bg-[#007388]  -rotate-2 -mt-8" >
                 <div className="animate-scroll-text flex items-center justify-center gap-3 px-6 sm:px-10 h-full w-max">
                     {/* Double the content for seamless looping */}
                     {[...Array(8)].map((_, setIndex) => (

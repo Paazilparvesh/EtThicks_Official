@@ -59,13 +59,13 @@ function HeroSection() {
           {/* Heading */}
           <div className="w-full md:w-[60vw] xl:w-[70vw] text-4xl md:text-4xl text-white">
             <h1 className="mb-4">
-              <span className="inline text-white text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold uppercase leading-snug md:leading-0 tracking-wider font-worksans">
+              <span className="inline text-white text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-medium uppercase leading-snug md:leading-0 tracking-wider font-worksans">
                 Ettuthikkum
               </span>{" "}
               <span className="inline text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-snug md:leading-0 tracking-wide">
                 comes
               </span>{" "}
-              <span className="text-[#f09d01] text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold uppercase leading-snug tracking-wider font-worksans">
+              <span className="text-[#f09d01] text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-semibold uppercase leading-snug tracking-wider font-worksans">
                 EtThicks
               </span>{" "}
               <span className="text-white text-2xl md:text-3xl xl:text-5xl 2xl:text-6xl font-medium leading-snug  tracking-wider">
@@ -131,7 +131,7 @@ function HeroSection() {
               {/* Rotating Circle + Arrow (hidden on mobile)  */}
               <div
                 ref={circleRef}
-                className="flex absolute left-5 md:left-8 xl:left-14 md:-top-42 xl:-top-44 2xl:-top-36 flex-row items-center justify-center w-16 h-16 md:w-30 md:h-30 lg:w-34 lg:h-34 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 "
+                className="flex absolute left-7 md:left-8 xl:left-14 md:-top-42 xl:-top-44 2xl:-top-36 flex-row items-center justify-center w-16 h-16 md:w-30 md:h-30 lg:w-34 lg:h-34 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 "
               >
                 <div className="absolute inset-0 bg-sky-900 rounded-full -m-2"></div>
 
@@ -170,7 +170,7 @@ function HeroSection() {
               {/* Pac-Man Gif */}
               <img
                 ref={pacmanRef}
-                className="absolute -top-4 md:-top-48 lg:-top-52 2xl:-top-50 right-0 transform scale-x-[-1] size-24 md:size-44 lg:size-52 2xl:size-62"
+                className="absolute -top-5 md:-top-48 lg:-top-52 2xl:-top-50 right-0 transform scale-x-[-1] size-24 md:size-44 lg:size-52 2xl:size-62"
                 src={Pacman}
                 alt="Pacman"
               />
