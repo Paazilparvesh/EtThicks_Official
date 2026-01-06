@@ -161,69 +161,61 @@ const ConnectSection = () => {
           ref={gridRef1}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(120vh-20vh)] mt-20 gap-10 mx-10"
         >
-         
-            <img
-  src={img1}
-className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-  translate-x-[20px] translate-y-[-10px]
-  sm:translate-x-[40px] sm:translate-y-[-20px]
-  md:translate-x-[80px] md:translate-y-[-30px]
-  lg:translate-x-[120px] lg:translate-y-[-40px]
-  xl:translate-x-[260px] xl:translate-y-[-50px]
-  
-"
+          <img
+            src={img1}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[1.6] md:scale-100
+              translate-x-[20px] translate-y-[-10px]
+              sm:translate-x-[40px] sm:translate-y-[-20px]
+              md:translate-x-[80px] md:translate-y-[-30px]
+              lg:translate-x-[120px] lg:translate-y-[-40px]
+              xl:translate-x-[260px] xl:translate-y-[-50px]
+            "
+          />
 
-/>
+          <img
+            src={img2}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[1.7] md:scale-100
+              translate-x-[260px] translate-y-[40px]
+              sm:translate-x-[100px] sm:translate-y-[80px]
+              md:translate-x-[160px] md:translate-y-[120px]
+              lg:translate-x-[620px] lg:translate-y-[260px]
+              xl:translate-x-[1080px] xl:translate-y-[500px]
+            "
+          />
 
-        
-            <img
-  src={img2}
-  className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
+          <img
+            src={img3}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.4] md:scale-100
+              translate-x-[40px] translate-y-[340px]
+              sm:translate-x-[80px] sm:translate-y-[-10px]
+              md:translate-x-[120px] md:translate-y-[-15px]
+              lg:translate-x-[580px] lg:translate-y-[-20px]
+              xl:translate-x-[434px] xl:translate-y-[525px]
+            "
+          />
 
-  translate-x-[260px] translate-y-[40px]
-  sm:translate-x-[100px] sm:translate-y-[80px]
-  md:translate-x-[160px] md:translate-y-[120px]
-  lg:translate-x-[620px] lg:translate-y-[260px]
-  xl:translate-x-[1080px] xl:translate-y-[500px]
-"
-
-/>
-
-            <img
-  src={img3}
- className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[40px] translate-y-[340px]
-  sm:translate-x-[80px] sm:translate-y-[-10px]
-  md:translate-x-[120px] md:translate-y-[-15px]
-  lg:translate-x-[580px] lg:translate-y-[-20px]
-  xl:translate-x-[434px] xl:translate-y-[525px]
-"
-
-/>
-
-     
-            <img
-  src={img4}
-className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[280px] translate-y-[480px]
-  sm:translate-x-[60px] sm:translate-y-[60px]
-  md:translate-x-[90px] md:translate-y-[90px]
-  lg:translate-x-[120px] lg:translate-y-[420px]
-  xl:translate-x-[1050px] xl:translate-y-[40px]
-"
-
-/>
-
+          <img
+            src={img4}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.5] md:scale-100
+              translate-x-[230px] translate-y-[480px]
+              sm:translate-x-[60px] sm:translate-y-[60px]
+              md:translate-x-[90px] md:translate-y-[90px]
+              lg:translate-x-[120px] lg:translate-y-[420px]
+              xl:translate-x-[1050px] xl:translate-y-[40px]
+            "
+          />
         </div>
 
         {/* GRID 2 */}
@@ -231,52 +223,47 @@ className="
           ref={gridRef2}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
- 
-            <img
-  src={img5}
-  className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
+          <img
+            src={img5}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.1] md:scale-100
+              translate-x-[40px] translate-y-[410px]
+              sm:translate-x-[80px] sm:translate-y-[-20px]
+              md:translate-x-[140px] md:translate-y-[-30px]
+              lg:translate-x-[280px] lg:translate-y-[-40px]
+              xl:translate-x-[420px] xl:translate-y-[-50px]
+            "
+          />
 
-  translate-x-[40px] translate-y-[410px]
-  sm:translate-x-[80px] sm:translate-y-[-20px]
-  md:translate-x-[140px] md:translate-y-[-30px]
-  lg:translate-x-[280px] lg:translate-y-[-40px]
-  xl:translate-x-[420px] xl:translate-y-[-50px]
-"
+          <img
+            src={img6}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.3] md:scale-100
+              translate-x-[230px] translate-y-[480px]
+              sm:translate-x-[90px] sm:translate-y-[60px]
+              md:translate-x-[150px] md:translate-y-[90px]
+              lg:translate-x-[200px] lg:translate-y-[320px]
+              xl:translate-x-[1058px] xl:translate-y-[150px]
+            "
+          />
 
-/>
-
-        
-            <img
-  src={img6}
-className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[250px] translate-y-[480px]
-  sm:translate-x-[90px] sm:translate-y-[60px]
-  md:translate-x-[150px] md:translate-y-[90px]
-  lg:translate-x-[200px] lg:translate-y-[320px]
-  xl:translate-x-[1058px] xl:translate-y-[150px]
-"
-/>
-
-       
-            <img
-  src={img7}
-  className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[10px] translate-y-[20px]
-  sm:translate-x-[30px] sm:translate-y-[40px]
-  md:translate-x-[60px] md:translate-y-[60px]
-  lg:translate-x-[700px] lg:translate-y-[80px]
-  xl:translate-x-[640px] xl:translate-y-[400px]
-"
-/>
-
+          <img
+            src={img7}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.2] md:scale-100
+              translate-x-[110px] translate-y-[20px]
+              sm:translate-x-[30px] sm:translate-y-[40px]
+              md:translate-x-[60px] md:translate-y-[60px]
+              lg:translate-x-[700px] lg:translate-y-[80px]
+              xl:translate-x-[640px] xl:translate-y-[400px]
+            "
+          />
         </div>
 
         {/* GRID 3 */}
@@ -284,54 +271,47 @@ className="
           ref={gridRef3}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-      
-            <img
-  src={img8}
-  className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[20px] translate-y-[5px]
-  sm:translate-x-[40px] sm:translate-y-[15px]
-  md:translate-x-[80px] md:translate-y-[30px]
-  lg:translate-x-[220px] lg:translate-y-[45px]
-  xl:translate-x-[1000px] xl:translate-y-[60px]
-"
-
-/>
-
-          
-            <img
-  src={img9}
- className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
-
-  translate-x-[140px] translate-y-[440px]
-  sm:translate-x-[70px] sm:translate-y-[70px]
-  md:translate-x-[100px] md:translate-y-[100px]
-  lg:translate-x-[440px] lg:translate-y-[430px]
-  xl:translate-x-[580px] xl:translate-y-[460px]
-"
-
-/>
-
-          
           <img
-  src={img10}
-  className="
-  max-w-full h-auto object-contain
-  row-start-1 col-start-1
+            src={img8}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.4] md:scale-100
+              translate-x-[20px] translate-y-[5px]
+              sm:translate-x-[40px] sm:translate-y-[15px]
+              md:translate-x-[80px] md:translate-y-[30px]
+              lg:translate-x-[220px] lg:translate-y-[45px]
+              xl:translate-x-[1000px] xl:translate-y-[60px]
+            "
+          />
 
-  translate-x-[260px] translate-y-[-10px]
-  sm:translate-x-[100px] sm:translate-y-[-15px]
-  md:translate-x-[160px] md:translate-y-[-20px]
-  lg:translate-x-[700px] lg:translate-y-[-25px]
-  xl:translate-x-[224px] xl:translate-y-[-30px]
-"
+          <img
+            src={img9}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2.8] md:scale-100
+              translate-x-[110px] translate-y-[440px]
+              sm:translate-x-[70px] sm:translate-y-[70px]
+              md:translate-x-[100px] md:translate-y-[100px]
+              lg:translate-x-[440px] lg:translate-y-[430px]
+              xl:translate-x-[580px] xl:translate-y-[460px]
+            "
+          />
 
-/>
-
+          <img
+            src={img10}
+            className="
+              max-w-full h-auto object-contain
+              row-start-1 col-start-1
+              scale-[2] md:scale-100
+              translate-x-[240px] translate-y-[-70px]
+              sm:translate-x-[100px] sm:translate-y-[-15px]
+              md:translate-x-[160px] md:translate-y-[-20px]
+              lg:translate-x-[700px] lg:translate-y-[-25px]
+              xl:translate-x-[224px] xl:translate-y-[-30px]
+            "
+          />
         </div>
       </div>
     </section>
@@ -339,5 +319,3 @@ className="
 };
 
 export default ConnectSection;
-
-
