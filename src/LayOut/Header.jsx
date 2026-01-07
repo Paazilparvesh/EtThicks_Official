@@ -1,13 +1,13 @@
 import Logo from "/src/assets/headerasset/logo.png";
-import ContentCreation from "/src/assets/head/youtubepng.png";
-import pearsonalbranding from "/src/assets/head/marketingpng.png";
-import infuencer from "/src/assets/head/influncer.png";
-import social from "/src/assets/head/socialmark.png";
-import leadgeneration from "/src/assets/head/target-04.png";
-import productphotography from "/src/assets/head/camera-01.png";
-import tvcomersials from "/src/assets/head/tv.png";
-import brandstorytelling from "/src/assets/head/icon12.png";
-import digitalmarketing from "/src/assets/head/people.png";
+import ContentCreation from "/src/assets/head/hugeicons_video-ai.svg";
+import pearsonalbranding from "/src/assets/head/ion_megaphone-outline.svg";
+import infuencer from "/src/assets/head/hugeicons_ai-user.svg";
+import social from "/src/assets/head/pepicons-pencil_smartphone-cutout.svg";
+import leadgeneration from "/src/assets/head/target-04.svg";
+import productphotography from "/src/assets/head/camera-01.svg";
+import tvcomersials from "/src/assets/head/ic_twotone-tv.svg";
+import brandstorytelling from "/src/assets/head/document-text.svg";
+import digitalmarketing from "/src/assets/head/people.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 // eslint-disable-next-line no-unused-vars
