@@ -11,12 +11,12 @@ const Footer = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="size-56 md:size-64 xl:size-70 object-cover -ml-7 -mb-8 md:ml-0 md:mb-0"
+              className="size-56 pt-35 md:size-64 xl:size-70 object-cover -ml-7 -mb-8 md:ml-0 md:mb-0"
             />
           </div>
 
           {/* Center - Contact Info */}
-          <div className="text-left pt-30 mb-10 md:mb-0">
+          <div className="text-left pt-30 -mb-10 md:mb-0">
             <h3 className="text-gray-400 uppercase tracking-widest text-sm mb-2">
               Contact Us
             </h3>
@@ -40,7 +40,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="text-center md:absolute md:top-2 md:right-6 text-gray-600 text-sm md:text-xs pt-6">
+      <div className="text-center pt-10 md:absolute md:top-2 md:right-6 text-gray-600 text-sm md:text-xs pt-6">
         © 2023 — Copyright
       </div>
     </footer>

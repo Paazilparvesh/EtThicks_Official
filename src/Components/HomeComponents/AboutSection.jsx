@@ -138,77 +138,82 @@ function AboutSection() {
       }
     );
 
-    // Animate stats section with reveal effect
-    const statsElements = statsRef.current?.children[0]?.children || [];
+    // Only animate stats for desktop (md and above)
+    const isMobile = window.innerWidth < 768;
     
-    // Animate each stat item
-    if (statsElements.length > 0) {
-      Array.from(statsElements).forEach((stat, index) => {
-        // Animate the number
-        gsap.fromTo(
-          numbersRef.current[index],
-          {
-            y: 60,
-            opacity: 0,
-            scale: 0.8,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1.2,
-            delay: index * 0.2,
-            ease: "back.out(0.5)",
-            scrollTrigger: {
-              trigger: statsRef.current,
-              start: "top 105%",
-              end: "bottom 85%",
+    if (!isMobile) {
+      // Animate stats section with reveal effect
+      const statsElements = statsRef.current?.children[0]?.children || [];
+      
+      // Animate each stat item
+      if (statsElements.length > 0) {
+        Array.from(statsElements).forEach((stat, index) => {
+          // Animate the number
+          gsap.fromTo(
+            numbersRef.current[index],
+            {
+              y: 60,
+              opacity: 0,
+              scale: 0.8,
             },
-          }
-        );
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 1.2,
+              delay: index * 0.2,
+              ease: "back.out(0.5)",
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 105%",
+                end: "bottom 85%",
+              },
+            }
+          );
 
-        // Animate the text
-        gsap.fromTo(
-          textItemsRef.current[index],
-          {
-            y: 30,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            delay: index * 0.2 + 0.3,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: statsRef.current,
-              start: "top 155%",
-              end: "bottom 25%",
+          // Animate the text
+          gsap.fromTo(
+            textItemsRef.current[index],
+            {
+              y: 30,
+              opacity: 0,
             },
-          }
-        );
-      });
-    }
-
-    // Add a subtle scale animation to the entire stats section
-    gsap.fromTo(
-      statsRef.current,
-      {
-        scale: 0.95,
-        opacity: 0,
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 4,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: "top 85%",
-          end: "bottom 20%",
-        },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              delay: index * 0.2 + 0.3,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 155%",
+                end: "bottom 25%",
+              },
+            }
+          );
+        });
       }
-    );
+
+      // Add a subtle scale animation to the entire stats section
+      gsap.fromTo(
+        statsRef.current,
+        {
+          scale: 0.95,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 85%",
+            end: "bottom 20%",
+          },
+        }
+      );
+    }
 
     // Clean up ScrollTrigger instances
     return () => {
@@ -216,9 +221,22 @@ function AboutSection() {
     };
   }, [loading]);
 
-  /* ---------------- Counter animation ---------------- */
+  /* ---------------- Counter animation (Desktop only) ---------------- */
   useEffect(() => {
     if (loading || hasAnimated) return;
+
+    // Only run counter animation for desktop
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      // Set static values for mobile immediately
+      setCounts({
+        projects: targetCounts.projects,
+        clients: targetCounts.clients,
+        contents: targetCounts.contents,
+      });
+      setHasAnimated(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -233,7 +251,7 @@ function AboutSection() {
     if (statsRef.current) observer.observe(statsRef.current);
 
     return () => observer.disconnect();
-  }, [loading, hasAnimated]);
+  }, [loading, hasAnimated, targetCounts]);
 
   /* ---------------- Smooth counter animation ---------------- */
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
@@ -289,7 +307,16 @@ function AboutSection() {
       className="w-full bg-black flex flex-col items-center justify-center"
     >
       {/* Main Content Section */}
-      <div className="w-full min-h-screen -mt-25  flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
+      <div className="
+        w-full min-h-screen
+        -mt-[200px]        /* mobile */
+        sm:-mt-[100px]     /* small devices */
+        md:-mt-[80px]      /* tablets */
+        lg:-mt-[60px]      /* laptops */
+        xl:-mt-[100px]     /* large screens */
+        flex flex-col items-center justify-center
+        px-4 sm:px-6 md:px-8 lg:px-10
+      ">
         {/* Text Section */}
         <div 
           ref={textRef}
@@ -305,14 +332,14 @@ function AboutSection() {
           </div>
           <h2 
             ref={headingRef}
-            className="text-xl  sm:text-2xl md:text-xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans"
+            className="text-xl sm:text-2xl md:text-xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans"
           >
             Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />
             Take It <span className="text-[#E69500]">Everywhere</span>
           </h2>
           <p 
             ref={paragraphRef}
-            className="text-sm w-fit  sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8  font-nunito"
+            className="text-sm w-fit sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 font-nunito"
           >
             EtThicks is not just another digital agency — we're a storytelling
             powerhouse rooted in truth, trust, and transformation. Born from the
@@ -323,7 +350,7 @@ function AboutSection() {
         </div>
       </div>
 
-      {/* Desktop Stats Count Section - Keeping your original laptop design exactly as is */}
+      {/* Desktop Stats Count Section - With animations */}
       <div 
         ref={statsRef}
         className="hidden md:block w-full py-0 mb-15 bg-black"
@@ -357,7 +384,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-5xl md:text-2xl font-medium lg:text-[80px] font-worksans leading-none">
                 {counts.contents}
               </h1>
-              <span className="text-blue-300 text-4xl md:text-2xl  lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
+              <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
             <p 
               ref={el => textItemsRef.current[1] = el}
@@ -388,49 +415,49 @@ function AboutSection() {
         </div>
       </div>
 
-      {/* Mobile Stats Count Section - Completely separate mobile design matching the image */}
-   <div className="md:hidden w-full bg-black -mt-40 mb-8">
-  <div className="flex flex-row items-center justify-center px-4">
-    {/* Clients */}
-    <div className="flex flex-col items-center w-full -mt-24">
-      <div className="flex items-center justify-center">
-        <h1 className="text-[#FFAE00] text-xl font-worksans  leading-none">
-          {counts.clients}
-        </h1>
-        <span className="text-blue-300 text-xl font-worksans">+</span>
-      </div>
-      <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
-        CLIENTS
-      </p>
-    </div>
+      {/* Mobile Stats Count Section - Static (no animations) */}
+      <div className="md:hidden w-full bg-black -mt-40 mb-8">
+        <div className="flex flex-row items-center justify-center px-4">
+          {/* Clients */}
+          <div className="flex flex-col items-center w-full -mt-44">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
+                {targetCounts.clients}
+              </h1>
+              <span className="text-blue-300 text-xl font-worksans">+</span>
+            </div>
+            <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
+              CLIENTS
+            </p>
+          </div>
 
-    {/* Content Produced - Same position */}
-    <div className="flex flex-col items-center w-full -mt-4">
-      <div className="flex items-center justify-center">
-        <h1 className="text-[#FFAE00] text-xl font-worksans leading-none"> 
-          {counts.projects}
-        </h1>
-        <span className="text-blue-300 text-xl font-worksans">+</span>
-      </div>
-      <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
-        CONTENT PRODUCED
-      </p>
-    </div>
+          {/* Content Produced - Same position */}
+          <div className="flex flex-col items-center w-full -mt-24">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none"> 
+                {targetCounts.projects}
+              </h1>
+              <span className="text-blue-300 text-xl font-worksans">+</span>
+            </div>
+            <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
+              CONTENT PRODUCED
+            </p>
+          </div>
 
-    {/* Projects - Same position */}
-    <div className="flex flex-col items-center w-full -mt-24">
-      <div className="flex items-center justify-center">
-        <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
-          {counts.contents}
-        </h1>
-        <span className="text-blue-300 text-xl font-worksans">+</span>
+          {/* Projects - Same position */}
+          <div className="flex flex-col items-center w-full -mt-44">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
+                {targetCounts.contents}
+              </h1>
+              <span className="text-blue-300 text-xl font-worksans">+</span>
+            </div>
+            <p className="text-white font-nunito tracking-wider mt-0 text-center whitespace-nowrap">
+              PROJECTS
+            </p>
+          </div>
+        </div>
       </div>
-      <p className="text-white font-nunito tracking-wider mt-0 text-center whitespace-nowrap">
-        PROJECTS
-      </p>
-    </div>
-  </div>
-</div>
     </div>
   );
 }

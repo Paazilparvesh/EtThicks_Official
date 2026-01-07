@@ -43,7 +43,7 @@ const ConnectSection = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
-          start: "top 90",
+          start: "top 200",
           end: isMobile ? "+=150%" : "+=600%",
           scrub: true,
           pin: true,
@@ -118,7 +118,7 @@ const ConnectSection = () => {
       tl.to(
         [circleRef.current, h1Ref.current, pRef.current],
         { opacity: 0, ease: "power2.in", duration: 2 },
-        "-=1"
+        "-=0"
       );
     }, pinRef);
 
@@ -126,20 +126,20 @@ const ConnectSection = () => {
   }, []);
 
   return (
-    <section className="w-full bg-black overflow-hidden relative">
+    <section className="w-full -mb-50 bg-black overflow-hidden relative">
       <div
         ref={pinRef}
-        className="w-full h-screen flex items-center justify-center relative"
+        className="w-full min-h-screen flex items-center justify-center relative"
       >
         <div
           ref={circleRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] shadow-2xl z-10 mt-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[160%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] shadow-2xl z-10 mt-10"
           style={{
             background: "linear-gradient(135deg, #E59300 0%, #D89F5B 100%)",
           }}
         />
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[75%] text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
           <h1
             ref={h1Ref}
             className="text-white font-medium text-3xl lg:text-4xl xl:text-5xl font-worksans"

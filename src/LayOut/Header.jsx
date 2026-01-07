@@ -3,8 +3,8 @@ import ContentCreation from "/src/assets/head/youtubepng.png";
 import pearsonalbranding from "/src/assets/head/marketingpng.png";
 import infuencer from "/src/assets/head/influncer.png";
 import social from "/src/assets/head/socialmark.png";
-import leadgeneration from "/src/assets/head/leadgeneration.png";
-import productphotography from "/src/assets/head/productphoto.png";
+import leadgeneration from "/src/assets/head/target-04.png";
+import productphotography from "/src/assets/head/camera-01.png";
 import tvcomersials from "/src/assets/head/tv.png";
 import brandstorytelling from "/src/assets/head/icon12.png";
 import digitalmarketing from "/src/assets/head/people.png";
@@ -110,7 +110,7 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black bg-opacity-80 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black bg-opacity-80  backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}

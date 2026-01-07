@@ -84,8 +84,8 @@ const Landing = ({ slug }) => {
           <h1 className="animate-[bottom-text_1.5s_ease-out_0.5s_forwards] text-7xl md:text-9xl lg:scale-140 xl:scale-170 -mb-50 md:-mt-14 text-[#FFAE00] font-bold">{heroText.bottom}</h1>
         </div>
 
-        <div className="absolute top-1/2 left-0 w-full text-white flex flex-col justify-center items-center -mt-5 md:-mt-7 xl:-mt-10 z-50">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-normal italic whitespace-nowrap opacity-0 animate-[center-text_1.5s_ease-out_1.8s_forwards]  font-waterfall">{displayTitle}</h1>
+        <div className="absolute top-1/2 left-0 w-full text-white flex flex-col justify-center items-center -mt-5 md:-mt-7 xl:-mt-10 z-40">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl font-normal italic whitespace-nowrap opacity-0 animate-[center-text_1.5s_ease-out_1.8s_forwards]   font-waterfall">{displayTitle}</h1>
         </div>
       </div>
     </>

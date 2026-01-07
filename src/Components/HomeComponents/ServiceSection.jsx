@@ -323,7 +323,7 @@ function ServiceSection() {
                 className="bg-[#141414] rounded-2xl p-6 border overflow-hidden relative group cursor-pointer"
                 onClick={() => handlePanelClick(panel.slug)}
               >
-                <span className="absolute top-2 left-4 opacity-20 font-extrabold italic text-[#f9ac23] text-8xl pointer-events-none">
+                <span className="absolute top-2 left-64 opacity-20 font-extrabold italic text-[#464646] text-8xl pointer-events-none">
                   {panel.number}
                 </span>
 
@@ -356,7 +356,7 @@ function ServiceSection() {
                       key={idx}
                       className="min-h-[42px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center"
                     >
-                      <p className="text-white text-sm font-nunito text-center">
+                      <p className="text-white text-[12px] font-nunito text-center">
                         {item}
                       </p>
                     </div>
@@ -420,7 +420,7 @@ function ServiceSection() {
                     
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
                           {panel.number}
                         </span>
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
@@ -469,7 +469,7 @@ function ServiceSection() {
                     </div>
                     
                     <div className="text-white">
-                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
                         {panel.number}
                       </span>
                       <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">
@@ -506,7 +506,7 @@ function ServiceSection() {
                     
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
                       </div>
@@ -529,7 +529,7 @@ function ServiceSection() {
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">{panel.title}</h3>
                     </div>
                     <div className="text-white">
-                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
                       <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">{panel.description}</p>
                     </div>
                   </div>
@@ -537,7 +537,7 @@ function ServiceSection() {
               ))}
             </div>
 
-            <div className="shrink-0 w-[120px] lg:w-[80px] xl:w-[200px] h-full" />
+            <div className="shrink-0 w-[120px] lg:w-[140px] xl:w-[200px] h-full" />
 
             {/* Group 3: Panels 7-8-9 */}
             <div className="flex items-center gap-10 lg:gap-5 xl:gap-6 lg:mx-auto">
@@ -545,7 +545,7 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[240px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
                   <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
@@ -562,7 +562,7 @@ function ServiceSection() {
                     
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
                       </div>
@@ -585,7 +585,7 @@ function ServiceSection() {
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">{panel.title}</h3>
                     </div>
                     <div className="text-white">
-                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
                       <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">{panel.description}</p>
                     </div>
                   </div>
