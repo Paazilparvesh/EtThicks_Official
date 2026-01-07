@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,36 +13,31 @@ function ServiceSection() {
   const titleRef = useRef(null);
   const panelsRef = useRef([]);
   const [isMobile, setIsMobile] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate hook
+  const navigate = useNavigate();
 
-  // Add panel to ref array
   const addToPanelsRef = (el) => {
     if (el && !panelsRef.current.includes(el)) {
       panelsRef.current.push(el);
     }
   };
 
-  // Function to handle panel click
   const handlePanelClick = (serviceSlug) => {
     navigate(`/service/${serviceSlug}`);
   };
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
+      const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
       return mobile;
     };
 
-    // Initial check
     const mobile = checkMobile();
 
-    // Mobile: only use Framer Motion animations
     if (mobile) {
       return;
     }
 
-    // Desktop: Setup smooth scrolling and GSAP animations
     const lenis = new Lenis({
       duration: 1.2,
       smooth: true,
@@ -58,22 +53,22 @@ function ServiceSection() {
     }
     rafId = requestAnimationFrame(raf);
 
-    // Create GSAP context for proper cleanup
     const ctx = gsap.context(() => {
       const panels = gsap.utils.toArray(".panel");
-
-      // Get the last panel to calculate proper centering
-      const lastPanel = panels[panels.length - 1];
-      const lastPanelWidth = lastPanel.offsetWidth;
-      const viewportWidth = window.innerWidth;
-
-      // Calculate the exact scroll distance needed to center the last panel
       const totalScrollWidth = contentWrapperRef.current.scrollWidth;
-      const scrollX =
-        totalScrollWidth - viewportWidth - 1300;
+      const viewportWidth = window.innerWidth;
       
+      // CORRECTED scroll calculation based on actual layout dimensions
+      let scrollX;
+      if (window.innerWidth <= 1024) {
+        // Increased to +1800 for longer scroll duration
+        scrollX = totalScrollWidth - viewportWidth + 1800;
+      } else if (window.innerWidth <= 1240) {
+        scrollX = totalScrollWidth - viewportWidth + 80;
+      } else {
+        scrollX = totalScrollWidth - viewportWidth - 1300;
+      }
 
-      // Pin the entire section and create horizontal scroll
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
@@ -83,7 +78,6 @@ function ServiceSection() {
         anticipatePin: 1,
       });
 
-      // Create horizontal scroll animation for content
       gsap.to(contentWrapperRef.current, {
         x: -scrollX,
         ease: "none",
@@ -96,7 +90,6 @@ function ServiceSection() {
         },
       });
 
-      // Animate title to move up and stay at top
       gsap.to(titleRef.current, {
         y: -2,
         opacity: 0.9,
@@ -109,14 +102,11 @@ function ServiceSection() {
         },
       });
 
-      // Simple fade in animation for panels as they enter view
-      panels.forEach((panel, index) => {
-        // Initial state - panels start slightly transparent
+      panels.forEach((panel) => {
         gsap.set(panel, {
           opacity: 0.9,
         });
 
-        // Create a subtle fade in/out effect based on scroll position
         ScrollTrigger.create({
           trigger: panel,
           start: "left 80%",
@@ -153,16 +143,14 @@ function ServiceSection() {
       });
     }, sectionRef);
 
-    // Handle resize
     const handleResize = () => {
-      checkMobile();
+      const wasMobile = checkMobile();
       ScrollTrigger.refresh();
     };
 
     window.addEventListener("resize", handleResize);
 
     return () => {
-      // Cleanup
       if (rafId) cancelAnimationFrame(rafId);
       ctx.revert();
       if (lenis) lenis.destroy();
@@ -170,7 +158,6 @@ function ServiceSection() {
     };
   }, []);
 
-  // Framer Motion variants for mobile animations
   const panelVariants = {
     hidden: {
       opacity: 0,
@@ -200,7 +187,6 @@ function ServiceSection() {
     },
   };
 
-  // Panel data for mobile rendering
   const panelsData = [
     {
       id: 1,
@@ -279,10 +265,10 @@ function ServiceSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen overflow-hidden pt-4 md:pt-0 hide-scrollbar relative bg-black"
+      className="min-h-screen overflow-hidden pt-4 lg:pt-0 hide-scrollbar relative bg-black"
     >
-      {/* Title section with reduced padding */}
-      <div className="relative z-20 pt-10 md:pt-8 pb-4 md:pb-6 px-4 md:px-8">
+      {/* Title section */}
+      <div className="relative z-20 pt-10 lg:pt-8 pb-4 lg:pb-6 px-4 lg:px-8">
         {isMobile ? (
           <>
             <motion.h2
@@ -295,7 +281,6 @@ function ServiceSection() {
               Services
             </motion.h2>
 
-            {/* Caption */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -311,13 +296,12 @@ function ServiceSection() {
           <>
             <h2
               ref={titleRef}
-              className="text-3xl ml-20 sm:text-4xl pt-15 italic text-[#f09d01] md:text-[100px] text-center md:text-left font-worksans font-semibold"
+              className="text-3xl ml-20 sm:text-4xl pt-15 italic text-[#f09d01] lg:text-[70px] xl:text-[100px] text-center lg:text-left font-worksans font-semibold"
             >
               Services
             </h2>
 
-            {/* Caption */}
-            <p className="ml-20 mt-4 text-base md:text-lg text-white font-nunito leading-relaxed max-w-3xl">
+            <p className="ml-20 mt-4 text-sm lg:text-base xl:text-lg text-white font-nunito leading-relaxed max-w-3xl">
               We help brands and individuals build a strong and consistent presence
               through strategic creativity and digital execution.
             </p>
@@ -329,7 +313,7 @@ function ServiceSection() {
       {isMobile ? (
         <div className="px-4 pb-20">
           <div className="space-y-6">
-            {panelsData.map((panel, index) => (
+            {panelsData.map((panel) => (
               <motion.div
                 key={panel.id}
                 variants={panelVariants}
@@ -339,12 +323,10 @@ function ServiceSection() {
                 className="bg-[#141414] rounded-2xl p-6 border overflow-hidden relative group cursor-pointer"
                 onClick={() => handlePanelClick(panel.slug)}
               >
-                {/* Panel Number - Large in background */}
-                <span className="absolute top-2 left-4 opacity-20 font-extrabold italic text-gray-600 text-8xl pointer-events-none">
+                <span className="absolute top-2 left-4 opacity-20 font-extrabold italic text-[#f9ac23] text-8xl pointer-events-none">
                   {panel.number}
                 </span>
 
-                {/* Arrow Button */}
                 <div className="flex justify-start mb-4 relative z-10">
                   <button className="w-12 h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
                     <svg
@@ -364,12 +346,10 @@ function ServiceSection() {
                   </button>
                 </div>
 
-                {/* Title */}
                 <h3 className="text-white text-2xl font-light mb-6 font-worksans relative z-10">
                   {panel.title}
                 </h3>
 
-                {/* Items Grid */}
                 <div className="grid grid-cols-2 gap-3 mb-6 relative z-10">
                   {panel.items.map((item, idx) => (
                     <div
@@ -383,910 +363,238 @@ function ServiceSection() {
                   ))}
                 </div>
 
-                {/* Description (Hidden by default, shows on hover/tap) */}
-                <div className="mt-4 pt-4 ">
+                <div className="mt-4 pt-4">
                   <p className="text-gray-300 text-base font-worksans font-light leading-relaxed">
                     {panel.description}
                   </p>
                 </div>
 
-                {/* Hover effect overlay */}
                 <div className="absolute inset-0 bg-[#e59300] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
           </div>
         </div>
       ) : (
-        /* DESKTOP LAYOUT - Horizontal Scroll (Original) */
+        /* DESKTOP LAYOUT - Horizontal Scroll */
         <div
           ref={contentWrapperRef}
-          className="flex items-center h-[calc(100vh-120px)] md:h-[calc(80vh-150px)]"
+          className="flex items-center h-[calc(100vh-120px)] lg:h-[calc(80vh-150px)]"
         >
-          {/* Left spacer to center first panel */}
-          <div className="shrink-0 w-1/4 md:w-20 h-full" />
+          <div className="shrink-0 w-1/4 lg:w-20 h-full" />
 
-          {/* Panels container with horizontal flex */}
-          <div className="flex items-center gap-10 md:gap-6 px-4 md:px-8 h-full">
+          <div className="flex items-center gap-10 lg:gap-5 xl:gap-6 px-4 lg:px-8 h-full">
             {/* Group 1: Panels 1-2-3 */}
-            <div className="flex items-center gap-10 md:gap-6">
-              {/* Panel 1 - Content Creation */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[45vh] md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("content-creation")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
+            <div className="flex items-center gap-10 lg:gap-5 xl:gap-6">
+              {panelsData.slice(0, 3).map((panel) => (
+                <div
+                  key={panel.id}
+                  ref={addToPanelsRef}
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[45vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  onClick={() => handlePanelClick(panel.slug)}
+                >
+                  {/* Default view */}
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M7 17L17 7M17 7H9M17 7V15"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">
+                        {panel.title}
+                      </h3>
                     </div>
                     
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Content Creation
-                    </h3>
-                  </div> 
-                  
-                  {/* Fixed grid layout for pill elements */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        01
+                    <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                          {panel.number}
+                        </span>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[0]}
+                        </p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[1]}
+                        </p>
+                      </div>
+                      
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[2]}
+                        </p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[3]}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hover view */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 lg:p-4 xl:p-7 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-[#e59300]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M7 17L17 7M17 7H9M17 7V15"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">
+                        {panel.title}
+                      </h3>
+                    </div>
+                    
+                    <div className="text-white">
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                        {panel.number}
                       </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Website Copywriting
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Social Media Content
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Product Descriptions
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Newsletters
+                      <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">
+                        {panel.description}
                       </p>
                     </div>
                   </div>
                 </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-7 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Content Creation
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      01
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Reels, ad films, corporate AVs, long-form YouTube stories that captivate and convert.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 2 - Digital Marketing */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] font-light md:w-[410px] h-[55vh] md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("digital-marketing")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Digital Marketing
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Digital Marketing pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        02
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        SEO Optimization
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        PPC Campaigns
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Email Marketing
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Analytics & Reporting
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Digital Marketing
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      02
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Strategic campaigns that drive traffic, increase conversions and maximize ROI.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 3 - Brand Storytelling */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] font-light h-[55vh] md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("brand-storytelling")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Brand Storytelling
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Brand Storytelling pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        03
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Brand Strategy
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Creative Direction
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Campaign Ideation
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Visual Identity
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Brand Storytelling
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      03
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Crafting compelling narratives that connect  brands with their audience emotionally.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* EXTRA GAP ADDED HERE - Between Group 1 and Group 2 */}
-            <div className="shrink-0 w-[120px] md:w-[200px] h-full" />
+            <div className="shrink-0 w-[120px] lg:w-[80px] xl:w-[200px] h-full" />
 
             {/* Group 2: Panels 4-5-6 */}
-            <div className="flex items-center gap-10 md:gap-6">
-              {/* Panel 4 - TV Commercials */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] font-light md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("tv-commercials")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
+            <div className="flex items-center gap-10 lg:gap-5 xl:gap-6">
+              {panelsData.slice(3, 6).map((panel) => (
+                <div
+                  key={panel.id}
+                  ref={addToPanelsRef}
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  onClick={() => handlePanelClick(panel.slug)}
+                >
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          </svg>
+                        </button>
+                      </div>
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
                     </div>
                     
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      TV Commercials
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for TV Commercials pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        04
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Concept Development
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Script Writing
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Production
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Post-Production
-                      </p>
+                    <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
+                      </div>
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[2]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[3]}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
+                  <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 lg:p-4 xl:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-[#e59300]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          </svg>
+                        </button>
+                      </div>
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">{panel.title}</h3>
                     </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      TV Commercials
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      04
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      High-impact television commercials that capture attention and build brand recall.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 5 - Product Photography */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] md:h-[400px] font-light bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("product-photography")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Product Photography
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Product Photography pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        05
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Studio Shoots
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Lifestyle Photography
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        E-commerce Images
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Editing & Retouching
-                      </p>
+                    <div className="text-white">
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                      <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">{panel.description}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Product Photography
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      05
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Professional photography that showcases products in their best light to drive sales.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 6 - Lead Generation */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] md:h-[400px] bg-[#141414] font-light rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("lead-generation")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Lead Generation
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Lead Generation pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        06
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Landing Pages
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Email Sequences
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Lead Magnets
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Conversion Optimization
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Lead Generation
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      06
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Targeted strategies to capture and nurture high-quality leads for your business.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <div className="shrink-0 w-[120px] md:w-[200px] h-full" />
+            <div className="shrink-0 w-[120px] lg:w-[80px] xl:w-[200px] h-full" />
 
             {/* Group 3: Panels 7-8-9 */}
-            <div className="flex items-center gap-10 md:gap-6">
-              {/* Panel 7 - Social Media Management */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] md:h-[400px] bg-[#141414] rounded-2xl font-light sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("social-media-management")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
+            <div className="flex items-center gap-10 lg:gap-5 xl:gap-6 lg:mx-auto">
+              {panelsData.slice(6, 9).map((panel) => (
+                <div
+                  key={panel.id}
+                  ref={addToPanelsRef}
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[240px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  onClick={() => handlePanelClick(panel.slug)}
+                >
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          </svg>
+                        </button>
+                      </div>
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
                     </div>
                     
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-1xl font-light mb-6 sm:mb-8 font-worksans">
-                      Social Media Management
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Social Media Management pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        07
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Content Calendar
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Community Management
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Analytics Tracking
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Campaign Management
-                      </p>
+                    <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
+                      </div>
+                      <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[2]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[3]}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
+                  <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 lg:p-4 xl:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div>
+                      <div className="flex justify-start mb-2">
+                        <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-[#e59300]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          </svg>
+                        </button>
+                      </div>
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">{panel.title}</h3>
                     </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-1xl font-light mb-2 font-worksans">
-                      Social Media Management
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      07
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Comprehensive social media strategies to grow your online presence and engagement.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 8 - Influencer Marketing */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl font-light relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("influencer-marketing")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Influencer Marketing
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Influencer Marketing pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        08
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Influencer Outreach
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Campaign Strategy
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Content Collaboration
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Performance Analysis
-                      </p>
+                    <div className="text-white">
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#f9ac23] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
+                      <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">{panel.description}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Influencer Marketing
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-1 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      08
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Leveraging influencer partnerships to amplify your brand's reach and credibility.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Panel 9 - Personal Branding */}
-              <div
-                ref={addToPanelsRef}
-                className="panel w-[85vw] sm:w-[90vw] md:w-[410px] h-[55vh] font-light md:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-6 sm:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
-                onClick={() => handlePanelClick("personal-branding")}
-              >
-                {/* Default view - Services list */}
-                <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-6 sm:mb-8 font-worksans">
-                      Personal Branding
-                    </h3>
-                  </div>
-                  
-                  {/* Fixed layout for Personal Branding pills */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex gap-3">
-                      <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                        09
-                      </span>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Personal Strategy
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Online Presence
-                      </p>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Content Strategy
-                      </p>
-                      <p className="w-fit min-h-[38px] px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs md:text-sm font-nunito whitespace-nowrap">
-                        Brand Positioning
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hover view - Description */}
-                <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <div className="flex justify-start mb-2">
-                      <button className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                        <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#e59300]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 17L17 7M17 7H9M17 7V15"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                    
-                    <h3 className="text-white text-2xl sm:text-3xl md:text-3xl font-light mb-2 font-worksans">
-                      Personal Branding
-                    </h3>
-                  </div>
-                  
-                  <div className="text-white">
-                    <span className="absolute top-100 left-4 lg:top-50 lg:left-53 opacity-26 font-extrabold italic text-gray-600 text-9xl lg:text-11xl pointer-events-none">
-                      09
-                    </span>
-                    <p className="text-lg sm:text-xl md:text-1xl font-worksans font-light mb-2">
-                      Building authentic personal brands that establish authority and attract opportunities.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
 
-            {/* Right spacer for the end */}
-            <div className="shrink-0 -w-[20px] md:w-1/3 h-full" />
+            {/* Reduced spacing after group 3 for smoother transition to next component */}
+            <div className="shrink-0 w-[20px] lg:w-[80px] xl:w-1/3 h-full" />
           </div>
         </div>
       )}
