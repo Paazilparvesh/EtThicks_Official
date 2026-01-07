@@ -21,9 +21,9 @@ function AboutSection() {
   });
 
   const [targetCounts, setTargetCounts] = useState({
-    projects: 30,
-    clients: 12,
-    contents: 100,
+    projects: 0,
+    clients: 0,
+    contents: 0,
   });
 
   const [loading, setLoading] = useState(true);
@@ -32,67 +32,66 @@ function AboutSection() {
 
   const Base_Url = import.meta.env.VITE_API_URL;
 
-  /* ---------------- Fetch data ---------------- */
+  /* ---------------- Fetch data from API ---------------- */
   useEffect(() => {
+    const abortController = new AbortController();
+
     const fetchData = async () => {
       try {
         setLoading(true);
-        // Use hardcoded values as fallback
-        const defaultData = {
-          projects: 25,
-          clients: 13,
-          contents: 20,
-        };
-        
-        // If you have an API endpoint, you can use:
-        // const res = await axios.get(`${Base_Url}/api/count`);
-        // const apiData = res.data.data;
-        
-        // For now, use the values from the image
+        setError(null);
+
+        const res = await axios.get(`${Base_Url}/api/count`, {
+          signal: abortController.signal
+        });
+
+        // Extract data from API response
+        const apiData = res.data.data;
+
+        // Map API data correctly to state
         setTargetCounts({
-          projects: defaultData.projects,
-          clients: defaultData.clients,
-          contents: defaultData.contents,
+          projects: apiData.projects || 0,
+          clients: apiData.clients || 0,
+          contents: apiData.Content_Produced || 0,
         });
 
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching count data:", err);
-        // Use fallback values if API fails
-        setTargetCounts({
-         projects: 25,
-          clients: 13,
-          contents: 20,
-        });
-        setError(err.message);
-        setLoading(false);
+        if (err.name !== 'AbortError') {
+          console.error("Error fetching count data:", err);
+          setError(err.message);
+          
+          // Fallback values if API fails
+          setTargetCounts({
+            projects: 25,
+            clients: 13,
+            contents: 20,
+          });
+          
+          setLoading(false);
+        }
       }
     };
 
     fetchData();
-  }, []);
+
+    // Cleanup function to cancel API request on unmount
+    return () => abortController.abort();
+  }, [Base_Url]);
 
   /* ---------------- GSAP Animations Setup ---------------- */
   useEffect(() => {
     if (loading) return;
 
-    // Animate the main text content
-    gsap.fromTo(
-      textRef.current,
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
+    const ctx = gsap.context(() => {
+      // Animate the main text content
+      gsap.fromTo(
+        textRef.current,
+        {
+          y: 50,
+          opacity: 0,
         },
+<<<<<<< HEAD
       }
     );
 
@@ -208,20 +207,148 @@ function AboutSection() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: statsRef.current,
+=======
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+          },
+        }
+      );
+
+      // Animate heading elements
+      gsap.fromTo(
+        headingRef.current,
+        {
+          y: 30,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
             start: "top 85%",
             end: "bottom 20%",
           },
         }
       );
+<<<<<<< HEAD
     }
+=======
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
 
-    // Clean up ScrollTrigger instances
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+      // Animate paragraph
+      gsap.fromTo(
+        paragraphRef.current,
+        {
+          y: 40,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.4,
+          delay: 0.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: paragraphRef.current,
+            start: "top 85%",
+            end: "bottom 20%",
+          },
+        }
+      );
+
+      // Animate stats section
+      const statsElements = statsRef.current?.children[0]?.children || [];
+      
+      if (statsElements.length > 0) {
+        Array.from(statsElements).forEach((stat, index) => {
+          // Animate the number
+          gsap.fromTo(
+            numbersRef.current[index],
+            {
+              y: 60,
+              opacity: 0,
+              scale: 0.8,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 1.2,
+              delay: index * 0.2,
+              ease: "back.out(0.5)",
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 105%",
+                end: "bottom 85%",
+              },
+            }
+          );
+
+          // Animate the text
+          gsap.fromTo(
+            textItemsRef.current[index],
+            {
+              y: 30,
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              delay: index * 0.2 + 0.3,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: statsRef.current,
+                start: "top 155%",
+                end: "bottom 25%",
+              },
+            }
+          );
+        });
+      }
+
+      // Scale animation to entire stats section
+      gsap.fromTo(
+        statsRef.current,
+        {
+          scale: 0.95,
+          opacity: 0,
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 85%",
+            end: "bottom 20%",
+          },
+        }
+      );
+    }, sectionRef);
+
+    // Clean up GSAP context and ScrollTriggers
+    return () => ctx.revert();
   }, [loading]);
 
+<<<<<<< HEAD
   /* ---------------- Counter animation (Desktop only) ---------------- */
+=======
+  /* ---------------- Counter animation with IntersectionObserver ---------------- */
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
   useEffect(() => {
     if (loading || hasAnimated) return;
 
@@ -248,9 +375,19 @@ function AboutSection() {
       { threshold: 0.4 }
     );
 
-    if (statsRef.current) observer.observe(statsRef.current);
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
 
+<<<<<<< HEAD
     return () => observer.disconnect();
+=======
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
   }, [loading, hasAnimated, targetCounts]);
 
   /* ---------------- Smooth counter animation ---------------- */
@@ -281,7 +418,7 @@ function AboutSection() {
     animateValue("contents", targetCounts.contents);
   };
 
-  /* ---------------- Loading ---------------- */
+  /* ---------------- Loading State ---------------- */
   if (loading) {
     return (
       <div
@@ -295,18 +432,13 @@ function AboutSection() {
     );
   }
 
-  /* ---------------- Error ---------------- */
-  if (error) {
-    console.log("Using fallback data due to error:", error);
-    // Continue with fallback data instead of showing error
-  }
-
   return (
     <div
       ref={sectionRef}
       className="w-full bg-black flex flex-col items-center justify-center"
     >
       {/* Main Content Section */}
+<<<<<<< HEAD
       <div className="
         w-full min-h-screen
         -mt-[200px]        /* mobile */
@@ -317,6 +449,9 @@ function AboutSection() {
         flex flex-col items-center justify-center
         px-4 sm:px-6 md:px-8 lg:px-10
       ">
+=======
+      <div className="w-full min-h-screen -mt-25 flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-10">
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
         {/* Text Section */}
         <div 
           ref={textRef}
@@ -331,7 +466,10 @@ function AboutSection() {
             </h4>
           </div>
           <h2 
+<<<<<<< HEAD
             ref={headingRef}
+=======
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
             className="text-xl sm:text-2xl md:text-xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans"
           >
             Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />
@@ -350,13 +488,17 @@ function AboutSection() {
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Desktop Stats Count Section - With animations */}
+=======
+      {/* Desktop Stats Count Section */}
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
       <div 
         ref={statsRef}
         className="hidden md:block w-full py-0 mb-15 bg-black"
       >
         <div className="max-w-7xl mx-auto flex sm:flex-row justify-around items-center text-center gap-8 md:gap-12 lg:gap-46">
-          {/* Projects - Positioned slightly higher */}
+          {/* Projects */}
           <div className="flex flex-col items-center relative -mt-4 md:-mt-66">
             <div 
               ref={el => numbersRef.current[0] = el}
@@ -375,14 +517,14 @@ function AboutSection() {
             </p>
           </div>
 
-          {/* Content Produced - Also positioned slightly higher */}
+          {/* Clients */}
           <div className="flex flex-col items-center relative -mt-2 md:-mt-34">
             <div 
               ref={el => numbersRef.current[1] = el}
               className="flex items-end justify-center"
             >
               <h1 className="text-[#FFAE00] text-5xl md:text-2xl font-medium lg:text-[80px] font-worksans leading-none">
-                {counts.contents}
+                {counts.clients}
               </h1>
               <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
@@ -390,31 +532,32 @@ function AboutSection() {
               ref={el => textItemsRef.current[1] = el}
               className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 font-nunito font-normal tracking-wide"
             >
-              CONTENT PRODUCED
+              CLIENTS
             </p>
           </div>
 
-          {/* Clients - Positioned slightly higher */}
+          {/* Content Produced */}
           <div className="flex flex-col items-center relative -mt-4 md:-mt-66">
             <div 
               ref={el => numbersRef.current[2] = el}
               className="flex items-end justify-center"
             >
               <h1 className="text-[#FFAE00] text-5xl md:text-2xl lg:text-[80px] font-worksans font-medium leading-none">
-                {counts.clients}
+                {counts.contents}
               </h1>
               <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
             <p 
               ref={el => textItemsRef.current[2] = el}
-              className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 pb font-nunito font-semibold tracking-wide"
+              className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 font-nunito font-semibold tracking-wide"
             >
-              CLIENTS
+              CONTENT PRODUCED
             </p>
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Mobile Stats Count Section - Static (no animations) */}
       <div className="md:hidden w-full bg-black -mt-40 mb-8">
         <div className="flex flex-row items-center justify-center px-4">
@@ -423,10 +566,21 @@ function AboutSection() {
             <div className="flex items-center justify-center">
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.clients}
+=======
+      {/* Mobile Stats Count Section */}
+      <div className="md:hidden w-full bg-black -mt-40 mb-8">
+        <div className="flex flex-row items-center justify-center px-4">
+          {/* Projects */}
+          <div className="flex flex-col items-center w-full -mt-24">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
+                {counts.projects}
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
               </h1>
               <span className="text-blue-300 text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
+<<<<<<< HEAD
               CLIENTS
             </p>
           </div>
@@ -436,10 +590,22 @@ function AboutSection() {
             <div className="flex items-center justify-center">
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none"> 
                 {targetCounts.projects}
+=======
+              PROJECTS
+            </p>
+          </div>
+
+          {/* Clients */}
+          <div className="flex flex-col items-center w-full -mt-4">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
+                {counts.clients}
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
               </h1>
               <span className="text-blue-300 text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
+<<<<<<< HEAD
               CONTENT PRODUCED
             </p>
           </div>
@@ -449,11 +615,26 @@ function AboutSection() {
             <div className="flex items-center justify-center">
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.contents}
+=======
+              CLIENTS
+            </p>
+          </div>
+
+          {/* Content Produced */}
+          <div className="flex flex-col items-center w-full -mt-24">
+            <div className="flex items-center justify-center">
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
+                {counts.contents}
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
               </h1>
               <span className="text-blue-300 text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 text-center whitespace-nowrap">
+<<<<<<< HEAD
               PROJECTS
+=======
+              CONTENT PRODUCED
+>>>>>>> d16331f2407f5580986d6381525236e1e8527c9f
             </p>
           </div>
         </div>
