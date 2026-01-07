@@ -33,7 +33,7 @@ function Creative() {
                         </h1>
 
                         {/* Description */}
-                        <p className="text-white font-light text-md sm:text-lg md:text-xl lg:text-xl leading-relaxed tracking-wider max-w-xl  mx-auto font-nunito">
+                        <p className="text-white  font-light text-md sm:text-lg md:text-xl lg:text-2xl leading-relaxed tracking-wider max-w-xl  mx-auto font-nunito">
                             We aim to take brands in all eight directions expanding
                             their reach while making them trusted, impactful, and
                             unforgettable.
@@ -41,7 +41,7 @@ function Creative() {
                     </div>
 
                     {/* Right Pacman GIF with Blur Effect */}
-                    <div className="absolute -bottom-118 md:bottom-0 lg:-bottom-50 xl:-bottom-68 opacity-24 right-0 lg:-right-80 md:top-1/2 -translate-y-1/2 -rotate-90 md:rotate-0 ">
+                    <div className="absolute -bottom-118 md:bottom-0 lg:-bottom-50 xl:-bottom-45 opacity-24 right-0 lg:-right-80 md:top-1/2 -translate-y-1/2 -rotate-90 md:rotate-0 ">
                         <div className="relative">
                             {/* Blur background layer */}
                             <img

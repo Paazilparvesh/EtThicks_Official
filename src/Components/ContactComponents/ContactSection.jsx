@@ -118,7 +118,7 @@ const ContactSection = () => {
           {/* Playful "Let's talk!" heading with Nunito font */}
  <h2 className="
   text-white 
-  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl 
+  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl md:text-4xl
   font-semibold 
   mb-8 
   flex flex-wrap justify-center lg:justify-start

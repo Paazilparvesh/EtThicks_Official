@@ -157,7 +157,15 @@ function Header() {
                       {chunkArray(SERVICES, 3).map((row, rowIndex) => (
                         <div
                           key={rowIndex}
-                          className="flex justify-end gap-8"
+className="
+  flex justify-end
+  gap-1           /* small phones */
+  sm:gap-2        /* large phones */
+  md:gap-1        /* tablets */
+  lg:gap-4        /* small laptops */
+  xl:gap-5        /* desktops */
+  2xl:gap-6       /* large screens */
+"
                         >
                           {row.map((service) => (
                             <button

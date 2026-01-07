@@ -11,24 +11,24 @@ function FaqSection() {
 
   const faqs = [
     {
-      q: "What does “content-first web design” mean?",
-      a: "It means the design process is guided by real content, not dummy text, ensuring better clarity and structure.",
+      q: "What services does your company offer?",
+      a: "We provide end-to-end creative and marketing solutions, including Content Creation, Digital Marketing, Brand Storytelling, Social Media Management, Lead Generation, Product Photography, TV Commercials, Influencer Marketing, and Personal Branding.",
     },
     {
-      q: "Do you provide content writing or just design?",
-      a: "We provide both — engaging content writing and modern design for a complete solution.",
+      q: "Who can benefit from your services?",
+      a: "Our services are designed for startups, small and medium businesses, entrepreneurs, influencers, and established brands looking to grow their online presence, strengthen their brand identity, and increase sales or engagement.",
     },
     {
-      q: "How long does a typical project take?",
-      a: "Most projects take 4–6 weeks depending on scope and complexity.",
+      q: "What does Content Creation include?",
+      a: "Content Creation includes creating high-quality visuals, videos, graphics, captions, blogs, and marketing content tailored to your brand’s voice and target audience across digital platforms",
     },
     {
-      q: "What platforms do you build on?",
-      a: "We build on WordPress, Shopify, Webflow, and custom-coded platforms.",
+      q: "How does your Digital Marketing service help businesses grow?",
+      a: "Our Digital Marketing services focus on increasing visibility, traffic, and conversions through strategies like paid ads, SEO, email campaigns, and performance marketing, all driven by data and measurable results.",
     },
     {
-      q: "Global Experience, Local Relevance",
-      a: "We combine international best practices with local insights for maximum impact.",
+      q: "What is Brand Storytelling and why is it important?",
+      a: "Brand Storytelling helps communicate your brand’s values, mission, and personality in a compelling way. It builds emotional connections with your audience, increases trust, and makes your brand memorable.",
     },
   ];
 

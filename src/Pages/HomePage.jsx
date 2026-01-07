@@ -32,7 +32,7 @@ function HomePage() {
 
         <TeamSection />
 
-        <BrandSection />
+        {/* <BrandSection /> */}
 
         <QuoteSection />
 

@@ -48,11 +48,11 @@ function QuoteSection() {
       >
         {/* ✅ Desktop layout (unchanged) */}
         <div className="hidden lg:flex absolute inset-0 z-0 items-center justify-between px-4 md:px-8">
-          <img src={luf} alt="Left shape" className="background-shape w-40 h-40 opacity-30 object-contain" />
-          <img src={sat} alt="Background star" className="background-shape w-40 h-40 opacity-30 object-contain" />
-          <img src={cur} alt="Background circle" className="background-shape w-40 h-40 opacity-30 object-contain" />
-          <img src={ash} alt="Background shape" className="background-shape w-40 h-40 opacity-30 object-contain" />
-          <img src={gow} alt="Background group" className="background-shape w-40 h-40 opacity-30 object-contain" />
+          <img src={luf} alt="Left shape" className="background-shape w-50 h-50 opacity-16 object-contain" />
+          <img src={sat} alt="Background star" className="background-shape w-50 h-50 opacity-16 object-contain" />
+          <img src={cur} alt="Background circle" className="background-shape w-65 h-65 opacity-16 object-contain" />
+          <img src={ash} alt="Background shape" className="background-shape w-65 h-65 opacity-16 object-contain" />
+          <img src={gow} alt="Background group" className="background-shape w-50 h-50 opacity-16 object-contain" />
         </div>
 
         {/* ✅ Mobile & Tablet layout (centered background shapes) */}

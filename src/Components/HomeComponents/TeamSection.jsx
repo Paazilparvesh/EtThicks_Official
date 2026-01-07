@@ -42,7 +42,7 @@ function TeamSection() {
             return (
               <div
                 key={member.id}
-                className="group relative xl:w-[300px] md:w-[200px] h-72 rounded-xl overflow-hidden bg-zinc-900 hover:scale-105 transition-transform duration-300"
+                className="group relative xl:w-[300px] md:w-[200px] h-72 lg:h-100 rounded-xl overflow-hidden bg-zinc-900 hover:scale-105 transition-transform duration-300"
               >
                 {imageUrl ? (
                   <img
@@ -58,7 +58,7 @@ function TeamSection() {
 
                 {/* Name & Role Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-3">
-                  <h3 className="text-lg md:text-xl font-semibold text-orange-400 font-worksans">
+                  <h3 className="text-lg md:text-xl font-semibold text-[#FFAE00] nhn   font-worksans">
                     {member?.Name}
                   </h3>
                   <p className="text-sm text-gray-300 font-nunito">

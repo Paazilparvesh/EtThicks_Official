@@ -24,7 +24,7 @@ function BrandSection() {
         {/* TOP */}
         <div className="w-full flex items-center justify-between gap-10 px-5 xl:px-10 2xl:px-5 pt-8  opacity-100 lg:opacity-100 xl:opacity-100 2xl:opacity-100">
           <div className="">
-            <img src={img1} alt="Brand 1" className="2xl:w-[calc(100%-10%)] h-auto" />
+            <img src={img1} alt="Brand 1" className="2xl:w-200 h-50" />
           </div>
           <div className="">
             <img src={img2} alt="Brand 2" className="2xl:w-[calc(100%-10%)] h-auto" />
@@ -35,7 +35,7 @@ function BrandSection() {
         </div>
         {/* BOTTOM */}
         <div className="flex items-end justify-between px-5 xl:px-10 2xl:px-5 gap-10 opacity-100 lg:opacity-100 xl:opacity-100 2xl:opacity-100">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-16">
             <div className="">
               <img src={img5} alt="Brand 5" className="2xl:size-[calc(100%-10%)]" />
             </div>
@@ -72,7 +72,7 @@ function BrandSection() {
       </div>
 
       {/* Mobile & Tablet layout */}
-      <div className="lg:hidden flex flex-col items-center justify-center gap-3 px-4 h-[80vh] ">
+      <div className="lg:hidden flex flex-col pt-0 items-center justify-center gap-3 px-4 h-[80vh] ">
         {/* Text first */}
         <h1 className="text-amber-500 text-3xl md:text-5xl font-semibold text-center">
           Brand Personality

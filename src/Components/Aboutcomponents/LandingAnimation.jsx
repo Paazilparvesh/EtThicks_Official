@@ -184,7 +184,7 @@ function Pack() {
             <span className="text-[#FFA500] font-worksans font-medium">Us</span>
           </h2>
 
-          <p ref={descriptionRef} className="text-white text-lg 2xl:w-250  xl:w-240  lg:w-180  opacity-0  mx-10 lg:mx-auto tracking-wider font-nunito">
+          <p ref={descriptionRef} className="text-white text-2xl 2xl:w-250  xl:w-240  lg:w-180  opacity-0  mx-10 lg:mx-auto tracking-wider font-nunito">
             EtThicks is not just another digital agency — we're a storytelling
             powerhouse rooted in truth, trust, and transformation. Born from the
             Tamil word "Ettuthikkum", meaning to reach in all eight directions,

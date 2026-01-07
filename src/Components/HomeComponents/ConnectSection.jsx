@@ -169,7 +169,7 @@ const ConnectSection = () => {
               scale-[1.6] md:scale-100
               translate-x-[20px] translate-y-[-10px]
               sm:translate-x-[40px] sm:translate-y-[-20px]
-              md:translate-x-[80px] md:translate-y-[-30px]
+              md:translate-x-[60px] md:translate-y-[-30px]
               lg:translate-x-[120px] lg:translate-y-[-40px]
               xl:translate-x-[260px] xl:translate-y-[-50px]
             "
@@ -182,8 +182,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[1.7] md:scale-100
               translate-x-[260px] translate-y-[40px]
-              sm:translate-x-[100px] sm:translate-y-[80px]
-              md:translate-x-[160px] md:translate-y-[120px]
+              sm:translate-x-[420px] sm:translate-y-[480px]
+              md:translate-x-[490px] md:translate-y-[120px]
               lg:translate-x-[620px] lg:translate-y-[260px]
               xl:translate-x-[1080px] xl:translate-y-[500px]
             "
@@ -196,8 +196,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.4] md:scale-100
               translate-x-[40px] translate-y-[340px]
-              sm:translate-x-[80px] sm:translate-y-[-10px]
-              md:translate-x-[120px] md:translate-y-[-15px]
+              sm:translate-x-[80px] sm:translate-y-[520px]
+              md:translate-x-[420px] md:translate-y-[-15px]
               lg:translate-x-[580px] lg:translate-y-[-20px]
               xl:translate-x-[434px] xl:translate-y-[525px]
             "
@@ -210,8 +210,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.5] md:scale-100
               translate-x-[230px] translate-y-[480px]
-              sm:translate-x-[60px] sm:translate-y-[60px]
-              md:translate-x-[90px] md:translate-y-[90px]
+              sm:translate-x-[410px] sm:translate-y-[60px]
+              md:translate-x-[90px] md:translate-y-[300px]
               lg:translate-x-[120px] lg:translate-y-[420px]
               xl:translate-x-[1050px] xl:translate-y-[40px]
             "
@@ -221,21 +221,23 @@ const ConnectSection = () => {
         {/* GRID 2 */}
         <div
           ref={gridRef2}
-          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
+          className="absolute inset-0 z-30 rounded-full pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img
-            src={img5}
-            className="
-              max-w-full h-auto object-contain
-              row-start-1 col-start-1
-              scale-[2.1] md:scale-100
-              translate-x-[40px] translate-y-[410px]
-              sm:translate-x-[80px] sm:translate-y-[-20px]
-              md:translate-x-[140px] md:translate-y-[-30px]
-              lg:translate-x-[280px] lg:translate-y-[-40px]
-              xl:translate-x-[420px] xl:translate-y-[-50px]
-            "
-          />
+       <img
+  src={img5}
+  className="
+    max-w-full h-auto object-contain
+    rounded-2xl
+    row-start-1 col-start-1
+    scale-[2.1] md:scale-100
+    translate-x-[40px] translate-y-[410px]
+    sm:translate-x-[320px] sm:translate-y-[-20px]
+    md:translate-x-[100px] md:translate-y-[-30px]
+    lg:translate-x-[280px] lg:translate-y-[-40px]
+    xl:translate-x-[420px] xl:translate-y-[-50px]
+  "
+/>
+
 
           <img
             src={img6}
@@ -244,8 +246,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.3] md:scale-100
               translate-x-[230px] translate-y-[480px]
-              sm:translate-x-[90px] sm:translate-y-[60px]
-              md:translate-x-[150px] md:translate-y-[90px]
+              sm:translate-x-[90px] sm:translate-y-[560px]
+              md:translate-x-[480px] md:translate-y-[50px]
               lg:translate-x-[200px] lg:translate-y-[320px]
               xl:translate-x-[1058px] xl:translate-y-[150px]
             "
@@ -258,8 +260,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.2] md:scale-100
               translate-x-[110px] translate-y-[20px]
-              sm:translate-x-[30px] sm:translate-y-[40px]
-              md:translate-x-[60px] md:translate-y-[60px]
+              sm:translate-x-[440px] sm:translate-y-[540px]
+              md:translate-x-[160px] md:translate-y-[360px]
               lg:translate-x-[700px] lg:translate-y-[80px]
               xl:translate-x-[640px] xl:translate-y-[400px]
             "
@@ -278,8 +280,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.4] md:scale-100
               translate-x-[20px] translate-y-[5px]
-              sm:translate-x-[40px] sm:translate-y-[15px]
-              md:translate-x-[80px] md:translate-y-[30px]
+              sm:translate-x-[340px] sm:translate-y-[15px]
+              md:translate-x-[420px] md:translate-y-[30px]
               lg:translate-x-[220px] lg:translate-y-[45px]
               xl:translate-x-[1000px] xl:translate-y-[60px]
             "
@@ -292,8 +294,8 @@ const ConnectSection = () => {
               row-start-1 col-start-1
               scale-[2.8] md:scale-100
               translate-x-[110px] translate-y-[440px]
-              sm:translate-x-[70px] sm:translate-y-[70px]
-              md:translate-x-[100px] md:translate-y-[100px]
+              sm:translate-x-[390px] sm:translate-y-[520px]
+              md:translate-x-[10px] md:translate-y-[100px]
               lg:translate-x-[440px] lg:translate-y-[430px]
               xl:translate-x-[580px] xl:translate-y-[460px]
             "
@@ -304,10 +306,10 @@ const ConnectSection = () => {
             className="
               max-w-full h-auto object-contain
               row-start-1 col-start-1
-              scale-[2] md:scale-100
+              scale-[2] md:scale-100 sm:scale-150
               translate-x-[240px] translate-y-[-70px]
-              sm:translate-x-[100px] sm:translate-y-[-15px]
-              md:translate-x-[160px] md:translate-y-[-20px]
+              sm:translate-x-[40px] sm:translate-y-[515px]
+              md:translate-x-[360px] md:translate-y-[350px]
               lg:translate-x-[700px] lg:translate-y-[-25px]
               xl:translate-x-[224px] xl:translate-y-[-30px]
             "
