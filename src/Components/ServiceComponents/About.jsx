@@ -232,7 +232,7 @@ function Engag({ slug }) {
             leading-relaxed
             max-w-4xl
             tracking-wider
-            text-xl md:text-lg xl:text-xl
+            text-[16px] md:text-lg xl:text-xl
             whitespace-pre-line
             font-nunito
           "
