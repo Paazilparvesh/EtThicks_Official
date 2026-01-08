@@ -58,10 +58,8 @@ function ServiceSection() {
       const totalScrollWidth = contentWrapperRef.current.scrollWidth;
       const viewportWidth = window.innerWidth;
       
-      // CORRECTED scroll calculation based on actual layout dimensions
       let scrollX;
       if (window.innerWidth <= 1024) {
-        // Increased to +1800 for longer scroll duration
         scrollX = totalScrollWidth - viewportWidth + 1800;
       } else if (window.innerWidth <= 1240) {
         scrollX = totalScrollWidth - viewportWidth + 80;
@@ -69,15 +67,7 @@ function ServiceSection() {
         scrollX = totalScrollWidth - viewportWidth - 1300;
       }
 
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${scrollX}`,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
-
+      // Main horizontal scroll animation with snap to groups
       gsap.to(contentWrapperRef.current, {
         x: -scrollX,
         ease: "none",
@@ -86,10 +76,20 @@ function ServiceSection() {
           start: "top top",
           end: `+=${scrollX}`,
           scrub: 1,
-          pin: false,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          snap: {
+            snapTo: 1 / 2, // 3 groups = 2 intervals (0, 0.5, 1)
+            duration: { min: 0.3, max: 0.8 },
+            delay: 0.1,
+            ease: "power1.inOut",
+            directional: true
+          },
         },
       });
 
+      // Title fade animation
       gsap.to(titleRef.current, {
         y: -2,
         opacity: 0.9,
@@ -102,6 +102,7 @@ function ServiceSection() {
         },
       });
 
+      // Panel opacity animations
       panels.forEach((panel) => {
         gsap.set(panel, {
           opacity: 0.9,
@@ -109,6 +110,7 @@ function ServiceSection() {
 
         ScrollTrigger.create({
           trigger: panel,
+          containerAnimation: gsap.getById("horizontalScroll"),
           start: "left 80%",
           end: "right 20%",
           onEnter: () => {
@@ -144,7 +146,7 @@ function ServiceSection() {
     }, sectionRef);
 
     const handleResize = () => {
-      const wasMobile = checkMobile();
+      checkMobile();
       ScrollTrigger.refresh();
     };
 
@@ -323,7 +325,7 @@ function ServiceSection() {
                 className="bg-[#141414] rounded-2xl p-6 border overflow-hidden relative group cursor-pointer"
                 onClick={() => handlePanelClick(panel.slug)}
               >
-                <span className="absolute top-2 left-64 opacity-20 font-extrabold italic text-[#464646] text-8xl pointer-events-none">
+                <span className="absolute top-2 left-45 opacity-20 font-extrabold italic text-[#464646] text-8xl pointer-events-none">
                   {panel.number}
                 </span>
 
@@ -375,7 +377,7 @@ function ServiceSection() {
           </div>
         </div>
       ) : (
-        /* DESKTOP LAYOUT - Horizontal Scroll */
+        /* DESKTOP LAYOUT - Horizontal Scroll with Snap */
         <div
           ref={contentWrapperRef}
           className="flex items-center h-[calc(100vh-120px)] lg:h-[calc(80vh-150px)]"
@@ -593,7 +595,6 @@ function ServiceSection() {
               ))}
             </div>
 
-            {/* Reduced spacing after group 3 for smoother transition to next component */}
             <div className="shrink-0 w-[20px] lg:w-[80px] xl:w-1/3 h-full" />
           </div>
         </div>
