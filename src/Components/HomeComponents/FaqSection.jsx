@@ -53,9 +53,9 @@ function FaqSection() {
             <img
               src={nam}
               alt="FAQ Illustration"
-              className="w-full h-auto md:h-96 lg:h-[420px] object-cover rounded-2xl"
+              className=" ml-8 w-80 h-80 md:h-96 lg:h-[420px] object-cover rounded-2xl"
             />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[85%] bg-white rounded-xl px-4 py-3 text-center text-zinc-800 text-base sm:text-lg font-medium shadow-lg font-nunito">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[75%] bg-white rounded-xl px-5 py-2 text-center text-zinc-800 text-[16px] sm:text-lg font-medium shadow-lg font-nunito">
               Get Answer for All doubts here
             </div>
           </div>

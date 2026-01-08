@@ -145,87 +145,88 @@ const ContactSection = () => {
 
 
           {/* Form Box */}
-          <div className="relative  ml-2 xl:ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] pt-4 xl:pt-0 ">
-            <div className="p-4 xl:p-6">
-              <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
-                If you have any questions, just fill in the contact form, and we
-                will answer you shortly. If you are living nearby, come visit at
-                one of our comfortable offices.
-              </p>
+        <div className="relative ml-2 xl:ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] pt-4 xl:pt-0">
+  <div className="p-4 xl:p-6">
+    <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
+      If you have any questions, just fill in the contact form, and we
+      will answer you shortly. If you are living nearby, come visit at
+      one of our comfortable offices.
+    </p>
 
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-2 md:gap-8"
-                onChange={handleInputChange}
-              >
-                {/* Name */}
-                <div className="flex flex-col">
-                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-                    Name:
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    className="border-b border-grey-800 outline-none py-2  text-yellow-400  placeholder:text-gray-400 focus:border-[#f8a81c]"
-                    onChange={handleInputChange}
-                  />
-                </div>
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-2 md:gap-8"
+      onChange={handleInputChange}
+    >
+      {/* Name */}
+      <div className="flex flex-col">
+        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
+          Name:
+        </label>
+        <input
+          type="text"
+          name="name"
+          required
+          className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
+          onChange={handleInputChange}
+        />
+      </div>
 
-                {/* Email */}
-                <div className="flex flex-col">
-                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-                    Email address:
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    className="border-b border-grey-800 outline-none py-2 text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
-                    onChange={handleInputChange}
-                  />
-                </div>
+      {/* Email */}
+      <div className="flex flex-col">
+        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
+          Email address:
+        </label>
+        <input
+          type="email"
+          name="email"
+          required
+          className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
+          onChange={handleInputChange}
+        />
+      </div>
 
-                {/* Message */}
-                <div className="flex flex-col">
-                  <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-                    Message:
-                  </label>
-                  <textarea
-                    name="message"
-                    required
-                    rows="4"
-                    className="border-b border-grey-500 outline-none -py-2 md:-py-5 resize-none text-yellow-400 placeholder:text-gray-400 focus:border-[#f8a81c]"
-                    onChange={handleInputChange}
-                  ></textarea>
-                </div>
-              </form>
-            </div>
+      {/* Message */}
+      <div className="flex flex-col">
+        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
+          Message:
+        </label>
+        <textarea
+          name="message"
+          required
+          rows="4"
+          className="border-b border-gray-500 outline-none resize-none text-white placeholder:text-gray-400 focus:border-gray-400"
+          onChange={handleInputChange}
+        ></textarea>
+      </div>
+    </form>
+  </div>
 
-            {/* Full-width orange Send Button */}
-            <button
-              type="submit"
-              form={formRef.current ? formRef.current.id : undefined}
-              disabled={loading}
-              onClick={handleSubmit}
-              className="bg-[#f8a81c] text-white font-semibold text-lg py-2 md:py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
-            >
-              {loading ? "Sending..." : "Send"}
-            </button>
+  {/* Full-width orange Send Button */}
+  <button
+    type="submit"
+    form={formRef.current ? formRef.current.id : undefined}
+    disabled={loading}
+    onClick={handleSubmit}
+    className="bg-[#f8a81c] text-white font-semibold text-lg py-2 md:py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
+  >
+    {loading ? "Sending..." : "Send"}
+  </button>
 
-            {/* Success & Error Messages */}
-            {successMsg && (
-              <p className="text-center mt-4 text-green-600 font-medium">
-                {successMsg}
-              </p>
-            )}
-            {errorMsg && (
-              <p className="text-center mt-4 text-red-600 font-medium">
-                {errorMsg}
-              </p>
-            )}
-          </div>
+  {/* Success & Error Messages */}
+  {successMsg && (
+    <p className="text-center mt-4 text-green-600 font-medium">
+      {successMsg}
+    </p>
+  )}
+  {errorMsg && (
+    <p className="text-center mt-4 text-red-600 font-medium">
+      {errorMsg}
+    </p>
+  )}
+</div>
+
         </div>
       </div>
 

@@ -81,9 +81,9 @@ function HeroSection() {
               with clients to turn ideas into impactful media that connects with
               real people.
             </div>
-            <div className="mt-12 sm:mt-6">
+            <div className="pt-8  sm:mt-6">
               <Link to="/contact">
-                <button className="px-8 py-2 bg-[#f09d01] rounded-2xl text-gray-100 text-md md:text-sm lg:text-lg font-regular hover:scale-110 transition-all duration-500 font-worksans">
+                <button className="px-8 py-2  bg-[#f09d01] rounded-2xl text-gray-100 text-[12px] md:text-3xl lg:text-lg font-regular hover:scale-110 transition-all duration-500 font-worksans">
                   Let's Create Together
                 </button>
               </Link>

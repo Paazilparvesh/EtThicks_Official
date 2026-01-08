@@ -122,8 +122,8 @@ import Influence from "/src/assets/influnceer.png";
 
 const ENGAG_CONTENT = {
   "content-creation": {
-    heading: "ENGAGING CONTENT THAT",
-    highlight: "ELEVATES YOUR BRAND",
+    heading: "ENGAGING CONTENT THAT ELEVATES",
+    highlight: " YOUR BRAND",
     description: `In today's digital world, high-quality content isn't optional—it's the engine that drives awareness, trust, and growth. Our Content Creation Services are designed to help your brand communicate with clarity, creativity, and impact. Whether you need compelling visuals, strategic messaging, or consistent storytelling across platforms, we bring your ideas to life with content that resonates.`,
     background: des,
   },
@@ -165,6 +165,7 @@ const ENGAG_CONTENT = {
 
   "personal-branding": {
     heading: "Build a Magnetic Personal Brand That",
+    
     highlight: " Attracts Opportunities",
     description: `Your personal brand is more than an online presence — it's your reputation, your influence, and the story that sets you apart. Our Personal Branding Services help entrepreneurs, creators, coaches, and industry professionals build a magnetic identity that attracts opportunities, grows trust, and communicates expertise with clarity and confidence.`,
     background: PersonalBranding,
@@ -225,13 +226,13 @@ function Engag({ slug }) {
         </h1>
 
         <p
-          className="
+          className=" pt-5
             text-white
             text-center md:text-start
             leading-relaxed
             max-w-4xl
             tracking-wider
-            text-xl md:text-lg xl:text-xl
+            text-[16px] md:text-lg xl:text-xl
             whitespace-pre-line
             font-nunito
           "
