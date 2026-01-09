@@ -39,9 +39,9 @@ function HeroSection() {
 
 
   return (
-   
- <div
-  className="
+
+    <div
+      className="
     w-full
     min-h-[300px] md:min-h-[400px] xl:min-h-[720px]
     relative
@@ -49,8 +49,8 @@ function HeroSection() {
     bg-cover bg-center bg-no-repeat
     rounded-br-[60px] rounded-bl-[60px]
   "
-  style={{ backgroundImage: `url(${CurveBG})` }}
->
+      style={{ backgroundImage: `url(${CurveBG})` }}
+    >
 
 
       <div className="w-full h-full flex flex-col items-between mt-5 font-nunito">
@@ -145,18 +145,19 @@ function HeroSection() {
                   </defs>
                   <text
                     fill="white"
-                    fontSize="20"
-                    className="text-2xl md:text-[33px]"
                     fontWeight="500"
                     letterSpacing="2px"
+                    style={{
+                      fontSize: "clamp(29px, 2.5vw, 24px)",
+                    }}
                   >
                     <textPath
                       xlinkHref="#circlePath"
                       startOffset="0"
                       textAnchor="middle"
-                      className="text-[8vw]" 
+                    // className="text-[8vw]" 
                     >
-                      EXPLORE ABOUT ETTHICKS • EXPLORE ABOUT ETTHICKS 
+                      EXPLORE ABOUT ETTHICKS • EXPLORE ABOUT ETTHICKS
                     </textPath>
                   </text>
                 </svg>
