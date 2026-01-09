@@ -112,7 +112,7 @@ function HeroSection() {
               <div className="block w-[80vw] md:w-[85vw] lg:w-[90vw] mx-10 xl:mx-15 h-6 md:h-9 absolute top-5 md:-top-30 xl:-top-28 2xl:-top-22 bg-black rounded-2xl overflow-hidden">
                 <div
                   ref={flyTextRef}
-                  className="flex whitespace-nowrap text-white font-normal text-xs md:text-xl will-change-transform font-worksans"
+                  className="flex whitespace-nowrap text-white font-normal mt-1 text-xs md:text-xl will-change-transform font-worksans"
                 >
                   {Array.from({ length: 20 }).map((_, index) => (
                     <>
@@ -133,10 +133,10 @@ function HeroSection() {
                 ref={circleRef}
                 className="flex absolute left-7 md:left-8 xl:left-14 md:-top-42 xl:-top-44 2xl:-top-36 flex-row items-center justify-center w-16 h-16 md:w-30 md:h-30 lg:w-34 lg:h-34 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 "
               >
-                <div className="absolute inset-0 bg-sky-900 rounded-full -m-2"></div>
+                <div className="absolute inset-0 bg-sky-900 rounded-full -m-1"></div>
 
                 {/* Circular Text */}
-                <svg viewBox="0 0 200 200" className="absolute pr-1 w-full h-full font-worksans">
+                <svg viewBox="0 0 200 200" className="absolute w-full h-full font-worksans">
                   <defs>
                     <path
                       id="circlePath"
@@ -154,9 +154,9 @@ function HeroSection() {
                       xlinkHref="#circlePath"
                       startOffset="0"
                       textAnchor="middle"
-                      className="text-[29px]" 
+                      className="text-[8vw]" 
                     >
-                      EXPLORE ABOUT ETTHICKS  • EXPLORE ABOUT ETTHICKS 
+                      EXPLORE ABOUT ETTHICKS • EXPLORE ABOUT ETTHICKS 
                     </textPath>
                   </text>
                 </svg>

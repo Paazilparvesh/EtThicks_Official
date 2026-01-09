@@ -37,8 +37,9 @@
 .font-waterfall {
   font-family: "Waterfall", cursive;
 }
+
 .font-caveat {
- font-family: "Caveat", cursive;
+  font-family: "Caveat", cursive;
 
 }
 
@@ -134,7 +135,7 @@
 
 
 /* Mobile (below md breakpoint ~768px) */
-@media (max-width: 767px) {
+@media (max-width: 680px) {
   @keyframes paddingGrow {
     from {
       padding-top: -80px;
@@ -142,8 +143,8 @@
     }
 
     to {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: 2.1rem;
+      padding-bottom: 2.1rem;
     }
   }
 
@@ -173,7 +174,7 @@
 }
 
 /* Tablet (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 681px) and (max-width: 1023px) {
   @keyframes paddingGrow {
     from {
       padding-top: -100px;
@@ -260,8 +261,8 @@
     }
 
     to {
-      padding-top: 7.5rem;
-      padding-bottom: 7.5rem;
+      padding-top: 7.2rem;
+      padding-bottom: 7.2rem;
     }
   }
 
@@ -287,5 +288,107 @@
       transform: translateY(0px);
       opacity: 1;
     }
+  }
+}
+
+
+/* Large desktop (above 1280px) */
+/* @media (min-width: 2100px) {
+  @keyframes paddingGrow {
+    from {
+      padding-top: -180px;
+      padding-bottom: 0;
+    }
+
+    to {
+      padding-top: 7.2rem;
+      padding-bottom: 7.2rem;
+    }
+  }
+
+  @keyframes top-text {
+    from {
+      transform: translateY(-180px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bottom-text {
+    from {
+      transform: translateY(180px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+} */
+
+
+
+
+
+.slider {
+  width: 100%;
+  height: var(--height);
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+}
+
+.slider .list {
+  display: flex;
+  margin-top: 8px;
+  width: 100%;
+  min-width: calc(var(--width) * var(--quantity));
+  position: relative;
+}
+
+.slider:hover .item {
+  animation-play-state: paused !important;
+}
+
+.slider .list .item {
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  left: 100%;
+  /* At initial to the left most side */
+  animation: corosal var(--time) linear infinite;
+  animation-delay: calc(var(--time) / var(--quantity) * (var(--position) - 1) - 14s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes corosal {
+  from {
+    left: 100%;
+  }
+
+  to {
+    left: calc(var(--width) * -1);
+  }
+}
+
+/* Reverse Corosal */
+.slider[reverse="true"] .item {
+  animation: reverse_corosal 14s linear infinite;
+  animation-delay: calc(var(--time) / var(--quantity) * (var(--position) - 1) - 14s);
+}
+
+@keyframes reverse_corosal {
+  from {
+    left: calc(var(--width) * -1);
+  }
+
+  to {
+    left: 100%;
   }
 }

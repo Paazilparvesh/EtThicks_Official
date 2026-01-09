@@ -57,7 +57,7 @@ function ServiceSection() {
       const panels = gsap.utils.toArray(".panel");
       const totalScrollWidth = contentWrapperRef.current.scrollWidth;
       const viewportWidth = window.innerWidth;
-      
+
       let scrollX;
       if (window.innerWidth <= 1024) {
         scrollX = totalScrollWidth - viewportWidth + 1800;
@@ -391,11 +391,11 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[45vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px]  bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
                   {/* Default view */}
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 xl:gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
@@ -414,12 +414,12 @@ function ServiceSection() {
                           </svg>
                         </button>
                       </div>
-                      
+
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">
                         {panel.title}
                       </h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
@@ -432,7 +432,7 @@ function ServiceSection() {
                           {panel.items[1]}
                         </p>
                       </div>
-                      
+
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
                           {panel.items[2]}
@@ -464,12 +464,12 @@ function ServiceSection() {
                           </svg>
                         </button>
                       </div>
-                      
+
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">
                         {panel.title}
                       </h3>
                     </div>
-                    
+
                     <div className="text-white">
                       <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
                         {panel.number}
@@ -483,7 +483,7 @@ function ServiceSection() {
               ))}
             </div>
 
-            <div className="shrink-0 w-[120px] lg:w-[80px] xl:w-[200px] h-full" />
+            <div className="shrink-0 w-[120px] lg:w-20 xl:w-[200px] h-full" />
 
             {/* Group 2: Panels 4-5-6 */}
             <div className="flex items-center gap-10 lg:gap-5 xl:gap-6">
@@ -491,10 +491,10 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
@@ -505,7 +505,7 @@ function ServiceSection() {
                       </div>
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
@@ -547,10 +547,10 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
@@ -561,16 +561,16 @@ function ServiceSection() {
                       </div>
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-6 xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-6 xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
                       </div>
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[2]}</p>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[3]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-6 xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[2]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-6 xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[3]}</p>
                       </div>
                     </div>
                   </div>
@@ -595,7 +595,7 @@ function ServiceSection() {
               ))}
             </div>
 
-            <div className="shrink-0 w-[20px] lg:w-[80px] xl:w-1/3 h-full" />
+            <div className="shrink-0 w-5 lg:w-20 xl:w-1/3 h-full" />
           </div>
         </div>
       )}

@@ -86,13 +86,13 @@ function Header() {
   //   window.location.href = `/service/${slug}`;
   // };
   const handleServiceClick = (slug) => {
-  setIsServicesOpen(false);
-  setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+    setIsMobileMenuOpen(false);
 
-  navigate(`/service/${slug}`, {
-    state: { scrollTo: "about-section" }, // 👈 section id
-  });
-};
+    navigate(`/service/${slug}`, {
+      state: { scrollTo: "about-section" }, // 👈 section id
+    });
+  };
 
 
   const handleNavClick = (path) => {
@@ -121,7 +121,7 @@ function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-10 text-md lg:text-lg 2xl:text-xl mr-8">
+          <nav className="hidden md:flex space-x-10 text-md lg:text-[1.5vw] 2xl:text-[1.2vw] mr-8">
             <Link to="/" className="hover:text-[#F09D01] transition-colors">
               Home
             </Link>
@@ -144,57 +144,57 @@ function Header() {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     className="
-        fixed top-16 right-0
-        w-full
-        bg-black
-        border-t border-gray-800
-        px-10 py-6
-        flex justify-end
-      "
+                      fixed top-16 right-0
+                      w-full
+                      bg-black
+                      border-t border-gray-800
+                      px-10 py-6
+                      flex justify-end
+                    "
                   >
                     {/* Right aligned container */}
                     <div className=" w-full space-y-8">
                       {chunkArray(SERVICES, 3).map((row, rowIndex) => (
                         <div
                           key={rowIndex}
-className="
-  flex justify-end
-  gap-1           /* small phones */
-  sm:gap-2        /* large phones */
-  md:gap-1        /* tablets */
-  lg:gap-4        /* small laptops */
-  xl:gap-5        /* desktops */
-  2xl:gap-6       /* large screens */
-"
+                          className="
+                            flex justify-end
+                            gap-1           /* small phones */
+                            sm:gap-2        /* large phones */
+                            md:gap-1        /* tablets */
+                            lg:gap-4        /* small laptops */
+                            xl:gap-5        /* desktops */
+                            2xl:gap-6       /* large screens */
+                          "
                         >
                           {row.map((service) => (
                             <button
                               key={service.slug}
                               onClick={() => handleServiceClick(service.slug)}
                               className="
-                  flex items-center gap-3
-                  text-right
-                  group
-                  transition
-                "
+                                flex items-center gap-3
+                                text-right
+                                group
+                                transition
+                              "
                             >
                               <img
                                 src={service.icon}
                                 alt={service.name}
                                 className="
-                    h-5 w-5
-                    object-contain
-                    group-hover:scale-110
-                    transition-transform duration-300
-                  "
+                                  h-5 w-5
+                                  object-contain
+                                  group-hover:scale-110
+                                  transition-transform duration-300
+                                "
                               />
                               <span
                                 className="
-                    text-white
-                    text-xl
-                    group-hover:text-[#F09D01]
-                    transition-colors
-                  "
+                                text-white
+                                text-[1.5vw] xl:text-[1.2vw]
+                                group-hover:text-[#F09D01]
+                                transition-colors
+                              "
                               >
                                 {service.name}
                               </span>

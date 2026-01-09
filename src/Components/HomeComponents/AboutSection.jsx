@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import axios from "axios";
+// import axios from "axios";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,11 +43,11 @@ function AboutSection() {
           clients: 13,
           contents: 20,
         };
-        
+
         // If you have an API endpoint, you can use:
         // const res = await axios.get(`${Base_Url}/api/count`);
         // const apiData = res.data.data;
-        
+
         // For now, use the values from the image
         setTargetCounts({
           projects: defaultData.projects,
@@ -60,7 +60,7 @@ function AboutSection() {
         console.error("Error fetching count data:", err);
         // Use fallback values if API fails
         setTargetCounts({
-         projects: 25,
+          projects: 25,
           clients: 13,
           contents: 20,
         });
@@ -140,11 +140,11 @@ function AboutSection() {
 
     // Only animate stats for desktop (md and above)
     const isMobile = window.innerWidth < 768;
-    
+
     if (!isMobile) {
       // Animate stats section with reveal effect
       const statsElements = statsRef.current?.children[0]?.children || [];
-      
+
       // Animate each stat item
       if (statsElements.length > 0) {
         Array.from(statsElements).forEach((stat, index) => {
@@ -308,36 +308,31 @@ function AboutSection() {
     >
       {/* Main Content Section */}
       <div className="
-        w-full min-h-screen
-        -mt-[200px]        /* mobile */
-        sm:-mt-[100px]     /* small devices */
-        md:-mt-[80px]      /* tablets */
-        lg:-mt-[60px]      /* laptops */
-        xl:-mt-[100px]     /* large screens */
+        w-full
         flex flex-col items-center justify-center
-        px-4 sm:px-6 md:px-8 lg:px-10
+        px-4 pt-10 sm:px-6 md:px-8 lg:px-10
       ">
         {/* Text Section */}
-        <div 
+        <div
           ref={textRef}
           className="text-center w-full max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto"
         >
           <div className="mb-2 sm:mb-3 md:mb-2">
-            <h4 
+            <h4
               ref={headingRef}
               className="text-[#E69500] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl tracking-wide font-nunito"
             >
               ABOUT US
             </h4>
           </div>
-          <h2 
+          <h2
             ref={headingRef}
             className="text-xl sm:text-2xl md:text-xl lg:text-4xl xl:text-5xl font-normal text-white uppercase leading-tight sm:leading-snug md:leading-snug tracking-wider font-worksans"
           >
             Your Brand Has a <span className="text-[#E69500]">Story</span>. We'll <br className="hidden xl:block" />
             Take It <span className="text-[#E69500]">Everywhere</span>
           </h2>
-          <p 
+          <p
             ref={paragraphRef}
             className="text-sm w-fit sm:text-sm md:text-base lg:text-lg xl:text-xl text-white font-normal leading-relaxed sm:leading-relaxed md:leading-relaxed lg:leading-9 mt-3 sm:mt-4 md:mt-6 lg:mt-8 font-nunito"
           >
@@ -351,14 +346,14 @@ function AboutSection() {
       </div>
 
       {/* Desktop Stats Count Section - With animations */}
-      <div 
+      <div
         ref={statsRef}
-        className="hidden md:block w-full py-0 mb-15 bg-black"
+        className="hidden md:block w-full py-0 mt-50 mb-5 bg-black"
       >
         <div className="max-w-7xl mx-auto flex sm:flex-row justify-around items-center text-center gap-8 md:gap-12 lg:gap-46">
           {/* Projects - Positioned slightly higher */}
           <div className="flex flex-col items-center relative -mt-4 md:-mt-66">
-            <div 
+            <div
               ref={el => numbersRef.current[0] = el}
               className="flex items-end justify-center"
             >
@@ -367,7 +362,7 @@ function AboutSection() {
               </h1>
               <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
-            <p 
+            <p
               ref={el => textItemsRef.current[0] = el}
               className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 font-nunito font-normal tracking-wide"
             >
@@ -377,7 +372,7 @@ function AboutSection() {
 
           {/* Content Produced - Also positioned slightly higher */}
           <div className="flex flex-col items-center relative -mt-2 md:-mt-34">
-            <div 
+            <div
               ref={el => numbersRef.current[1] = el}
               className="flex items-end justify-center"
             >
@@ -386,7 +381,7 @@ function AboutSection() {
               </h1>
               <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
-            <p 
+            <p
               ref={el => textItemsRef.current[1] = el}
               className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 font-nunito font-normal tracking-wide"
             >
@@ -396,7 +391,7 @@ function AboutSection() {
 
           {/* Clients - Positioned slightly higher */}
           <div className="flex flex-col items-center relative -mt-4 md:-mt-66">
-            <div 
+            <div
               ref={el => numbersRef.current[2] = el}
               className="flex items-end justify-center"
             >
@@ -405,7 +400,7 @@ function AboutSection() {
               </h1>
               <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
-            <p 
+            <p
               ref={el => textItemsRef.current[2] = el}
               className="text-white text-lg md:text-xl lg:text-[32px] mt-1 md:mt-2 pb font-nunito font-semibold tracking-wide"
             >
@@ -416,7 +411,7 @@ function AboutSection() {
       </div>
 
       {/* Mobile Stats Count Section - Static (no animations) */}
-      <div className="md:hidden w-full bg-black -mt-40 mb-8">
+      <div className="md:hidden w-full bg-black mt-40 mb-8">
         <div className="flex flex-row items-center justify-center px-4">
           {/* Clients */}
           <div className="flex flex-col items-center w-full -mt-44">
@@ -434,7 +429,7 @@ function AboutSection() {
           {/* Content Produced - Same position */}
           <div className="flex flex-col items-center w-full -mt-24">
             <div className="flex items-center justify-center">
-              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none"> 
+              <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.projects}
               </h1>
               <span className="text-blue-300 text-xl font-worksans">+</span>
