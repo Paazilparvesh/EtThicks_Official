@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import now from "/src/assets/about/now.png";
 
 function CountSection() {
   const sectionRef = useRef(null);
@@ -46,6 +45,7 @@ function CountSection() {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* ---------------- Scroll trigger ---------------- */
@@ -65,7 +65,8 @@ function CountSection() {
     if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
-  }, [loading, hasAnimated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, hasAnimated,]);
 
   /* ---------------- Smooth animation ---------------- */
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
@@ -99,8 +100,7 @@ function CountSection() {
   if (loading) {
     return (
       <div
-        className="w-full bg-cover bg-center py-12 md:py-24 px-4"
-        style={{ backgroundImage: `url(${now})` }}
+        className="w-full bg-black py-12 md:py-24 px-4"
       >
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-white text-xl">Loading...</p>
@@ -113,8 +113,7 @@ function CountSection() {
   if (error) {
     return (
       <div
-        className="w-full bg-cover bg-center py-12 md:py-24 px-4"
-        style={{ backgroundImage: `url(${now})` }}
+        className="w-full bg-black py-12 md:py-24 px-4"
       >
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-red-500 text-xl">Error: {error}</p>
@@ -127,42 +126,53 @@ function CountSection() {
   return (
     <div
       ref={sectionRef}
-      className="w-full bg-cover bg-center py-12 md:py-24 px-4"
-      style={{ backgroundImage: `url(${now})` }}
+      className="w-full bg-black pb-20 md:py-24 px-4"
     >
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-8">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-around items-center text-center gap-10">
         {/* Projects */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+          <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.projects}
-            <span className="text-white lg:text-6xl">+</span>
+            <span className="text-[#009BB5] lg:text-6xl">+</span>
           </h1>
-          <p className="text-white lg:text-[32px] mt-2 font-nunito">
+          <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             PROJECTS
+          </p>
+        </div>
+
+        {/* Content */}
+        <div className="hidden sm:block">
+          <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
+            {counts.contents}
+            <span className="text-[#009BB5] lg:text-6xl">+</span>
+          </h1>
+          <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
+            CONTENT PRODUCED
           </p>
         </div>
 
         {/* Clients */}
         <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+          <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.clients}
-            <span className="text-white lg:text-6xl">+</span>
+            <span className="text-[#009BB5] lg:text-6xl">+</span>
           </h1>
-          <p className="text-white lg:text-[32px] mt-2 font-nunito">
+          <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             CLIENTS
           </p>
         </div>
 
         {/* Content */}
-        <div>
-          <h1 className="text-[#FFAE00] text-4xl lg:text-[80px] font-worksans">
+        <div className="sm:hidden">
+          <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.contents}
-            <span className="text-white lg:text-6xl">+</span>
+            <span className="text-[#009BB5] lg:text-6xl">+</span>
           </h1>
-          <p className="text-white lg:text-[32px] mt-2 font-nunito">
+          <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             CONTENT PRODUCED
           </p>
         </div>
+
       </div>
     </div>
   );

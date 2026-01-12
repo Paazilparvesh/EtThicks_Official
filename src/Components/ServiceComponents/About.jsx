@@ -14,7 +14,7 @@
 //         heading: "ENGAGING CONTENT THAT",
 //         highlight: "ELEVATES YOUR BRAND",
 //         description: `In today’s digital world, high-quality content isn’t optional—it’s the engine that drives awareness, trust, and growth. Our Content Creation Services are designed to help your brand communicate with clarity, creativity, and impact. Whether you need compelling visuals, strategic messaging, or consistent storytelling across platforms, we bring your ideas to life with content that resonates.`,
-    
+
 //         background: overhead,
 //     },
 
@@ -51,7 +51,7 @@
 
 //         background: ProductPhoto,
 //     },
-    
+
 // };
 
 // // ---- Default fallback if slug not found ----
@@ -111,7 +111,7 @@
 
 
 import des from "/src/assets/Descriptions.png";
-import Digtal from "/src/assets/Digital.png"; 
+import Digtal from "/src/assets/Digital.png";
 import Brand from "/src/assets/Brand.png";
 import Social from "/src/assets/Social.png";
 import LeadGen from "/src/assets/Lead Generation.png";
@@ -165,7 +165,7 @@ const ENGAG_CONTENT = {
 
   "personal-branding": {
     heading: "Build a Magnetic Personal Brand That",
-    
+
     highlight: " Attracts Opportunities",
     description: `Your personal brand is more than an online presence — it's your reputation, your influence, and the story that sets you apart. Our Personal Branding Services help entrepreneurs, creators, coaches, and industry professionals build a magnetic identity that attracts opportunities, grows trust, and communicates expertise with clarity and confidence.`,
     background: PersonalBranding,
@@ -204,17 +204,17 @@ function Engag({ slug }) {
         flex items-center
         py-14 sm:py-12 md:py-10
         min-h-[60vh] md:min-h-[70vh]
-        bg-cover bg-bottom-right
+        bg-cover bg-right
       "
     >
-      <div className="px-6 md:px-8">
+      <div className="px-6 md:px-12 xl:px-20">
         <h1
           className="
             text-white font-medium
             text-center md:text-start
-            leading-tight tracking-wider
+            leading-none xl:leading-tight tracking-wider
             mb-4 sm:mb-5 md:mb-0
-            text-[28px] md:text-4xl lg:text-5xl
+            text-[7.5vw] md:text-[4vw] xl:text-[3vw]
             font-worksans
           "
         >
@@ -230,9 +230,9 @@ function Engag({ slug }) {
             text-white
             text-center md:text-start
             leading-relaxed
-            max-w-4xl
+            max-w-4xl xl:max-w-4xl 2xl:max-w-7xl
             tracking-wider
-            text-[16px] md:text-lg xl:text-xl
+            text-[4vw] md:text-[2vw] xl:text-[1.3vw]
             whitespace-pre-line
             font-nunito
           "

@@ -1,16 +1,16 @@
-import rob from "/src/assets/about/Android Robo.png";
-import con from "/src/assets/about/Concept Studio Logo.png";
-import tl from "/src/assets/about/TLG logo.png";
-import cb from "/src/assets/about/CBL Logo.png";
-import ab from "/src/assets/about/Abi estates.png";
-import tam from "/src/assets/about/department.png";
-import niti from "/src/assets/about/nithiya.png";
-import tn from "/src/assets/about/TNRTP.png";
-import cha from "/src/assets/about/CHAI Main logo.png";
-import zoom from "/src/assets/about/ZoomFarms Logo.png";
-import ala from "/src/assets/about/alayam selveer.png";
+import image1 from "/src/assets/about/Android Robo.png";
+import image2 from "/src/assets/about/Concept Studio Logo.png";
+import image3 from "/src/assets/about/TLG logo.png";
+import image4 from "/src/assets/about/CBL Logo.png";
+import image5 from "/src/assets/about/Abi estates.png";
+import image6 from "/src/assets/about/department.png";
+import image7 from "/src/assets/about/nithiya.png";
+import image8 from "/src/assets/about/TNRTP.png";
+import image9 from "/src/assets/about/CHAI Main logo.png";
+import image10 from "/src/assets/about/ZoomFarms Logo.png";
+import image11 from "/src/assets/about/alayam selveer.png";
 
-const slides = [rob, con, tl, cb, ab, tam, niti, tn, cha, zoom, ala];
+const slides = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11];
 
 // Reusable Row Component
 const CarouselRow = ({ reverse = false, duration = 14 }) => {
@@ -58,6 +58,94 @@ function Client() {
         {/* Animated Rows */}
         <CarouselRow duration={12} />
         <CarouselRow reverse={true} duration={14} />
+
+        {/* <div
+          className="slider"
+          style={{
+            "--position": 1,
+            "--width": "30vw",
+            "--height": "12vh",
+            "--quantity": 10,
+            "--time": "14s",
+          }}
+        >
+          <div className="list">
+            <div className="item" style={{ "--position": 1 }}>
+              <img src={image1} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 2 }}>
+              <img src={image2} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 3 }}>
+              <img src={image3} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 4 }}>
+              <img src={image4} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 5 }}>
+              <img src={image5} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 6 }}>
+              <img src={image6} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 7 }}>
+              <img src={image7} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 8 }}>
+              <img src={image8} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 9 }}>
+              <img src={image9} alt="" />
+            </div>
+            <div className="item" style={{ "--position": 10 }}>
+              <img src={image10} alt="" />
+            </div>
+          </div>
+        </div>
+        <div
+          className="slider"
+          reverse="true"
+          style={{
+            "--position": 1,
+            "--width": "30vw",
+            "--height": "12vh",
+            "--quantity": 10,
+            "--time": "14s",
+          }}
+        >
+          <div className="list">
+            <div className="item" style={{ "--position": 1 }}>
+              <img src={image1} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 2 }}>
+              <img src={image2} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 3 }}>
+              <img src={image3} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 4 }}>
+              <img src={image4} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 5 }}>
+              <img src={image5} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 6 }}>
+              <img src={image6} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 7 }}>
+              <img src={image7} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 8 }}>
+              <img src={image8} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 9 }}>
+              <img src={image9} alt="" className="w-full h-auto" />
+            </div>
+            <div className="item" style={{ "--position": 10 }}>
+              <img src={image10} alt="" className="w-full h-auto" />
+            </div>
+          </div>
+        </div> */}
 
         {/* Keyframe Animations */}
         <style>{`

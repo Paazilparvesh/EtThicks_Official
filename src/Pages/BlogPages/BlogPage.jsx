@@ -92,10 +92,10 @@ function Blogs() {
         />
 
         <div className="bg-gray-50 p-4">
-          <h2 className="text-xs text-gray-500 mb-1 font-nunito">
+          <h2 className="text-xs lg:text-base text-gray-500 mb-1 font-nunito">
             {new Date(blog.createdAt).toLocaleDateString()}
           </h2>
-          <p className="text-lg md:text-sm xl:text-lg font-medium text-black font-worksans">
+          <p className="text-lg sm:text-sm lg:text-lg xl:text-xl font-medium text-black font-worksans">
             {blog.name}
           </p>
         </div>
@@ -106,22 +106,15 @@ function Blogs() {
   return (
     <div className="w-full flex flex-col bg-black text-white min-h-screen pt-14 md:pt-0 xl:pt-12">
       {latestBlog && (
-        <div className="flex items-center justify-center p-4 md:p-6 lg:p-1 mt-10 md:mt-20 xl:mt-6">
+        <div className="flex items-center justify-center px-4 sm:px-8 lg:px-10 xl:px-16 mt-10 md:mt-20 xl:mt-10">
           <div
-            className="relative w-full max-w-[1280px] h-[400px] md:h-[500px] lg:h-[644px] overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+            style={{ backgroundImage: `url('${getImageUrl(latestBlog)}')` }}
+            className="relative w-full h-full overflow-hidden rounded-3xl shadow-lg cursor-pointer bg-cover bg-center  flex flex-col items-between gap-20 sm:gap-30 lg:gap-50 xl:gap-60 2xl:gap-70"
             onClick={() => handleBlogClick(latestBlog)}
           >
-            <img
-              src={getImageUrl(latestBlog)}
-              alt={latestBlog.name}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
-
-            <div className="absolute top-4 md:top-6 lg:top-8 left-4 md:left-6 lg:left-8">
+            <div className=" p-3 z-10">
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-9xl font-medium font-worksans tracking-wider text-transparent bg-clip-text"
+                className="text-6xl sm:text-8xl lg:text-9xl font-medium font-worksans tracking-wider text-transparent bg-clip-text"
                 style={{
                   backgroundImage: `
                     linear-gradient(
@@ -139,31 +132,56 @@ function Blogs() {
                 BLOG
               </h1>
             </div>
+
+            <div className="p-4 z-10 flex justify-between items-end">
+              <div className="">
+                <h2 className="text-xs sm:text-lg lg:text-2xl text-white/80 mb-2 font-nunito">
+                  {new Date(latestBlog.createdAt).toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </h2>
+
+                <p className="text-xl sm:text-3xl lg:text-6xl xl:text-7xl font-medium text-white font-worksans leading-snug">
+                  {latestBlog.name}
+                </p>
+              </div>
+              <div
+                className="flex items-center justify-center size-10 sm:size-14 lg:size-20 rounded-full bg-amber-500 text-white transition hover:scale-110 hover:bg-amber-400"
+              >
+                <ArrowUpRight className="size-6 sm:size-8 lg:size-12" strokeWidth={2.5} />
+              </div>
+            </div>
+
+            <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/80" />
+
+
           </div>
         </div>
       )}
 
       {/* ---------------- Articles Section ---------------- */}
-      <div className="w-full p-8 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+      <div className="w-full p-8 lg:px-10 xl:px-18">
         {/* 🔥 MOBILE FIX HERE */}
-        <div className="w-full flex flex-row md:flex-row justify-between items-center mb-6 md:mb-10 gap-2 md:gap-4">
-          <h1 className="text-2xl md:text-5xl lg:pl-20 lg:text-4xl font-normal font-worksans whitespace-nowrap">
+        <div className="w-full flex flex-row justify-between items-center mb-6 md:mb-10 gap-8 md:gap-4">
+          <h1 className="text-xl sm:text-3xl lg:text-5xl xl:text-6xl font-normal font-worksans whitespace-nowrap">
             Articles
           </h1>
 
-          <div className="flex items-center gap-2 lg:pr-20 w-full md:w-auto justify-end">
+          <div className="flex items-center gap-2 w-full sm:w-1/2 md:w-auto justify-end">
             <input
               type="text"
               placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="h-9 md:h-auto w-full    md:w-60 bg-[#D9D9D9] rounded-full px-4 md:px-6 md:py-2 text-black outline-none text-xs md:text-sm font-nunito"
+              className="h-6 sm:h-8 lg:h-10 w-full md:w-60 bg-[#D9D9D9] rounded-full px-4 md:px-6 md:py-2 text-black outline-none text-sm sm:text-lg lg:text-xl font-nunito"
             />
 
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
-              className="h-9 md:h-auto bg-[#D9D9D9] rounded-full px-3 md:px-4 md:py-2 text-black outline-none text-xs md:text-sm font-nunito"
+              className="h-6 sm:h-8 lg:h-10 bg-[#D9D9D9] rounded-full px-3 md:px-4 md:py-2 text-black outline-none text-sm sm:text-lg lg:text-xl font-nunito"
             >
               <option value="desc">Newest</option>
               <option value="asc">Oldest</option>
@@ -171,7 +189,7 @@ function Blogs() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4 lg:mt-40">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-12 lg:mt-40">
           {filteredArticles.map((blog, index) => (
             <ArticleCard key={blog.documentId} blog={blog} index={index} />
           ))}

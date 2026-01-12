@@ -57,8 +57,8 @@ function TeamSection() {
                 )}
 
                 {/* Name & Role Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-3">
-                  <h3 className="text-lg md:text-xl font-semibold text-[#FFAE00] nhn   font-worksans">
+                <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black via-black/80 to-transparent p-3">
+                  <h3 className="text-lg md:text-xl xl:text-2xl font-semibold text-[#FFAE00] nhn   font-worksans">
                     {member?.Name}
                   </h3>
                   <p className="text-sm text-gray-300 font-nunito">

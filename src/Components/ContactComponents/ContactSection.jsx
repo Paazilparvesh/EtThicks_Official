@@ -75,7 +75,7 @@ const ContactSection = () => {
   };
 
   return (
-    <div className="w-full min-h-screen pt-26 relative overflow-hidden flex flex-col-reverse md:flex-row items-center justify-center bg-black py-20">
+    <div className="w-full md:min-h-screen pt-26 relative overflow-hidden flex flex-col-reverse md:flex-row items-center justify-center bg-black py-25">
       {/* Background Grid */}
       <img
         src={grid}
@@ -84,17 +84,17 @@ const ContactSection = () => {
       />
 
       {/* Main Content */}
-      <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center w-full relative z-10 gap-10 xl:gap-5 px-4 md:px-20">
+      <div className="flex flex-col md:flex-row justify-center md:justify-between items-center w-full relative z-10 xl:gap-5 px-4 lg:px-20 xl:px-20">
         {/* Left Side: Pac-Man with Animated Dots */}
-        <div className="w-full md:w-1/2 flex justify-center items-center">
+        <div className="w-full md:w-1/2 flex justify-center items-center absolute top-20 sm:top-35 -left-6 md:relative md:inset-0 z-0">
           <img
             src={Pacman}
             alt="Pacman"
-            className="size-56 md:size-96 md:-ml-20 md:-mt-20 object-contain z-10 relative"
+            className="size-56 md:size-80 md:-ml-20 md:-mt-20 object-contain z-10 relative"
           />
 
           {/* Animated Orange Dots Container */}
-          <div className="flex items-center -ml-28 xl:-ml-48   xl:-mr-25  md:-mt-20 overflow-hidden relative">
+          <div className="flex items-center -ml-28 lg:-ml-48 xl:-ml-48   xl:-mr-25  md:-mt-20 overflow-hidden relative">
             <div
               className="flex gap-20"
               style={{
@@ -114,124 +114,124 @@ const ContactSection = () => {
         </div>
 
         {/* Right Side: Heading + Form */}
-        <div className="w-full md:w-1/2 flex  flex-col items-center md:items-start">
+        <div className="w-full md:w-1/2 flex  flex-col items-center md:items-start z-10 sm:px-10 lg:px-0">
           {/* Playful "Let's talk!" heading with Nunito font */}
- <h2 className="
-  text-white 
-  text-5xl sm:text-6xl lg:text-7xl xl:text-8xl md:text-4xl
-  font-semibold 
-  mb-8 
-  flex flex-wrap justify-center lg:justify-start
-  gap-1 
-  leading-none 
-  xl:ml-20 
-  text-center lg:text-left 
-  font-worksans
-">
-  <span className="inline-block -rotate-18">L</span>
-  <span className="inline-block -rotate-15 -mt-1">e</span>
-  <span className="inline-block rotate-3 -mt-1">t</span>
-  <span className="inline-block ml-1">'</span>
-  <span className="inline-block rotate-12">s</span>
+          <h2 className="
+            text-white 
+            text-5xl sm:text-8xl lg:text-7xl xl:text-8xl
+            font-semibold 
+            mb-8 
+            flex flex-wrap justify-center lg:justify-start
+            gap-1 
+            leading-none 
+            xl:ml-20 
+            text-center lg:text-left 
+            font-worksans
+          ">
+            <span className="inline-block -rotate-18">L</span>
+            <span className="inline-block -rotate-15 -mt-1">e</span>
+            <span className="inline-block rotate-3 -mt-1">t</span>
+            <span className="inline-block ml-1">'</span>
+            <span className="inline-block rotate-12">s</span>
 
-  <span className="inline-block w-2 sm:w-3"></span>
+            <span className="inline-block w-2 sm:w-3"></span>
 
-  <span className="inline-block -rotate-8">t</span>
-  <span className="inline-block -rotate-8">a</span>
-  <span className="inline-block -rotate-6">l</span>
-  <span className="inline-block">k</span>
-  <span className="inline-block -rotate-2">!</span>
-</h2>
+            <span className="inline-block -rotate-8">t</span>
+            <span className="inline-block -rotate-8">a</span>
+            <span className="inline-block -rotate-6">l</span>
+            <span className="inline-block">k</span>
+            <span className="inline-block -rotate-2">!</span>
+          </h2>
 
 
           {/* Form Box */}
-        <div className="relative ml-2 xl:ml-20 bg-[#252525] opacity-94 shadow-lg overflow-hidden max-w-lg [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] pt-4 xl:pt-0">
-  <div className="p-4 xl:p-6">
-    <p className="text-[#acacac] text-sm md:text-base mb-8 leading-relaxed pr-10 font-nunito">
-      If you have any questions, just fill in the contact form, and we
-      will answer you shortly. If you are living nearby, come visit at
-      one of our comfortable offices.
-    </p>
+          <div className="relative  xl:ml-20 bg-[#252525] opacity-80 shadow-lg overflow-hidden md:max-w-lg 2xl:max-w-full [clip-path:polygon(0_0,calc(100%-90px)_0,100%_90px,100%_100%,0_100%)] pt-4 xl:pt-0">
+            <div className="p-4 xl:p-6">
+              <p className="text-[#ffffff] text-sm sm:text-xl md:text-base mb-8 leading-relaxed pr-10 font-nunito">
+                If you have any questions, just fill in the contact form, and we
+                will answer you shortly. If you are living nearby, come visit at
+                one of our comfortable offices.
+              </p>
 
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-2 md:gap-8"
-      onChange={handleInputChange}
-    >
-      {/* Name */}
-      <div className="flex flex-col">
-        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-          Name:
-        </label>
-        <input
-          type="text"
-          name="name"
-          required
-          className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
-          onChange={handleInputChange}
-        />
-      </div>
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-2 sm:gap-5 md:gap-8"
+                onChange={handleInputChange}
+              >
+                {/* Name */}
+                <div className="flex flex-col">
+                  <label className="text-[#f8a81c] text-sm sm:text-xl font-medium mb-1 font-worksans">
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
+                    onChange={handleInputChange}
+                  />
+                </div>
 
-      {/* Email */}
-      <div className="flex flex-col">
-        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-          Email address:
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
-          onChange={handleInputChange}
-        />
-      </div>
+                {/* Email */}
+                <div className="flex flex-col">
+                  <label className="text-[#f8a81c] text-sm sm:text-xl font-medium mb-1 font-worksans">
+                    Email address:
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="border-b border-gray-500 outline-none py-2 text-white placeholder:text-gray-400 focus:border-gray-400"
+                    onChange={handleInputChange}
+                  />
+                </div>
 
-      {/* Message */}
-      <div className="flex flex-col">
-        <label className="text-[#f8a81c] text-sm font-medium mb-1 font-worksans">
-          Message:
-        </label>
-        <textarea
-          name="message"
-          required
-          rows="4"
-          className="border-b border-gray-500 outline-none resize-none text-white placeholder:text-gray-400 focus:border-gray-400"
-          onChange={handleInputChange}
-        ></textarea>
-      </div>
-    </form>
-  </div>
+                {/* Message */}
+                <div className="flex flex-col">
+                  <label className="text-[#f8a81c] text-sm sm:text-xl font-medium mb-1 font-worksans">
+                    Message:
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows="4"
+                    className="border-b border-gray-500 outline-none resize-none text-white placeholder:text-gray-400 focus:border-gray-400"
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+              </form>
+            </div>
 
-  {/* Full-width orange Send Button */}
-  <button
-    type="submit"
-    form={formRef.current ? formRef.current.id : undefined}
-    disabled={loading}
-    onClick={handleSubmit}
-    className="bg-[#f8a81c] text-white font-semibold text-lg py-2 md:py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
-  >
-    {loading ? "Sending..." : "Send"}
-  </button>
+            {/* Full-width orange Send Button */}
+            <button
+              type="submit"
+              form={formRef.current ? formRef.current.id : undefined}
+              disabled={loading}
+              onClick={handleSubmit}
+              className=" bg-[#ffa200] text-white font-semibold text-lg sm:text-3xl py-2 md:py-4 w-full hover:bg-[#f29b00] transition disabled:opacity-60"
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
 
-  {/* Success & Error Messages */}
-  {successMsg && (
-    <p className="text-center mt-4 text-green-600 font-medium">
-      {successMsg}
-    </p>
-  )}
-  {errorMsg && (
-    <p className="text-center mt-4 text-red-600 font-medium">
-      {errorMsg}
-    </p>
-  )}
-</div>
+            {/* Success & Error Messages */}
+            {successMsg && (
+              <p className="text-center mt-4 text-green-600 font-medium">
+                {successMsg}
+              </p>
+            )}
+            {errorMsg && (
+              <p className="text-center mt-4 text-red-600 font-medium">
+                {errorMsg}
+              </p>
+            )}
+          </div>
 
         </div>
       </div>
 
       {/* ⬇ Full-width tilted line with animated ETTHICKS + Subtract.svg */}
-      <div className="absolute top-40 md:top-130 left-0 w-full h-[42px] mt-26 flex items-center justify-center -rotate-5 overflow-hidden">
+      <div className="absolute top-145 sm:top-175 md:top-130 left-0 w-full h-11 sm:h-14 mt-26 flex items-center justify-center -rotate-5 overflow-hidden">
         {/* Static blue background */}
         <div className="absolute inset-0 w-full h-full bg-[#007388]"></div>
 
@@ -245,14 +245,14 @@ const ContactSection = () => {
                   .fill("EtThicks")
                   .map((word, i) => (
                     <React.Fragment key={`${setIndex}-${i}`}>
-                      <span className="text-white text-2xl font-semibold tracking-wide whitespace-nowrap">
+                      <span className="text-white text-2xl sm:text-3xl font-semibold tracking-wide whitespace-nowrap">
                         {word}
                       </span>
                       {i !== 9 && (
                         <img
                           src={Pacman}
                           alt="divider"
-                          className="w-16 h-auto shrink-0 p-1.5 rotate-x-180 rotate-z-180"
+                          className="w-16 sm:w-20 h-auto shrink-0 p-1.5 rotate-x-180 rotate-z-180"
                         />
                       )}
                     </React.Fragment>

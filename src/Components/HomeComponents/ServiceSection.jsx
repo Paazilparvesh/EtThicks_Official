@@ -39,10 +39,10 @@ function ServiceSection() {
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.8, // Slightly longer for smoother snaps
       smooth: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      touchMultiplier: 1,
     });
 
     let rafId;
@@ -57,7 +57,8 @@ function ServiceSection() {
       const panels = gsap.utils.toArray(".panel");
       const totalScrollWidth = contentWrapperRef.current.scrollWidth;
       const viewportWidth = window.innerWidth;
-      
+
+      // Calculate scroll distance
       let scrollX;
       if (window.innerWidth <= 1024) {
         scrollX = totalScrollWidth - viewportWidth + 1800;
@@ -67,27 +68,60 @@ function ServiceSection() {
         scrollX = totalScrollWidth - viewportWidth - 1300;
       }
 
-      // Main horizontal scroll animation with snap to groups
-      gsap.to(contentWrapperRef.current, {
-        x: -scrollX,
-        ease: "none",
+      // Create a timeline for better control
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
           end: `+=${scrollX}`,
-          scrub: 1,
+          scrub: 1, // Keep scrub for smoothness during snap
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
           snap: {
             snapTo: 1 / 2, // 3 groups = 2 intervals (0, 0.5, 1)
-            duration: { min: 0.3, max: 0.8 },
-            delay: 0.1,
-            ease: "power1.inOut",
+            duration: { min: 0.3, max: 0.5 }, // Increased duration for more noticeable snap
+            delay: 0,
+            ease: "power2.out",
             directional: true
           },
-        },
+          onEnter: () => {
+            // Force initial position
+            gsap.set(contentWrapperRef.current, { x: 0 });
+          },
+          onUpdate: (self) => {
+            // Add resistance when approaching snap points
+            const snapPoints = [0, 0.5, 1];
+            const currentProgress = self.progress;
+            
+            // Find nearest snap point
+            let nearestSnap = snapPoints[0];
+            let minDistance = Math.abs(currentProgress - nearestSnap);
+            
+            for (let i = 1; i < snapPoints.length; i++) {
+              const distance = Math.abs(currentProgress - snapPoints[i]);
+              if (distance < minDistance) {
+                minDistance = distance;
+                nearestSnap = snapPoints[i];
+              }
+            }
+            
+            // If close to snap point, add resistance
+            if (minDistance < 0.15) {
+              // Apply slight resistance
+              lenis.options.duration = 1.2;
+            } else {
+              lenis.options.duration = 0.8;
+            }
+          }
+        }
       });
+
+      // Main horizontal scroll animation
+      tl.to(contentWrapperRef.current, {
+        x: -scrollX,
+        ease: "none"
+      }, 0);
 
       // Title fade animation
       gsap.to(titleRef.current, {
@@ -110,7 +144,7 @@ function ServiceSection() {
 
         ScrollTrigger.create({
           trigger: panel,
-          containerAnimation: gsap.getById("horizontalScroll"),
+          containerAnimation: tl.scrollTrigger,
           start: "left 80%",
           end: "right 20%",
           onEnter: () => {
@@ -143,6 +177,76 @@ function ServiceSection() {
           },
         });
       });
+
+      // Add scroll wheel event listener for more control
+      let scrollTimeout;
+      const handleWheel = (e) => {
+        clearTimeout(scrollTimeout);
+        
+        // Determine scroll direction
+        const isScrollingDown = e.deltaY > 0;
+        
+        // Get current scroll position
+        const scrollTrigger = tl.scrollTrigger;
+        if (!scrollTrigger) return;
+        
+        const currentProgress = scrollTrigger.progress;
+        const snapPoints = [0, 0.5, 1];
+        
+        // Find current snap point
+        let currentSnapIndex = 0;
+        for (let i = 0; i < snapPoints.length; i++) {
+          if (Math.abs(currentProgress - snapPoints[i]) < 0.2) {
+            currentSnapIndex = i;
+            break;
+          }
+        }
+        
+        // Determine target snap point
+        let targetSnapIndex;
+        if (isScrollingDown && currentSnapIndex < snapPoints.length - 1) {
+          targetSnapIndex = currentSnapIndex + 1;
+        } else if (!isScrollingDown && currentSnapIndex > 0) {
+          targetSnapIndex = currentSnapIndex - 1;
+        } else {
+          return; // At boundary
+        }
+        
+        // Calculate target scroll position
+        const targetProgress = snapPoints[targetSnapIndex];
+        const scrollDistance = targetProgress * scrollX;
+        
+        // Animate to target position with strong snap
+        gsap.to(contentWrapperRef.current, {
+          x: -scrollDistance,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+          overwrite: true
+        });
+        
+        // Update scroll trigger progress
+        scrollTrigger.progress(targetProgress);
+        
+        // Prevent default scroll
+        e.preventDefault();
+        
+        // Set timeout to re-enable normal scrolling
+        scrollTimeout = setTimeout(() => {
+          // Refresh scroll trigger
+          scrollTrigger.refresh();
+        }, 600);
+      };
+
+      // Add wheel event listener
+      sectionRef.current.addEventListener('wheel', handleWheel, { passive: false });
+
+      // Cleanup event listener
+      return () => {
+        if (sectionRef.current) {
+          sectionRef.current.removeEventListener('wheel', handleWheel);
+        }
+      };
+
     }, sectionRef);
 
     const handleResize = () => {
@@ -240,7 +344,7 @@ function ServiceSection() {
     },
     {
       id: 7,
-      title: "Social Media Management",
+      title: "Social Media Marketing",
       number: "07",
       description: "Comprehensive social media strategies to grow your online presence and engagement.",
       items: ["Content Calendar", "Community Management", "Analytics Tracking", "Campaign Management"],
@@ -325,7 +429,7 @@ function ServiceSection() {
                 className="bg-[#141414] rounded-2xl p-6 border overflow-hidden relative group cursor-pointer"
                 onClick={() => handlePanelClick(panel.slug)}
               >
-                <span className="absolute top-2 left-45 opacity-20 font-extrabold italic text-[#464646] text-8xl pointer-events-none">
+                <span className="absolute top-2 left-45 opacity-20 font-extrabold italic text-[#4d4c49] text-8xl pointer-events-none">
                   {panel.number}
                 </span>
 
@@ -391,11 +495,11 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[45vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
                   {/* Default view */}
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 xl:gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
@@ -414,12 +518,12 @@ function ServiceSection() {
                           </svg>
                         </button>
                       </div>
-                      
+
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">
                         {panel.title}
                       </h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
@@ -432,7 +536,7 @@ function ServiceSection() {
                           {panel.items[1]}
                         </p>
                       </div>
-                      
+
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
                           {panel.items[2]}
@@ -464,14 +568,14 @@ function ServiceSection() {
                           </svg>
                         </button>
                       </div>
-                      
+
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">
                         {panel.title}
                       </h3>
                     </div>
-                    
+
                     <div className="text-white">
-                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#FFE2AD] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
                         {panel.number}
                       </span>
                       <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">
@@ -483,7 +587,7 @@ function ServiceSection() {
               ))}
             </div>
 
-            <div className="shrink-0 w-[120px] lg:w-[80px] xl:w-[200px] h-full" />
+            <div className="shrink-0 w-[120px] lg:w-20 xl:w-[200px] h-full" />
 
             {/* Group 2: Panels 4-5-6 */}
             <div className="flex items-center gap-10 lg:gap-5 xl:gap-6">
@@ -491,10 +595,10 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
@@ -505,7 +609,7 @@ function ServiceSection() {
                       </div>
                       <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
                         <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
@@ -547,55 +651,99 @@ function ServiceSection() {
                 <div
                   key={panel.id}
                   ref={addToPanelsRef}
-                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] h-[55vh] lg:h-[286px] xl:h-[400px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-8 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
+                  className="panel w-[85vw] sm:w-[90vw] lg:w-[286px] xl:w-[410px] bg-[#141414] rounded-2xl sm:rounded-3xl relative p-5 sm:p-6 lg:p-4 xl:p-7 border shrink-0 overflow-hidden group hover:bg-[#e59300] transition-all duration-500 cursor-pointer"
                   onClick={() => handlePanelClick(panel.slug)}
                 >
-                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 group-hover:opacity-0">
+                  {/* Default view */}
+                  <div className="z-10 relative h-full flex flex-col justify-between transition-opacity duration-300 xl:gap-10 group-hover:opacity-0">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-yellow-600 flex items-center justify-center hover:bg-gray-400 transition-colors duration-200">
-                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M7 17L17 7M17 7H9M17 7V15"
+                            />
                           </svg>
                         </button>
                       </div>
-                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">{panel.title}</h3>
+
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-4 sm:mb-6 lg:mb-3 xl:mb-8 font-worksans">
+                        {panel.title}
+                      </h3>
                     </div>
-                    
+
                     <div className="flex flex-col gap-3 lg:gap-1.5 xl:gap-4">
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[0]}</p>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[1]}</p>
+                        <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italict text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                          {panel.number}
+                        </span>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[0]}
+                        </p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[1]}
+                        </p>
                       </div>
+
                       <div className="flex gap-2 lg:gap-1.5 xl:gap-3">
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[2]}</p>
-                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">{panel.items[3]}</p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[2]}
+                        </p>
+                        <p className="w-fit min-h-[34px] lg:min-h-[24px] xl:min-h-[38px] px-3 lg:px-2 xl:px-4 rounded-full border border-[rgba(255,255,255,0.3)] flex items-center justify-center text-white text-xs lg:text-[8px] xl:text-sm font-nunito whitespace-nowrap">
+                          {panel.items[3]}
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 lg:p-4 xl:p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Hover view */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-6 lg:p-4 xl:p-7 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div>
                       <div className="flex justify-start mb-2">
                         <button className="w-8 h-8 sm:w-10 sm:h-10 lg:w-7 lg:h-7 xl:w-12 xl:h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
-                          <svg className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-[#e59300]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 17L17 7M17 7H9M17 7V15" />
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 lg:w-3.5 lg:h-3.5 xl:w-6 xl:h-6 text-[#e59300]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M7 17L17 7M17 7H9M17 7V15"
+                            />
                           </svg>
                         </button>
                       </div>
-                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">{panel.title}</h3>
+
+                      <h3 className="text-white text-2xl sm:text-3xl lg:text-base xl:text-3xl font-light mb-2 font-worksans">
+                        {panel.title}
+                      </h3>
                     </div>
+
                     <div className="text-white">
-                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#464646] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">{panel.number}</span>
-                      <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">{panel.description}</p>
+                      <span className="absolute top-2 right-4 lg:top-1 lg:right-3 xl:top-4 xl:right-6 opacity-20 font-extrabold italic text-[#FFE2AD] text-7xl lg:text-5xl xl:text-9xl pointer-events-none">
+                        {panel.number}
+                      </span>
+                      <p className="text-base sm:text-lg lg:text-[10px] xl:text-lg font-worksans font-light mb-2 leading-snug lg:leading-tight xl:leading-normal">
+                        {panel.description}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="shrink-0 w-[20px] lg:w-[80px] xl:w-1/3 h-full" />
+            <div className="shrink-0 w-5 lg:w-20 xl:w-1/3 h-full" />
           </div>
         </div>
       )}

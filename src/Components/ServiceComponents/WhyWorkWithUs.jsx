@@ -1,13 +1,6 @@
 import React, { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  FaShieldAlt,
-  FaBrain,
-  FaTrophy,
-  FaHeart,
-  FaChartLine,
-} from "react-icons/fa";
 
 import icoone from "/src/assets/icons/iconone.png";
 import icontwo from "/src/assets/icons/icontwo.png";
@@ -45,7 +38,13 @@ import photo4 from "/src/assets/icons/photo4.png";
 import photo5 from "/src/assets/icons/photo5.png";
 import photo6 from "/src/assets/icons/photo6.png";
 
-
+// New default content icons (17.png to 22.png)
+import DefaultIcon1 from "/src/assets/icons/17.png";
+import DefaultIcon2 from "/src/assets/icons/18.png";
+import DefaultIcon3 from "/src/assets/icons/19.png";
+import DefaultIcon4 from "/src/assets/icons/20.png";
+import DefaultIcon5 from "/src/assets/icons/21.png";
+import DefaultIcon6 from "/src/assets/icons/22.png";    
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,56 +53,56 @@ const WhyWorkWithUs = ({ slug }) => {
     "digital-marketing": {
       title: "Why Work With Us?",
       features: [
-       {
-    icon: (
-      <img
-        src={iconseven}
-        alt="Trust & Credibility"
-        className="w-7 h-7"
-      />
-    ),
-    text: "Boosts Trust & Credibility",
-  },
-  {
-    icon: (
-      <img
-        src={iconeight}
-        alt="Brand Recall"
-        className="w-7 h-7"
-      />
-    ),
-    text: "Helps People Remember You",
-  },
-  {
-    icon: (
-      <img
-        src={iconnine}
-        alt="Market Differentiation"
-        className="w-7 h-7"
-      />
-    ),
-    text: "Sets You Apart in a Crowded Market",
-  },
-  {
-    icon: (
-      <img
-        src={iconten}
-        alt="Emotional Connection"
-        className="w-7 h-7"
-      />
-    ),
-    text: "Creates Emotional Connections",
-  },
-  {
-    icon: (
-      <img
-        src={iconeleven}
-        alt="Conversions & Loyalty"
-        className="w-7 h-7"
-      />
-    ),
-    text: "Increases Conversions & Brand Loyalty",
-  },
+        {
+          icon: (
+            <img
+              src={iconseven}
+              alt="Trust & Credibility"
+              className="w-7 h-7"
+            />
+          ),
+          text: "Boosts Trust & Credibility",
+        },
+        {
+          icon: (
+            <img
+              src={iconeight}
+              alt="Brand Recall"
+              className="w-7 h-7"
+            />
+          ),
+          text: "Helps People Remember You",
+        },
+        {
+          icon: (
+            <img
+              src={iconnine}
+              alt="Market Differentiation"
+              className="w-7 h-7"
+            />
+          ),
+          text: "Sets You Apart in a Crowded Market",
+        },
+        {
+          icon: (
+            <img
+              src={iconten}
+              alt="Emotional Connection"
+              className="w-7 h-7"
+            />
+          ),
+          text: "Creates Emotional Connections",
+        },
+        {
+          icon: (
+            <img
+              src={iconeleven}
+              alt="Conversions & Loyalty"
+              className="w-7 h-7"
+            />
+          ),
+          text: "Increases Conversions & Brand Loyalty",
+        },
       ],
     },
 
@@ -142,7 +141,7 @@ const WhyWorkWithUs = ({ slug }) => {
       title: "Why Work With Us?",
       features: [
         {
-       icon: <img src={Brand1} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={Brand1} alt="Proven results" className="w-10 h-10" />,
           text: "Proven Track Record Across Industries",
         },
         {
@@ -150,15 +149,15 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Transparent Reporting & Weekly Updates",
         },
         {
-         icon: <img src={Brand3} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={Brand3} alt="Proven results" className="w-10 h-10" />,
           text: "Campaigns Focused on ROI — Not Vanity Metrics",
         },
         {
-         icon: <img src={Brand4} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={Brand4} alt="Proven results" className="w-10 h-10" />,
           text: "Fast Response Time & Dedicated Support",
         },
         {
-         icon: <img src={Brand5} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={Brand5} alt="Proven results" className="w-10 h-10" />,
           text: "Flexible Plans with Scalable Results",
         },
       ],
@@ -172,7 +171,7 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Tailored Social Strategies for Your Goals",
         },
         {
-         icon: <img src={DataTrends} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={DataTrends} alt="SEO best practices" className="w-10 h-10" />,
           text: "Decisions Powered by Data and Trends",
         },
         {
@@ -184,11 +183,11 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Expertise Across All Social Platforms",
         },
         {
-           icon: <img src={Engaging} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={Engaging} alt="SEO best practices" className="w-10 h-10" />,
           text: "Engaging Communities to Build Loyal Followers",
         },
         {
-           icon: <img src={Support} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={Support} alt="SEO best practices" className="w-10 h-10" />,
           text: "Round-the-Clock Monitoring and Support",
         },
       ],
@@ -202,15 +201,15 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Results-Driven Approach for Measurable ROI",
         },
         {
-         icon: <img src={lead2} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={lead2} alt="SEO best practices" className="w-10 h-10" />,
           text: "Targeted Campaigns to Reach Audiences",
         },
         {
-         icon: <img src={lead3} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={lead3} alt="SEO best practices" className="w-10 h-10" />,
           text: "Multi-Channel Strategies for Best Results",
         },
         {
-         icon: <img src={lead4} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={lead4} alt="SEO best practices" className="w-10 h-10" />,
           text: "High-Quality Leads that Drive Growth",
         },
         {
@@ -218,7 +217,7 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Transparent Reporting with Clear Insights",
         },
         {
-           icon: <img src={lead6} alt="SEO best practices" className="w-10 h-10" />,
+          icon: <img src={lead6} alt="SEO best practices" className="w-10 h-10" />,
           text: "Conversion Optimization for Better Results",
         },
       ],
@@ -232,23 +231,23 @@ const WhyWorkWithUs = ({ slug }) => {
           text: "Creative Direction Aligned with Brand Aesthetic",
         },
         {
-         icon: <img src={photo2} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={photo2} alt="Proven results" className="w-10 h-10" />,
           text: "High-End Equipment for Flawless Results",
         },
         {
-         icon: <img src={photo3} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={photo3} alt="Proven results" className="w-10 h-10" />,
           text: "Versatile Styles for Every Visual Need",
         },
         {
-         icon: <img src={photo4} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={photo4} alt="Proven results" className="w-10 h-10" />,
           text: "Fast Turnaround for Campaign Readiness",
         },
         {
-         icon: <img src={photo5} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={photo5} alt="Proven results" className="w-10 h-10" />,
           text: "Brand Consistency Across Every Visual",
         },
         {
-         icon: <img src={photo6} alt="Proven results" className="w-10 h-10" />,
+          icon: <img src={photo6} alt="Proven results" className="w-10 h-10" />,
           text: "Conversion-Focused Visuals That Drive Sales",
         },
       ],
@@ -258,11 +257,30 @@ const WhyWorkWithUs = ({ slug }) => {
   const defaultContent = {
     title: "Why Work With Us?",
     features: [
-      { icon: <FaShieldAlt size={28} />, text: "Professional Excellence" },
-      { icon: <FaBrain size={28} />, text: "Creative Innovation" },
-      { icon: <FaTrophy size={28} />, text: "Proven Track Record" },
-      { icon: <FaHeart size={28} />, text: "Client-Focused Approach" },
-      { icon: <FaChartLine size={28} />, text: "Results-Driven Solutions" },
+      { 
+        icon: <img src={DefaultIcon1} alt="Data-Driven Matchmaking" className="w-10 h-10" />, 
+        text: "Data-Driven Matchmaking" 
+      },
+      { 
+        icon: <img src={DefaultIcon2} alt="Authentic Storytelling" className="w-10 h-10" />, 
+        text: "Authentic Storytelling" 
+      },
+      { 
+        icon: <img src={DefaultIcon3} alt="End-to-End Management" className="w-10 h-10" />, 
+        text: "End-to-End Management" 
+      },
+      { 
+        icon: <img src={DefaultIcon4} alt="Transparent Performance Tracking" className="w-10 h-10" />, 
+        text: "Transparent Performance Tracking" 
+      },
+      { 
+        icon: <img src={DefaultIcon5} alt="Campaigns Built for Conversion" className="w-10 h-10" />, 
+        text: "Campaigns Built for Conversion" 
+      },
+      { 
+        icon: <img src={DefaultIcon6} alt="Access Across Niches" className="w-10 h-10" />, 
+        text: "Access Across Niches" 
+      },
     ],
   };
 
@@ -353,17 +371,12 @@ const WhyWorkWithUs = ({ slug }) => {
           return (
             <div
               key={idx}
-              className={`why-card flex flex-col items-start justify-start gap-4 bg-linear-to-b from-[#946500] to-black text-white rounded-xl sm:rounded-2xl p-6 sm:p-6 md:p-6 lg:p-6 shadow-lg  h-64 sm:h-60 md:h-[280px] lg:h-[300px] w-full sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px] ${idx % 3 === 1 ? "md:-translate-y-35" : ""
+              className={`why-card flex flex-col items-start justify-start gap-4 bg-linear-to-b from-[#946500] to-black text-white rounded-xl sm:rounded-4xl p-6 sm:p-6 md:p-6 lg:p-6 shadow-lg  h-64 sm:h-60 md:h-[280px] lg:h-[300px] w-full sm:max-w-[300px] md:max-w-[340px] lg:max-w-[360px] ${idx % 3 === 1 ? "md:-translate-y-35" : ""
                 } ${rawFeatures.length === 6 ? "md:-translate-y-15" : ""}`}
             >
               <div className="text-cyan-400 mb-3 sm:mb-3 md:mb-4">
-                {/* React icons already have size; img icons use className size */}
-                {React.isValidElement(item.icon) &&
-                  typeof item.icon.type === "string" ? (
-                  item.icon
-                ) : (
-                  React.cloneElement(item.icon, { size: 38 })
-                )}
+                {/* Render the image icon */}
+                {item.icon}
               </div>
               <p className="font-normal text-2xl md:text-[17px] lg:text-2xl leading-relaxed text-left px-2 font-nunito">
                 {item.text}

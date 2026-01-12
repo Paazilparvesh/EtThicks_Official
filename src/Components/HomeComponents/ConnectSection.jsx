@@ -39,14 +39,21 @@ const ConnectSection = () => {
 
     const isMobile = window.innerWidth < 768;
 
+    // 🔒 Prevent mobile resize flicker
+    ScrollTrigger.config({
+      ignoreMobileResize: true,
+    });
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
-          start: "top 200",
-          end: isMobile ? "+=150%" : "+=600%",
+          start: isMobile ? "top top+=1" : "top 200",
+          end: isMobile ? "+=250%" : "+=600%",
           scrub: true,
           pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
         },
       });
 
@@ -120,26 +127,31 @@ const ConnectSection = () => {
         { opacity: 0, ease: "power2.in", duration: 2 },
         "-=0"
       );
+      // ✅ Safe refresh inside GSAP lifecycle
+      gsap.delayedCall(0.3, () => {
+        ScrollTrigger.refresh();
+      });
     }, pinRef);
+
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="w-full -mb-50 bg-black overflow-hidden relative">
+    <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
       <div
         ref={pinRef}
         className="w-full min-h-screen flex items-center justify-center relative"
       >
         <div
           ref={circleRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[160%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] shadow-2xl z-10 mt-10"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] md:-translate-y-[160%] rounded-full w-[40vw] h-[40vw] md:w-[10vw] md:h-[10vw] shadow-2xl z-10 mt-10"
           style={{
             background: "linear-gradient(135deg, #E59300 0%, #D89F5B 100%)",
           }}
         />
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[75%] text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] md:-translate-y-[75%] text-center px-4 z-20 w-full h-screen md:max-w-2xl lg:max-w-3xl flex flex-col justify-center items-center gap-5 md:mt-10">
           <h1
             ref={h1Ref}
             className="text-white font-medium text-3xl lg:text-4xl xl:text-5xl font-worksans"
@@ -223,9 +235,9 @@ const ConnectSection = () => {
           ref={gridRef2}
           className="absolute inset-0 z-30 rounded-full pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-       <img
-  src={img5}
-  className="
+          <img
+            src={img5}
+            className="
     max-w-full h-auto object-contain
     rounded-2xl
     row-start-1 col-start-1
@@ -236,7 +248,7 @@ const ConnectSection = () => {
     lg:translate-x-[280px] lg:translate-y-[-40px]
     xl:translate-x-[620px] xl:translate-y-[-200px]
   "
-/>
+          />
 
 
           <img

@@ -25,6 +25,7 @@ function Pack() {
   useEffect(() => {
     if (!wrapperRef.current) return;
     const mm = gsap.matchMedia();
+
     mm.add(
       {
         isDesktop: "(min-width: 1024px)",
@@ -34,7 +35,6 @@ function Pack() {
       (context) => {
 
         const { isDesktop, isTablet } = context.conditions;
-        // const ctx = gsap.context(() => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: wrapperRef.current,
@@ -47,53 +47,79 @@ function Pack() {
               ? "bottom+=2500 center+=150"
               : isTablet
                 ? "bottom+=2500 center+=150"
-                : "bottom+=3000 center",
+                : "bottom+=2300 center",
             scrub: isDesktop ? 2 : 1, // smoother on desktop, faster on mobile
             pin: true,
+            // markers: true,
           },
         });
 
-        // const tl = gsap.timeline({
-        //   scrollTrigger: {
-        //     trigger: wrapperRef.current,
-        //     start: "top top",
-        //     end: "bottom+=3500 bottom",
-        //     scrub: 2,
-        //     pin: true,
-        //     markers: true,
-        //   },
-        // });
+        gsap.set(".pack1-left", {
+          rotation: -225,
+          transformOrigin: "50% 50%",
+          ease: "power2.inOut",
+        });
 
-        const factor = 1.5; // 1.5x viewport
+        gsap.set(".pack1-top", {
+          rotation: 145,
+          transformOrigin: "50% 50%",
+          ease: "power2.inOut",
+        });
+
+        gsap.set(".pack1-bottom", {
+          rotation: -125,
+          transformOrigin: "50% 50%",
+          ease: "power2.inOut",
+        });
+
+        gsap.set(".pack1-right", {
+          rotation: 45,
+          transformOrigin: "50% 50%",
+          ease: "power2.inOut",
+        });
+
+        const moveX = isDesktop ? 1 : 2;
+        const moveY = isDesktop ? 2 : 1;
+
         /* ===== PACK 1 (OUTWARD) ===== */
-        tl.to(".pack1-left", { x: -window.innerWidth * factor, duration: 1 }, 0);
-        tl.to(".pack1-top", { y: -window.innerHeight * factor, duration: 1 }, 0);
-        tl.to(".pack1-right", { x: window.innerWidth * factor, duration: 1 }, 0);
-        tl.to(".pack1-bottom", { y: window.innerHeight * factor, duration: 1 }, 0);
+        // For Mobile 
+        tl.to(".pack1-left", { x: -window.innerWidth * moveX, duration: 1 }, 0);
+        tl.to(".pack1-top", { y: -window.innerHeight * moveY, duration: 1 }, 0);
+        tl.to(".pack1-right", { x: window.innerWidth * moveX, duration: 1 }, 0);
+        tl.to(".pack1-bottom", { y: window.innerHeight * moveY, duration: 1 }, 0);
+
+        // {isDesktop &&
+        // // For desktop 
+        // tl.to(".pack1-left", { x: -window.innerWidth * 1, duration: 1 }, 0);
+        // tl.to(".pack1-top", { y: -window.innerHeight * 2, duration: 1 }, 0);
+        // tl.to(".pack1-right", { x: window.innerWidth * 1, duration: 1 }, 0);
+        // tl.to(".pack1-bottom", { y: window.innerHeight * 2, duration: 1 }, 0);
+
+        // }
 
         gsap.to(".pack1-left", {
-          rotation: 90,
+          rotation: -45,
           transformOrigin: "50% 50%",
           duration: 1,
           ease: "power2.inOut",
         });
 
         gsap.to(".pack1-top", {
-          rotation: -90,
+          rotation: -45,
           transformOrigin: "50% 50%",
           duration: 1,
           ease: "power2.inOut",
         });
 
         gsap.to(".pack1-bottom", {
-          rotation: 90,
+          rotation: 45,
           transformOrigin: "50% 50%",
           duration: 1,
           ease: "power2.inOut",
         });
 
         gsap.to(".pack1-right", {
-          rotation: -90,
+          rotation: -140,
           transformOrigin: "50% 50%",
           duration: 1,
           ease: "power2.inOut",
@@ -156,17 +182,17 @@ function Pack() {
   }, []);
 
   return (
-    <div className="w-full h-[450vh] md:h-[550vh] xl:h-auto bg-black overflow-hidden">
+    <div className="w-full h-[450vh] sm:h-auto md:h-[500vh] xl:h-auto bg-black overflow-hidden">
       <div
         ref={wrapperRef}
         className="w-full min-h-screen relative overflow-hidden"
       >
         {/* ===== PACK 1 ===== */}
-        <div className="pack1-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-10 h-10">
-          <img src={pockone} className="pack1 pack1-left absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 1" />
-          <img src={pocktwo} className="pack1 pack1-top absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 2" />
-          <img src={pockthree} className="pack1 pack1-right absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 3" />
-          <img src={pockfour} className="pack1 pack1-bottom absolute origin-center transition-transform duration-500 ease-in-out size-6" alt="Pack piece 4" />
+        <div className="pack1-container absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rotate-45">
+          <img src={pockone} className="pack1 pack1-left absolute origin-center size-6" alt="Pack piece 1" />
+          <img src={pocktwo} className="pack1 pack1-top absolute origin-center size-6" alt="Pack piece 2" />
+          <img src={pockthree} className="pack1 pack1-right absolute origin-center size-6" alt="Pack piece 3" />
+          <img src={pockfour} className="pack1 pack1-bottom absolute origin-center size-6" alt="Pack piece 4" />
         </div>
 
         {/* ===== PACK 2 ===== */}
@@ -179,12 +205,12 @@ function Pack() {
 
         {/* ===== TEXT ===== */}
         <div className="text-content w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
-          <h2 ref={headingRef} className="text-5xl md:text-7xl font-bold mb-8 opacity-0">
+          <h2 ref={headingRef} className="text-5xl sm:text-7xl 2xl:text-8xl font-bold mb-8 opacity-0">
             <span className="text-white font-worksans font-medium">About </span>
             <span className="text-[#FFA500] font-worksans font-medium">Us</span>
           </h2>
 
-          <p ref={descriptionRef} className="text-white text-2xl 2xl:w-250  xl:w-240  lg:w-180  opacity-0  mx-10 lg:mx-auto tracking-wider font-nunito">
+          <p ref={descriptionRef} className="text-white text-xl 2xl:text-3xl 2xl:w-350  xl:w-240  lg:w-180  opacity-0  mx-4 lg:mx-auto tracking-wider font-nunito">
             EtThicks is not just another digital agency — we're a storytelling
             powerhouse rooted in truth, trust, and transformation. Born from the
             Tamil word "Ettuthikkum", meaning to reach in all eight directions,
