@@ -7,12 +7,16 @@ import TeamSection from "/src/Components/HomeComponents/TeamSection.jsx"
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import CTASection from "/src/Components/HomeComponents/CTASection.jsx";
 
+import HeroSection from "/src/Components/HomeComponents/HeroSection.jsx";
+
 
 
 const AboutPage = () => {
   return (
     <>
-      <LandingAnimation />
+      {/* <LandingAnimation /> */}
+
+      <HeroSection />
 
       <CountSection />
 

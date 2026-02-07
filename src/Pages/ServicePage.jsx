@@ -13,12 +13,12 @@ function ServicePage() {
         <>
             <Landing slug={slug} />
 
-            <About slug={slug} />   
+            <About slug={slug} />
 
             <div className="bg-black">
                 <OurWorks category={slug} />
             </div>
-            
+
             <WhyWorkWithUs slug={slug} />
 
             <Review />

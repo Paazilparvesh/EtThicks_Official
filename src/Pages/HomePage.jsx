@@ -13,13 +13,16 @@ import Review from "/src/Components/ServiceComponents/Review";
 import QuoteSection from "/src/Components/HomeComponents/QuoteSection.jsx";
 import Scrolling from "/src/Components/HomeComponents/Scrolling.jsx";
 
+import LandingAnimation from '/src/Components/Aboutcomponents/LandingAnimation.jsx'
 
 function HomePage() {
   return (
     <>
       <div className="bg-black">
 
-        <HeroSection />
+        <LandingAnimation />
+
+        {/* <HeroSection /> */}
 
         <AboutSection />
 

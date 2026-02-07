@@ -80,11 +80,6 @@ function Header() {
     }, 300);
   };
 
-  // const handleServiceClick = (slug) => {
-  //   setIsServicesOpen(false);
-  //   setIsMobileMenuOpen(false);
-  //   window.location.href = `/service/${slug}`;
-  // };
   const handleServiceClick = (slug) => {
     setIsServicesOpen(false);
     setIsMobileMenuOpen(false);
@@ -110,7 +105,7 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black bg-opacity-80  backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black/10  backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
