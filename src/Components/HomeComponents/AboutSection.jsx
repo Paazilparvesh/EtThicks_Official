@@ -360,7 +360,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] font-medium text-5xl md:text-2xl lg:text-[80px] font-worksans leading-none">
                 {counts.projects}
               </h1>
-              <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
+              <span className="text-[#FFAE00] text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
             <p
               ref={el => textItemsRef.current[0] = el}
@@ -379,7 +379,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-5xl md:text-2xl font-medium lg:text-[80px] font-worksans leading-none">
                 {counts.contents}
               </h1>
-              <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
+              <span className="text-[#FFAE00] text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
             <p
               ref={el => textItemsRef.current[1] = el}
@@ -419,7 +419,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.clients}
               </h1>
-              <span className="text-blue-300 text-xl font-worksans">+</span>
+              <span className="text-[#FFAE00] text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
               CLIENTS
@@ -432,7 +432,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.projects}
               </h1>
-              <span className="text-blue-300 text-xl font-worksans">+</span>
+              <span className="text-[#FFAE00] text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 whitespace-nowrap">
               CONTENT PRODUCED
@@ -445,7 +445,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-xl font-worksans leading-none">
                 {targetCounts.contents}
               </h1>
-              <span className="text-blue-300 text-xl font-worksans">+</span>
+              <span className="text-[#FFAE00] text-xl font-worksans">+</span>
             </div>
             <p className="text-white font-nunito tracking-wider mt-0 text-center whitespace-nowrap">
               PROJECTS

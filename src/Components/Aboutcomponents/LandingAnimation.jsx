@@ -339,7 +339,8 @@ function Pack() {
                       ref={circleRef}
                       className="flex absolute left-7 md:left-8 xl:left-14 md:-top-42 xl:-top-44 2xl:-top-36 flex-row items-center justify-center w-16 h-16 md:w-30 md:h-30 lg:w-34 lg:h-34 xl:w-36 xl:h-36 2xl:w-40 2xl:h-40 "
                     >
-                      <div className="absolute inset-0 bg-sky-900 rounded-full -m-1"></div>
+                      {/* <div className="absolute inset-0 bg-sky-900 rounded-full -m-1"></div> */}
+                         <div className="absolute inset-0 bg-[#FFAE00] rounded-full -m-1"></div>
 
                       {/* Circular Text */}
                       <svg viewBox="0 0 200 200" className="absolute w-full h-full font-worksans">

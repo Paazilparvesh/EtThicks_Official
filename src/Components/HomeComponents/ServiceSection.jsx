@@ -76,7 +76,7 @@ function ServiceSection() {
           trigger: sectionRef.current,
           start: "top top",
           end: `+=${scrollX}`,
-          markers: true,
+          // markers: true,
           scrub: 1,
           pin: true,
           pinSpacing: true,
