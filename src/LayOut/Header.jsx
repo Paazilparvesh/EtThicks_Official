@@ -8,7 +8,7 @@ import productphotography from "/src/assets/head/camera-01.svg";
 import tvcomersials from "/src/assets/head/ic_twotone-tv.svg";
 import brandstorytelling from "/src/assets/head/document-text.svg";
 import digitalmarketing from "/src/assets/head/people.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
@@ -64,6 +64,7 @@ const SERVICES = [
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isActive, setIsActive] = useState("home")
   const closeTimeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -103,31 +104,36 @@ function Header() {
     return chunks;
   };
 
+  const navLinkClass = ({ isActive }) =>
+    ` whitespace-nowrap transition-colors font-normal ${isActive ? "text-[#F09D01]" : "hover:text-[#F09D01]"
+    }`;
+
+
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 text-white bg-black/10  backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full max-w-full z-50 text-white bg-black/10  backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center min-h-16 py-2">
           {/* Logo / Brand */}
-          <div className="shrink-0 h-30 w-30">
-            <Link to="/" className="flex items-center">
-              <img src={Logo} alt="Logo" className="w-auto object-cover" />
-            </Link>
+          <div className="shrink-0">
+            <NavLink to="/" className="flex items-center">
+              <img src="/Logo.png" alt="Logo" className="h-10 sm:h-12 md:h-14 w-auto object-contain" />
+            </NavLink>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-10 text-md lg:text-[1.5vw] 2xl:text-[1.2vw] mr-8">
-            <Link to="/" className="hover:text-[#F09D01] transition-colors">
+          <nav className="hidden md:flex gap-4 lg:gap-6 xl:gap-8 text-[clamp(0.9rem,2.5vw,1.4rem)] mr-4 lg:mr-8">
+            <NavLink to="/" className={navLinkClass}>
               Home
-            </Link>
+            </NavLink>
 
             {/* Services Dropdown for Desktop */}
             <div
-              className="relative"
+              className="relative "
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <button className="hover:text-[#F09D01] focus:outline-none transition-colors">
+              <button className="hover:text-[#F09D01] focus:outline-none transition-colors ">
                 Services
               </button>
 
@@ -138,29 +144,14 @@ function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="
-                      fixed top-16 right-0
-                      w-full
-                      bg-black
-                      border-t border-gray-800
-                      px-10 py-6
-                      flex justify-end
-                    "
+                    className="fixed top-16 right-0 w-full border-t border-gray-800 px-10 py-6 flex justify-end bg-black/20  backdrop-blur-xl"
                   >
                     {/* Right aligned container */}
                     <div className=" w-full space-y-8">
                       {chunkArray(SERVICES, 3).map((row, rowIndex) => (
                         <div
                           key={rowIndex}
-                          className="
-                            flex justify-end
-                            gap-1           /* small phones */
-                            sm:gap-2        /* large phones */
-                            md:gap-1        /* tablets */
-                            lg:gap-4        /* small laptops */
-                            xl:gap-5        /* desktops */
-                            2xl:gap-6       /* large screens */
-                          "
+                          className="flex justify-end gap-1 sm:gap-2 md:gap-1 lg:gap-4 vxl:gap-5 2xl:gap-6 ="
                         >
                           {row.map((service) => (
                             <button
@@ -206,19 +197,17 @@ function Header() {
 
             </div>
 
-            <Link to="/about" className="hover:text-orange-300 transition-colors">
+            <NavLink to="/about" className={navLinkClass}>
               About us
-            </Link>
+            </NavLink>
 
-            <Link to="/contact" className="hover:text-orange-300 transition-colors">
+            <NavLink to="/contact" className={navLinkClass}>
               Contact us
-            </Link>
+            </NavLink>
 
-            <Link to="/blogs" className="hover:text-orange-300 transition-colors">
+            <NavLink to="/blogs" className={navLinkClass}>
               Blog
-            </Link>
-
-
+            </NavLink>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -252,6 +241,7 @@ function Header() {
               </svg>
             </button>
           </div>
+
         </div>
       </div>
 
