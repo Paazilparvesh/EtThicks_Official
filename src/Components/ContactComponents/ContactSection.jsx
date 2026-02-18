@@ -233,7 +233,7 @@ const ContactSection = () => {
       {/* ⬇ Full-width tilted line with animated ETTHICKS + Subtract.svg */}
       <div className="absolute top-145 sm:top-175 md:top-130 left-0 w-full h-11 sm:h-14 mt-26 flex items-center justify-center -rotate-5 overflow-hidden">
         {/* Static blue background */}
-        <div className="absolute inset-0 w-full h-full bg-[#007388]"></div>
+        <div className="absolute inset-0 w-full h-full border-y border-white/5]"></div>
 
         {/* Animated content */}
         <div className="relative w-full h-full flex items-center overflow-hidden">

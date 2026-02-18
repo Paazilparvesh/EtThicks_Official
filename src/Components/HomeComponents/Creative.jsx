@@ -136,9 +136,9 @@ function Creative() {
             <section
                 ref={sectionRef}
                 className="relative w-full min-h-[calc(100vh-18vh)] flex flex-col items-center justify-center overflow-hidden"
-                style={{
-                    background: 'radial-gradient(ellipse at center, #072a31, #000000)'
-                }}
+                // style={{
+                //     background: 'radial-gradient(ellipse at center, #072a31, #000000)'
+                // }}
             >
                 {/* Animated background shapes - Desktop layout */}
                 <div className="hidden sm:flex absolute inset-0 z-0 items-center justify-center gap-10 lg:gap-15 xl:gap-20 px-4 md:px-8 pointer-events-none">
