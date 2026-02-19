@@ -14,16 +14,6 @@ import img8 from "/src/assets/Homeconnect/8.png";
 import img9 from "/src/assets/Homeconnect/9.png";
 import img10 from "/src/assets/Homeconnect/10.png";
 
-import vid1 from "/src/assets/Homeconnect/1.mp4";
-import vid2 from "/src/assets/Homeconnect/2.mp4";
-import vid3 from "/src/assets/Homeconnect/3.mp4";
-import vid4 from "/src/assets/Homeconnect/4.mp4";
-import vid5 from "/src/assets/Homeconnect/5.mp4";
-import vid6 from "/src/assets/Homeconnect/6.mp4";
-import vid7 from "/src/assets/Homeconnect/7.mp4";
-import vid8 from "/src/assets/Homeconnect/8.mp4";
-import vid9 from "/src/assets/Homeconnect/9.mp4";
-import vid10 from "/src/assets/Homeconnect/10.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -147,19 +137,6 @@ const ConnectSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const GridVideo = ({ src, className }) => {
-    return (
-      <video
-        src={src}
-        className={`max-w-full h-auto object-contain ${className}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
-    );
-  };
 
   return (
     <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
@@ -197,7 +174,7 @@ const ConnectSection = () => {
           ref={gridRef1}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(120vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <GridVideo
+          <img
             src={img1}
             className="
               max-w-full h-auto object-contain
@@ -211,7 +188,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img2}
             className="
               max-w-full h-auto object-contain
@@ -225,7 +202,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img3}
             className="
               max-w-full h-auto object-contain
@@ -239,7 +216,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img4}
             className="
               max-w-full h-auto object-contain
@@ -259,7 +236,7 @@ const ConnectSection = () => {
           ref={gridRef2}
           className="absolute inset-0 z-30 rounded-full pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <GridVideo
+          <img
             src={img5}
             className="
               max-w-full h-auto object-contain
@@ -274,7 +251,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img6}
             className="
               max-w-full h-auto object-contain
@@ -288,7 +265,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img7}
             className="
               max-w-full h-auto object-contain
@@ -308,7 +285,7 @@ const ConnectSection = () => {
           ref={gridRef3}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <GridVideo
+          <img
             src={img8}
             className="
               max-w-full h-auto object-contain
@@ -322,7 +299,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img9}
             className="
               max-w-full h-auto object-contain
@@ -336,7 +313,7 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
+          <img
             src={img10}
             className="
               max-w-full h-auto object-contain
