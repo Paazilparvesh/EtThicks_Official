@@ -14,6 +14,7 @@ import img8 from "/src/assets/Homeconnect/8.png";
 import img9 from "/src/assets/Homeconnect/9.png";
 import img10 from "/src/assets/Homeconnect/10.png";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ConnectSection = () => {
@@ -136,6 +137,7 @@ const ConnectSection = () => {
     return () => ctx.revert();
   }, []);
 
+
   return (
     <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
       <div
@@ -237,16 +239,16 @@ const ConnectSection = () => {
           <img
             src={img5}
             className="
-    max-w-full h-auto object-contain
-    rounded-2xl
-    row-start-1 col-start-1
-    scale-[2.1] md:scale-100
-    translate-x-[40px] translate-y-[410px]
-    sm:translate-x-[320px] sm:translate-y-[-20px]
-    md:translate-x-[100px] md:translate-y-[-30px]
-    lg:translate-x-[280px] lg:translate-y-[-40px]
-    xl:translate-x-[620px] xl:translate-y-[-200px]
-  "
+              max-w-full h-auto object-contain
+              rounded-2xl
+              row-start-1 col-start-1
+              scale-[2.1] md:scale-100
+              translate-x-[40px] translate-y-[410px]
+              sm:translate-x-[320px] sm:translate-y-[-20px]
+              md:translate-x-[100px] md:translate-y-[-30px]
+              lg:translate-x-[280px] lg:translate-y-[-40px]
+              xl:translate-x-[620px] xl:translate-y-[-200px]
+            "
           />
 
           <img
