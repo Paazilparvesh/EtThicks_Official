@@ -14,6 +14,17 @@ import img8 from "/src/assets/Homeconnect/8.png";
 import img9 from "/src/assets/Homeconnect/9.png";
 import img10 from "/src/assets/Homeconnect/10.png";
 
+import vid1 from "/src/assets/Homeconnect/1.mp4";
+import vid2 from "/src/assets/Homeconnect/2.mp4";
+import vid3 from "/src/assets/Homeconnect/3.mp4";
+import vid4 from "/src/assets/Homeconnect/4.mp4";
+import vid5 from "/src/assets/Homeconnect/5.mp4";
+import vid6 from "/src/assets/Homeconnect/6.mp4";
+import vid7 from "/src/assets/Homeconnect/7.mp4";
+import vid8 from "/src/assets/Homeconnect/8.mp4";
+import vid9 from "/src/assets/Homeconnect/9.mp4";
+import vid10 from "/src/assets/Homeconnect/10.mp4";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ConnectSection = () => {
@@ -64,7 +75,7 @@ const ConnectSection = () => {
       tl.fromTo(
         circleRef.current,
         { yPercent: -200, opacity: 0 },
-        { yPercent: -40, opacity: 1, ease: "power2.out", duration: 2 }
+        { yPercent: -40, opacity: 1, ease: "power2.out", duration: 2 },
       );
 
       tl.to(circleRef.current, { duration: 0.5 });
@@ -79,20 +90,20 @@ const ConnectSection = () => {
         h1Ref.current,
         { opacity: 0, yPercent: -120 },
         { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
-        "-=1"
+        "-=1",
       );
 
       tl.fromTo(
         pRef.current,
         { opacity: 0, yPercent: 120 },
         { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
-        "-=1"
+        "-=1",
       );
 
       tl.fromTo(
         gridRef1.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef1.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -103,7 +114,7 @@ const ConnectSection = () => {
       tl.fromTo(
         gridRef2.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef2.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -114,7 +125,7 @@ const ConnectSection = () => {
       tl.fromTo(
         gridRef3.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef3.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -125,7 +136,7 @@ const ConnectSection = () => {
       tl.to(
         [circleRef.current, h1Ref.current, pRef.current],
         { opacity: 0, ease: "power2.in", duration: 2 },
-        "-=0"
+        "-=0",
       );
       // ✅ Safe refresh inside GSAP lifecycle
       gsap.delayedCall(0.3, () => {
@@ -133,9 +144,22 @@ const ConnectSection = () => {
       });
     }, pinRef);
 
-
     return () => ctx.revert();
   }, []);
+
+  const GridVideo = ({ src, className }) => {
+    return (
+      <video
+        src={src}
+        className={`max-w-full h-auto object-contain ${className}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
+  };
 
   return (
     <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
@@ -173,7 +197,7 @@ const ConnectSection = () => {
           ref={gridRef1}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(120vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img
+          <GridVideo
             src={img1}
             className="
               max-w-full h-auto object-contain
@@ -187,7 +211,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img2}
             className="
               max-w-full h-auto object-contain
@@ -201,7 +225,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img3}
             className="
               max-w-full h-auto object-contain
@@ -215,7 +239,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img4}
             className="
               max-w-full h-auto object-contain
@@ -235,23 +259,22 @@ const ConnectSection = () => {
           ref={gridRef2}
           className="absolute inset-0 z-30 rounded-full pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img
+          <GridVideo
             src={img5}
             className="
-    max-w-full h-auto object-contain
-    rounded-2xl
-    row-start-1 col-start-1
-    scale-[2.1] md:scale-100
-    translate-x-[40px] translate-y-[410px]
-    sm:translate-x-[320px] sm:translate-y-[-20px]
-    md:translate-x-[100px] md:translate-y-[-30px]
-    lg:translate-x-[280px] lg:translate-y-[-40px]
-    xl:translate-x-[620px] xl:translate-y-[-200px]
-  "
+              max-w-full h-auto object-contain
+              rounded-2xl
+              row-start-1 col-start-1
+              scale-[2.1] md:scale-100
+              translate-x-[40px] translate-y-[410px]
+              sm:translate-x-[320px] sm:translate-y-[-20px]
+              md:translate-x-[100px] md:translate-y-[-30px]
+              lg:translate-x-[280px] lg:translate-y-[-40px]
+              xl:translate-x-[620px] xl:translate-y-[-200px]
+            "
           />
 
-
-          <img
+          <GridVideo
             src={img6}
             className="
               max-w-full h-auto object-contain
@@ -265,7 +288,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img7}
             className="
               max-w-full h-auto object-contain
@@ -285,7 +308,7 @@ const ConnectSection = () => {
           ref={gridRef3}
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
-          <img
+          <GridVideo
             src={img8}
             className="
               max-w-full h-auto object-contain
@@ -299,7 +322,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img9}
             className="
               max-w-full h-auto object-contain
@@ -313,7 +336,7 @@ const ConnectSection = () => {
             "
           />
 
-          <img
+          <GridVideo
             src={img10}
             className="
               max-w-full h-auto object-contain
