@@ -64,7 +64,7 @@ const ConnectSection = () => {
       tl.fromTo(
         circleRef.current,
         { yPercent: -200, opacity: 0 },
-        { yPercent: -40, opacity: 1, ease: "power2.out", duration: 2 }
+        { yPercent: -40, opacity: 1, ease: "power2.out", duration: 2 },
       );
 
       tl.to(circleRef.current, { duration: 0.5 });
@@ -79,20 +79,20 @@ const ConnectSection = () => {
         h1Ref.current,
         { opacity: 0, yPercent: -120 },
         { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
-        "-=1"
+        "-=1",
       );
 
       tl.fromTo(
         pRef.current,
         { opacity: 0, yPercent: 120 },
         { opacity: 1, yPercent: 0, ease: "power2.out", duration: 2 },
-        "-=1"
+        "-=1",
       );
 
       tl.fromTo(
         gridRef1.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef1.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -103,7 +103,7 @@ const ConnectSection = () => {
       tl.fromTo(
         gridRef2.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef2.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -114,7 +114,7 @@ const ConnectSection = () => {
       tl.fromTo(
         gridRef3.current,
         { autoAlpha: 0, yPercent: 50 },
-        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" }
+        { autoAlpha: 1, yPercent: 0, duration: 2, ease: "power2.out" },
       ).to(gridRef3.current, {
         autoAlpha: 0,
         yPercent: -50,
@@ -125,14 +125,13 @@ const ConnectSection = () => {
       tl.to(
         [circleRef.current, h1Ref.current, pRef.current],
         { opacity: 0, ease: "power2.in", duration: 2 },
-        "-=0"
+        "-=0",
       );
       // ✅ Safe refresh inside GSAP lifecycle
       gsap.delayedCall(0.3, () => {
         ScrollTrigger.refresh();
       });
     }, pinRef);
-
 
     return () => ctx.revert();
   }, []);
@@ -249,7 +248,6 @@ const ConnectSection = () => {
     xl:translate-x-[620px] xl:translate-y-[-200px]
   "
           />
-
 
           <img
             src={img6}
