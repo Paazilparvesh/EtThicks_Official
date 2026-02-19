@@ -15,7 +15,7 @@ const slides = [image1, image2, image3, image4, image5, image6, image7, image8, 
 // Reusable Row Component
 const CarouselRow = ({ reverse = false, duration = 14 }) => {
   return (
-    <div className="relative w-full overflow-hidden my-4">
+    <div className="relative w-full overflow-hidden my-4 bg-white">
       {/* Gradient Fade on both sides */}
       <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-black to-transparent z-20 pointer-events-none"></div>
       <div className="absolute inset-y-0 right-0 w-24 bg-linear-to-l from-black to-transparent z-20 pointer-events-none"></div>

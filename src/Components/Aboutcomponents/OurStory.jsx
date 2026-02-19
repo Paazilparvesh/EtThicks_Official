@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import Image1 from "/src/assets/about/poky.png";
+import Image1 from "/src/assets/about/poky2.png";
 
 function OurStory() {
   const imageRef = useRef(null);

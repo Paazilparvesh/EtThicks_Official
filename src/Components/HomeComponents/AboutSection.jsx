@@ -398,7 +398,7 @@ function AboutSection() {
               <h1 className="text-[#FFAE00] text-5xl md:text-2xl lg:text-[80px] font-worksans font-medium leading-none">
                 {counts.clients}
               </h1>
-              <span className="text-blue-300 text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
+              <span className="text-[#FFAE00] text-4xl md:text-2xl lg:text-4xl font-worksans mb-1 md:mb-2 lg:mb-3">+</span>
             </div>
             <p
               ref={el => textItemsRef.current[2] = el}

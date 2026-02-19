@@ -133,7 +133,7 @@ function CountSection() {
         <div>
           <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.projects}
-            <span className="text-[#009BB5] lg:text-6xl">+</span>
+            <span className="text-[#FFAE00] lg:text-6xl">+</span>
           </h1>
           <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             PROJECTS
@@ -144,7 +144,7 @@ function CountSection() {
         <div className="hidden sm:block">
           <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.contents}
-            <span className="text-[#009BB5] lg:text-6xl">+</span>
+            <span className="text-[#FFAE00] lg:text-6xl">+</span>
           </h1>
           <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             CONTENT PRODUCED
@@ -155,7 +155,7 @@ function CountSection() {
         <div>
           <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.clients}
-            <span className="text-[#009BB5] lg:text-6xl">+</span>
+            <span className="text-[#FFAE00] lg:text-6xl">+</span>
           </h1>
           <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             CLIENTS
@@ -166,7 +166,7 @@ function CountSection() {
         <div className="sm:hidden">
           <h1 className="text-[#FFAE00] text-5xl lg:text-[80px] font-worksans">
             {counts.contents}
-            <span className="text-[#009BB5] lg:text-6xl">+</span>
+            <span className="text-[#FFAE00] lg:text-6xl">+</span>
           </h1>
           <p className="text-white text-3xl lg:text-[32px] mt-2 font-nunito">
             CONTENT PRODUCED

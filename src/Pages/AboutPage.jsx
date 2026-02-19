@@ -28,7 +28,7 @@ const AboutPage = () => {
 
       <TeamSection />
 
-      <QuoteSection />
+      {/* <QuoteSection /> */}
 
       <CTASection />
     </>

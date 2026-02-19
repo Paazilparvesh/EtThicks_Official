@@ -64,7 +64,6 @@ const SERVICES = [
 function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isActive, setIsActive] = useState("home")
   const closeTimeoutRef = useRef(null);
   const navigate = useNavigate();
 
@@ -86,7 +85,7 @@ function Header() {
     setIsMobileMenuOpen(false);
 
     navigate(`/service/${slug}`, {
-      state: { scrollTo: "about-section" }, // 👈 section id
+      state: { scrollTo: "about-section" },
     });
   };
 
@@ -111,7 +110,7 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full max-w-full z-50 text-white bg-black/10  backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full max-w-full z-40 text-white bg-black/10  backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center min-h-16 py-2">
           {/* Logo / Brand */}
@@ -144,7 +143,7 @@ function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="fixed top-16 right-0 w-full border-t border-gray-800 px-10 py-6 flex justify-end bg-black/20  backdrop-blur-xl"
+                    className="fixed top-18 right-0 w-full px-10 py-6 flex justify-end bg-black/40  backdrop-blur-xl z-40"
                   >
                     {/* Right aligned container */}
                     <div className=" w-full space-y-8">
@@ -192,9 +191,6 @@ function Header() {
                   </motion.div>
                 )}
               </AnimatePresence>
-
-
-
             </div>
 
             <NavLink to="/about" className={navLinkClass}>
