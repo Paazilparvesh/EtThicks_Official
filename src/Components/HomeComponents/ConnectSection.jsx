@@ -3,27 +3,27 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // 🔹 Image imports
-import img1 from "/src/assets/Homeconnect/1.png";
-import img2 from "/src/assets/Homeconnect/2.png";
-import img3 from "/src/assets/Homeconnect/3.png";
-import img4 from "/src/assets/Homeconnect/4.png";
-import img5 from "/src/assets/Homeconnect/5.png";
-import img6 from "/src/assets/Homeconnect/6 .png";
-import img7 from "/src/assets/Homeconnect/7.png";
-import img8 from "/src/assets/Homeconnect/8.png";
-import img9 from "/src/assets/Homeconnect/9.png";
-import img10 from "/src/assets/Homeconnect/10.png";
+// import img1 from "/src/assets/ConnectVideo/1.png";
+// import img2 from "/src/assets/ConnectVideo/2.png";
+// import img3 from "/src/assets/ConnectVideo/3.png";
+// import img4 from "/src/assets/ConnectVideo/4.png";
+// import img5 from "/src/assets/ConnectVideo/5.png";
+// import img6 from "/src/assets/ConnectVideo/6 .png";
+// import img7 from "/src/assets/ConnectVideo/7.png";
+// import img8 from "/src/assets/ConnectVideo/8.png";
+// import img9 from "/src/assets/ConnectVideo/9.png";
+// import img10 from "/src/assets/ConnectVideo/10.png";
 
-import vid1 from "/src/assets/Homeconnect/1.mp4";
-import vid2 from "/src/assets/Homeconnect/2.mp4";
-import vid3 from "/src/assets/Homeconnect/3.mp4";
-import vid4 from "/src/assets/Homeconnect/4.mp4";
-import vid5 from "/src/assets/Homeconnect/5.mp4";
-import vid6 from "/src/assets/Homeconnect/6.mp4";
-import vid7 from "/src/assets/Homeconnect/7.mp4";
-import vid8 from "/src/assets/Homeconnect/8.mp4";
-import vid9 from "/src/assets/Homeconnect/9.mp4";
-import vid10 from "/src/assets/Homeconnect/10.mp4";
+import vid1 from "/src/assets/ConnectVideo/1.mp4";
+import vid2 from "/src/assets/ConnectVideo/2.mp4";
+import vid3 from "/src/assets/ConnectVideo/3.mp4";
+import vid4 from "/src/assets/ConnectVideo/4.mp4";
+import vid5 from "/src/assets/ConnectVideo/5.mp4";
+import vid6 from "/src/assets/ConnectVideo/6.mp4";
+import vid7 from "/src/assets/ConnectVideo/7.mp4";
+import vid8 from "/src/assets/ConnectVideo/8.mp4";
+import vid9 from "/src/assets/ConnectVideo/9.mp4";
+import vid10 from "/src/assets/ConnectVideo/10.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -198,9 +198,9 @@ const ConnectSection = () => {
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(120vh-20vh)] mt-20 gap-10 mx-10"
         >
           <GridVideo
-            src={img1}
+            src={vid1}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[1.6] md:scale-100
               translate-x-[20px] translate-y-[-10px]
@@ -212,9 +212,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img2}
+            src={vid2}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px] object-contain
               row-start-1 col-start-1
               scale-[1.7] md:scale-100
               translate-x-[260px] translate-y-[40px]
@@ -226,9 +226,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img3}
+            src={vid3}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px] object-contain
               row-start-1 col-start-1
               scale-[2.4] md:scale-100
               translate-x-[40px] translate-y-[340px]
@@ -240,9 +240,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img4}
+            src={vid4}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px] object-contain
               row-start-1 col-start-1
               scale-[2.5] md:scale-100
               translate-x-[230px] translate-y-[480px]
@@ -260,9 +260,9 @@ const ConnectSection = () => {
           className="absolute inset-0 z-30 rounded-full pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
           <GridVideo
-            src={img5}
+            src={vid5}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               rounded-2xl
               row-start-1 col-start-1
               scale-[2.1] md:scale-100
@@ -275,9 +275,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img6}
+            src={vid6}
             className="
-              max-w-full h-auto object-contain
+              max-w-full not-only:h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[2.3] md:scale-100
               translate-x-[230px] translate-y-[480px]
@@ -289,9 +289,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img7}
+            src={vid7}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[2.2] md:scale-100
               translate-x-[110px] translate-y-[20px]
@@ -309,9 +309,9 @@ const ConnectSection = () => {
           className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(100vh-20vh)] mt-20 gap-10 mx-10"
         >
           <GridVideo
-            src={img8}
+            src={vid8}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[2.4] md:scale-100
               translate-x-[20px] translate-y-[5px]
@@ -323,9 +323,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img9}
+            src={vid9}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[2.8] md:scale-100
               translate-x-[110px] translate-y-[440px]
@@ -337,9 +337,9 @@ const ConnectSection = () => {
           />
 
           <GridVideo
-            src={img10}
+            src={vid10}
             className="
-              max-w-full h-auto object-contain
+              max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
               scale-[2] md:scale-100 sm:scale-150
               translate-x-[240px] translate-y-[-70px]
