@@ -416,11 +416,11 @@ function ServiceSection() {
         /* DESKTOP LAYOUT - Horizontal Scroll with Snap */
         <div
           ref={contentWrapperRef}
-          className="flex items-center h-[calc(100vh-120px)] lg:h-[calc(80vh-150px)]"
+          className="flex items-center h-[calc(100vh-120px)] lg:h-[calc(80vh-150px)] hide-scrollbar"
         >
           <div className="shrink-0 w-1/4 lg:w-20 h-full" />
 
-          <div className="flex items-center gap-10 lg:gap-5 xl:gap-6 px-4 lg:px-8 h-full">
+          <div className="flex items-center gap-10 lg:gap-5 xl:gap-6 px-4 lg:px-8 h-full hide-scrollbar">
             {/* Group 1: Panels 1-2-3 */}
             <div className="flex items-center gap-10 lg:gap-5 xl:gap-6">
               {panelsData.slice(0, 3).map((panel) => (
