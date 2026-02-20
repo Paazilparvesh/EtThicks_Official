@@ -147,19 +147,6 @@ const ConnectSection = () => {
     return () => ctx.revert();
   }, []);
 
-  const GridVideo = ({ src, className }) => {
-    return (
-      <video
-        src={src}
-        className={`max-w-full h-auto object-contain ${className}`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
-    );
-  };
 
   return (
     <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
@@ -336,8 +323,8 @@ const ConnectSection = () => {
             "
           />
 
-          <GridVideo
-            src={vid10}
+          <img
+            src={img10}
             className="
               max-w-full h-[300px]  object-contain
               row-start-1 col-start-1
