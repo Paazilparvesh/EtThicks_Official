@@ -1,4 +1,3 @@
-import LandingAnimation from '/src/Components/Aboutcomponents/LandingAnimation.jsx'
 import CountSection from '/src/Components/Aboutcomponents/CountSection'
 import OurStory from '/src/Components/Aboutcomponents/OurStory'
 import AboutSection from '/src/Components/Aboutcomponents/AboutSection'
@@ -14,8 +13,6 @@ import HeroSection from "/src/Components/HomeComponents/HeroSection.jsx";
 const AboutPage = () => {
   return (
     <>
-      {/* <LandingAnimation /> */}
-
       <HeroSection />
 
       <CountSection />

@@ -3,16 +3,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // 🔹 Image imports
-// import img1 from "/src/assets/ConnectVideo/1.png";
-// import img2 from "/src/assets/ConnectVideo/2.png";
-// import img3 from "/src/assets/ConnectVideo/3.png";
-// import img4 from "/src/assets/ConnectVideo/4.png";
-// import img5 from "/src/assets/ConnectVideo/5.png";
-// import img6 from "/src/assets/ConnectVideo/6 .png";
-// import img7 from "/src/assets/ConnectVideo/7.png";
-// import img8 from "/src/assets/ConnectVideo/8.png";
-// import img9 from "/src/assets/ConnectVideo/9.png";
-// import img10 from "/src/assets/ConnectVideo/10.png";
 
 import vid1 from "/src/assets/ConnectVideo/1.mp4";
 import vid2 from "/src/assets/ConnectVideo/2.mp4";
@@ -147,6 +137,20 @@ const ConnectSection = () => {
     return () => ctx.revert();
   }, []);
 
+  const GridVideo = ({ src, className }) => {
+    return (
+      <video
+        src={src}
+        className={`max-w-full h-auto object-contain ${className}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+      />
+    );
+  };
+
 
   return (
     <section className="w-full md:-mb-50 bg-black overflow-hidden relative">
@@ -182,9 +186,9 @@ const ConnectSection = () => {
         {/* GRID 1 */}
         <div
           ref={gridRef1}
-          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-[calc(120vh-20vh)] mt-20 gap-10 mx-10"
+          className="absolute inset-0 z-30 pointer-events-none grid grid-cols-4 grid-rows-3 w-full min-h-screen mt-20 gap-10 mx-10"
         >
-          <GridVideo
+          {/* <GridVideo
             src={vid1}
             className="
               max-w-full h-[300px]  object-contain
@@ -196,15 +200,15 @@ const ConnectSection = () => {
               lg:translate-x-[120px] lg:translate-y-[-40px]
               xl:translate-x-[100px] xl:translate-y-[-130px]
             "
-          />
+          /> */}
 
           <GridVideo
             src={vid2}
             className="
-              max-w-full h-[300px] object-contain
+              max-w-full h-80 object-contain
               row-start-1 col-start-1
-              scale-[1.7] md:scale-100
-              translate-x-[260px] translate-y-[40px]
+              scale-150 md:scale-100
+              translate-x-[260px] -translate-y-10
               sm:translate-x-[420px] sm:translate-y-[480px]
               md:translate-x-[490px] md:translate-y-[120px]
               lg:translate-x-[620px] lg:translate-y-[260px]
@@ -323,8 +327,8 @@ const ConnectSection = () => {
             "
           />
 
-          <img
-            src={img10}
+          <GridVideo
+            src={vid10}
             className="
               max-w-full h-[300px]  object-contain
               row-start-1 col-start-1

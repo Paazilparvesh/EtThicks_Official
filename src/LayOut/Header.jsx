@@ -110,7 +110,7 @@ function Header() {
 
 
   return (
-    <header className="fixed top-0 left-0 w-full max-w-full z-40 text-white bg-black/10  backdrop-blur-sm">
+    <header className="fixed top-0 left-0 w-full max-w-full z-50 text-white bg-black/10  backdrop-blur-sm">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center min-h-16 py-2">
           {/* Logo / Brand */}

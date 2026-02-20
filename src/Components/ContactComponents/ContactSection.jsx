@@ -118,7 +118,7 @@ const ContactSection = () => {
           {/* Playful "Let's talk!" heading with Nunito font */}
           <h2 className="
             text-white 
-            text-5xl sm:text-8xl lg:text-7xl xl:text-8xl
+            text-[clamp(2.5rem,6vw,6rem)]
             font-semibold 
             mb-8 
             flex flex-wrap justify-center lg:justify-start
@@ -127,6 +127,9 @@ const ContactSection = () => {
             xl:ml-20 
             text-center lg:text-left 
             font-worksans
+            [text-rendering:optimizeLegibility]
+            [-webkit-font-smoothing:antialiased]
+            [-moz-osx-font-smoothing:grayscale]
           ">
             <span className="inline-block -rotate-18">L</span>
             <span className="inline-block -rotate-15 -mt-1">e</span>
